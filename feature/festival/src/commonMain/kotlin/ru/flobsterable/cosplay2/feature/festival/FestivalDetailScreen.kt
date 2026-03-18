@@ -14,7 +14,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.EventAvailable
 import androidx.compose.material.icons.rounded.OpenInNew
 import androidx.compose.material3.Card
@@ -66,7 +66,12 @@ fun FestivalDetailScreen(
                 val aboutText = buildFestivalAboutText(detail)
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
-                    contentPadding = PaddingValues(horizontal = 20.dp, vertical = 12.dp),
+                    contentPadding = PaddingValues(
+                        start = 20.dp,
+                        top = 88.dp,
+                        end = 20.dp,
+                        bottom = 12.dp
+                    ),
                     verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp)
                 ) {
                     item {
@@ -120,24 +125,24 @@ fun FestivalDetailScreen(
                 .background(
                     Brush.verticalGradient(
                         colors = listOf(
-                            MaterialTheme.colorScheme.surface.copy(alpha = 0.18f),
-                            MaterialTheme.colorScheme.surface.copy(alpha = 0.58f),
-                            MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
+                            MaterialTheme.colorScheme.surface.copy(alpha = 0.94f),
+                            MaterialTheme.colorScheme.surface.copy(alpha = 0.64f),
+                            MaterialTheme.colorScheme.surface.copy(alpha = 0f)
                         )
                     )
                 )
                 .statusBarsPadding()
-                .height(56.dp)
+                .height(72.dp)
         ) {
             IconButton(
                 onClick = onBack,
                 modifier = Modifier
                     .align(Alignment.CenterStart)
-                    .padding(start = 6.dp)
+                    .padding(start = 10.dp)
                     .size(40.dp)
             ) {
                 Icon(
-                    Icons.Rounded.ArrowBack,
+                    Icons.AutoMirrored.Rounded.ArrowBack,
                     contentDescription = "Назад",
                     tint = MaterialTheme.colorScheme.onSurface
                 )

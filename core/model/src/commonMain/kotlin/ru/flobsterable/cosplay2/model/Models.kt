@@ -104,3 +104,48 @@ data class AppUpdateInfo(
     val releaseUrl: String,
     val apkUrl: String?
 )
+
+sealed interface AppUpdateInstallState {
+    data object Idle : AppUpdateInstallState
+
+    data class Downloading(
+        val versionName: String,
+        val progress: Float?,
+        val downloadedBytes: Long,
+        val totalBytes: Long
+    ) : AppUpdateInstallState
+
+    data class Downloaded(
+        val versionName: String
+    ) : AppUpdateInstallState
+
+    data class RequiresInstallPermission(
+        val versionName: String
+    ) : AppUpdateInstallState
+
+    data class Failed(
+        val versionName: String?,
+        val message: String
+    ) : AppUpdateInstallState
+}
+
+fun compareAppVersions(left: String, right: String): Int {
+    fun normalize(value: String): List<Int> = value
+        .removePrefix("v")
+        .split(".", "-", "_")
+        .mapNotNull { it.toIntOrNull() }
+
+    val leftParts = normalize(left)
+    val rightParts = normalize(right)
+    val maxSize = maxOf(leftParts.size, rightParts.size)
+
+    for (index in 0 until maxSize) {
+        val leftPart = leftParts.getOrElse(index) { 0 }
+        val rightPart = rightParts.getOrElse(index) { 0 }
+        if (leftPart != rightPart) {
+            return leftPart.compareTo(rightPart)
+        }
+    }
+
+    return 0
+}

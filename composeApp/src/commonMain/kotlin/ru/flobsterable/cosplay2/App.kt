@@ -32,6 +32,8 @@ import ru.flobsterable.cosplay2.feature.festival.FestivalDetailScreen
 import ru.flobsterable.cosplay2.feature.festival.FestivalsScreen
 import ru.flobsterable.cosplay2.feature.festival.UiState
 import ru.flobsterable.cosplay2.feature.update.UpdateBanner
+import ru.flobsterable.cosplay2.feature.update.UpdateScreen
+import ru.flobsterable.cosplay2.feature.update.updateBannerTitle
 import ru.flobsterable.cosplay2.feature.update.isNewerVersion
 import ru.flobsterable.cosplay2.model.AppUpdateInfo
 import ru.flobsterable.cosplay2.model.FestivalCatalog
@@ -42,6 +44,12 @@ import ru.flobsterable.cosplay2.platform.AppUpdateLauncher
 import ru.flobsterable.cosplay2.platform.AppVersion
 import ru.flobsterable.cosplay2.platform.rememberAppUpdateLauncher
 import ru.flobsterable.cosplay2.platform.SystemBackHandler
+
+private sealed interface AppRoute {
+    data object Festivals : AppRoute
+    data class FestivalDetails(val festival: FestivalSummary) : AppRoute
+    data object Update : AppRoute
+}
 
 @Composable
 fun CosplayApp() {
@@ -56,7 +64,7 @@ fun CosplayApp() {
             )
         }
         val appUpdateLauncher = rememberAppUpdateLauncher()
-        var selectedFestival by remember { mutableStateOf<FestivalSummary?>(null) }
+        var route by remember { mutableStateOf<AppRoute>(AppRoute.Festivals) }
 
         DisposableEffect(Unit) {
             onDispose {
@@ -69,11 +77,11 @@ fun CosplayApp() {
             color = MaterialTheme.colorScheme.background
         ) {
             SystemBackHandler(
-                enabled = selectedFestival != null,
-                onBack = { selectedFestival = null }
+                enabled = route != AppRoute.Festivals,
+                onBack = { route = AppRoute.Festivals }
             )
             AnimatedContent(
-                targetState = selectedFestival,
+                targetState = route,
                 transitionSpec = {
                     (fadeIn(animationSpec = tween(450)) + slideInVertically(
                         initialOffsetY = { it / 10 },
@@ -81,21 +89,26 @@ fun CosplayApp() {
                     )).togetherWith(fadeOut(animationSpec = tween(250)))
                 },
                 label = "festival_navigation"
-            ) { festival ->
-                if (festival == null) {
-                    FestivalsRoute(
+            ) { targetRoute ->
+                when (targetRoute) {
+                    AppRoute.Festivals -> FestivalsRoute(
                         repository = repository,
                         updateRepository = updateRepository,
                         client = client,
                         appUpdateLauncher = appUpdateLauncher,
-                        onFestivalSelected = { selectedFestival = it }
+                        onOpenUpdate = { route = AppRoute.Update },
+                        onFestivalSelected = { route = AppRoute.FestivalDetails(it) }
                     )
-                } else {
-                    FestivalDetailRoute(
+                    is AppRoute.FestivalDetails -> FestivalDetailRoute(
                         repository = repository,
                         client = client,
-                        festival = festival,
-                        onBack = { selectedFestival = null }
+                        festival = targetRoute.festival,
+                        onBack = { route = AppRoute.Festivals }
+                    )
+                    AppRoute.Update -> UpdateRoute(
+                        updateRepository = updateRepository,
+                        appUpdateLauncher = appUpdateLauncher,
+                        onBack = { route = AppRoute.Festivals }
                     )
                 }
             }
@@ -109,12 +122,15 @@ private fun FestivalsRoute(
     updateRepository: GitHubUpdateRepository,
     client: HttpClient,
     appUpdateLauncher: AppUpdateLauncher,
+    onOpenUpdate: () -> Unit,
     onFestivalSelected: (FestivalSummary) -> Unit
 ) {
     val currentYear = remember { Clock.System.todayIn(TimeZone.currentSystemDefault()).year }
     val updateState by produceState<AppUpdateInfo?>(initialValue = null) {
         value = runCatching { updateRepository.getLatestUpdate() }.getOrNull()
     }
+    val pendingUpdate by appUpdateLauncher.pendingUpdate
+    val installState by appUpdateLauncher.installState
     var selectedYear by rememberSaveable { mutableStateOf(ACTUAL_FILTER_YEAR) }
     var lastSuccessfulCatalog by remember { mutableStateOf<FestivalCatalog?>(null) }
     val requestedYear = if (selectedYear == ACTUAL_FILTER_YEAR) currentYear else selectedYear
@@ -144,21 +160,51 @@ private fun FestivalsRoute(
         isYearLoading = isYearLoading,
         client = client,
         topContent = {
-            val update = updateState
-            if (update != null && isNewerVersion(AppVersion.versionName, update.versionName)) {
+            val latestUpdate = updateState
+            val update = when {
+                pendingUpdate != null -> pendingUpdate
+                latestUpdate != null && isNewerVersion(AppVersion.versionName, latestUpdate.versionName) -> latestUpdate
+                else -> null
+            }
+
+            if (update != null) {
                 UpdateBanner(
-                    update = update,
-                    onUpdateClick = {
-                        appUpdateLauncher.launchUpdate(
-                            apkUrl = update.apkUrl,
-                            releaseUrl = update.releaseUrl,
-                            versionName = update.versionName
-                        )
-                    }
+                    title = updateBannerTitle(update, installState),
+                    onOpenUpdate = onOpenUpdate
                 )
             }
         },
         onFestivalSelected = onFestivalSelected
+    )
+}
+
+@Composable
+private fun UpdateRoute(
+    updateRepository: GitHubUpdateRepository,
+    appUpdateLauncher: AppUpdateLauncher,
+    onBack: () -> Unit
+) {
+    DisposableEffect(Unit) {
+        appUpdateLauncher.refreshState()
+        onDispose { }
+    }
+    val latestUpdate by produceState<AppUpdateInfo?>(initialValue = null) {
+        value = runCatching { updateRepository.getLatestUpdate() }.getOrNull()
+    }
+    val pendingUpdate by appUpdateLauncher.pendingUpdate
+    val installState by appUpdateLauncher.installState
+    val update = pendingUpdate ?: latestUpdate
+
+    UpdateScreen(
+        update = update,
+        installState = installState,
+        onBack = onBack,
+        onDownloadClick = {
+            update?.let(appUpdateLauncher::startUpdate)
+        },
+        onInstallClick = { appUpdateLauncher.installUpdate() },
+        onOpenInstallSettingsClick = { appUpdateLauncher.openInstallPermissionSettings() },
+        onRefreshClick = { appUpdateLauncher.refreshState() }
     )
 }
 

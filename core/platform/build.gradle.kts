@@ -29,6 +29,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.ui)
             implementation(libs.ktor.client.core)
+            implementation(project(":core:model"))
         }
 
         androidMain.dependencies {
