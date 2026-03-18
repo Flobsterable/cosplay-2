@@ -17,3 +17,8 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+include(":core:model")
+include(":core:network")
+include(":core:platform")
+include(":data:festival")
+include(":feature:festival")

@@ -23,18 +23,23 @@ import io.ktor.client.HttpClient
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.todayIn
-import ru.flobsterable.cosplay2.data.CosplayRepositoryImpl
-import ru.flobsterable.cosplay2.data.FestivalCatalog
-import ru.flobsterable.cosplay2.data.FestivalDetail
-import ru.flobsterable.cosplay2.data.FestivalSummary
-import ru.flobsterable.cosplay2.navigation.SystemBackHandler
+import ru.flobsterable.cosplay2.data.festival.CosplayApiImpl
+import ru.flobsterable.cosplay2.data.festival.CosplayRepositoryImpl
+import ru.flobsterable.cosplay2.feature.festival.ACTUAL_FILTER_YEAR
+import ru.flobsterable.cosplay2.feature.festival.FestivalDetailScreen
+import ru.flobsterable.cosplay2.feature.festival.FestivalsScreen
+import ru.flobsterable.cosplay2.feature.festival.UiState
+import ru.flobsterable.cosplay2.model.FestivalCatalog
+import ru.flobsterable.cosplay2.model.FestivalDetail
+import ru.flobsterable.cosplay2.model.FestivalSummary
 import ru.flobsterable.cosplay2.network.createHttpClient
+import ru.flobsterable.cosplay2.platform.SystemBackHandler
 
 @Composable
 fun CosplayApp() {
     CosplayTheme {
         val client = remember { createHttpClient() }
-        val repository = remember(client) { CosplayRepositoryImpl(client) }
+        val repository = remember(client) { CosplayRepositoryImpl(CosplayApiImpl(client)) }
         var selectedFestival by remember { mutableStateOf<FestivalSummary?>(null) }
 
         DisposableEffect(Unit) {
