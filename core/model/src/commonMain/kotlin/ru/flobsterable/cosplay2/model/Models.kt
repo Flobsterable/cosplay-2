@@ -80,3 +80,27 @@ enum class FestivalStatus {
         }
     }
 }
+
+@Serializable
+data class GitHubReleaseDto(
+    @SerialName("tag_name") val tagName: String,
+    val name: String = "",
+    val body: String = "",
+    @SerialName("html_url") val htmlUrl: String,
+    val assets: List<GitHubReleaseAssetDto> = emptyList()
+)
+
+@Serializable
+data class GitHubReleaseAssetDto(
+    val name: String,
+    @SerialName("browser_download_url") val browserDownloadUrl: String,
+    @SerialName("content_type") val contentType: String? = null
+)
+
+data class AppUpdateInfo(
+    val versionTag: String,
+    val versionName: String,
+    val notes: String,
+    val releaseUrl: String,
+    val apkUrl: String?
+)

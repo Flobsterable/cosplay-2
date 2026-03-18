@@ -44,6 +44,7 @@ fun FestivalsScreen(
     onYearSelected: (Int) -> Unit,
     isYearLoading: Boolean,
     client: HttpClient,
+    topContent: (@Composable () -> Unit)? = null,
     onFestivalSelected: (FestivalSummary) -> Unit
 ) {
     var query by rememberSaveable { mutableStateOf("") }
@@ -78,6 +79,9 @@ fun FestivalsScreen(
                         singleLine = true,
                         shape = RoundedCornerShape(24.dp)
                     )
+                }
+                topContent?.let { content ->
+                    item { content() }
                 }
                 item {
                     Row(

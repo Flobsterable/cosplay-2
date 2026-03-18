@@ -25,14 +25,22 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.todayIn
 import ru.flobsterable.cosplay2.data.festival.CosplayApiImpl
 import ru.flobsterable.cosplay2.data.festival.CosplayRepositoryImpl
+import ru.flobsterable.cosplay2.data.update.GitHubReleaseApiImpl
+import ru.flobsterable.cosplay2.data.update.GitHubUpdateRepository
 import ru.flobsterable.cosplay2.feature.festival.ACTUAL_FILTER_YEAR
 import ru.flobsterable.cosplay2.feature.festival.FestivalDetailScreen
 import ru.flobsterable.cosplay2.feature.festival.FestivalsScreen
 import ru.flobsterable.cosplay2.feature.festival.UiState
+import ru.flobsterable.cosplay2.feature.update.UpdateBanner
+import ru.flobsterable.cosplay2.feature.update.isNewerVersion
+import ru.flobsterable.cosplay2.model.AppUpdateInfo
 import ru.flobsterable.cosplay2.model.FestivalCatalog
 import ru.flobsterable.cosplay2.model.FestivalDetail
 import ru.flobsterable.cosplay2.model.FestivalSummary
 import ru.flobsterable.cosplay2.network.createHttpClient
+import ru.flobsterable.cosplay2.platform.AppUpdateLauncher
+import ru.flobsterable.cosplay2.platform.AppVersion
+import ru.flobsterable.cosplay2.platform.rememberAppUpdateLauncher
 import ru.flobsterable.cosplay2.platform.SystemBackHandler
 
 @Composable
@@ -40,6 +48,14 @@ fun CosplayApp() {
     CosplayTheme {
         val client = remember { createHttpClient() }
         val repository = remember(client) { CosplayRepositoryImpl(CosplayApiImpl(client)) }
+        val updateRepository = remember(client) {
+            GitHubUpdateRepository(
+                api = GitHubReleaseApiImpl(client),
+                owner = "Flobsterable",
+                repo = "cosplay-2"
+            )
+        }
+        val appUpdateLauncher = rememberAppUpdateLauncher()
         var selectedFestival by remember { mutableStateOf<FestivalSummary?>(null) }
 
         DisposableEffect(Unit) {
@@ -69,7 +85,9 @@ fun CosplayApp() {
                 if (festival == null) {
                     FestivalsRoute(
                         repository = repository,
+                        updateRepository = updateRepository,
                         client = client,
+                        appUpdateLauncher = appUpdateLauncher,
                         onFestivalSelected = { selectedFestival = it }
                     )
                 } else {
@@ -88,10 +106,15 @@ fun CosplayApp() {
 @Composable
 private fun FestivalsRoute(
     repository: CosplayRepositoryImpl,
+    updateRepository: GitHubUpdateRepository,
     client: HttpClient,
+    appUpdateLauncher: AppUpdateLauncher,
     onFestivalSelected: (FestivalSummary) -> Unit
 ) {
     val currentYear = remember { Clock.System.todayIn(TimeZone.currentSystemDefault()).year }
+    val updateState by produceState<AppUpdateInfo?>(initialValue = null) {
+        value = runCatching { updateRepository.getLatestUpdate() }.getOrNull()
+    }
     var selectedYear by rememberSaveable { mutableStateOf(ACTUAL_FILTER_YEAR) }
     var lastSuccessfulCatalog by remember { mutableStateOf<FestivalCatalog?>(null) }
     val requestedYear = if (selectedYear == ACTUAL_FILTER_YEAR) currentYear else selectedYear
@@ -120,6 +143,21 @@ private fun FestivalsRoute(
         onYearSelected = { selectedYear = it },
         isYearLoading = isYearLoading,
         client = client,
+        topContent = {
+            val update = updateState
+            if (update != null && isNewerVersion(AppVersion.versionName, update.versionName)) {
+                UpdateBanner(
+                    update = update,
+                    onUpdateClick = {
+                        appUpdateLauncher.launchUpdate(
+                            apkUrl = update.apkUrl,
+                            releaseUrl = update.releaseUrl,
+                            versionName = update.versionName
+                        )
+                    }
+                )
+            }
+        },
         onFestivalSelected = onFestivalSelected
     )
 }
