@@ -1,6 +1,7 @@
 package ru.flobsterable.cosplay2.platform
 
 import android.app.DownloadManager
+import android.content.ClipData
 import android.content.ActivityNotFoundException
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -144,14 +145,8 @@ private class AndroidAppUpdateLauncher(
             apkFile
         )
 
-        val installIntent = Intent(Intent.ACTION_VIEW).apply {
-            setDataAndType(contentUri, APK_MIME_TYPE)
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        }
-
         kotlin.runCatching {
-            context.startActivity(installIntent)
+            launchInstaller(contentUri)
             installStateState.value = AppUpdateInstallState.Downloaded(update.versionName)
         }.onFailure { throwable ->
             AppLogger.e(UPDATE_LOG_TAG, "Failed to launch installer", throwable)
@@ -367,6 +362,60 @@ private class AndroidAppUpdateLauncher(
         val downloadsDir = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
             ?: context.filesDir
         return File(downloadsDir, "cosplay2-$versionName.apk")
+    }
+
+    private fun launchInstaller(contentUri: Uri) {
+        val installPermissionFlags =
+            Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+
+        val primaryIntent = Intent(Intent.ACTION_INSTALL_PACKAGE).apply {
+            data = contentUri
+            clipData = ClipData.newRawUri("cosplay2_update_apk", contentUri)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            addFlags(installPermissionFlags)
+            putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true)
+        }
+
+        val fallbackIntent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(contentUri, APK_MIME_TYPE)
+            clipData = ClipData.newRawUri("cosplay2_update_apk", contentUri)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            addFlags(installPermissionFlags)
+        }
+
+        grantInstallerUriPermissions(contentUri, installPermissionFlags, primaryIntent)
+        grantInstallerUriPermissions(contentUri, installPermissionFlags, fallbackIntent)
+
+        tryStartInstaller(primaryIntent, fallbackIntent)
+    }
+
+    private fun grantInstallerUriPermissions(
+        contentUri: Uri,
+        flags: Int,
+        intent: Intent
+    ) {
+        val resolveInfos = context.packageManager.queryIntentActivities(intent, 0)
+        resolveInfos.forEach { resolveInfo ->
+            context.grantUriPermission(
+                resolveInfo.activityInfo.packageName,
+                contentUri,
+                flags
+            )
+        }
+    }
+
+    private fun tryStartInstaller(
+        primaryIntent: Intent,
+        fallbackIntent: Intent
+    ) {
+        try {
+            context.startActivity(primaryIntent)
+            return
+        } catch (_: ActivityNotFoundException) {
+            AppLogger.d(UPDATE_LOG_TAG, "ACTION_INSTALL_PACKAGE is unavailable, trying ACTION_VIEW")
+        }
+
+        context.startActivity(fallbackIntent)
     }
 
     private fun openInBrowser(url: String) {
