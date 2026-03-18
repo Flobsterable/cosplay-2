@@ -2,6 +2,19 @@
 
 Compose Multiplatform приложение для просмотра фестивалей с [cosplay2.ru](https://cosplay2.ru/), с акцентом на аккуратный UI, модульную архитектуру и GitHub-based обновления.
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-cosplay--2-181717?logo=github)](https://github.com/Flobsterable/cosplay-2)
+[![Latest Release](https://img.shields.io/github/v/release/Flobsterable/cosplay-2?display_name=tag&logo=github)](https://github.com/Flobsterable/cosplay-2/releases/latest)
+[![Release Workflow](https://img.shields.io/github/actions/workflow/status/Flobsterable/cosplay-2/release.yml?branch=main&label=release&logo=githubactions)](https://github.com/Flobsterable/cosplay-2/actions/workflows/release.yml)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
+[![Compose Multiplatform](https://img.shields.io/badge/Compose_Multiplatform-1.7.3-4285F4)](https://www.jetbrains.com/lp/compose-multiplatform/)
+
+**Быстрые ссылки**
+
+- [Открыть репозиторий](https://github.com/Flobsterable/cosplay-2)
+- [Последний релиз](https://github.com/Flobsterable/cosplay-2/releases/latest)
+- [GitHub Actions](https://github.com/Flobsterable/cosplay-2/actions)
+- [Все релизы](https://github.com/Flobsterable/cosplay-2/releases)
+
 ## Что умеет
 
 - загружает фестивали через `POST /api/events/filter_list`
@@ -94,15 +107,6 @@ Workflow релиза лежит в [.github/workflows/release.yml](/Users/aleks
 - собирает Android release APK
 - публикует GitHub Release
 - прикладывает APK и `sha256` checksum
-
-### Секреты для подписи
-
-В `GitHub Repository Settings -> Secrets and variables -> Actions` должны быть добавлены:
-
-- `ANDROID_KEYSTORE_BASE64`
-- `ANDROID_KEYSTORE_PASSWORD`
-- `ANDROID_KEY_ALIAS`
-- `ANDROID_KEY_PASSWORD`
 
 ## Как выпустить новую версию
 
