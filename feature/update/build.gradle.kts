@@ -23,39 +23,22 @@ kotlin {
     }
 
     sourceSets {
-        val desktopMain by getting
-
         commonMain.dependencies {
             implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
             implementation(compose.ui)
-            implementation(libs.ktor.client.core)
-        }
-
-        androidMain.dependencies {
-            implementation(libs.androidx.activity.compose)
-        }
-
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
+            implementation(project(":core:model"))
         }
     }
 }
 
 android {
-    namespace = "ru.flobsterable.cosplay2.core.platform"
+    namespace = "ru.flobsterable.cosplay2.feature.update"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        buildConfigField(
-            "String",
-            "APP_VERSION_NAME",
-            "\"${providers.gradleProperty("APP_VERSION_NAME").get()}\""
-        )
-    }
-
-    buildFeatures {
-        buildConfig = true
     }
 
     compileOptions {

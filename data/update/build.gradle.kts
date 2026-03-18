@@ -3,8 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -23,39 +22,21 @@ kotlin {
     }
 
     sourceSets {
-        val desktopMain by getting
-
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.ui)
+            implementation(project(":core:model"))
+            implementation(project(":core:network"))
             implementation(libs.ktor.client.core)
-        }
-
-        androidMain.dependencies {
-            implementation(libs.androidx.activity.compose)
-        }
-
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.serialization.json)
         }
     }
 }
 
 android {
-    namespace = "ru.flobsterable.cosplay2.core.platform"
+    namespace = "ru.flobsterable.cosplay2.data.update"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
-        buildConfigField(
-            "String",
-            "APP_VERSION_NAME",
-            "\"${providers.gradleProperty("APP_VERSION_NAME").get()}\""
-        )
-    }
-
-    buildFeatures {
-        buildConfig = true
     }
 
     compileOptions {

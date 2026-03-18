@@ -8,6 +8,13 @@ plugins {
     alias(libs.plugins.composeCompiler)
 }
 
+val appVersionCode = providers.gradleProperty("APP_VERSION_CODE").get().toInt()
+val appVersionName = providers.gradleProperty("APP_VERSION_NAME").get()
+val releaseKeystorePath = providers.environmentVariable("ANDROID_KEYSTORE_PATH").orNull
+val releaseKeystorePassword = providers.environmentVariable("ANDROID_KEYSTORE_PASSWORD").orNull
+val releaseKeyAlias = providers.environmentVariable("ANDROID_KEY_ALIAS").orNull
+val releaseKeyPassword = providers.environmentVariable("ANDROID_KEY_PASSWORD").orNull
+
 kotlin {
     jvmToolchain(17)
 
@@ -44,7 +51,9 @@ kotlin {
             implementation(project(":core:network"))
             implementation(project(":core:platform"))
             implementation(project(":data:festival"))
+            implementation(project(":data:update"))
             implementation(project(":feature:festival"))
+            implementation(project(":feature:update"))
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -60,8 +69,8 @@ android {
         applicationId = "ru.flobsterable.cosplay2"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 2
-        versionName = "1.0"
+        versionCode = appVersionCode
+        versionName = appVersionName
     }
 
     packaging {
@@ -70,9 +79,33 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            if (
+                !releaseKeystorePath.isNullOrBlank() &&
+                !releaseKeystorePassword.isNullOrBlank() &&
+                !releaseKeyAlias.isNullOrBlank() &&
+                !releaseKeyPassword.isNullOrBlank()
+            ) {
+                storeFile = file(releaseKeystorePath)
+                storePassword = releaseKeystorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            if (
+                !releaseKeystorePath.isNullOrBlank() &&
+                !releaseKeystorePassword.isNullOrBlank() &&
+                !releaseKeyAlias.isNullOrBlank() &&
+                !releaseKeyPassword.isNullOrBlank()
+            ) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
 
@@ -89,7 +122,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "Cosplay"
-            packageVersion = "1.0.0"
+            packageVersion = appVersionName
         }
     }
 }
