@@ -54,11 +54,11 @@ kotlin {
 }
 
 android {
-    namespace = "ru.alekseandrgrigorev.cosplay"
+    namespace = "ru.flobsterable.cosplay2"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "ru.alekseandrgrigorev.cosplay"
+        applicationId = "ru.flobsterable.cosplay2"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 2
@@ -85,7 +85,7 @@ android {
 
 compose.desktop {
     application {
-        mainClass = "ru.alekseandrgrigorev.cosplay.MainKt"
+        mainClass = "ru.flobsterable.cosplay2.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
