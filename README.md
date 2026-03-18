@@ -1,44 +1,136 @@
-# Cosplay
+# Cosplay 2
 
-KMP UI/UX prototype for browsing cosplay festivals from [cosplay2.ru](https://cosplay2.ru/).
+Compose Multiplatform приложение для просмотра фестивалей с [cosplay2.ru](https://cosplay2.ru/), с акцентом на аккуратный UI, модульную архитектуру и GitHub-based обновления.
 
-## What it does
+## Что умеет
 
-- Loads the festival list from `POST https://cosplay2.ru/api/events/filter_list`
-- Opens a detail screen for a selected festival
-- Enriches detail data by parsing `application/ld+json` event blocks from the main page of `cosplay2.ru`
-- Works as a Compose Multiplatform prototype for Android and Desktop
+- загружает фестивали через `POST /api/events/filter_list`
+- получает типы событий через `GET /api/events/get_types`
+- открывает экран фестиваля с расширенным описанием
+- парсит страницу фестиваля `.../get_pages/home`, чтобы достраивать контент и ссылки
+- поддерживает фильтрацию по типу, году и месяцу
+- проверяет наличие новой версии через GitHub Releases
 
-## Project structure
+## Платформы
 
-- `composeApp` - app shell, Android/Desktop targets and composition root
-- `core:model` - shared models and DTOs
-- `core:network` - shared Ktor client setup
-- `core:platform` - platform integrations like image loading, back handling and app updates
-- `data:festival` - remote API and repository for `cosplay2.ru`
-- `data:update` - GitHub Releases API and update repository
-- `feature:festival` - festival list and detail UI
-- `feature:update` - update banner UI
+- Android
+- Desktop JVM
 
-## Notes
+## Технологии
 
-- The workspace started empty, so the project scaffold was created from scratch.
-- A Gradle wrapper is not included in this workspace snapshot.
+- Kotlin Multiplatform
+- Compose Multiplatform
+- Material 3
+- Ktor Client
+- kotlinx.serialization
+- kotlinx.datetime
 
-## Releases
+## Архитектура
 
-- Production releases are created from Git tags like `v1.0.0`.
-- The release workflow lives in [.github/workflows/release.yml](/Users/aleksandrgrigorev/AndroidStudioProjects/Cosplay/.github/workflows/release.yml).
-- `APP_VERSION_NAME` and `APP_VERSION_CODE` are stored in [gradle.properties](/Users/aleksandrgrigorev/AndroidStudioProjects/Cosplay/gradle.properties). The Git tag must match `v<APP_VERSION_NAME>`.
-- The workflow expects these GitHub repository secrets:
-  - `ANDROID_KEYSTORE_BASE64`
-  - `ANDROID_KEYSTORE_PASSWORD`
-  - `ANDROID_KEY_ALIAS`
-  - `ANDROID_KEY_PASSWORD`
-- The workflow builds a signed Android release APK, publishes it to GitHub Releases and uploads a SHA-256 checksum next to the APK.
+Проект разбит на модули, чтобы UI, сеть и платформенные интеграции не жили в одном месте.
 
-## Updates
+- `:composeApp` — app shell, navigation, composition root, Android/Desktop targets
+- `:core:model` — общие модели и DTO
+- `:core:network` — настройка Ktor `HttpClient`
+- `:core:platform` — platform-specific интеграции: back handler, image loading, updater launcher, app version
+- `:data:festival` — API и repository для `cosplay2.ru`
+- `:data:update` — API и repository для GitHub Releases
+- `:feature:festival` — список и экран фестиваля
+- `:feature:update` — UI для уведомления об обновлении
 
-- The app checks the latest GitHub Release from `Flobsterable/cosplay-2`.
-- On Android, tapping the update banner downloads the APK and opens the system installer.
-- On Desktop, tapping the update banner opens the release asset or release page in the browser.
+## Структура данных
+
+Приложение получает фестивали из API `cosplay2.ru`, а затем дополнительно обогащает детали:
+
+- JSON список фестивалей
+- JSON список типов событий
+- JSON-LD/schema data со страниц архива
+- HTML содержимое `get_pages/home` у конкретного фестиваля
+
+За счёт этого detail screen может показывать не только базовые поля из списка, но и живой текст, ссылки и дополнительный контент страницы события.
+
+## Локальный запуск
+
+### Desktop
+
+```bash
+./gradlew :composeApp:run
+```
+
+### Android debug
+
+```bash
+./gradlew :composeApp:installDebug
+```
+
+### Полезные команды
+
+```bash
+./gradlew :composeApp:compileKotlinDesktop
+./gradlew :composeApp:compileDebugKotlinAndroid
+./gradlew :composeApp:assembleRelease
+```
+
+## Версионирование
+
+Версия хранится в [gradle.properties](/Users/aleksandrgrigorev/AndroidStudioProjects/Cosplay/gradle.properties):
+
+- `APP_VERSION_NAME`
+- `APP_VERSION_CODE`
+
+Git tag для релиза должен совпадать с `APP_VERSION_NAME`:
+
+- `APP_VERSION_NAME=1.0.1`
+- tag: `v1.0.1`
+
+## Релизы через GitHub
+
+Workflow релиза лежит в [.github/workflows/release.yml](/Users/aleksandrgrigorev/AndroidStudioProjects/Cosplay/.github/workflows/release.yml).
+
+Что делает workflow:
+
+- запускается на push тега вида `v*`
+- проверяет совпадение тега с `APP_VERSION_NAME`
+- собирает Android release APK
+- публикует GitHub Release
+- прикладывает APK и `sha256` checksum
+
+### Секреты для подписи
+
+В `GitHub Repository Settings -> Secrets and variables -> Actions` должны быть добавлены:
+
+- `ANDROID_KEYSTORE_BASE64`
+- `ANDROID_KEYSTORE_PASSWORD`
+- `ANDROID_KEY_ALIAS`
+- `ANDROID_KEY_PASSWORD`
+
+## Как выпустить новую версию
+
+1. Обновить `APP_VERSION_NAME` и `APP_VERSION_CODE` в [gradle.properties](/Users/aleksandrgrigorev/AndroidStudioProjects/Cosplay/gradle.properties)
+2. Закоммитить изменения
+3. Запушить ветку
+4. Создать тег:
+
+```bash
+git tag v1.0.1
+git push origin v1.0.1
+```
+
+После этого GitHub Actions создаст релиз автоматически.
+
+## Обновление приложения
+
+Приложение использует GitHub Releases как источник обновлений.
+
+- на Android баннер обновления скачивает APK и открывает системную установку
+- на Desktop баннер открывает release asset или страницу релиза в браузере
+
+Это не Play Store in-app update, поэтому установка на Android всё равно подтверждается пользователем через системный installer.
+
+## Статус проекта
+
+Это не production backend-client, а UI/UX-ориентированный KMP прототип с реальными данными, модульной структурой и релизным пайплайном через GitHub.
+
+## Репозиторий
+
+- GitHub: [Flobsterable/cosplay-2](https://github.com/Flobsterable/cosplay-2)
