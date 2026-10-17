@@ -133,7 +133,7 @@ private fun FestivalsRoute(
     val installState by appUpdateLauncher.installState
     var selectedYear by rememberSaveable { mutableStateOf(ACTUAL_FILTER_YEAR) }
     var lastSuccessfulCatalog by remember { mutableStateOf<FestivalCatalog?>(null) }
-    val requestedYear = currentYear // DEMO ONLY: selected year is ignored
+    val requestedYear = if (selectedYear == ACTUAL_FILTER_YEAR) currentYear else selectedYear // Preserve the selected-year contract.
     val state by produceState<UiState<FestivalCatalog>>(initialValue = UiState.Loading, selectedYear) {
         value = UiState.Loading
         value = runCatching { repository.getFestivalCatalog(requestedYear) }
