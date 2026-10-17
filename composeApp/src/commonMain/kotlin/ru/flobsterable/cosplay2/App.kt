@@ -100,7 +100,7 @@ fun CosplayApp() {
             ) { targetRoute ->
                 val stateKey = when (targetRoute) {
                     AppRoute.Festivals -> "festivals"
-                    is AppRoute.FestivalDetails -> "details"
+                    is AppRoute.FestivalDetails -> "details-${targetRoute.festival.id}"
                     AppRoute.Update -> "update"
                     AppRoute.Settings -> "settings"
                     AppRoute.Support -> "support"
