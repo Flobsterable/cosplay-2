@@ -10,6 +10,8 @@ Compose Multiplatform приложение для просмотра фести�
 
 **Быстрые ссылки**
 
+- [Документация проекта](docs/README.md): архитектура, API, модели, сценарии, сборка и диагностика.
+
 - [Открыть репозиторий](https://github.com/Flobsterable/cosplay-2)
 - [Последний релиз](https://github.com/Flobsterable/cosplay-2/releases/latest)
 - [GitHub Actions](https://github.com/Flobsterable/cosplay-2/actions)
@@ -86,7 +88,7 @@ Compose Multiplatform приложение для просмотра фести�
 
 ## Версионирование
 
-Версия хранится в [gradle.properties](/Users/aleksandrgrigorev/AndroidStudioProjects/Cosplay/gradle.properties):
+Версия хранится в [gradle.properties](gradle.properties):
 
 - `APP_VERSION_NAME`
 - `APP_VERSION_CODE`
@@ -98,7 +100,7 @@ Git tag для релиза должен совпадать с `APP_VERSION_NAME
 
 ## Релизы через GitHub
 
-Workflow релиза лежит в [.github/workflows/release.yml](/Users/aleksandrgrigorev/AndroidStudioProjects/Cosplay/.github/workflows/release.yml).
+Workflow релиза лежит в [.github/workflows/release.yml](.github/workflows/release.yml).
 
 Что делает workflow:
 
@@ -110,7 +112,7 @@ Workflow релиза лежит в [.github/workflows/release.yml](/Users/aleks
 
 ## Как выпустить новую версию
 
-1. Обновить `APP_VERSION_NAME` и `APP_VERSION_CODE` в [gradle.properties](/Users/aleksandrgrigorev/AndroidStudioProjects/Cosplay/gradle.properties)
+1. Обновить `APP_VERSION_NAME` и `APP_VERSION_CODE` в [gradle.properties](gradle.properties)
 2. Закоммитить изменения
 3. Запушить ветку
 4. Создать тег:
