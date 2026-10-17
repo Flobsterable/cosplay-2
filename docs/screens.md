@@ -6,7 +6,7 @@
 Новый экран ниже — пример, а не уже реализованная возможность приложения.
 
 1. Выберите feature-модуль: интерфейс фестивалей находится в `feature/festival`,
-   обновлений — в `feature/update`. Общий Compose-код пишется в `src/commonMain/kotlin`.
+   обновлений — в `feature/update`, настроек и поддержки — в `feature/settings`. Общий Compose-код пишется в `src/commonMain/kotlin`.
 2. Определите входные данные экрана и callbacks пользовательских действий.
    Например, `FestivalDetailScreen` принимает `state: UiState<FestivalDetail>`,
    `client: HttpClient` и `onBack: () -> Unit`. Данные экрана и загрузка разделены:
@@ -19,7 +19,7 @@
    по входному параметру: у деталей это `festival.id`, у списка — `selectedYear`.
 5. Для отдельного перехода добавьте вариант в закрытый `AppRoute` и ветку `when`
    внутри `AnimatedContent`. Передавайте переходы callbacks, как `onFestivalSelected`.
-   Проверьте поведение `SystemBackHandler`: сейчас возврат ведёт на список фестивалей.
+   Проверьте поведение `SystemBackHandler`: возврат из поддержки ведёт в настройки, из остальных дочерних экранов — на список фестивалей.
 6. Зависимости создавайте в `CosplayApp` и передавайте вниз. В текущем проекте
    нет обязательного ViewModel/DI/navigation framework для добавления экрана.
    HttpClient создаётся через `remember`, закрывается в `DisposableEffect`.
@@ -83,3 +83,12 @@ fun ExampleScreen(state: UiState<String>, onBack: () -> Unit) {
 
 Модели и поля описаны в [data-model.md](data-model.md), загрузка и переходы —
 в [feature-flows.md](feature-flows.md), зависимости модулей — в [architecture.md](architecture.md).
+
+## Настройки и поддержка
+
+`feature/settings` содержит SettingsScreen и SupportScreen. SettingsScreen принимает
+версию приложения и callbacks возврата/открытия поддержки. SupportScreen принимает
+SupportChatState и callback onSendMessage, отображает сообщения User/Assistant,
+ожидание ответа, ошибку и поле ввода. Используются Scaffold, TopAppBar, LazyColumn,
+Card и OutlinedTextField. Подключение сервиса отсутствует; отправка по умолчанию
+недоступна. Навигация и SaveableStateHolder находятся в CosplayApp.

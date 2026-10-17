@@ -16,6 +16,7 @@ Cosplay 2 — Kotlin Multiplatform приложение для просмотр�
 | `data/update` | Запрос GitHub Releases и преобразование релиза в AppUpdateInfo |
 | `feature/festival` | Экран списка, фильтры, карточки и экран деталей фестиваля |
 | `feature/update` | Баннер обновления и экран установки новой версии |
+| `feature/settings` | Настройки и интерфейс чата поддержки |
 
 Основная структура Kotlin-кода: `src/commonMain/kotlin/ru/flobsterable/cosplay2/`.
 Платформенный код находится в `androidMain` и `desktopMain`.
@@ -29,6 +30,7 @@ Cosplay 2 — Kotlin Multiplatform приложение для просмотр�
 - data/update зависит от core/model и core/network.
 - feature/festival зависит от core/model и core/platform.
 - feature/update зависит от core/model.
+- feature/settings содержит только Compose UI; composeApp передаёт версию и callbacks навигации.
 - core/network зависит от core/platform; core/platform — от core/model.
 - core/model не подключает другие внутренние модули.
 
@@ -38,6 +40,7 @@ flowchart LR
   App --> DU[data/update]
   App --> FF[feature/festival]
   App --> FU[feature/update]
+  App --> FS[feature/settings]
   DF --> N[core/network]
   DF --> P[core/platform]
   DF --> M[core/model]
@@ -59,8 +62,10 @@ flowchart LR
 и `GitHubUpdateRepository` для репозитория `Flobsterable/cosplay-2`.
 HttpClient закрывается при выходе composable из композиции через DisposableEffect.
 
-Закрытый тип AppRoute задаёт экраны Festivals, FestivalDetails и Update.
+Закрытый тип AppRoute задаёт экраны Festivals, FestivalDetails, Update, Settings и Support.
 Переключение экранов реализовано через AnimatedContent; обработка возврата — SystemBackHandler.
+Support возвращает в Settings, остальные дочерние экраны — в Festivals.
+SaveableStateHolder сохраняет rememberSaveable-состояние списка при переходах, включая фильтры.
 Данные загружаются в produceState и отображаются через UiState: Loading, Success или Error.
 
 ## Получение и отображение фестивалей

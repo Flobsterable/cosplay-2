@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -45,10 +46,16 @@ import ru.flobsterable.cosplay2.platform.AppVersion
 import ru.flobsterable.cosplay2.platform.rememberAppUpdateLauncher
 import ru.flobsterable.cosplay2.platform.SystemBackHandler
 
+import ru.flobsterable.cosplay2.feature.settings.SettingsScreen
+import ru.flobsterable.cosplay2.feature.settings.SupportChatState
+import ru.flobsterable.cosplay2.feature.settings.SupportScreen
+
 private sealed interface AppRoute {
     data object Festivals : AppRoute
     data class FestivalDetails(val festival: FestivalSummary) : AppRoute
     data object Update : AppRoute
+    data object Settings : AppRoute
+    data object Support : AppRoute
 }
 
 @Composable
@@ -64,6 +71,7 @@ fun CosplayApp() {
             )
         }
         val appUpdateLauncher = rememberAppUpdateLauncher()
+        val screenState = rememberSaveableStateHolder()
         var route by remember { mutableStateOf<AppRoute>(AppRoute.Festivals) }
 
         DisposableEffect(Unit) {
@@ -78,7 +86,7 @@ fun CosplayApp() {
         ) {
             SystemBackHandler(
                 enabled = route != AppRoute.Festivals,
-                onBack = { route = AppRoute.Festivals }
+                onBack = { route = if (route == AppRoute.Support) AppRoute.Settings else AppRoute.Festivals }
             )
             AnimatedContent(
                 targetState = route,
@@ -90,26 +98,46 @@ fun CosplayApp() {
                 },
                 label = "festival_navigation"
             ) { targetRoute ->
-                when (targetRoute) {
-                    AppRoute.Festivals -> FestivalsRoute(
-                        repository = repository,
-                        updateRepository = updateRepository,
-                        client = client,
-                        appUpdateLauncher = appUpdateLauncher,
-                        onOpenUpdate = { route = AppRoute.Update },
-                        onFestivalSelected = { route = AppRoute.FestivalDetails(it) }
-                    )
-                    is AppRoute.FestivalDetails -> FestivalDetailRoute(
-                        repository = repository,
-                        client = client,
-                        festival = targetRoute.festival,
-                        onBack = { route = AppRoute.Festivals }
-                    )
-                    AppRoute.Update -> UpdateRoute(
-                        updateRepository = updateRepository,
-                        appUpdateLauncher = appUpdateLauncher,
-                        onBack = { route = AppRoute.Festivals }
-                    )
+                val stateKey = when (targetRoute) {
+                    AppRoute.Festivals -> "festivals"
+                    is AppRoute.FestivalDetails -> "details"
+                    AppRoute.Update -> "update"
+                    AppRoute.Settings -> "settings"
+                    AppRoute.Support -> "support"
+                }
+                screenState.SaveableStateProvider(stateKey) {
+                    when (targetRoute) {
+                        AppRoute.Festivals -> FestivalsRoute(
+                            repository = repository,
+                            updateRepository = updateRepository,
+                            client = client,
+                            appUpdateLauncher = appUpdateLauncher,
+                            onOpenUpdate = { route = AppRoute.Update },
+                            onOpenSettings = { route = AppRoute.Settings },
+                            onFestivalSelected = { route = AppRoute.FestivalDetails(it) }
+                        )
+                        is AppRoute.FestivalDetails -> FestivalDetailRoute(
+                            repository = repository,
+                            client = client,
+                            festival = targetRoute.festival,
+                            onBack = { route = AppRoute.Festivals }
+                        )
+                        AppRoute.Settings -> SettingsScreen(
+                            versionName = AppVersion.versionName,
+                            onBack = { route = AppRoute.Festivals },
+                            onOpenSupport = { route = AppRoute.Support }
+                        )
+                        AppRoute.Support -> SupportScreen(
+                            state = SupportChatState(),
+                            onSendMessage = { /* Connect the support service here when it is available. */ },
+                            onBack = { route = AppRoute.Settings }
+                        )
+                        AppRoute.Update -> UpdateRoute(
+                            updateRepository = updateRepository,
+                            appUpdateLauncher = appUpdateLauncher,
+                            onBack = { route = AppRoute.Festivals }
+                        )
+                    }
                 }
             }
         }
@@ -123,6 +151,7 @@ private fun FestivalsRoute(
     client: HttpClient,
     appUpdateLauncher: AppUpdateLauncher,
     onOpenUpdate: () -> Unit,
+    onOpenSettings: () -> Unit,
     onFestivalSelected: (FestivalSummary) -> Unit
 ) {
     val currentYear = remember { Clock.System.todayIn(TimeZone.currentSystemDefault()).year }
@@ -174,7 +203,8 @@ private fun FestivalsRoute(
                 )
             }
         },
-        onFestivalSelected = onFestivalSelected
+        onFestivalSelected = onFestivalSelected,
+        onOpenSettings = onOpenSettings
     )
 }
 

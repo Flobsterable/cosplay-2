@@ -24,3 +24,5 @@ include(":data:festival")
 include(":data:update")
 include(":feature:festival")
 include(":feature:update")
+
+include(":feature:settings")
