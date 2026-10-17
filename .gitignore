@@ -5,3 +5,8 @@ build/
 local.properties
 **/build/
 *.iml
+
+# Developer assistant
+tools/dev-assistant/node_modules/
+tools/dev-assistant/.env
+tools/dev-assistant/.cache/

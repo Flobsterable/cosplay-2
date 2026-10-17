@@ -1,0 +1,17 @@
+services:
+  assistant:
+    build:
+      context: .
+      network: host
+    init: true
+    stdin_open: true
+    tty: true
+    env_file: .env
+    environment:
+      PROJECT_ROOT: /project
+      ASSISTANT_CACHE_DIR: /cache
+    volumes:
+      - ../..:/project:ro
+      - assistant-cache:/cache
+volumes:
+  assistant-cache:
