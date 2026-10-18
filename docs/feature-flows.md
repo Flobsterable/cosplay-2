@@ -49,6 +49,9 @@ FestivalDetailRoute вызывает repository.getFestivalDetail(festival).
 
 AppRoute — закрытый тип с Festivals, FestivalDetails и Update.
 Переходы отображаются через AnimatedContent. SystemBackHandler возвращает на список.
+Фильтры принадлежат composable каталога; отдельного владельца для сохранения
+при переходах между экранами нет. При возврате FestivalsRoute создаётся заново
+и повторяет загрузку каталога. Сохранение фильтров после навигации не гарантируется.
 App.kt хранит lastSuccessfulCatalog, чтобы сохранить контекст последнего успешного каталога
 при загрузке другого года; экран при этом показывает LoadingBlock.
 HttpClient создаётся через remember и закрывается в DisposableEffect.

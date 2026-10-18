@@ -1,4 +1,38 @@
-# Как реализовать экран и какие компоненты нужны
+# Реализация экранов
+
+Это техническое руководство: где находятся экраны, кто владеет состоянием,
+как подключены переходы и как добавить новый UI. Описание продукта — что сделано,
+какие экраны видит пользователь и какие флоу доступны — находится в [features.md](features.md).
+
+## Карта реализации
+
+| Экран | Composable и файл | Источник состояния |
+| --- | --- | --- |
+| Каталог | `FestivalsScreen`, `feature/festival/.../FestivalListScreen.kt` | `FestivalsRoute` в App.kt загружает каталог; поиск, категория и месяц находятся в UI |
+| Детали | `FestivalDetailScreen`, `feature/festival/.../FestivalDetailScreen.kt` | `FestivalDetailRoute` вызывает `getFestivalDetail(festival)` по ключу `festival.id` |
+| Обновление | `UpdateScreen`, `feature/update/.../UpdateScreen.kt` | `UpdateRoute` получает релиз и наблюдает `pendingUpdate`/`installState` платформенного launcher |
+
+Полный корень пакетов — `src/commonMain/kotlin/ru/flobsterable/cosplay2/` внутри
+указанного модуля.
+
+## Навигация и жизненный цикл
+
+В `composeApp/.../App.kt` закрытый `AppRoute` содержит Festivals, FestivalDetails
+и Update. `AnimatedContent` выбирает экран. Экраны получают callbacks, маршрут
+меняет `CosplayApp`. Кнопки возврата и Android `SystemBackHandler` ведут на каталог;
+Desktop-реализация системного back handler не выполняет действий.
+
+Фильтры находятся в `rememberSaveable` внутри каталога, но отдельного владельца
+для сохранения их при переходах между экранами нет. При возвращении
+`FestivalsRoute` создаётся заново: `lastSuccessfulCatalog` не восстанавливается,
+а `produceState` повторно загружает каталог. До ответа отображается LoadingBlock.
+Не следует обещать восстановление фильтров после навигации. Дискового кэша
+сетевых данных нет.
+
+Загрузка каталога и деталей выполняется в `produceState`; смена выбранного года
+перезапускает запрос каталога. `HttpClient` и репозитории создаются в `remember`,
+клиент закрывается через `DisposableEffect`. Порядок запросов и преобразований
+описан в [feature-flows.md](feature-flows.md).
 
 ## Порядок реализации экрана в Cosplay 2
 
