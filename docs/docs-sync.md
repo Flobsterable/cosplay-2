@@ -7,9 +7,9 @@
 прямо в ветке, куда влили PR. Отдельный PR документации и ручное слияние не нужны.
 
 До коммита workflow запускает /sync --apply закреплённого runtime агента.
-В нём [docs-verifier.js](https://github.com/Flobsterable/cosplay-dev-assistant/blob/b8a24ccabc398f9c2d6ba6e9774b2831ecd4ef1e/tools/dev-assistant/src/docs-verifier.js)
+В нём [docs-verifier.js](https://github.com/Flobsterable/cosplay-dev-assistant/blob/5dc926afd8383a6e015417318a0954907cce3c2d/tools/dev-assistant/src/docs-verifier.js)
 проверяет новые утверждения, параметры, API, примеры команд, относительные ссылки
-и якоря. [sync-docs.js](https://github.com/Flobsterable/cosplay-dev-assistant/blob/b8a24ccabc398f9c2d6ba6e9774b2831ecd4ef1e/tools/dev-assistant/src/sync-docs.js)
+и якоря. [sync-docs.js](https://github.com/Flobsterable/cosplay-dev-assistant/blob/5dc926afd8383a6e015417318a0954907cce3c2d/tools/dev-assistant/src/sync-docs.js)
 отклоняет неполный контекст и проверяет результат до записи. Ошибка CLI останавливает
 workflow до шага git commit благодаря set -euo pipefail. При отклонении коммита не будет;
 причина доступна в Actions. Проверка статическая: команды приложения не исполняются.
@@ -17,7 +17,7 @@ workflow до шага git commit благодаря set -euo pipefail. При �
 новый коммит не создаётся. Работа занимает время на запуск Actions и запросы модели.
 
 Workflow использует существующие Secret LLM_API_KEY и Variables LLM_MODEL/LLM_BASE_URL,
-как AI-ревью. Runtime закреплён на коммите b8a24ccabc398f9c2d6ba6e9774b2831ecd4ef1e
+как AI-ревью. Runtime закреплён на коммите 5dc926afd8383a6e015417318a0954907cce3c2d
 репозитория Flobsterable/cosplay-dev-assistant. При обновлении агента нужно обновлять ref.
 Токен GitHub Actions должен иметь contents:write; ограничения защиты ветки не обходятся.
 
