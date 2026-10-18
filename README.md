@@ -59,6 +59,7 @@ Compose Multiplatform приложение для просмотра фести�
 - `:data:update` — API и repository для GitHub Releases
 - `:feature:festival` — список и экран фестиваля
 - `:feature:update` — UI для уведомления об обновлении
+- `:feature:settings` — настройки и UI поддержки (сервис не подключён)
 
 ## Структура данных
 

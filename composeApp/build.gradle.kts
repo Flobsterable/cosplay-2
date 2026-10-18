@@ -54,6 +54,7 @@ kotlin {
             implementation(project(":data:update"))
             implementation(project(":feature:festival"))
             implementation(project(":feature:update"))
+            implementation(project(":feature:settings"))
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

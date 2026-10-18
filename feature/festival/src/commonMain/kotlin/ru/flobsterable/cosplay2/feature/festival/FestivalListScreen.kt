@@ -21,6 +21,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,7 +47,8 @@ fun FestivalsScreen(
     isYearLoading: Boolean,
     client: HttpClient,
     topContent: (@Composable () -> Unit)? = null,
-    onFestivalSelected: (FestivalSummary) -> Unit
+    onFestivalSelected: (FestivalSummary) -> Unit,
+    onOpenSettings: () -> Unit
 ) {
     var query by rememberSaveable { mutableStateOf("") }
     var selectedCategory by rememberSaveable { mutableStateOf(TypeFilter.All) }
@@ -56,6 +59,12 @@ fun FestivalsScreen(
     }
 
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Фестивали") },
+                actions = { TextButton(onClick = onOpenSettings) { Text("Настройки") } }
+            )
+        },
         containerColor = MaterialTheme.colorScheme.background,
         contentWindowInsets = WindowInsets.safeDrawing
     ) { padding ->
