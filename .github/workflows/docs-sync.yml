@@ -10,6 +10,7 @@ on:
       - 'gradle.properties'
       - '.github/workflows/release.yml'
       - '.github/workflows/docs-sync.yml'
+      - '.github/scripts/docs-sync-status*.cjs'
   workflow_dispatch:
     inputs:
       base:
@@ -67,6 +68,8 @@ jobs:
           git merge-base --is-ancestor "$BASE_SHA" "$MERGED_SHA"
           git merge-base --is-ancestor "$MERGED_SHA" HEAD
           echo "Source range: $BASE_SHA..$MERGED_SHA; target: $TARGET_BRANCH"
+      - name: Test recovery tracker
+        run: node --test .github/scripts/docs-sync-status.test.cjs
       - name: Generate, verify and commit documentation
         env:
           PROJECT_ROOT: ${{ github.workspace }}
@@ -90,7 +93,17 @@ jobs:
               echo "Documentation for $MERGED_SHA was already committed." | tee -a "$GITHUB_STEP_SUMMARY"
               exit 0
             fi
-            node .assistant-runtime/tools/dev-assistant/src/cli.js /sync "$BASE_SHA" --head "$MERGED_SHA" --apply | tee "$RUNNER_TEMP/docs-sync-$attempt.txt"
+            if node .assistant-runtime/tools/dev-assistant/src/cli.js /sync "$BASE_SHA" --head "$MERGED_SHA" --apply 2>&1 | tee "$RUNNER_TEMP/docs-sync-$attempt.txt"; then
+              :
+            else
+              echo "::warning::Documentation generation/verification failed (attempt $attempt/3)."
+              if [ "$attempt" = 3 ]; then
+                echo '::error::Documentation was not updated after three attempts. See the recovery issue and saved reports.'
+                exit 1
+              fi
+              sleep 15
+              continue
+            fi
             git add -- README.md ':(glob)docs/**/*.md'
             if git diff --cached --quiet; then
               echo 'Documentation is already current; no commit needed.' | tee -a "$GITHUB_STEP_SUMMARY"
@@ -129,3 +142,33 @@ jobs:
           path: ${{ runner.temp }}/docs-sync-*.txt
           if-no-files-found: ignore
           retention-days: 14
+
+  status:
+    name: Track documentation recovery
+    needs: sync
+    if: ${{ always() && (needs.sync.result == 'failure' || needs.sync.result == 'success' || needs.sync.result == 'cancelled') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    concurrency:
+      group: docs-sync-status-${{ github.ref_name }}-${{ inputs.head || github.sha }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Open or resolve recovery issue
+        uses: actions/github-script@v8
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
+          BASE_SHA: ${{ inputs.base || github.event.before }}
+          MERGED_SHA: ${{ inputs.head || github.sha }}
+          SYNC_RESULT: ${{ needs.sync.result }}
+        with:
+          retries: 3
+          script: |
+            const track = require('./.github/scripts/docs-sync-status.cjs');
+            await track({ github, context, core, env: process.env });
