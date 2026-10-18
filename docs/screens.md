@@ -11,23 +11,28 @@
 | Каталог | `FestivalsScreen`, `feature/festival/.../FestivalListScreen.kt` | `FestivalsRoute` в App.kt загружает каталог; поиск, категория и месяц находятся в UI |
 | Детали | `FestivalDetailScreen`, `feature/festival/.../FestivalDetailScreen.kt` | `FestivalDetailRoute` вызывает `getFestivalDetail(festival)` по ключу `festival.id` |
 | Обновление | `UpdateScreen`, `feature/update/.../UpdateScreen.kt` | `UpdateRoute` получает релиз и наблюдает `pendingUpdate`/`installState` платформенного launcher |
+| Настройки | `SettingsScreen`, `feature/settings/.../SettingsScreen.kt` | Версия приходит из `AppVersion.versionName`; callbacks возврата и открытия поддержки передаёт `CosplayApp` |
+| Поддержка | `SupportScreen`, `feature/settings/.../SupportScreen.kt` | `SupportChatState` создаётся в `CosplayApp`; черновик и флаги отправки — в UI |
 
 Полный корень пакетов — `src/commonMain/kotlin/ru/flobsterable/cosplay2/` внутри
 указанного модуля.
 
 ## Навигация и жизненный цикл
 
-В `composeApp/.../App.kt` закрытый `AppRoute` содержит Festivals, FestivalDetails
-и Update. `AnimatedContent` выбирает экран. Экраны получают callbacks, маршрут
-меняет `CosplayApp`. Кнопки возврата и Android `SystemBackHandler` ведут на каталог;
-Desktop-реализация системного back handler не выполняет действий.
+В `composeApp/.../App.kt` закрытый `AppRoute` содержит Festivals, FestivalDetails,
+Update, Settings и Support. `AnimatedContent` выбирает экран. Экраны получают callbacks,
+маршрут меняет `CosplayApp`. Кнопки возврата и Android `SystemBackHandler` ведут на
+каталог; исключение — «Поддержка», откуда возврат идёт в «Настройки». Desktop-реализация
+системного back handler не выполняет действий.
 
-Фильтры находятся в `rememberSaveable` внутри каталога, но отдельного владельца
-для сохранения их при переходах между экранами нет. При возвращении
-`FestivalsRoute` создаётся заново: `lastSuccessfulCatalog` не восстанавливается,
-а `produceState` повторно загружает каталог. До ответа отображается LoadingBlock.
-Не следует обещать восстановление фильтров после навигации. Дискового кэша
-сетевых данных нет.
+`CosplayApp` создаёт `rememberSaveableStateHolder()` и оборачивает экраны (кроме
+`FestivalDetails`) в `SaveableStateProvider` с ключом по маршруту: `festivals`,
+`update`, `settings`, `support`; для деталей ключ `details-<id>`, но сам экран
+в holder не помещается. Благодаря этому `rememberSaveable`-состояние каталога
+(поиск, категория, месяц, год) и черновик сообщения поддержки сохраняются при
+переходах между экранами. `lastSuccessfulCatalog` в `FestivalsRoute` хранится
+в `remember` и не переживает пересоздание composable, но фильтры восстанавливаются
+из сохранённого состояния. Дискового кэша сетевых данных нет.
 
 Загрузка каталога и деталей выполняется в `produceState`; смена выбранного года
 перезапускает запрос каталога. `HttpClient` и репозитории создаются в `remember`,
@@ -52,8 +57,9 @@ Desktop-реализация системного back handler не выполн
    загружаются через `produceState`, затем передаются экрану. Задайте ключ загрузки
    по входному параметру: у деталей это `festival.id`, у списка — `selectedYear`.
 5. Для отдельного перехода добавьте вариант в закрытый `AppRoute` и ветку `when`
-   внутри `AnimatedContent`. Передавайте переходы callbacks, как `onFestivalSelected`.
-   Проверьте поведение `SystemBackHandler`: возврат из поддержки ведёт в настройки, из остальных дочерних экранов — на список фестивалей.
+   внутри `AnimatedContent`. Передавайте переходы callbacks, как `onFestivalSelected`
+   или `onOpenSettings`. Проверьте поведение `SystemBackHandler`: возврат из поддержки
+   ведёт в настройки, из остальных дочерних экранов — на список фестивалей.
 6. Зависимости создавайте в `CosplayApp` и передавайте вниз. В текущем проекте
    нет обязательного ViewModel/DI/navigation framework для добавления экрана.
    HttpClient создаётся через `remember`, закрывается в `DisposableEffect`.
@@ -63,7 +69,8 @@ Desktop-реализация системного back handler не выполн
 ## Компоненты экрана списка фестивалей
 
 Образец — `feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalListScreen.kt`.
-`FestivalsScreen` использует `Scaffold` и `LazyColumn`. Поиск представлен
+`FestivalsScreen` использует `Scaffold` с `TopAppBar` (заголовок «Фестивали» и кнопка
+«Настройки», вызывающая `onOpenSettings`) и `LazyColumn`. Поиск представлен
 `OutlinedTextField`, выбор года и категории — `FilterChip`, месяца — `MonthDropdown`.
 Результаты показываются через `FestivalCard`. Состояния отображают `LoadingBlock`,
 `ErrorBlock` и `EmptyBlock`; дополнительный верхний блок передаётся через `topContent`.
@@ -120,9 +127,19 @@ fun ExampleScreen(state: UiState<String>, onBack: () -> Unit) {
 
 ## Настройки и поддержка
 
-`feature/settings` содержит SettingsScreen и SupportScreen. SettingsScreen принимает
-версию приложения и callbacks возврата/открытия поддержки. SupportScreen принимает
-SupportChatState и callback onSendMessage, отображает сообщения User/Assistant,
-ожидание ответа, ошибку и поле ввода. Используются Scaffold, TopAppBar, LazyColumn,
-Card и OutlinedTextField. Подключение сервиса отсутствует; отправка по умолчанию
-недоступна. Навигация и SaveableStateHolder находятся в CosplayApp.
+`feature/settings` — отдельный KMP-модуль (android + desktop, Compose, зависимость
+`kotlinx-coroutines-core`), подключённый в `composeApp`. `SettingsScreen` принимает
+`versionName`, `onBack` и `onOpenSupport`; использует `Scaffold`/`TopAppBar`, карточку
+«Поддержка» и строку версии. `SupportScreen` принимает `SupportChatState`, `onBack`
+и suspend-callback `onSendMessage`; отображает сообщения `User`/`Assistant`,
+ожидание ответа, ошибку и поле ввода с лимитом 4000 символов. Используются `Scaffold`,
+`TopAppBar`, `LazyColumn`, `Card` и `OutlinedTextField`; автоскролл к последнему
+сообщению выполняется через `snapshotFlow`.
+
+`SupportChatState` содержит `messages`, `isAvailable`, `isSending` и `error`;
+`SupportMessage` — `id`, `text`, `author` (`SupportAuthor.User`/`Assistant`).
+В `CosplayApp` состояние создаётся с `isAvailable=false`, а `onSendMessage` — пустой
+колбэк, поэтому отправка недоступна и экран показывает сообщение о недоступности
+сервиса. Черновик хранится через `rememberSaveable` и сохраняется при навигации
+благодаря `SaveableStateHolder`; при ошибке отправки текст остаётся для повтора.
+Навигация и `SaveableStateHolder` находятся в `CosplayApp`.
