@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Flobsterable/cosplay-dev-assistant
-          ref: a826190c8b829266bf0255131cabdf57a5fb060f
+          ref: 5dc926afd8383a6e015417318a0954907cce3c2d
           path: assistant
           persist-credentials: false
       - uses: actions/setup-node@v4

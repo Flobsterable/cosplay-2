@@ -11,6 +11,7 @@ Compose Multiplatform приложение для просмотра фести�
 **Быстрые ссылки**
 
 - [Документация проекта](docs/README.md): архитектура, API, модели, сценарии, сборка и диагностика.
+- [Автообновление документации](docs/docs-sync.md): после слияния PR агент проверяет и коммитит README/docs в целевую ветку.
 
 - [Открыть репозиторий](https://github.com/Flobsterable/cosplay-2)
 - [Последний релиз](https://github.com/Flobsterable/cosplay-2/releases/latest)
