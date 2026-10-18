@@ -190,11 +190,17 @@ internal fun buildFestivalAboutText(detail: FestivalDetail): String {
     return deduplicated.joinToString("\n\n")
 }
 
-fun favoriteFestivalSummary(detail: FestivalDetail): FestivalSummary = detail.summary.copy(
-    description = detail.description,
-    city = detail.venueCity,
-    startTime = detail.startDate,
-    endTime = detail.endDate,
-    displayTime = formatFestivalDate(detail.startDate, detail.endDate),
-    imageUrl = detail.imageUrl
-)
+fun favoriteFestivalSummary(detail: FestivalDetail): FestivalSummary {
+    val summary = detail.summary
+    val start = detail.startDate.ifBlank { summary.startTime }
+    val end = detail.endDate.ifBlank { summary.endTime }
+    return summary.copy(
+        description = detail.description.ifBlank { summary.description },
+        city = detail.venueCity.ifBlank { summary.city },
+        startTime = start,
+        endTime = end,
+        displayTime = if (detail.startDate.isBlank() && detail.endDate.isBlank()) summary.displayTime
+            else formatFestivalDate(start, end),
+        imageUrl = detail.imageUrl?.takeIf { it.isNotBlank() } ?: summary.imageUrl
+    )
+}

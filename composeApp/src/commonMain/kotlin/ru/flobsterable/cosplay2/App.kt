@@ -96,7 +96,9 @@ fun CosplayApp() {
         val favorites = remember(favoritesStorage) { FavoritesState(FavoritesRepository(favoritesStorage)) }
         val scope = rememberCoroutineScope()
         val snackbar = remember { SnackbarHostState() }
-        val favoriteIds = (favorites.state as? UiState.Success)?.data.orEmpty().map { it.id }.toSet()
+        val favoriteIds = remember(favorites.state) {
+            (favorites.state as? UiState.Success)?.data.orEmpty().map { it.id }.toSet()
+        }
         val favoritesEnabled = favorites.canModify
         val toggleFavorite: (FestivalSummary) -> Unit = { festival -> scope.launch { favorites.toggle(festival) } }
         val goBack: () -> Unit = {
@@ -344,7 +346,7 @@ private fun FestivalDetailRoute(
         onBack = onBack,
         festivalTitle = (state as? UiState.Success)?.data?.summary?.title ?: festival.title,
         isFavorite = isFavorite,
-        favoritesEnabled = favoritesEnabled,
+        favoritesEnabled = favoritesEnabled && state is UiState.Success,
         onToggleFavorite = {
             val detail = (state as? UiState.Success)?.data
             onToggleFavorite(detail?.let(::favoriteFestivalSummary) ?: festival)

@@ -4,7 +4,8 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import ru.flobsterable.cosplay2.model.FestivalCatalog
 
-// Owned by CosplayApp, so navigation does not discard loaded years.
+// Keep the active year's catalog across screen navigation; selecting another
+// year explicitly invalidates it so the year filter always reloads server data.
 internal class FestivalCatalogCache(private val load: suspend (Int) -> FestivalCatalog) {
     private val catalogs = mutableMapOf<Int, FestivalCatalog>()
     private val mutex = Mutex()

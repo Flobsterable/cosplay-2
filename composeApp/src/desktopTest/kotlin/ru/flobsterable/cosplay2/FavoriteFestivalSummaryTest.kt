@@ -25,4 +25,12 @@ class FavoriteFestivalSummaryTest {
         assertEquals(detail.imageUrl, saved.imageUrl)
         assertEquals("1-2 ноября 2026", saved.displayTime)
     }
+
+    @Test
+    fun emptyDetailsDoNotEraseTheOriginalCard() {
+        val original = FestivalSummary(1, "Фестиваль", "Описание", "Омск", "Россия", 99,
+            "2026-11-01", "2026-11-02", "1–2 ноября", FestivalStatus.Future, "https://example.com", "poster.png", "Тип")
+        val detail = FestivalDetail(original, "", "", emptyList(), "", "", "", "", "")
+        assertEquals(original, favoriteFestivalSummary(detail))
+    }
 }
