@@ -3,6 +3,7 @@ package ru.flobsterable.cosplay2.feature.festival
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -37,6 +38,8 @@ import io.ktor.client.HttpClient
 import ru.flobsterable.cosplay2.model.FestivalCatalog
 import ru.flobsterable.cosplay2.model.FestivalStatus
 import ru.flobsterable.cosplay2.model.FestivalSummary
+import ru.flobsterable.cosplay2.platform.matchesMyCity
+import ru.flobsterable.cosplay2.platform.normalizeCity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,7 +55,12 @@ fun FestivalsScreen(
     onOpenFavorites: () -> Unit,
     favoriteIds: Set<Long>,
     favoritesEnabled: Boolean,
-    onToggleFavorite: (FestivalSummary) -> Unit
+    onToggleFavorite: (FestivalSummary) -> Unit,
+    myCity: String,
+    onlyMyCity: Boolean,
+    onCityFilterSelected: (Boolean) -> Unit,
+    cityEnabled: Boolean,
+    onChooseCity: (List<String>) -> Unit
 ) {
     var query by rememberSaveable { mutableStateOf("") }
     var selectedCategory by rememberSaveable { mutableStateOf(TypeFilter.All) }
@@ -95,6 +103,33 @@ fun FestivalsScreen(
                 }
                 topContent?.let { content ->
                     item { content() }
+                }
+                item {
+                    Row(
+                        modifier = Modifier.horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        FilterChip(
+                            title = "Все города",
+                            selected = !onlyMyCity || myCity.isBlank(),
+                            onClick = { onCityFilterSelected(false) }
+                        )
+                        FilterChip(
+                            title = if (myCity.isBlank()) "Мой город" else "Мой город: $myCity",
+                            selected = onlyMyCity && myCity.isNotBlank(),
+                            onClick = {
+                                if (myCity.isNotBlank()) onCityFilterSelected(true)
+                                else if (cityEnabled) onChooseCity(filterCatalog?.festivals.orEmpty()
+                                    .map { normalizeCity(it.city) }.filter { it.isNotBlank() })
+                            }
+                        )
+                        if (myCity.isNotBlank()) {
+                            TextButton(onClick = {
+                                onChooseCity(filterCatalog?.festivals.orEmpty()
+                                    .map { normalizeCity(it.city) }.filter { it.isNotBlank() })
+                            }, enabled = cityEnabled) { Text("Изменить") }
+                        }
+                    }
                 }
                 item {
                     Row(
@@ -149,6 +184,7 @@ fun FestivalsScreen(
                     state is UiState.Success -> {
                         val catalog = state.data
                         val filtered = catalog.festivals
+                            .filter { festival -> !onlyMyCity || myCity.isBlank() || matchesMyCity(festival.city, myCity) }
                             .filter { festival ->
                                 selectedYear != ACTUAL_FILTER_YEAR || festival.status == FestivalStatus.Future
                             }
@@ -173,7 +209,14 @@ fun FestivalsScreen(
 
                         if (filtered.isEmpty()) {
                             item {
-                                EmptyBlock()
+                                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    if (onlyMyCity && myCity.isNotBlank()) {
+                                        Text("Нет фестивалей в городе «$myCity» с выбранными фильтрами.")
+                                        TextButton(onClick = { onCityFilterSelected(false) }) { Text("Показать все города") }
+                                    } else {
+                                        EmptyBlock()
+                                    }
+                                }
                             }
                         } else {
                             items(filtered, key = { it.id }) { festival ->

@@ -102,7 +102,8 @@ class FavoriteIconTest {
                         onOpenFavorites = {},
                         favoriteIds = emptySet(),
                         favoritesEnabled = true,
-                        onToggleFavorite = {}
+                        onToggleFavorite = {},
+                        myCity = "", onlyMyCity = false, onCityFilterSelected = {}, cityEnabled = true, onChooseCity = {}
                     )
                 }
             }
@@ -120,7 +121,8 @@ class FavoriteIconTest {
                 MaterialTheme {
                     FestivalsScreen(state, 2026, 2026, { picked = it }, client,
                         onFestivalSelected = {}, onOpenSettings = {}, onOpenFavorites = {},
-                        favoriteIds = emptySet(), favoritesEnabled = false, onToggleFavorite = {})
+                        favoriteIds = emptySet(), favoritesEnabled = false, onToggleFavorite = {},
+                        myCity = "", onlyMyCity = false, onCityFilterSelected = {}, cityEnabled = true, onChooseCity = {})
                 }
             }
             compose.onNodeWithText("2025").performClick()
