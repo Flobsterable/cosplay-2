@@ -32,6 +32,8 @@ import androidx.compose.material.icons.rounded.ExpandLess
 import androidx.compose.material.icons.rounded.ExpandMore
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.OpenInNew
+import androidx.compose.material.icons.rounded.Star
+import androidx.compose.material.icons.rounded.StarBorder
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Card
@@ -43,6 +45,7 @@ import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -78,7 +81,10 @@ internal fun FestivalCard(
     festival: FestivalSummary,
     eventTypeTitle: String,
     client: HttpClient,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    isFavorite: Boolean,
+    favoritesEnabled: Boolean,
+    onToggleFavorite: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -127,6 +133,14 @@ internal fun FestivalCard(
                         )
                     }
                 }
+                FavoriteButton(
+                    selected = isFavorite,
+                    enabled = favoritesEnabled,
+                    title = festival.title,
+                    onClick = onToggleFavorite,
+                    modifier = Modifier.align(Alignment.TopEnd).padding(8.dp)
+                        .background(MaterialTheme.colorScheme.surface, CircleShape)
+                )
             }
             Column(
                 modifier = Modifier.padding(18.dp),
@@ -143,6 +157,23 @@ internal fun FestivalCard(
                 )
             }
         }
+    }
+}
+
+@Composable
+internal fun FavoriteButton(
+    selected: Boolean,
+    enabled: Boolean,
+    title: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    IconToggleButton(checked = selected, onCheckedChange = { onClick() }, enabled = enabled, modifier = modifier) {
+        Icon(
+            if (selected) Icons.Rounded.Star else Icons.Rounded.StarBorder,
+            contentDescription = if (selected) "Удалить из избранного: $title" else "Добавить в избранное: $title",
+            tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+        )
     }
 }
 

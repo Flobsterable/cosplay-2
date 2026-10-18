@@ -16,8 +16,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -48,7 +50,11 @@ fun FestivalsScreen(
     client: HttpClient,
     topContent: (@Composable () -> Unit)? = null,
     onFestivalSelected: (FestivalSummary) -> Unit,
-    onOpenSettings: () -> Unit
+    onOpenSettings: () -> Unit,
+    onOpenFavorites: () -> Unit,
+    favoriteIds: Set<Long>,
+    favoritesEnabled: Boolean,
+    onToggleFavorite: (FestivalSummary) -> Unit
 ) {
     var query by rememberSaveable { mutableStateOf("") }
     var selectedCategory by rememberSaveable { mutableStateOf(TypeFilter.All) }
@@ -62,7 +68,10 @@ fun FestivalsScreen(
         topBar = {
             TopAppBar(
                 title = { Text("Фестивали") },
-                actions = { TextButton(onClick = onOpenSettings) { Text("Настройки") } }
+                actions = {
+                    IconButton(onClick = onOpenFavorites) { Icon(Icons.Rounded.Star, contentDescription = "Избранное") }
+                    TextButton(onClick = onOpenSettings) { Text("Настройки") }
+                }
             )
         },
         containerColor = MaterialTheme.colorScheme.background,
@@ -185,7 +194,10 @@ fun FestivalsScreen(
                                         catalog.eventTypes[festival.eventTypeId]
                                     ),
                                     client = client,
-                                    onClick = { onFestivalSelected(festival) }
+                                    onClick = { onFestivalSelected(festival) },
+                                    isFavorite = festival.id in favoriteIds,
+                                    favoritesEnabled = favoritesEnabled,
+                                    onToggleFavorite = { onToggleFavorite(festival) }
                                 )
                             }
                         }

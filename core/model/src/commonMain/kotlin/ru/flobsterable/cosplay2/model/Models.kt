@@ -30,6 +30,7 @@ data class EventTypeDto(
     @SerialName("title_one") val titleOne: String
 )
 
+@Serializable
 data class FestivalSummary(
     val id: Long,
     val title: String,

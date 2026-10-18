@@ -37,7 +37,11 @@ import ru.flobsterable.cosplay2.model.FestivalDetail
 fun FestivalDetailScreen(
     state: UiState<FestivalDetail>,
     client: HttpClient,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    festivalTitle: String,
+    isFavorite: Boolean,
+    favoritesEnabled: Boolean,
+    onToggleFavorite: () -> Unit
 ) {
     val uriHandler = LocalUriHandler.current
 
@@ -147,6 +151,13 @@ fun FestivalDetailScreen(
                     tint = MaterialTheme.colorScheme.onSurface
                 )
             }
+            FavoriteButton(
+                selected = isFavorite,
+                enabled = favoritesEnabled,
+                title = festivalTitle,
+                onClick = onToggleFavorite,
+                modifier = Modifier.align(Alignment.CenterEnd).padding(end = 10.dp)
+            )
         }
     }
 }
