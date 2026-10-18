@@ -231,11 +231,13 @@ private fun FestivalsRoute(
     val installState by appUpdateLauncher.installState
     var selectedYear by rememberSaveable { mutableStateOf(ACTUAL_FILTER_YEAR) }
     val requestedYear = if (selectedYear == ACTUAL_FILTER_YEAR) currentYear else selectedYear
+    // Navigation reuses this year's data; changing the year invalidates that cache.
     var lastSuccessfulCatalog by remember { mutableStateOf(catalogCache.peek(requestedYear)) }
     val state by produceState<UiState<FestivalCatalog>>(
         initialValue = catalogCache.peek(requestedYear)?.let { UiState.Success(it) } ?: UiState.Loading,
         selectedYear
     ) {
+        catalogCache.selectYear(selectedYear)
         value = catalogCache.peek(requestedYear)?.let { UiState.Success(it) } ?: UiState.Loading
         try {
             value = UiState.Success(catalogCache.get(requestedYear))

@@ -50,4 +50,26 @@ class FestivalCatalogCacheTest {
         cache.get(2026)
         assertEquals(2, calls)
     }
+
+    @Test
+    fun changingYearRefreshesWhileNavigationWithinYearReusesData() = runBlocking {
+        val calls = mutableListOf<Int>()
+        val cache = FestivalCatalogCache { year ->
+            calls.add(year)
+            FestivalCatalog(emptyList(), emptyMap(), year, false)
+        }
+        cache.selectYear(2026)
+        cache.get(2026)
+        cache.selectYear(2026)
+        cache.get(2026)
+        cache.selectYear(2025)
+        cache.get(2025)
+        cache.selectYear(2026)
+        cache.get(2026)
+        assertEquals(listOf(2026, 2025, 2026), calls)
+        // "Актуальные" and explicit current year are different filter selections.
+        cache.selectYear(-1)
+        cache.get(2026)
+        assertEquals(listOf(2026, 2025, 2026, 2026), calls)
+    }
 }

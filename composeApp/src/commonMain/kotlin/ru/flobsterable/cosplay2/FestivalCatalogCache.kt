@@ -8,6 +8,12 @@ import ru.flobsterable.cosplay2.model.FestivalCatalog
 internal class FestivalCatalogCache(private val load: suspend (Int) -> FestivalCatalog) {
     private val catalogs = mutableMapOf<Int, FestivalCatalog>()
     private val mutex = Mutex()
+    private var selectedYear: Int? = null
+
+    fun selectYear(year: Int) {
+        if (selectedYear != null && selectedYear != year) catalogs.clear()
+        selectedYear = year
+    }
 
     fun peek(year: Int): FestivalCatalog? = catalogs[year]
 
