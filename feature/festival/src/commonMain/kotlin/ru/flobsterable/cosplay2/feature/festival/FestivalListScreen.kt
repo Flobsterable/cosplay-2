@@ -116,35 +116,30 @@ fun FestivalsScreen(
                     }
                 }
 
-                if (filterCatalog != null) {
-                    val years = buildList {
-                        val start = maxOf(2013, currentYear - 6)
-                        add(ACTUAL_FILTER_YEAR)
-                        for (year in currentYear downTo start) add(year)
-                        if (filterCatalog.year !in this) add(1, filterCatalog.year)
-                    }.distinct()
+                val years = buildList {
+                    val start = maxOf(2013, currentYear - 6)
+                    add(ACTUAL_FILTER_YEAR)
+                    for (year in currentYear downTo start) add(year)
+                    filterCatalog?.year?.let { if (it !in this) add(1, it) }
+                    if (selectedYear !in this) add(1, selectedYear)
+                }.distinct()
 
-                    item {
-                        Row(
-                            modifier = Modifier.horizontalScroll(rememberScrollState()),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            years.forEach { year ->
-                                FilterChip(
-                                    title = if (year == ACTUAL_FILTER_YEAR) "Актуальные" else year.toString(),
-                                    selected = selectedYear == year,
-                                    onClick = { onYearSelected(year) }
-                                )
-                            }
+                item {
+                    Row(
+                        modifier = Modifier.horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        years.forEach { year ->
+                            FilterChip(
+                                title = if (year == ACTUAL_FILTER_YEAR) "Актуальные" else year.toString(),
+                                selected = selectedYear == year,
+                                onClick = { onYearSelected(year) }
+                            )
                         }
                     }
-
-                    item {
-                        MonthDropdown(
-                            selectedMonth = selectedMonth,
-                            onMonthSelected = { selectedMonth = it }
-                        )
-                    }
+                }
+                item {
+                    MonthDropdown(selectedMonth = selectedMonth, onMonthSelected = { selectedMonth = it })
                 }
 
                 when {

@@ -7,8 +7,17 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import ru.flobsterable.cosplay2.model.FestivalCatalog
+import ru.flobsterable.cosplay2.feature.festival.UiState
 
 class FestivalCatalogCacheTest {
+    @Test
+    fun previousSuccessIsHiddenBeforeTheNewYearProducerStarts() {
+        val previous = UiState.Success(FestivalCatalog(emptyList(), emptyMap(), 2026, false))
+        assertEquals(UiState.Loading, catalogStateForYear(previous, 2025))
+        assertEquals(previous, catalogStateForYear(previous, 2026))
+        val error = UiState.Error("network failure")
+        assertEquals(error, catalogStateForYear(error, 2025))
+    }
     @Test
     fun navigationReusesLoadedYearAndOtherYearsLoadSeparately() = runBlocking {
         val calls = mutableListOf<Int>()

@@ -111,4 +111,27 @@ class FavoriteIconTest {
             compose.onNodeWithText("Тестовый фестиваль").assertDoesNotExist()
         } finally { client.close() }
     }
+
+    @Test
+    fun yearControlsStayAvailableWithoutACatalogDuringLoadingAndError() {
+        val client = createHttpClient()
+        var state: UiState<FestivalCatalog> by mutableStateOf(UiState.Loading)
+        var picked = 2026
+        try {
+            compose.setContent {
+                MaterialTheme {
+                    FestivalsScreen(state, null, 2026, 2026, { picked = it }, false, client,
+                        onFestivalSelected = {}, onOpenSettings = {}, onOpenFavorites = {},
+                        favoriteIds = emptySet(), favoritesEnabled = false, onToggleFavorite = {})
+                }
+            }
+            compose.onNodeWithText("2025").performClick()
+            compose.runOnIdle {
+                assertEquals(2025, picked)
+                state = UiState.Error("Не удалось загрузить каталог")
+            }
+            compose.onNodeWithText("2026").performClick()
+            compose.runOnIdle { assertEquals(2026, picked) }
+        } finally { client.close() }
+    }
 }

@@ -3,6 +3,7 @@ package ru.flobsterable.cosplay2
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import ru.flobsterable.cosplay2.model.FestivalCatalog
+import ru.flobsterable.cosplay2.feature.festival.UiState
 
 // Keep the active year's catalog across screen navigation; selecting another
 // year explicitly invalidates it so the year filter always reloads server data.
@@ -27,3 +28,8 @@ internal class FestivalCatalogCache(private val load: suspend (Int) -> FestivalC
     }
 
 }
+
+// produceState retains its previous value until the new keyed producer runs.
+// Never render that previous year's Success during this transition frame.
+internal fun catalogStateForYear(state: UiState<FestivalCatalog>, year: Int): UiState<FestivalCatalog> =
+    if (state is UiState.Success && state.data.year != year) UiState.Loading else state

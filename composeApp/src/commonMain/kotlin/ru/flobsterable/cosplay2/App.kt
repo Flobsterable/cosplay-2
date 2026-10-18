@@ -250,7 +250,7 @@ private fun FestivalsRoute(
         }
     }
 
-    val currentState = state
+    val currentState = catalogStateForYear(state, requestedYear)
 
     if (currentState is UiState.Success) {
         lastSuccessfulCatalog = currentState.data
@@ -260,7 +260,7 @@ private fun FestivalsRoute(
 
     FestivalsScreen(
         state = currentState,
-        catalogSnapshot = lastSuccessfulCatalog,
+        catalogSnapshot = lastSuccessfulCatalog?.takeIf { it.year == requestedYear },
         currentYear = currentYear,
         selectedYear = selectedYear,
         onYearSelected = { selectedYear = it },
