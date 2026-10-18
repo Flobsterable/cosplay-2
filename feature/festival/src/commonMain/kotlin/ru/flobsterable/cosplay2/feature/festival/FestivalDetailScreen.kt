@@ -32,12 +32,17 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import io.ktor.client.HttpClient
 import ru.flobsterable.cosplay2.model.FestivalDetail
+import ru.flobsterable.cosplay2.model.FestivalSummary
 
 @Composable
 fun FestivalDetailScreen(
     state: UiState<FestivalDetail>,
     client: HttpClient,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    festivalTitle: String,
+    isFavorite: Boolean,
+    favoritesEnabled: Boolean,
+    onToggleFavorite: () -> Unit
 ) {
     val uriHandler = LocalUriHandler.current
 
@@ -147,6 +152,13 @@ fun FestivalDetailScreen(
                     tint = MaterialTheme.colorScheme.onSurface
                 )
             }
+            FavoriteButton(
+                selected = isFavorite,
+                enabled = favoritesEnabled,
+                title = festivalTitle,
+                onClick = onToggleFavorite,
+                modifier = Modifier.align(Alignment.CenterEnd).padding(end = 10.dp)
+            )
         }
     }
 }
@@ -176,4 +188,19 @@ internal fun buildFestivalAboutText(detail: FestivalDetail): String {
     }
 
     return deduplicated.joinToString("\n\n")
+}
+
+fun favoriteFestivalSummary(detail: FestivalDetail): FestivalSummary {
+    val summary = detail.summary
+    val start = detail.startDate.ifBlank { summary.startTime }
+    val end = detail.endDate.ifBlank { summary.endTime }
+    return summary.copy(
+        description = detail.description.ifBlank { summary.description },
+        city = detail.venueCity.ifBlank { summary.city },
+        startTime = start,
+        endTime = end,
+        displayTime = if (detail.startDate.isBlank() && detail.endDate.isBlank()) summary.displayTime
+            else formatFestivalDate(start, end),
+        imageUrl = detail.imageUrl?.takeIf { it.isNotBlank() } ?: summary.imageUrl
+    )
 }

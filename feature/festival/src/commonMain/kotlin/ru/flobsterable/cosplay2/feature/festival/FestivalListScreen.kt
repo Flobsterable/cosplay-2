@@ -16,8 +16,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -40,29 +42,31 @@ import ru.flobsterable.cosplay2.model.FestivalSummary
 @Composable
 fun FestivalsScreen(
     state: UiState<FestivalCatalog>,
-    catalogSnapshot: FestivalCatalog?,
     currentYear: Int,
     selectedYear: Int,
     onYearSelected: (Int) -> Unit,
-    isYearLoading: Boolean,
     client: HttpClient,
     topContent: (@Composable () -> Unit)? = null,
     onFestivalSelected: (FestivalSummary) -> Unit,
-    onOpenSettings: () -> Unit
+    onOpenSettings: () -> Unit,
+    onOpenFavorites: () -> Unit,
+    favoriteIds: Set<Long>,
+    favoritesEnabled: Boolean,
+    onToggleFavorite: (FestivalSummary) -> Unit
 ) {
     var query by rememberSaveable { mutableStateOf("") }
     var selectedCategory by rememberSaveable { mutableStateOf(TypeFilter.All) }
     var selectedMonth by rememberSaveable(selectedYear) { mutableStateOf(MonthFilter.All) }
-    val filterCatalog = when (state) {
-        is UiState.Success -> state.data
-        else -> catalogSnapshot
-    }
+    val filterCatalog = (state as? UiState.Success)?.data
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text("Фестивали") },
-                actions = { TextButton(onClick = onOpenSettings) { Text("Настройки") } }
+                actions = {
+                    IconButton(onClick = onOpenFavorites) { Icon(Icons.Rounded.Star, contentDescription = "Избранное") }
+                    TextButton(onClick = onOpenSettings) { Text("Настройки") }
+                }
             )
         },
         containerColor = MaterialTheme.colorScheme.background,
@@ -107,39 +111,34 @@ fun FestivalsScreen(
                     }
                 }
 
-                if (filterCatalog != null) {
-                    val years = buildList {
-                        val start = maxOf(2013, currentYear - 6)
-                        add(ACTUAL_FILTER_YEAR)
-                        for (year in currentYear downTo start) add(year)
-                        if (filterCatalog.year !in this) add(1, filterCatalog.year)
-                    }.distinct()
+                val years = buildList {
+                    val start = maxOf(2013, currentYear - 6)
+                    add(ACTUAL_FILTER_YEAR)
+                    for (year in currentYear downTo start) add(year)
+                    filterCatalog?.year?.let { if (it !in this) add(1, it) }
+                    if (selectedYear !in this) add(1, selectedYear)
+                }.distinct()
 
-                    item {
-                        Row(
-                            modifier = Modifier.horizontalScroll(rememberScrollState()),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            years.forEach { year ->
-                                FilterChip(
-                                    title = if (year == ACTUAL_FILTER_YEAR) "Актуальные" else year.toString(),
-                                    selected = selectedYear == year,
-                                    onClick = { onYearSelected(year) }
-                                )
-                            }
+                item {
+                    Row(
+                        modifier = Modifier.horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        years.forEach { year ->
+                            FilterChip(
+                                title = if (year == ACTUAL_FILTER_YEAR) "Актуальные" else year.toString(),
+                                selected = selectedYear == year,
+                                onClick = { onYearSelected(year) }
+                            )
                         }
                     }
-
-                    item {
-                        MonthDropdown(
-                            selectedMonth = selectedMonth,
-                            onMonthSelected = { selectedMonth = it }
-                        )
-                    }
+                }
+                item {
+                    MonthDropdown(selectedMonth = selectedMonth, onMonthSelected = { selectedMonth = it })
                 }
 
                 when {
-                    isYearLoading || state is UiState.Loading -> item {
+                    state is UiState.Loading -> item {
                         LoadingBlock()
                     }
 
@@ -185,7 +184,10 @@ fun FestivalsScreen(
                                         catalog.eventTypes[festival.eventTypeId]
                                     ),
                                     client = client,
-                                    onClick = { onFestivalSelected(festival) }
+                                    onClick = { onFestivalSelected(festival) },
+                                    isFavorite = festival.id in favoriteIds,
+                                    favoritesEnabled = favoritesEnabled,
+                                    onToggleFavorite = { onToggleFavorite(festival) }
                                 )
                             }
                         }

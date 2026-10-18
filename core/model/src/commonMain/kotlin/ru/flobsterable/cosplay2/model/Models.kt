@@ -30,6 +30,7 @@ data class EventTypeDto(
     @SerialName("title_one") val titleOne: String
 )
 
+@Serializable
 data class FestivalSummary(
     val id: Long,
     val title: String,
@@ -42,7 +43,8 @@ data class FestivalSummary(
     val displayTime: String,
     val status: FestivalStatus,
     val url: String,
-    val imageUrl: String? = null
+    val imageUrl: String? = null,
+    val eventTypeTitle: String? = null
 )
 
 data class FestivalCatalog(

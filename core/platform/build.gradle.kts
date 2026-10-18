@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -29,7 +30,12 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.ui)
             implementation(libs.ktor.client.core)
+            implementation(libs.kotlinx.serialization.json)
             implementation(project(":core:model"))
+        }
+
+        commonTest.dependencies {
+            implementation(kotlin("test"))
         }
 
         androidMain.dependencies {
