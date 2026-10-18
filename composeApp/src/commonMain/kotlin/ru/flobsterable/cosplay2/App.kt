@@ -106,6 +106,11 @@ fun CosplayApp() {
                     AppRoute.Support -> "support"
                 }
                 screenState.SaveableStateProvider(stateKey) {
+                    if (targetRoute is AppRoute.FestivalDetails) {
+                        DisposableEffect(stateKey) {
+                            onDispose { screenState.removeState(stateKey) }
+                        }
+                    }
                     when (targetRoute) {
                         AppRoute.Festivals -> FestivalsRoute(
                             repository = repository,

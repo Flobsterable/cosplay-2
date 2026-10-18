@@ -37,7 +37,9 @@ data class SupportChatState(
     val messages: List<SupportMessage> = emptyList(),
     val isAvailable: Boolean = false,
     val isSending: Boolean = false,
-    val error: String? = null
+    val error: String? = null,
+    /** Set only after the service confirms a user message was sent successfully. */
+    val lastSentMessageId: String? = null
 )
 
 data class SupportMessage(val id: String, val text: String, val author: SupportAuthor)
@@ -51,8 +53,19 @@ fun SupportScreen(
     onSendMessage: (String) -> Unit
 ) {
     var draft by rememberSaveable { mutableStateOf("") }
+    var submittedDraft by rememberSaveable { mutableStateOf<String?>(null) }
+    var previousSentMessageId by rememberSaveable { mutableStateOf(state.lastSentMessageId) }
     val listState = rememberLazyListState()
-    val canSend = state.isAvailable && !state.isSending && draft.isNotBlank()
+    val canSend = state.isAvailable && !state.isSending && submittedDraft == null && draft.isNotBlank()
+    LaunchedEffect(state.lastSentMessageId, state.error, submittedDraft) {
+        if (state.lastSentMessageId != previousSentMessageId && state.lastSentMessageId != null) {
+            if (draft == submittedDraft) draft = ""
+            submittedDraft = null
+            previousSentMessageId = state.lastSentMessageId
+        } else if (state.error != null) {
+            submittedDraft = null
+        }
+    }
     LaunchedEffect(state.messages.size, state.isSending) {
         val count = state.messages.size + if (state.isSending) 1 else 0
         if (count > 0) listState.animateScrollToItem(count - 1)
@@ -138,7 +151,11 @@ fun SupportScreen(
                 )
                 TextButton(
                     enabled = canSend,
-                    onClick = { onSendMessage(draft.trim()) }
+                    onClick = {
+                        submittedDraft = draft
+                        previousSentMessageId = state.lastSentMessageId
+                        onSendMessage(draft.trim())
+                    }
                 ) { Text("Отправить") }
             }
         }
