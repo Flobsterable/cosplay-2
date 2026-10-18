@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -15,18 +17,24 @@ import ru.flobsterable.cosplay2.platform.FavoritesRepository
 internal class FavoritesState(private val repository: FavoritesRepository) {
     var state: UiState<List<FestivalSummary>> by mutableStateOf(UiState.Loading)
         private set
-    var error: String? by mutableStateOf(null)
+    var isSaving: Boolean by mutableStateOf(false)
         private set
+    val canModify: Boolean get() = state is UiState.Success && !isSaving
+    private val notifications = Channel<FavoritesError>(Channel.UNLIMITED)
+    val errors = notifications.receiveAsFlow()
     private val mutex = Mutex()
 
     suspend fun load() = mutex.withLock {
-        state = UiState.Loading
+        val previous = state as? UiState.Success
+        if (previous == null) state = UiState.Loading
         try {
             state = UiState.Success(withContext(Dispatchers.IO) { repository.load() })
         } catch (cancelled: CancellationException) {
             throw cancelled
         } catch (_: Exception) {
-            state = UiState.Error("Не удалось загрузить избранное. Попробуйте снова.")
+            val message = "Не удалось загрузить избранное. Попробуйте снова."
+            state = previous ?: UiState.Error(message)
+            notifications.trySend(FavoritesError(message, retryLoad = true))
         }
     }
 
@@ -34,15 +42,18 @@ internal class FavoritesState(private val repository: FavoritesRepository) {
         val current = (state as? UiState.Success)?.data ?: return@withLock
         val updated = if (current.any { it.id == festival.id }) current.filterNot { it.id == festival.id }
             else current + festival
+        isSaving = true
         try {
             withContext(Dispatchers.IO) { repository.save(updated) }
             state = UiState.Success(updated)
         } catch (cancelled: CancellationException) {
             throw cancelled
         } catch (_: Exception) {
-            error = "Не удалось сохранить избранное. Попробуйте ещё раз."
+            notifications.trySend(FavoritesError("Не удалось сохранить избранное. Попробуйте ещё раз."))
+        } finally {
+            isSaving = false
         }
     }
-
-    fun clearError() { error = null }
 }
+
+internal data class FavoritesError(val message: String, val retryLoad: Boolean = false)

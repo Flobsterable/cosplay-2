@@ -27,6 +27,7 @@ import ru.flobsterable.cosplay2.model.FestivalSummary
 @Composable
 fun FavoritesScreen(
     state: UiState<List<FestivalSummary>>,
+    favoritesEnabled: Boolean,
     client: HttpClient,
     onBack: () -> Unit,
     onRetry: () -> Unit,
@@ -50,11 +51,11 @@ fun FavoritesScreen(
                 items(state.data.sortedBy { it.startTime }, key = { it.id }) { festival ->
                     FestivalCard(
                         festival = festival,
-                        eventTypeTitle = TypeFilter.All.labelFor(festival.eventTypeId, null),
+                        eventTypeTitle = TypeFilter.All.labelFor(festival.eventTypeId, festival.eventTypeTitle),
                         client = client,
                         onClick = { onFestivalSelected(festival) },
                         isFavorite = true,
-                        favoritesEnabled = true,
+                        favoritesEnabled = favoritesEnabled,
                         onToggleFavorite = { onToggleFavorite(festival) }
                     )
                 }

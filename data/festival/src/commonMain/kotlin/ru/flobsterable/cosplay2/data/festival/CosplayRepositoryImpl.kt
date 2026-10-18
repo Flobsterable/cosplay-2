@@ -25,7 +25,7 @@ class CosplayRepositoryImpl(
         val response = runCatching { api.fetchFestivalList(year, wid) }.getOrElse {
             AppLogger.e(tag, "Failed to load /api/events/filter_list. Switching to fallback mode.", it)
             return FestivalCatalog(
-                festivals = fallbackFestivals(),
+                festivals = fallbackFestivals().map { it.copy(eventTypeTitle = fallbackEventTypes()[it.eventTypeId]) },
                 eventTypes = fallbackEventTypes(),
                 year = year,
                 isFallback = true
@@ -39,6 +39,8 @@ class CosplayRepositoryImpl(
             emptyList()
         }
         AppLogger.d(tag, "Loaded ${types.size} event types from /api/events/get_types")
+        val eventTypes = types.associate { it.id to decodeHtml(it.titleOne.ifBlank { it.title }) }
+            .ifEmpty { fallbackEventTypes() }
 
         val festivals = response.events.map { dto ->
                 val normalizedUrl = normalizeUrl(dto.href)
@@ -55,15 +57,15 @@ class CosplayRepositoryImpl(
                     displayTime = decodeHtml(dto.time),
                     status = FestivalStatus.fromRaw(dto.timestatus),
                     url = dto.href,
-                    imageUrl = schema?.imageUrl ?: inferredLogoUrl(dto.id)
+                    imageUrl = schema?.imageUrl ?: inferredLogoUrl(dto.id),
+                    eventTypeTitle = eventTypes[dto.eventTypeId]
                 )
             }
         festivalCache = festivals.associateBy { normalizeUrl(it.url) }
 
         return FestivalCatalog(
             festivals = festivals,
-            eventTypes = types.associate { it.id to decodeHtml(it.titleOne.ifBlank { it.title }) }
-                .ifEmpty { fallbackEventTypes() },
+            eventTypes = eventTypes,
             year = year,
             isFallback = false
         )

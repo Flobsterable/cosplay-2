@@ -43,7 +43,8 @@ data class FestivalSummary(
     val displayTime: String,
     val status: FestivalStatus,
     val url: String,
-    val imageUrl: String? = null
+    val imageUrl: String? = null,
+    val eventTypeTitle: String? = null
 )
 
 data class FestivalCatalog(

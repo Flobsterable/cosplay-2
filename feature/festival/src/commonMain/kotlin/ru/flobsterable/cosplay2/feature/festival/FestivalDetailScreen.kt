@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import io.ktor.client.HttpClient
 import ru.flobsterable.cosplay2.model.FestivalDetail
+import ru.flobsterable.cosplay2.model.FestivalSummary
 
 @Composable
 fun FestivalDetailScreen(
@@ -188,3 +189,12 @@ internal fun buildFestivalAboutText(detail: FestivalDetail): String {
 
     return deduplicated.joinToString("\n\n")
 }
+
+fun favoriteFestivalSummary(detail: FestivalDetail): FestivalSummary = detail.summary.copy(
+    description = detail.description,
+    city = detail.venueCity,
+    startTime = detail.startDate,
+    endTime = detail.endDate,
+    displayTime = formatFestivalDate(detail.startDate, detail.endDate),
+    imageUrl = detail.imageUrl
+)

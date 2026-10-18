@@ -39,6 +39,17 @@ class FavoritesRepositoryTest {
     }
 
     @Test
+    fun eventTypeTitleIsSavedAndOlderCardsWithoutItStillLoad() {
+        val storage = MemoryStorage()
+        val oldCard = festival(1)
+        FavoritesRepository(storage).save(listOf(oldCard))
+        assertEquals(oldCard, FavoritesRepository(storage).load().single())
+        val namedCard = oldCard.copy(eventTypeTitle = "Особый тип события")
+        FavoritesRepository(storage).save(listOf(namedCard))
+        assertEquals(namedCard, FavoritesRepository(storage).load().single())
+    }
+
+    @Test
     fun corruptedOrFutureDataIsNotSilentlyReplacedWithEmptyList() {
         for (content in listOf("broken json", "{\"version\":2,\"festivals\":[]}")) {
             val storage = MemoryStorage(content)

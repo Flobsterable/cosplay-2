@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -42,6 +43,7 @@ import ru.flobsterable.cosplay2.feature.festival.ACTUAL_FILTER_YEAR
 import ru.flobsterable.cosplay2.feature.festival.FestivalDetailScreen
 import ru.flobsterable.cosplay2.feature.festival.FestivalsScreen
 import ru.flobsterable.cosplay2.feature.festival.FavoritesScreen
+import ru.flobsterable.cosplay2.feature.festival.favoriteFestivalSummary
 import ru.flobsterable.cosplay2.feature.festival.UiState
 import ru.flobsterable.cosplay2.feature.update.UpdateBanner
 import ru.flobsterable.cosplay2.feature.update.UpdateScreen
@@ -93,7 +95,7 @@ fun CosplayApp() {
         val scope = rememberCoroutineScope()
         val snackbar = remember { SnackbarHostState() }
         val favoriteIds = (favorites.state as? UiState.Success)?.data.orEmpty().map { it.id }.toSet()
-        val favoritesEnabled = favorites.state is UiState.Success
+        val favoritesEnabled = favorites.canModify
         val toggleFavorite: (FestivalSummary) -> Unit = { festival -> scope.launch { favorites.toggle(festival) } }
         val goBack: () -> Unit = {
             route = when {
@@ -103,10 +105,10 @@ fun CosplayApp() {
             }
         }
         LaunchedEffect(favorites) { favorites.load() }
-        LaunchedEffect(favorites.error) {
-            favorites.error?.let {
-                snackbar.showSnackbar(it)
-                favorites.clearError()
+        LaunchedEffect(favorites) {
+            favorites.errors.collect { error ->
+                val result = snackbar.showSnackbar(error.message, actionLabel = if (error.retryLoad) "Повторить" else null)
+                if (result == SnackbarResult.ActionPerformed && error.retryLoad) favorites.load()
             }
         }
 
@@ -165,10 +167,11 @@ fun CosplayApp() {
                                 onBack = goBack,
                                 isFavorite = targetRoute.festival.id in favoriteIds,
                                 favoritesEnabled = favoritesEnabled,
-                                onToggleFavorite = { toggleFavorite(targetRoute.festival) }
+                                onToggleFavorite = toggleFavorite
                             )
                             AppRoute.Favorites -> FavoritesScreen(
                                 state = favorites.state,
+                                favoritesEnabled = favoritesEnabled,
                                 client = client,
                                 onBack = goBack,
                                 onRetry = { scope.launch { favorites.load() } },
@@ -314,7 +317,7 @@ private fun FestivalDetailRoute(
     onBack: () -> Unit,
     isFavorite: Boolean,
     favoritesEnabled: Boolean,
-    onToggleFavorite: () -> Unit
+    onToggleFavorite: (FestivalSummary) -> Unit
 ) {
     val state by produceState<UiState<FestivalDetail>>(initialValue = UiState.Loading, festival.id) {
         value = runCatching { repository.getFestivalDetail(festival) }
@@ -328,9 +331,12 @@ private fun FestivalDetailRoute(
         state = state,
         client = client,
         onBack = onBack,
-        festivalTitle = festival.title,
+        festivalTitle = (state as? UiState.Success)?.data?.summary?.title ?: festival.title,
         isFavorite = isFavorite,
         favoritesEnabled = favoritesEnabled,
-        onToggleFavorite = onToggleFavorite
+        onToggleFavorite = {
+            val detail = (state as? UiState.Success)?.data
+            onToggleFavorite(detail?.let(::favoriteFestivalSummary) ?: festival)
+        }
     )
 }
