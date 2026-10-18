@@ -25,7 +25,7 @@ Cosplay 2 — Kotlin Multiplatform приложение для просмотр�
 
 Зависимости заданы в build.gradle.kts каждого модуля:
 
-- composeApp подключает все семь core/data/feature-модулей и создаёт их зависимости.
+- composeApp подключает все восемь core/data/feature-модулей и создаёт их зависимости.
 - data/festival зависит от core/model, core/network и core/platform.
 - data/update зависит от core/model и core/network.
 - feature/festival зависит от core/model и core/platform.

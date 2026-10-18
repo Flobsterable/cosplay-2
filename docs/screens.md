@@ -1,4 +1,39 @@
-# Как реализовать экран и какие компоненты нужны
+# Реализация экранов
+
+Это техническое руководство: где находятся экраны, кто владеет состоянием,
+как подключены переходы и как добавить новый UI. Описание продукта — что сделано,
+какие экраны видит пользователь и какие флоу доступны — находится в [features.md](features.md).
+
+## Карта реализации
+
+| Экран | Composable и файл | Источник состояния |
+| --- | --- | --- |
+| Каталог | `FestivalsScreen`, `feature/festival/.../FestivalListScreen.kt` | `FestivalsRoute` в App.kt загружает каталог через репозиторий; поиск, категория и месяц хранятся в UI |
+| Детали | `FestivalDetailScreen`, `feature/festival/.../FestivalDetailScreen.kt` | `FestivalDetailRoute` вызывает `getFestivalDetail(festival)` по ключу `festival.id` |
+| Обновление | `UpdateScreen`, `feature/update/.../UpdateScreen.kt` | `UpdateRoute` получает релиз и наблюдает `pendingUpdate`/`installState` платформенного launcher |
+| Настройки | `SettingsScreen`, `feature/settings/.../SettingsScreen.kt` | CosplayApp передаёт AppVersion и callbacks; собственной загрузки нет |
+| Поддержка | `SupportScreen`, `feature/settings/.../SupportScreen.kt` | CosplayApp передаёт SupportChatState и suspend-callback; локально хранятся черновик, ошибка отправки и флаг выполняющегося вызова |
+
+Полный корень пакетов — `src/commonMain/kotlin/ru/flobsterable/cosplay2/` внутри
+указанного модуля. Настройки и поддержка относятся к PR №12; до его слияния в
+`develop` соответствующих файлов в базовой ветке нет.
+
+## Навигация и жизненный цикл
+
+В `composeApp/.../App.kt` закрытый `AppRoute` и `AnimatedContent` выбирают экран.
+Экраны получают callbacks, а маршрут меняет `CosplayApp`: Support → Settings,
+остальные дочерние маршруты → Festivals. `SystemBackHandler` на Android использует
+те же правила; Desktop-реализация не выполняет действий.
+
+`rememberSaveableStateHolder` оборачивает каталог, настройки, поддержку и обновление
+в отдельные ключи. Так `rememberSaveable` восстанавливает фильтры каталога и черновик
+чата при возврате. Детали отображаются вне этого holder: записи для каждого festival.id
+не накапливаются. Это сохранение UI-состояния, не дисковый кэш сетевых данных.
+
+Загрузка каталога и деталей выполняется в `produceState`; смена выбранного года
+перезапускает запрос каталога. `HttpClient` и репозитории создаются в `remember`,
+клиент закрывается через `DisposableEffect`. Подробный порядок запросов и
+преобразований описан в [feature-flows.md](feature-flows.md).
 
 ## Порядок реализации экрана в Cosplay 2
 
