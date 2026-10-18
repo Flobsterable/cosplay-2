@@ -1,0 +1,116 @@
+name: Update project documentation
+
+on:
+  pull_request_target:
+    types: [closed]
+    branches: [develop, main]
+  workflow_dispatch:
+    inputs:
+      base:
+        description: 'Full base SHA before the merged change'
+        required: true
+      head:
+        description: 'Full merged SHA to analyse'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: docs-sync-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TARGET_BRANCH: ${{ github.event.pull_request.base.ref || github.ref_name }}
+      BASE_SHA: ${{ inputs.base || github.event.pull_request.base.sha }}
+      MERGED_SHA: ${{ inputs.head || github.event.pull_request.merge_commit_sha }}
+    steps:
+      # Only already-merged code is checked out as data. No project scripts run.
+      - name: Checkout current target branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+      - name: Checkout verified assistant runtime
+        uses: actions/checkout@v4
+        with:
+          repository: Flobsterable/cosplay-dev-assistant
+          ref: b8a24ccabc398f9c2d6ba6e9774b2831ecd4ef1e
+          path: .assistant-runtime
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: .assistant-runtime/tools/dev-assistant/package-lock.json
+      - name: Install assistant dependencies
+        run: npm ci --ignore-scripts
+        working-directory: .assistant-runtime/tools/dev-assistant
+      - name: Validate source range
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$TARGET_BRANCH" in develop|main) ;; *) echo 'Unsupported target branch'; exit 1 ;; esac
+          [[ "$BASE_SHA" =~ ^[0-9a-f]{40}$ ]] && [[ "$MERGED_SHA" =~ ^[0-9a-f]{40}$ ]] || exit 1
+          git cat-file -e "$BASE_SHA^{commit}"
+          git cat-file -e "$MERGED_SHA^{commit}"
+          git merge-base --is-ancestor "$BASE_SHA" "$MERGED_SHA"
+          git merge-base --is-ancestor "$MERGED_SHA" HEAD
+          echo "Source range: $BASE_SHA..$MERGED_SHA; target: $TARGET_BRANCH"
+      - name: Generate, verify and commit documentation
+        env:
+          PROJECT_ROOT: ${{ github.workspace }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL: ${{ vars.LLM_MODEL || 'deepseek-flash' }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://api.deepseek.com' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          marker="Docs-Sync-Source: $MERGED_SHA"
+          for attempt in 1 2 3; do
+            git fetch origin "refs/heads/$TARGET_BRANCH"
+            # This is a disposable runner checkout. Regenerate on the latest code/docs
+            # rather than rebasing generated prose or force-pushing over another merge.
+            git reset --hard FETCH_HEAD
+            git merge-base --is-ancestor "$MERGED_SHA" HEAD
+            if git log --format=%B --fixed-strings --grep="$marker" | grep -Fxq "$marker"; then
+              echo "Documentation for $MERGED_SHA was already committed." | tee -a "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            node .assistant-runtime/tools/dev-assistant/src/cli.js /sync "$BASE_SHA" --head "$MERGED_SHA" --apply | tee "$RUNNER_TEMP/docs-sync-$attempt.txt"
+            git add -- README.md ':(glob)docs/**/*.md'
+            if git diff --cached --quiet; then
+              echo 'Documentation is already current; no commit needed.' | tee -a "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            # Ensure the commit cannot include source code, settings, or runtime files.
+            while IFS= read -r -d '' path; do
+              case "$path" in README.md|docs/*.md) ;; *) echo "Unexpected staged path: $path"; exit 1 ;; esac
+            done < <(git diff --cached --name-only -z)
+            git diff --cached --check
+            git commit -m "docs: sync after merge ${MERGED_SHA:0:8}" -m "$marker"
+            if git push origin "HEAD:refs/heads/$TARGET_BRANCH"; then
+              echo "Documentation committed to $TARGET_BRANCH: $(git rev-parse HEAD)" | tee -a "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            if [ "$attempt" = 3 ]; then
+              echo '::error::Could not push documentation. Check branch protection or rerun this workflow.'
+              exit 1
+            fi
+            echo 'Target branch moved or push was rejected; retrying generation on its current head.'
+          done
+      - name: Save generation and verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-sync-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/docs-sync-*.txt
+          if-no-files-found: ignore
+          retention-days: 14
