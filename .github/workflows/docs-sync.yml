@@ -80,6 +80,7 @@ jobs:
             # rather than rebasing generated prose or force-pushing over another merge.
             git reset --hard FETCH_HEAD
             git merge-base --is-ancestor "$MERGED_SHA" HEAD
+            generation_head=$(git rev-parse HEAD)
             if git log --format=%B --fixed-strings --grep="$marker" | grep -Fxq "$marker"; then
               echo "Documentation for $MERGED_SHA was already committed." | tee -a "$GITHUB_STEP_SUMMARY"
               exit 0
@@ -100,11 +101,20 @@ jobs:
               echo "Documentation committed to $TARGET_BRANCH: $(git rev-parse HEAD)" | tee -a "$GITHUB_STEP_SUMMARY"
               exit 0
             fi
+            git fetch origin "refs/heads/$TARGET_BRANCH"
+            if git merge-base --is-ancestor HEAD FETCH_HEAD; then
+              echo 'Documentation commit is already present on the target branch.' | tee -a "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            if [ "$(git rev-parse FETCH_HEAD)" = "$generation_head" ]; then
+              echo '::error::Push was rejected without a branch update. Check write permissions or branch protection; generation will not be retried.'
+              exit 1
+            fi
             if [ "$attempt" = 3 ]; then
               echo '::error::Could not push documentation. Check branch protection or rerun this workflow.'
               exit 1
             fi
-            echo 'Target branch moved or push was rejected; retrying generation on its current head.'
+            echo 'Target branch moved; retrying generation on its current head.'
           done
       - name: Save generation and verification report
         if: always()
