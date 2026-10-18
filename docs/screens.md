@@ -8,34 +8,31 @@
 
 | Экран | Composable и файл | Источник состояния |
 | --- | --- | --- |
-| Каталог | `FestivalsScreen`, `feature/festival/.../FestivalListScreen.kt` | `FestivalsRoute` в App.kt загружает каталог через репозиторий; поиск, категория и месяц хранятся в UI |
+| Каталог | `FestivalsScreen`, `feature/festival/.../FestivalListScreen.kt` | `FestivalsRoute` в App.kt загружает каталог; поиск, категория и месяц находятся в UI |
 | Детали | `FestivalDetailScreen`, `feature/festival/.../FestivalDetailScreen.kt` | `FestivalDetailRoute` вызывает `getFestivalDetail(festival)` по ключу `festival.id` |
 | Обновление | `UpdateScreen`, `feature/update/.../UpdateScreen.kt` | `UpdateRoute` получает релиз и наблюдает `pendingUpdate`/`installState` платформенного launcher |
-| Настройки | `SettingsScreen`, `feature/settings/.../SettingsScreen.kt` | CosplayApp передаёт AppVersion и callbacks; собственной загрузки нет |
-| Поддержка | `SupportScreen`, `feature/settings/.../SupportScreen.kt` | CosplayApp передаёт SupportChatState и suspend-callback; локально хранятся черновик, ошибка отправки и флаг выполняющегося вызова |
 
 Полный корень пакетов — `src/commonMain/kotlin/ru/flobsterable/cosplay2/` внутри
 указанного модуля.
 
 ## Навигация и жизненный цикл
 
-В `composeApp/.../App.kt` закрытый `AppRoute` и `AnimatedContent` выбирают экран.
-Экраны получают callbacks, а маршрут меняет `CosplayApp`: Support → Settings,
-остальные дочерние маршруты → Festivals. `SystemBackHandler` на Android использует
-те же правила; Desktop-реализация не выполняет действий.
+В `composeApp/.../App.kt` закрытый `AppRoute` содержит Festivals, FestivalDetails
+и Update. `AnimatedContent` выбирает экран. Экраны получают callbacks, маршрут
+меняет `CosplayApp`. Кнопки возврата и Android `SystemBackHandler` ведут на каталог;
+Desktop-реализация системного back handler не выполняет действий.
 
-`rememberSaveableStateHolder` оборачивает каталог, настройки, поддержку и обновление
-в отдельные ключи. Так `rememberSaveable` восстанавливает фильтры каталога и черновик
-чата при возврате. Детали отображаются вне этого holder: записи для каждого festival.id
-не накапливаются. Это сохранение значений UI-фильтров, не результатов запроса:
-при возвращении `FestivalsRoute` создаётся заново, его `lastSuccessfulCatalog`
-не восстанавливается, а `produceState` повторно загружает каталог. До ответа
-отображается LoadingBlock. Дискового кэша сетевых данных нет.
+Фильтры находятся в `rememberSaveable` внутри каталога, но отдельного владельца
+для сохранения их при переходах между экранами нет. При возвращении
+`FestivalsRoute` создаётся заново: `lastSuccessfulCatalog` не восстанавливается,
+а `produceState` повторно загружает каталог. До ответа отображается LoadingBlock.
+Не следует обещать восстановление фильтров после навигации. Дискового кэша
+сетевых данных нет.
 
 Загрузка каталога и деталей выполняется в `produceState`; смена выбранного года
 перезапускает запрос каталога. `HttpClient` и репозитории создаются в `remember`,
-клиент закрывается через `DisposableEffect`. Подробный порядок запросов и
-преобразований описан в [feature-flows.md](feature-flows.md).
+клиент закрывается через `DisposableEffect`. Порядок запросов и преобразований
+описан в [feature-flows.md](feature-flows.md).
 
 ## Порядок реализации экрана в Cosplay 2
 

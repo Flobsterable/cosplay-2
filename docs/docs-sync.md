@@ -1,5 +1,16 @@
 # Автоматическое обновление документации
 
+## Когда меняется описание продукта
+
+Документы в develop описывают только уже слитый туда код. Описание новых экранов
+и пользовательских сценариев не добавляется заранее из открытой feature-ветки.
+При мердже фичи агент сравнивает before..after, обновляет существующие
+[features.md](features.md), [screens.md](screens.md) и другие затронутые документы
+и публикует отдельный коммит в develop. До этого состояния README/docs служат
+базой, по которой можно увидеть требуемые изменения документации.
+
+## Запуск и проверка
+
 После слияния PR в develop или main GitHub Actions запускает
 [Update project documentation](../.github/workflows/docs-sync.yml).
 Триггер — push в целевую ветку с изменениями Kotlin, Gradle, TOML, release.yml
@@ -10,9 +21,9 @@
 прямо в ветке, куда влили PR. Отдельный PR документации и ручное слияние не нужны.
 
 До коммита workflow запускает /sync --apply закреплённого runtime агента.
-В нём [docs-verifier.js](https://github.com/Flobsterable/cosplay-dev-assistant/blob/5dc926afd8383a6e015417318a0954907cce3c2d/tools/dev-assistant/src/docs-verifier.js)
+В нём [docs-verifier.js](https://github.com/Flobsterable/cosplay-dev-assistant/blob/1d02f9023edd5e9aad0335fdd3df12611866b7c6/tools/dev-assistant/src/docs-verifier.js)
 проверяет новые утверждения, параметры, API, примеры команд, относительные ссылки
-и якоря. [sync-docs.js](https://github.com/Flobsterable/cosplay-dev-assistant/blob/5dc926afd8383a6e015417318a0954907cce3c2d/tools/dev-assistant/src/sync-docs.js)
+и якоря. [sync-docs.js](https://github.com/Flobsterable/cosplay-dev-assistant/blob/1d02f9023edd5e9aad0335fdd3df12611866b7c6/tools/dev-assistant/src/sync-docs.js)
 отклоняет неполный контекст и проверяет результат до записи. Ошибка CLI останавливает
 workflow до шага git commit благодаря set -euo pipefail. При отклонении коммита не будет;
 причина доступна в Actions. Проверка статическая: команды приложения не исполняются.
@@ -20,7 +31,7 @@ workflow до шага git commit благодаря set -euo pipefail. При �
 новый коммит не создаётся. Работа занимает время на запуск Actions и запросы модели.
 
 Workflow использует существующие Secret LLM_API_KEY и Variables LLM_MODEL/LLM_BASE_URL,
-как AI-ревью. Runtime закреплён на коммите 5dc926afd8383a6e015417318a0954907cce3c2d
+как AI-ревью. Runtime закреплён на коммите 1d02f9023edd5e9aad0335fdd3df12611866b7c6
 репозитория Flobsterable/cosplay-dev-assistant. При обновлении агента нужно обновлять ref.
 Токен GitHub Actions должен иметь contents:write; ограничения защиты ветки не обходятся.
 
