@@ -130,7 +130,7 @@ fun CosplayApp() {
                         AppRoute.Support -> SupportScreen(
                             state = SupportChatState(),
                             onSendMessage = { /* Connect the support service here when it is available. */ },
-                            onBack = { route = AppRoute.Support }
+                            onBack = { route = AppRoute.Settings }
                         )
                         AppRoute.Update -> UpdateRoute(
                             updateRepository = updateRepository,
