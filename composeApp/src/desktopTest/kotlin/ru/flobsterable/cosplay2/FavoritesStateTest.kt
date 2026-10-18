@@ -94,6 +94,15 @@ class FavoritesStateTest {
     }
 
     @Test
+    fun directToggleBeforeLoadingExplainsHowToRecover() = runBlocking {
+        val storage = Storage()
+        val state = FavoritesState(FavoritesRepository(storage))
+        state.toggle(festival(1))
+        assertTrue(withTimeout(1000) { state.errors.first() }.retryLoad)
+        assertEquals(null, storage.content)
+    }
+
+    @Test
     fun reloadKeepsCardsVisibleAndDoesNotLoseAQueuedToggle() = runBlocking {
         val storage = Storage()
         val state = FavoritesState(FavoritesRepository(storage))

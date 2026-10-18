@@ -39,7 +39,11 @@ internal class FavoritesState(private val repository: FavoritesRepository) {
     }
 
     suspend fun toggle(festival: FestivalSummary) = mutex.withLock {
-        val current = (state as? UiState.Success)?.data ?: return@withLock
+        val current = (state as? UiState.Success)?.data
+        if (current == null) {
+            notifications.trySend(FavoritesError("Избранное не загружено. Повторите загрузку перед изменением списка.", retryLoad = true))
+            return@withLock
+        }
         val updated = if (current.any { it.id == festival.id }) current.filterNot { it.id == festival.id }
             else current + festival
         isSaving = true

@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.CancellationException
 import io.ktor.client.HttpClient
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -79,6 +80,7 @@ fun CosplayApp() {
     CosplayTheme {
         val client = remember { createHttpClient() }
         val repository = remember(client) { CosplayRepositoryImpl(CosplayApiImpl(client)) }
+        val catalogCache = remember(repository) { FestivalCatalogCache(repository::getFestivalCatalog) }
         val updateRepository = remember(client) {
             GitHubUpdateRepository(
                 api = GitHubReleaseApiImpl(client),
@@ -148,7 +150,7 @@ fun CosplayApp() {
                     val screenContent: @Composable () -> Unit = {
                         when (targetRoute) {
                             AppRoute.Festivals -> FestivalsRoute(
-                                repository = repository,
+                                catalogCache = catalogCache,
                                 updateRepository = updateRepository,
                                 client = client,
                                 appUpdateLauncher = appUpdateLauncher,
@@ -209,7 +211,7 @@ fun CosplayApp() {
 
 @Composable
 private fun FestivalsRoute(
-    repository: CosplayRepositoryImpl,
+    catalogCache: FestivalCatalogCache,
     updateRepository: GitHubUpdateRepository,
     client: HttpClient,
     appUpdateLauncher: AppUpdateLauncher,
@@ -228,15 +230,20 @@ private fun FestivalsRoute(
     val pendingUpdate by appUpdateLauncher.pendingUpdate
     val installState by appUpdateLauncher.installState
     var selectedYear by rememberSaveable { mutableStateOf(ACTUAL_FILTER_YEAR) }
-    var lastSuccessfulCatalog by remember { mutableStateOf<FestivalCatalog?>(null) }
     val requestedYear = if (selectedYear == ACTUAL_FILTER_YEAR) currentYear else selectedYear
-    val state by produceState<UiState<FestivalCatalog>>(initialValue = UiState.Loading, selectedYear) {
-        value = UiState.Loading
-        value = runCatching { repository.getFestivalCatalog(requestedYear) }
-            .fold(
-                onSuccess = { UiState.Success(it.copy(festivals = it.festivals.sortedBy { festival -> festival.startTime })) },
-                onFailure = { UiState.Error(it.message ?: "Не удалось загрузить фестивали") }
-            )
+    var lastSuccessfulCatalog by remember { mutableStateOf(catalogCache.peek(requestedYear)) }
+    val state by produceState<UiState<FestivalCatalog>>(
+        initialValue = catalogCache.peek(requestedYear)?.let { UiState.Success(it) } ?: UiState.Loading,
+        selectedYear
+    ) {
+        value = catalogCache.peek(requestedYear)?.let { UiState.Success(it) } ?: UiState.Loading
+        try {
+            value = UiState.Success(catalogCache.get(requestedYear))
+        } catch (cancelled: CancellationException) {
+            throw cancelled
+        } catch (error: Exception) {
+            value = UiState.Error(error.message ?: "Не удалось загрузить фестивали")
+        }
     }
 
     val currentState = state
@@ -320,11 +327,13 @@ private fun FestivalDetailRoute(
     onToggleFavorite: (FestivalSummary) -> Unit
 ) {
     val state by produceState<UiState<FestivalDetail>>(initialValue = UiState.Loading, festival.id) {
-        value = runCatching { repository.getFestivalDetail(festival) }
-            .fold(
-                onSuccess = { UiState.Success(it) },
-                onFailure = { UiState.Error(it.message ?: "Не удалось открыть карточку фестиваля") }
-            )
+        try {
+            value = UiState.Success(repository.getFestivalDetail(festival))
+        } catch (cancelled: CancellationException) {
+            throw cancelled
+        } catch (error: Exception) {
+            value = UiState.Error(error.message ?: "Не удалось открыть карточку фестиваля")
+        }
     }
 
     FestivalDetailScreen(

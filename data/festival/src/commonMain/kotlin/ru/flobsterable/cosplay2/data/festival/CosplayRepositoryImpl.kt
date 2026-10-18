@@ -1,6 +1,7 @@
 package ru.flobsterable.cosplay2.data.festival
 
 import kotlin.random.Random
+import kotlin.coroutines.cancellation.CancellationException
 import ru.flobsterable.cosplay2.model.FestivalCatalog
 import ru.flobsterable.cosplay2.model.FestivalDetail
 import ru.flobsterable.cosplay2.model.FestivalStatus
@@ -17,12 +18,12 @@ class CosplayRepositoryImpl(
     override suspend fun getFestivalCatalog(year: Int): FestivalCatalog {
         val wid = generateWid()
         AppLogger.d(tag, "Loading archive page https://cosplay2.ru/archive/$year")
-        val schemasByUrl = runCatching { api.fetchSchemas("https://cosplay2.ru/archive/$year") }
+        val schemasByUrl = catchingFestivalRequest { api.fetchSchemas("https://cosplay2.ru/archive/$year") }
             .onFailure { AppLogger.e(tag, "Failed to load schema data from archive/$year", it) }
             .getOrElse { emptyMap() }
 
         AppLogger.d(tag, "Loading festivals from /api/events/filter_list with wid=$wid and active_year=$year")
-        val response = runCatching { api.fetchFestivalList(year, wid) }.getOrElse {
+        val response = catchingFestivalRequest { api.fetchFestivalList(year, wid) }.getOrElse {
             AppLogger.e(tag, "Failed to load /api/events/filter_list. Switching to fallback mode.", it)
             return FestivalCatalog(
                 festivals = fallbackFestivals().map { it.copy(eventTypeTitle = fallbackEventTypes()[it.eventTypeId]) },
@@ -34,7 +35,7 @@ class CosplayRepositoryImpl(
         AppLogger.d(tag, "Loaded ${response.events.size} festivals from /api/events/filter_list")
 
         AppLogger.d(tag, "Loading event types from /api/events/get_types")
-        val types = runCatching { api.fetchEventTypes() }.getOrElse {
+        val types = catchingFestivalRequest { api.fetchEventTypes() }.getOrElse {
             AppLogger.e(tag, "Failed to load /api/events/get_types. Using fallback event types.", it)
             emptyList()
         }
@@ -75,11 +76,11 @@ class CosplayRepositoryImpl(
         AppLogger.d(tag, "Loading festival detail for id=${festival.id}, url=${festival.url}")
         val cachedFestival = festivalCache[normalizeUrl(festival.url)] ?: festival
         val year = festival.startTime.take(4).toIntOrNull()
-        val schema = runCatching {
+        val schema = catchingFestivalRequest {
             if (year != null) api.fetchSchemas("https://cosplay2.ru/archive/$year")[normalizeUrl(festival.url)]
             else api.fetchSchemas("https://cosplay2.ru/")[normalizeUrl(festival.url)]
         }.getOrNull()
-        val pageData = runCatching { api.fetchFestivalHomePage(festival.url) }
+        val pageData = catchingFestivalRequest { api.fetchFestivalHomePage(festival.url) }
             .onFailure { AppLogger.e(tag, "Failed to load /get_pages/home for ${festival.url}", it) }
             .getOrDefault(FestivalHomePageData())
         val pageContent = pageData.content.ifBlank { buildFallbackPageContent(cachedFestival, schema) }
@@ -189,4 +190,12 @@ class CosplayRepositoryImpl(
         }
     }.joinToString("\n\n")
 
+}
+
+private inline fun <T> catchingFestivalRequest(block: () -> T): Result<T> = try {
+    Result.success(block())
+} catch (cancelled: CancellationException) {
+    throw cancelled
+} catch (error: Exception) {
+    Result.failure(error)
 }

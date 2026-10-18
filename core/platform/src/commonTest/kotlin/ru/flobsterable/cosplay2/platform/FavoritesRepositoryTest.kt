@@ -50,6 +50,12 @@ class FavoritesRepositoryTest {
     }
 
     @Test
+    fun legacyJsonWithoutEventTypeTitleUsesNullDefault() {
+        val storage = MemoryStorage("""{"festivals":[{"id":1,"title":"Фестиваль ★ 1","description":"Описание","city":"Омск","country":"RU","eventTypeId":1,"startTime":"2026-11-01","endTime":"2026-11-02","displayTime":"1–2 ноября","status":"Future","url":"https://example.com/1"}]}""")
+        assertEquals(listOf(festival(1)), FavoritesRepository(storage).load())
+    }
+
+    @Test
     fun corruptedOrFutureDataIsNotSilentlyReplacedWithEmptyList() {
         for (content in listOf("broken json", "{\"version\":2,\"festivals\":[]}")) {
             val storage = MemoryStorage(content)
