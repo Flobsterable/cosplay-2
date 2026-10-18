@@ -9,6 +9,7 @@ import ru.flobsterable.cosplay2.model.FestivalSummary
 interface FavoritesStorage {
     fun read(): String?
     fun write(content: String)
+    fun backup()
 }
 
 @Composable
@@ -27,6 +28,11 @@ class FavoritesRepository(private val storage: FavoritesStorage) {
 
     fun save(festivals: List<FestivalSummary>) {
         storage.write(json.encodeToString(StoredFavorites(festivals = festivals.distinctBy { it.id })))
+    }
+
+    fun reset() {
+        storage.backup()
+        save(emptyList())
     }
 }
 

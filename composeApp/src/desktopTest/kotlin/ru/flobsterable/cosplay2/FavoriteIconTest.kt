@@ -132,4 +132,25 @@ class FavoriteIconTest {
             compose.runOnIdle { assertEquals(2026, picked) }
         } finally { client.close() }
     }
+
+    @Test
+    fun recoveryRequiresAnExplicitConfirmation() {
+        val client = createHttpClient()
+        var resets = 0
+        try {
+            compose.setContent {
+                MaterialTheme {
+                    FavoritesScreen(UiState.Error("Повреждённый файл"), false, client, onBack = {}, onRetry = {},
+                        onFestivalSelected = {}, onToggleFavorite = {}, onReset = { resets++ })
+                }
+            }
+            compose.onNodeWithText("Восстановить избранное").performClick()
+            compose.runOnIdle { assertEquals(0, resets) }
+            compose.onNodeWithText("Отмена").performClick()
+            compose.runOnIdle { assertEquals(0, resets) }
+            compose.onNodeWithText("Восстановить избранное").performClick()
+            compose.onNodeWithText("Очистить список").performClick()
+            compose.runOnIdle { assertEquals(1, resets) }
+        } finally { client.close() }
+    }
 }

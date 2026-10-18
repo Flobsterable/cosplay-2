@@ -58,6 +58,20 @@ internal class FavoritesState(private val repository: FavoritesRepository) {
             isSaving = false
         }
     }
+
+    suspend fun reset(): Boolean = mutex.withLock {
+        isSaving = true
+        try {
+            withContext(Dispatchers.IO) { repository.reset() }
+            state = UiState.Success(emptyList())
+            true
+        } catch (cancelled: CancellationException) {
+            throw cancelled
+        } catch (_: Exception) {
+            notifications.trySend(FavoritesError("Не удалось восстановить избранное. Исходные данные сохранены."))
+            false
+        } finally { isSaving = false }
+    }
 }
 
 internal data class FavoritesError(val message: String, val retryLoad: Boolean = false)

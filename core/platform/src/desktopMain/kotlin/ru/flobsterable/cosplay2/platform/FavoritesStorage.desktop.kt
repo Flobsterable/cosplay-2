@@ -22,6 +22,15 @@ actual fun rememberFavoritesStorage(): FavoritesStorage = remember {
 }
 
 internal class FileFavoritesStorage(private val path: Path) : FavoritesStorage {
+    override fun backup() {
+        if (Files.notExists(path)) return
+        val backup = Files.createTempFile(path.parent, "favorites-recovery-", ".json")
+        try {
+            Files.copy(path, backup, StandardCopyOption.REPLACE_EXISTING)
+            java.nio.channels.FileChannel.open(backup, java.nio.file.StandardOpenOption.WRITE).use { it.force(true) }
+        } catch (error: Exception) { Files.deleteIfExists(backup); throw error }
+    }
+
     override fun read(): String? = try {
         Files.readString(path)
     } catch (_: NoSuchFileException) {

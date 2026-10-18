@@ -21,6 +21,8 @@ import ru.flobsterable.cosplay2.platform.FavoritesStorage
 class FavoritesStateTest {
     private class Storage : FavoritesStorage {
         var content: String? = null
+        var backupContent: String? = null
+        override fun backup() { backupContent = content }
         var failWrite = false
         var readEntered: CompletableDeferred<Unit>? = null
         var readGate: CountDownLatch? = null
@@ -100,6 +102,19 @@ class FavoritesStateTest {
         state.toggle(festival(1))
         assertTrue(withTimeout(1000) { state.errors.first() }.retryLoad)
         assertEquals(null, storage.content)
+    }
+
+    @Test
+    fun explicitResetRecoversFromCorruptionAndAllowsSavingAgain() = runBlocking {
+        val storage = Storage().apply { content = "corrupt data" }
+        val state = FavoritesState(FavoritesRepository(storage))
+        state.load()
+        assertTrue(state.state is UiState.Error)
+        assertTrue(state.reset())
+        assertEquals("corrupt data", storage.backupContent)
+        assertTrue(state.canModify)
+        state.toggle(festival(1))
+        assertEquals(listOf(festival(1)), FavoritesRepository(storage).load())
     }
 
     @Test

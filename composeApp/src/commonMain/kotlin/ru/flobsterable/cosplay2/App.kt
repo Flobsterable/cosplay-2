@@ -179,6 +179,8 @@ fun CosplayApp() {
                                 client = client,
                                 onBack = goBack,
                                 onRetry = { scope.launch { favorites.load() } },
+                                onReset = { scope.launch { if (favorites.reset()) snackbar.showSnackbar("Избранное очищено. Можно снова сохранять фестивали.") } },
+                                resetEnabled = !favorites.isSaving,
                                 onFestivalSelected = { route = AppRoute.FestivalDetails(it, fromFavorites = true) },
                                 onToggleFavorite = toggleFavorite
                             )

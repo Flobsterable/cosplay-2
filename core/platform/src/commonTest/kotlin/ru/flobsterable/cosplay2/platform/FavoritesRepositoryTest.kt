@@ -8,8 +8,11 @@ import ru.flobsterable.cosplay2.model.FestivalSummary
 
 class FavoritesRepositoryTest {
     private class MemoryStorage(var content: String? = null) : FavoritesStorage {
+        var backupContent: String? = null
+        var failBackup = false
         override fun read() = content
         override fun write(content: String) { this.content = content }
+        override fun backup() { check(!failBackup); backupContent = content }
     }
 
     private fun festival(id: Long) = FestivalSummary(id, "Фестиваль ★ $id", "Описание", "Омск", "RU", 1,
@@ -53,6 +56,22 @@ class FavoritesRepositoryTest {
     fun legacyJsonWithoutEventTypeTitleUsesNullDefault() {
         val storage = MemoryStorage("""{"festivals":[{"id":1,"title":"Фестиваль ★ 1","description":"Описание","city":"Омск","country":"RU","eventTypeId":1,"startTime":"2026-11-01","endTime":"2026-11-02","displayTime":"1–2 ноября","status":"Future","url":"https://example.com/1"}]}""")
         assertEquals(listOf(festival(1)), FavoritesRepository(storage).load())
+    }
+
+    @Test
+    fun resetArchivesCorruptDataBeforeWritingAnEmptyCollection() {
+        val storage = MemoryStorage("corrupt data")
+        val repository = FavoritesRepository(storage)
+        repository.reset()
+        assertEquals("corrupt data", storage.backupContent)
+        assertEquals(emptyList(), repository.load())
+    }
+
+    @Test
+    fun backupFailurePreventsResetAndPreservesTheOriginalFile() {
+        val storage = MemoryStorage("corrupt data").apply { failBackup = true }
+        assertFails { FavoritesRepository(storage).reset() }
+        assertEquals("corrupt data", storage.content)
     }
 
     @Test

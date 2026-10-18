@@ -15,6 +15,19 @@ actual fun rememberFavoritesStorage(): FavoritesStorage {
 
 internal class AndroidFavoritesStorage(path: File) : FavoritesStorage {
     private val file = AtomicFile(path)
+    private val directory = requireNotNull(path.parentFile)
+
+    override fun backup() {
+        val input = try { file.openRead() } catch (error: FileNotFoundException) {
+            if (file.baseFile.exists()) throw error else return
+        }
+        input.use {
+            val backup = File.createTempFile("favorites-recovery-", ".json", directory)
+            try {
+                backup.outputStream().use { stream -> input.copyTo(stream); stream.fd.sync() }
+            } catch (error: Exception) { backup.delete(); throw error }
+        }
+    }
 
     override fun read(): String? = try {
         file.openRead().bufferedReader(Charsets.UTF_8).use { it.readText() }
