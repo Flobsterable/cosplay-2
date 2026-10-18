@@ -28,6 +28,7 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(libs.kotlinx.coroutines.core)
         }
     }
 }

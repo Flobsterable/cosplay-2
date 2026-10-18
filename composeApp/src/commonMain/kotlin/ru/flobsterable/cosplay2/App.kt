@@ -72,6 +72,7 @@ fun CosplayApp() {
         }
         val appUpdateLauncher = rememberAppUpdateLauncher()
         val screenState = rememberSaveableStateHolder()
+        val supportChatState = remember { SupportChatState() }
         var route by remember { mutableStateOf<AppRoute>(AppRoute.Festivals) }
 
         DisposableEffect(Unit) {
@@ -105,12 +106,7 @@ fun CosplayApp() {
                     AppRoute.Settings -> "settings"
                     AppRoute.Support -> "support"
                 }
-                screenState.SaveableStateProvider(stateKey) {
-                    if (targetRoute is AppRoute.FestivalDetails) {
-                        DisposableEffect(stateKey) {
-                            onDispose { screenState.removeState(stateKey) }
-                        }
-                    }
+                val screenContent: @Composable () -> Unit = {
                     when (targetRoute) {
                         AppRoute.Festivals -> FestivalsRoute(
                             repository = repository,
@@ -133,7 +129,7 @@ fun CosplayApp() {
                             onOpenSupport = { route = AppRoute.Support }
                         )
                         AppRoute.Support -> SupportScreen(
-                            state = SupportChatState(),
+                            state = supportChatState,
                             onSendMessage = { /* Connect the support service here when it is available. */ },
                             onBack = { route = AppRoute.Settings }
                         )
@@ -143,6 +139,11 @@ fun CosplayApp() {
                             onBack = { route = AppRoute.Festivals }
                         )
                     }
+                }
+                if (targetRoute is AppRoute.FestivalDetails) {
+                    screenContent()
+                } else {
+                    screenState.SaveableStateProvider(stateKey) { screenContent() }
                 }
             }
         }
