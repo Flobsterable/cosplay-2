@@ -86,18 +86,16 @@ class FavoriteIconTest {
     }
 
     @Test
-    fun loadingAnotherYearDoesNotRenderOldSnapshotCards() {
+    fun previousYearSuccessDoesNotRenderCardsForTheNewYear() {
         val client = createHttpClient()
         try {
             compose.setContent {
                 MaterialTheme {
                     FestivalsScreen(
-                        state = UiState.Loading,
-                        catalogSnapshot = FestivalCatalog(listOf(festival()), emptyMap(), 2026, false),
+                        state = catalogStateForYear(UiState.Success(FestivalCatalog(listOf(festival()), emptyMap(), 2026, false)), 2025),
                         currentYear = 2026,
                         selectedYear = 2025,
                         onYearSelected = {},
-                        isYearLoading = true,
                         client = client,
                         onFestivalSelected = {},
                         onOpenSettings = {},
@@ -120,7 +118,7 @@ class FavoriteIconTest {
         try {
             compose.setContent {
                 MaterialTheme {
-                    FestivalsScreen(state, null, 2026, 2026, { picked = it }, false, client,
+                    FestivalsScreen(state, 2026, 2026, { picked = it }, client,
                         onFestivalSelected = {}, onOpenSettings = {}, onOpenFavorites = {},
                         favoriteIds = emptySet(), favoritesEnabled = false, onToggleFavorite = {})
                 }

@@ -42,11 +42,9 @@ import ru.flobsterable.cosplay2.model.FestivalSummary
 @Composable
 fun FestivalsScreen(
     state: UiState<FestivalCatalog>,
-    catalogSnapshot: FestivalCatalog?,
     currentYear: Int,
     selectedYear: Int,
     onYearSelected: (Int) -> Unit,
-    isYearLoading: Boolean,
     client: HttpClient,
     topContent: (@Composable () -> Unit)? = null,
     onFestivalSelected: (FestivalSummary) -> Unit,
@@ -59,10 +57,7 @@ fun FestivalsScreen(
     var query by rememberSaveable { mutableStateOf("") }
     var selectedCategory by rememberSaveable { mutableStateOf(TypeFilter.All) }
     var selectedMonth by rememberSaveable(selectedYear) { mutableStateOf(MonthFilter.All) }
-    val filterCatalog = when (state) {
-        is UiState.Success -> state.data
-        else -> catalogSnapshot
-    }
+    val filterCatalog = (state as? UiState.Success)?.data
 
     Scaffold(
         topBar = {
@@ -143,7 +138,7 @@ fun FestivalsScreen(
                 }
 
                 when {
-                    isYearLoading || state is UiState.Loading -> item {
+                    state is UiState.Loading -> item {
                         LoadingBlock()
                     }
 

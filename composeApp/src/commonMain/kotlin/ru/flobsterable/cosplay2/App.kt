@@ -234,7 +234,6 @@ private fun FestivalsRoute(
     var selectedYear by rememberSaveable { mutableStateOf(ACTUAL_FILTER_YEAR) }
     val requestedYear = if (selectedYear == ACTUAL_FILTER_YEAR) currentYear else selectedYear
     // Navigation reuses this year's data; changing the year invalidates that cache.
-    var lastSuccessfulCatalog by remember(selectedYear) { mutableStateOf(catalogCache.peek(requestedYear)) }
     val state by produceState<UiState<FestivalCatalog>>(
         initialValue = catalogCache.peek(requestedYear)?.let { UiState.Success(it) } ?: UiState.Loading,
         selectedYear
@@ -252,19 +251,11 @@ private fun FestivalsRoute(
 
     val currentState = catalogStateForYear(state, requestedYear)
 
-    if (currentState is UiState.Success) {
-        lastSuccessfulCatalog = currentState.data
-    }
-
-    val isYearLoading = currentState is UiState.Loading && lastSuccessfulCatalog != null
-
     FestivalsScreen(
         state = currentState,
-        catalogSnapshot = lastSuccessfulCatalog?.takeIf { it.year == requestedYear },
         currentYear = currentYear,
         selectedYear = selectedYear,
         onYearSelected = { selectedYear = it },
-        isYearLoading = isYearLoading,
         client = client,
         topContent = {
             val latestUpdate = updateState
