@@ -72,4 +72,23 @@ class FestivalCatalogCacheTest {
         cache.get(2026)
         assertEquals(listOf(2026, 2025, 2026, 2026), calls)
     }
+
+    @Test
+    fun failedYearLoadDoesNotRestoreThePreviousYearsCache() = runBlocking {
+        val calls = mutableListOf<Int>()
+        val cache = FestivalCatalogCache { year ->
+            calls.add(year)
+            check(year != 2025) { "network failure" }
+            FestivalCatalog(emptyList(), emptyMap(), year, false)
+        }
+        cache.selectYear(2026)
+        cache.get(2026)
+        cache.selectYear(2025)
+        assertNull(cache.peek(2026))
+        assertFailsWith<IllegalStateException> { cache.get(2025) }
+        assertNull(cache.peek(2026))
+        cache.selectYear(2026)
+        cache.get(2026)
+        assertEquals(listOf(2026, 2025, 2026), calls)
+    }
 }
