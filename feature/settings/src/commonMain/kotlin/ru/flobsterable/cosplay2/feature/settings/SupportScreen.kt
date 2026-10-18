@@ -66,7 +66,7 @@ fun SupportScreen(
     LaunchedEffect(state.messages.size, state.isSending) {
         val count = state.messages.size + if (state.isSending) 1 else 0
         if (count > 0) {
-            snapshotFlow { listState.layoutInfo.totalItemsCount }.first { it == count }
+            snapshotFlow { listState.layoutInfo.totalItemsCount }.first { it >= count }
             listState.animateScrollToItem(count - 1)
         }
     }
@@ -162,8 +162,8 @@ fun SupportScreen(
                                     if (draft == submittedDraft) draft = ""
                                 } catch (cancelled: CancellationException) {
                                     throw cancelled
-                                } catch (error: Exception) {
-                                    sendError = error.message ?: "Не удалось отправить сообщение. Повторите попытку."
+                                } catch (_: Exception) {
+                                    sendError = "Не удалось отправить сообщение. Повторите попытку."
                                 } finally {
                                     isSubmitting = false
                                 }
