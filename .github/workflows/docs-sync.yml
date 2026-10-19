@@ -54,7 +54,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Flobsterable/cosplay-dev-assistant
-          ref: e3799b0f8ce7680aab4125145a426088258041e7
+          ref: 94d9bd3469a857581ad73ae462fac7489e9b89d6
           path: assistant
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -149,7 +149,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Flobsterable/cosplay-dev-assistant
-          ref: e3799b0f8ce7680aab4125145a426088258041e7
+          ref: 94d9bd3469a857581ad73ae462fac7489e9b89d6
           path: assistant
           persist-credentials: false
       - uses: actions/setup-node@v4
