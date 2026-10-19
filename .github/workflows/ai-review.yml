@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      ASSISTANT_RUNTIME_REF: 764ea83e611f14480fcf12baf235842e02f2c970
+      ASSISTANT_RUNTIME_REF: 25152c0c10214a9f9dd829e3dd1a1113cdd3a51f
       LLM_EXECUTION_MODE: economy
       LLM_SMALL_TASK_PROVIDER: gemini
       GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
@@ -115,11 +115,11 @@ jobs:
         with:
           path: ${{ runner.temp }}/assistant-cache
           key: ${{ steps.responses.outputs.cache-primary-key }}
-      - name: Save review report
+      - name: Save review diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ai-review-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/ai-review/
+          path: ${{ runner.temp }}/ai-review/review.json
           if-no-files-found: ignore
           retention-days: 14
