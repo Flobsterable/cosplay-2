@@ -219,6 +219,13 @@ fun FestivalsScreen(
                                 }
                             }
                         } else {
+                            item {
+                                Text(
+                                    "Найдено: ${filtered.size}",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
                             items(filtered, key = { it.id }) { festival ->
                                 FestivalCard(
                                     festival = festival,
