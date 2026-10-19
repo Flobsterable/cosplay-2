@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const { readFileSync } = require('node:fs');
 const { resolve } = require('node:path');
 const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
-const workflows = Object.fromEntries(['ai-review', 'docs-sync'].map(name => [name,
+const workflows = Object.fromEntries(['ai-review'].map(name => [name,
   readFileSync(resolve(__dirname, `../workflows/${name}.yml`), 'utf8').replaceAll('\r\n', '\n')]));
 
 function scripts(name) {
@@ -34,7 +34,7 @@ async function review(f) {
   if (f.outputs.changed === 'true') await execute('ai-review', 2, f);
 }
 
-test('project workflows only dispatch tasks: no model credentials, runtime, writes, or code execution', () => {
+test('review sender only dispatches tasks: no model credentials, runtime, writes, or code execution', () => {
   for (const [name, source] of Object.entries(workflows)) {
     assert.equal((source.match(/uses: actions\/github-script@v8/g) || []).length, name === 'ai-review' ? 3 : 2);
     assert.match(source, /github-token: \$\{\{ secrets.AGENT_DISPATCH_TOKEN \}\}/);
@@ -49,11 +49,9 @@ test('project workflows only dispatch tasks: no model credentials, runtime, writ
   assert.match(workflows['ai-review'], /if: steps.source.outputs.changed == 'true'/);
   assert.match(workflows['ai-review'], /!github.event.pull_request.draft/);
   assert.match(workflows['ai-review'], /head.repo.full_name == github.repository/);
-  assert.match(workflows['docs-sync'], /cancel-in-progress: false/);
-  assert.doesNotMatch(workflows['docs-sync'], /\n  status:|recovery issue|docs-sync-status.cjs/);
 });
 
-test('missing dispatch credential fails clearly before dispatch in both workflows', async () => {
+test('review sender rejects a missing dispatch credential before dispatch', async () => {
   for (const name of Object.keys(workflows)) {
     const f = fixture();
     await execute(name, 0, f, '');
@@ -100,41 +98,4 @@ test('source gate includes XML/properties/workflows, source renames and large PR
   await review(large);
   assert.equal(large.dispatches.length, 1, 'API listing limit must not silently omit source changes');
   assert.deepEqual(large.reads, []);
-});
-
-test('documentation push sends exact push range and branch', async () => {
-  const f = fixture();
-  await execute('docs-sync', 1, f);
-  assert.deepEqual(f.dispatches, [{ owner: 'Flobsterable', repo: 'cosplay-dev-assistant', workflow_id: 'agent.yml', ref: 'main',
-    inputs: { type: 'docs-sync', repository: 'Flobsterable/cosplay-2', base: 'c'.repeat(40), head: 'd'.repeat(40), branch: 'develop' } }]);
-  assert.deepEqual(f.failures, []);
-});
-
-test('documentation manual dispatch prefers supplied base/head and supports main', async () => {
-  const f = fixture(); f.context.ref = 'refs/heads/main';
-  f.context.payload.inputs = { base: 'e'.repeat(40), head: 'f'.repeat(40) };
-  await execute('docs-sync', 1, f);
-  assert.deepEqual(f.dispatches[0].inputs, { type: 'docs-sync', repository: 'Flobsterable/cosplay-2', base: 'e'.repeat(40), head: 'f'.repeat(40), branch: 'main' });
-});
-
-test('documentation rejects invalid range/branch without sending a task', async () => {
-  for (const scenario of ['branch', 'base', 'head']) {
-    const f = fixture();
-    if (scenario === 'branch') f.context.ref = 'refs/heads/feature/example';
-    if (scenario === 'base') f.context.payload.before = 'bad';
-    if (scenario === 'head') f.context.sha = 'bad';
-    await execute('docs-sync', 1, f);
-    assert.deepEqual(f.dispatches, []);
-    assert.match(f.failures[0], /develop\/main.*base\/head/);
-  }
-});
-
-test('documentation trigger excludes Markdown-only commits to avoid recursion', () => {
-  const source = workflows['docs-sync'];
-  const paths = source.split('    paths:\n')[1].split('  workflow_dispatch:')[0];
-  assert.match(source, /branches: \[develop, main\]/);
-  assert.match(paths, /'\*\*\/\*\.kt'/);
-  assert.match(paths, /'\.github\/workflows\/docs-sync.yml'/);
-  assert.doesNotMatch(paths, /\.md|docs\/|README/);
-  assert.match(source, /workflow_dispatch:[\s\S]*base:[\s\S]*required: true[\s\S]*head:[\s\S]*required: true/);
 });
