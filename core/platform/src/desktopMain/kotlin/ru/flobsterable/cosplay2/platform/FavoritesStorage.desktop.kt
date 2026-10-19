@@ -10,15 +10,18 @@ import java.nio.file.StandardCopyOption
 
 @Composable
 actual fun rememberFavoritesStorage(): FavoritesStorage = remember {
+    FileFavoritesStorage(appDataDirectory().resolve("Cosplay2/favorites.json"))
+}
+
+internal fun appDataDirectory(): Path {
     val home = Path.of(System.getProperty("user.home"))
-    val directory = when {
+    return when {
         System.getProperty("os.name").startsWith("Windows", ignoreCase = true) ->
             System.getenv("APPDATA")?.takeIf { it.isNotBlank() }?.let { Path.of(it) } ?: home.resolve("AppData/Roaming")
         System.getProperty("os.name").startsWith("Mac", ignoreCase = true) -> home.resolve("Library/Application Support")
         else -> System.getenv("XDG_DATA_HOME")?.takeIf { it.isNotBlank() }?.let { Path.of(it) }
             ?: home.resolve(".local/share")
     }
-    FileFavoritesStorage(directory.resolve("Cosplay2/favorites.json"))
 }
 
 internal class FileFavoritesStorage(private val path: Path) : FavoritesStorage {

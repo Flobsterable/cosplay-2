@@ -61,6 +61,8 @@ import ru.flobsterable.cosplay2.platform.rememberAppUpdateLauncher
 import ru.flobsterable.cosplay2.platform.SystemBackHandler
 import ru.flobsterable.cosplay2.platform.FavoritesRepository
 import ru.flobsterable.cosplay2.platform.rememberFavoritesStorage
+import ru.flobsterable.cosplay2.platform.rememberMyCityStorage
+import ru.flobsterable.cosplay2.feature.settings.MyCityDialog
 
 import ru.flobsterable.cosplay2.feature.settings.SettingsScreen
 import ru.flobsterable.cosplay2.feature.settings.SupportChatState
@@ -96,6 +98,26 @@ fun CosplayApp() {
         val favorites = remember(favoritesStorage) { FavoritesState(FavoritesRepository(favoritesStorage)) }
         val scope = rememberCoroutineScope()
         val snackbar = remember { SnackbarHostState() }
+        val cityStorage = rememberMyCityStorage()
+        val myCity = remember(cityStorage) { MyCityState(cityStorage) }
+        var showCityDialog by rememberSaveable { mutableStateOf(false) }
+        var onlyMyCity by rememberSaveable { mutableStateOf(true) }
+        var citySaveError by remember { mutableStateOf<String?>(null) }
+        var citySuggestions by remember { mutableStateOf(emptyList<String>()) }
+        val chooseCity: (List<String>) -> Unit = { suggestions ->
+            citySaveError = null
+            citySuggestions = suggestions
+            showCityDialog = true
+        }
+        LaunchedEffect(myCity) {
+            try {
+                myCity.load()
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Exception) {
+                snackbar.showSnackbar("Не удалось загрузить город. Выберите его снова.")
+            }
+        }
         val favoriteIds = remember(favorites.state) {
             (favorites.state as? UiState.Success)?.data.orEmpty().map { it.id }.toSet()
         }
@@ -159,6 +181,11 @@ fun CosplayApp() {
                                 onOpenUpdate = { route = AppRoute.Update },
                                 onOpenSettings = { route = AppRoute.Settings },
                                 onOpenFavorites = { route = AppRoute.Favorites },
+                                myCity = myCity.city,
+                                onlyMyCity = onlyMyCity,
+                                onCityFilterSelected = { onlyMyCity = it },
+                                cityEnabled = !myCity.isLoading && !myCity.isSaving,
+                                onChooseCity = chooseCity,
                                 favoriteIds = favoriteIds,
                                 favoritesEnabled = favoritesEnabled,
                                 onToggleFavorite = toggleFavorite,
@@ -187,7 +214,10 @@ fun CosplayApp() {
                             AppRoute.Settings -> SettingsScreen(
                                 versionName = AppVersion.versionName,
                                 onBack = { route = AppRoute.Festivals },
-                                onOpenSupport = { route = AppRoute.Support }
+                                onOpenSupport = { route = AppRoute.Support },
+                                myCity = myCity.city,
+                                cityEnabled = !myCity.isLoading && !myCity.isSaving,
+                                onChooseCity = { chooseCity(citySuggestions) }
                             )
                             AppRoute.Support -> SupportScreen(
                                 state = supportChatState,
@@ -208,6 +238,29 @@ fun CosplayApp() {
                     }
                 }
                 SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(12.dp))
+                if (showCityDialog) {
+                    MyCityDialog(
+                        city = myCity.city,
+                        suggestions = citySuggestions,
+                        isSaving = myCity.isSaving,
+                        error = citySaveError,
+                        onDismiss = { showCityDialog = false },
+                        onSave = { city ->
+                            scope.launch {
+                                citySaveError = null
+                                try {
+                                    myCity.save(city)
+                                    onlyMyCity = city.isNotBlank()
+                                    showCityDialog = false
+                                } catch (cancelled: CancellationException) {
+                                    throw cancelled
+                                } catch (_: Exception) {
+                                    citySaveError = "Не удалось сохранить город. Попробуйте ещё раз."
+                                }
+                            }
+                        }
+                    )
+                }
             }
         }
     }
@@ -222,6 +275,11 @@ private fun FestivalsRoute(
     onOpenUpdate: () -> Unit,
     onOpenSettings: () -> Unit,
     onOpenFavorites: () -> Unit,
+    myCity: String,
+    onlyMyCity: Boolean,
+    onCityFilterSelected: (Boolean) -> Unit,
+    cityEnabled: Boolean,
+    onChooseCity: (List<String>) -> Unit,
     favoriteIds: Set<Long>,
     favoritesEnabled: Boolean,
     onToggleFavorite: (FestivalSummary) -> Unit,
@@ -277,6 +335,11 @@ private fun FestivalsRoute(
         onFestivalSelected = onFestivalSelected,
         onOpenSettings = onOpenSettings,
         onOpenFavorites = onOpenFavorites,
+        myCity = myCity,
+        onlyMyCity = onlyMyCity,
+        onCityFilterSelected = onCityFilterSelected,
+        cityEnabled = cityEnabled,
+        onChooseCity = onChooseCity,
         favoriteIds = favoriteIds,
         favoritesEnabled = favoritesEnabled,
         onToggleFavorite = onToggleFavorite

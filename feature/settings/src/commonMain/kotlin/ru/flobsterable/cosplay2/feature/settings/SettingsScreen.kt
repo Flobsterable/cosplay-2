@@ -22,7 +22,14 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(versionName: String, onBack: () -> Unit, onOpenSupport: () -> Unit) {
+fun SettingsScreen(
+    versionName: String,
+    onBack: () -> Unit,
+    onOpenSupport: () -> Unit,
+    myCity: String,
+    cityEnabled: Boolean,
+    onChooseCity: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -37,6 +44,13 @@ fun SettingsScreen(versionName: String, onBack: () -> Unit, onOpenSupport: () ->
                 .verticalScroll(rememberScrollState()).padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
+            Text("Предпочтения", style = MaterialTheme.typography.titleMedium)
+            Card(onClick = onChooseCity, enabled = cityEnabled, modifier = Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text("Мой город", style = MaterialTheme.typography.titleLarge)
+                    Text(myCity.ifBlank { "Выбрать город" })
+                }
+            }
             Text("Помощь и обратная связь", style = MaterialTheme.typography.titleMedium)
             Card(onClick = onOpenSupport, modifier = Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
