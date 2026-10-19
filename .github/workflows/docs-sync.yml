@@ -1,5 +1,4 @@
 name: Update project documentation
-
 on:
   push:
     branches: [develop, main]
@@ -21,138 +20,40 @@ on:
       head:
         description: 'Full merged SHA to analyse'
         required: true
-
 permissions:
-  contents: write
-
+  contents: read
 concurrency:
-  group: docs-sync-${{ github.ref_name }}-${{ inputs.head || github.sha }}
+  group: docs-sync-dispatch-${{ github.ref_name }}-${{ inputs.head || github.sha }}
   cancel-in-progress: false
-
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    env:
-      ASSISTANT_RUNTIME_REF: 764ea83e611f14480fcf12baf235842e02f2c970
-      TARGET_BRANCH: ${{ github.ref_name }}
-      BASE_SHA: ${{ inputs.base || github.event.before }}
-      MERGED_SHA: ${{ inputs.head || github.sha }}
-      LLM_EXECUTION_MODE: economy
-      LLM_SMALL_TASK_PROVIDER: gemini
-      GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
-      GEMINI_BASE_URL: ${{ vars.GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta/openai' }}
-      LLM_SMALL_TASK_MAX_INPUT_CHARACTERS: ${{ vars.LLM_SMALL_TASK_MAX_INPUT_CHARACTERS || '24000' }}
-      LLM_SMALL_TASK_MAX_OUTPUT_TOKENS: ${{ vars.LLM_SMALL_TASK_MAX_OUTPUT_TOKENS || '6000' }}
-      LLM_MAX_CALLS: ${{ vars.LLM_MAX_CALLS || '24' }}
-      LLM_MAX_INPUT_CHARACTERS: ${{ vars.LLM_MAX_INPUT_CHARACTERS || '1000000' }}
-      LLM_MODEL: ${{ vars.LLM_MODEL || 'deepseek-flash' }}
-      LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://api.deepseek.com' }}
-    steps:
-      # Only code already in the target branch is read as data. No project scripts run.
-      - name: Checkout current target branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ env.TARGET_BRANCH }}
-          fetch-depth: 0
-      - name: Checkout verified assistant runtime
-        uses: actions/checkout@v4
-        with:
-          repository: Flobsterable/cosplay-dev-assistant
-          ref: ${{ env.ASSISTANT_RUNTIME_REF }}
-          path: .assistant-runtime
-          persist-credentials: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: npm
-          cache-dependency-path: .assistant-runtime/tools/dev-assistant/package-lock.json
-      - name: Install assistant dependencies
-        run: npm ci --ignore-scripts
-        working-directory: .assistant-runtime/tools/dev-assistant
-      - name: Validate source range
-        shell: bash
-        run: |
-          set -euo pipefail
-          case "$TARGET_BRANCH" in develop|main) ;; *) echo 'Unsupported target branch'; exit 1 ;; esac
-          [[ "$BASE_SHA" =~ ^[0-9a-f]{40}$ ]] && [[ "$MERGED_SHA" =~ ^[0-9a-f]{40}$ ]] || exit 1
-          git cat-file -e "$BASE_SHA^{commit}"
-          git cat-file -e "$MERGED_SHA^{commit}"
-          git merge-base --is-ancestor "$BASE_SHA" "$MERGED_SHA"
-          git merge-base --is-ancestor "$MERGED_SHA" HEAD
-          echo "Source range: $BASE_SHA..$MERGED_SHA; target: $TARGET_BRANCH"
-      - name: Test recovery tracker
-        run: node --test .github/scripts/docs-sync-status.test.cjs .github/scripts/agent-workflows.test.cjs
-      - name: Compute response cache configuration
-        id: cache-config
-        run: |
-          node -e "const keys = ['LLM_MODEL', 'LLM_BASE_URL', 'LLM_EXECUTION_MODE', 'LLM_MAX_CALLS', 'LLM_MAX_INPUT_CHARACTERS', 'LLM_SMALL_TASK_PROVIDER', 'GEMINI_MODEL', 'GEMINI_BASE_URL', 'LLM_SMALL_TASK_MAX_INPUT_CHARACTERS', 'LLM_SMALL_TASK_MAX_OUTPUT_TOKENS']; const hash = require('node:crypto').createHash('sha256').update(JSON.stringify(keys.map(k => process.env[k] || ''))).digest('hex'); require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT, 'hash=' + hash + '\n');"
-      - name: Restore matching model responses
-        id: responses
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ runner.temp }}/assistant-cache
-          key: docs-responses-v1-${{ env.ASSISTANT_RUNTIME_REF }}-${{ steps.cache-config.outputs.hash }}-${{ env.BASE_SHA }}-${{ env.MERGED_SHA }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            docs-responses-v1-${{ env.ASSISTANT_RUNTIME_REF }}-${{ steps.cache-config.outputs.hash }}-${{ env.BASE_SHA }}-${{ env.MERGED_SHA }}-
-            docs-responses-v1-${{ env.ASSISTANT_RUNTIME_REF }}-${{ steps.cache-config.outputs.hash }}-
-      - name: Generate, verify and commit documentation
-        env:
-          PROJECT_ROOT: ${{ github.workspace }}
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          LLM_CACHE_DIR: ${{ runner.temp }}/assistant-cache
-        shell: bash
-        run: |
-          if [ -z "$GEMINI_API_KEY" ]; then
-            echo '::error::Save GEMINI_API_KEY in repository Actions secrets for small tasks. No fallback provider was called.'
-            exit 1
-          fi
-          # Snapshot the script before its git reset can replace tracked files.
-          bash -c "$(cat .github/scripts/docs-sync-run.sh)"
-      - name: Preserve reusable responses after success or failure
-        if: ${{ always() && steps.responses.outcome == 'success' }}
-        uses: actions/cache/save@v4
-        with:
-          path: ${{ runner.temp }}/assistant-cache
-          key: ${{ steps.responses.outputs.cache-primary-key }}
-      - name: Save generation and verification report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: docs-sync-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            ${{ runner.temp }}/docs-sync-*.txt
-            ${{ runner.temp }}/docs-sync-generated.patch
-          if-no-files-found: ignore
-          retention-days: 14
-
-  status:
-    name: Track documentation recovery
-    needs: sync
-    if: ${{ always() && (needs.sync.result == 'failure' || needs.sync.result == 'success' || needs.sync.result == 'cancelled') }}
-    runs-on: ubuntu-latest
     timeout-minutes: 5
-    permissions:
-      contents: read
-      issues: write
-    concurrency:
-      group: docs-sync-status-${{ github.ref_name }}-${{ inputs.head || github.sha }}
-      cancel-in-progress: false
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.sha }}
-          persist-credentials: false
-      - name: Open or resolve recovery issue
+      - name: Check dispatch credential
         uses: actions/github-script@v8
         env:
-          TARGET_BRANCH: ${{ github.ref_name }}
-          BASE_SHA: ${{ inputs.base || github.event.before }}
-          MERGED_SHA: ${{ inputs.head || github.sha }}
-          SYNC_RESULT: ${{ needs.sync.result }}
+          AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
         with:
-          retries: 3
           script: |
-            const track = require('./.github/scripts/docs-sync-status.cjs');
-            await track({ github, context, core, env: process.env });
+            if (!process.env.AGENT_DISPATCH_TOKEN) {
+              core.setFailed('Save AGENT_DISPATCH_TOKEN in repository Actions secrets with Actions: write on Flobsterable/cosplay-dev-assistant (fine-grained token). The repository GITHUB_TOKEN cannot dispatch across repositories.');
+            }
+      - name: Send documentation task to the agent repository
+        uses: actions/github-script@v8
+        with:
+          github-token: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          script: |
+            const inputs = context.payload.inputs || {};
+            const branch = context.ref.replace(/^refs\/heads\//, '');
+            const base = inputs.base || context.payload.before;
+            const head = inputs.head || context.sha;
+            if (!['develop', 'main'].includes(branch) || !/^[a-f0-9]{40}$/.test(base || '') || !/^[a-f0-9]{40}$/.test(head || '')) {
+              core.setFailed('Documentation dispatch requires develop/main and full base/head commit SHAs.');
+              return;
+            }
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'Flobsterable', repo: 'cosplay-dev-assistant', workflow_id: 'agent.yml', ref: 'main',
+              inputs: { type: 'docs-sync', repository: context.repo.owner + '/' + context.repo.repo, base, head, branch }
+            });
+            core.notice('Documentation task sent. The agent repository tracks execution and recovery.');

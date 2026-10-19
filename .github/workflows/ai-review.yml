@@ -1,125 +1,60 @@
 name: AI code review
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
 permissions:
   contents: read
-  pull-requests: write
+  pull-requests: read
 concurrency:
-  group: ai-review-${{ github.event.pull_request.number }}
+  group: ai-review-dispatch-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 jobs:
   review:
     if: ${{ !github.event.pull_request.draft && github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    env:
-      ASSISTANT_RUNTIME_REF: 764ea83e611f14480fcf12baf235842e02f2c970
-      LLM_EXECUTION_MODE: economy
-      LLM_SMALL_TASK_PROVIDER: gemini
-      GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
-      GEMINI_BASE_URL: ${{ vars.GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta/openai' }}
-      LLM_SMALL_TASK_MAX_INPUT_CHARACTERS: ${{ vars.LLM_SMALL_TASK_MAX_INPUT_CHARACTERS || '24000' }}
-      LLM_SMALL_TASK_MAX_OUTPUT_TOKENS: ${{ vars.LLM_SMALL_TASK_MAX_OUTPUT_TOKENS || '6000' }}
-      LLM_MAX_CALLS: ${{ vars.LLM_MAX_CALLS || '24' }}
-      LLM_MAX_INPUT_CHARACTERS: ${{ vars.LLM_MAX_INPUT_CHARACTERS || '1000000' }}
-      LLM_MODEL: ${{ vars.LLM_MODEL || 'deepseek-flash' }}
-      LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://api.deepseek.com' }}
+    timeout-minutes: 5
     steps:
-      - name: Checkout application base
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.base.sha }}
-          path: project
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Fetch PR head as data
+      - name: Check dispatch credential
+        uses: actions/github-script@v8
         env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: |
-          case "$PR_NUMBER" in ''|*[!0-9]*) exit 1 ;; esac
-          git -C project fetch origin "+refs/pull/$PR_NUMBER/head:refs/remotes/origin/review-head"
-          test "$(git -C project rev-parse refs/remotes/origin/review-head)" = "$HEAD_SHA"
-      - name: Skip changes outside supported source files
+          AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+        with:
+          script: |
+            if (!process.env.AGENT_DISPATCH_TOKEN) {
+              core.setFailed('Save AGENT_DISPATCH_TOKEN in repository Actions secrets with Actions: write on Flobsterable/cosplay-dev-assistant (fine-grained token). The repository GITHUB_TOKEN cannot dispatch across repositories.');
+            }
+      - name: Inspect changed source metadata
         id: source
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          if git -C project diff --quiet "$BASE_SHA" "$HEAD_SHA" -- '*.kt' '*.kts' '*.toml' '*.properties' '*.xml' '.github/workflows/*.yml' '.github/workflows/*.yaml'; then
-            echo 'changed=false' >> "$GITHUB_OUTPUT"
-            echo 'No supported source changes; no model requests needed.' >> "$GITHUB_STEP_SUMMARY"
-          else
-            status=$?
-            test "$status" = 1 || exit "$status"
-            echo 'changed=true' >> "$GITHUB_OUTPUT"
-          fi
-      - name: Checkout trusted review runtime
-        if: steps.source.outputs.changed == 'true'
-        uses: actions/checkout@v4
+        uses: actions/github-script@v8
         with:
-          repository: Flobsterable/cosplay-dev-assistant
-          ref: ${{ env.ASSISTANT_RUNTIME_REF }}
-          path: assistant
-          persist-credentials: false
-      - uses: actions/setup-node@v4
+          script: |
+            const pull = context.payload.pull_request;
+            if (!pull || pull.draft || pull.head.repo.full_name !== context.repo.owner + '/' + context.repo.repo) {
+              core.setOutput('changed', 'false');
+              core.notice('Draft or external PR: review task was not dispatched.');
+              return;
+            }
+            // Read metadata only; no application or PR code is executed.
+            const supported = path => /\.(kt|kts|toml|properties|xml)$/.test(path || '') || /^\.github\/workflows\/[^/]+\.ya?ml$/.test(path || '');
+            if (pull.changed_files <= 3000) {
+              const files = await github.paginate(github.rest.pulls.listFiles, { ...context.repo, pull_number: pull.number, per_page: 100 });
+              if (!files.some(file => supported(file.filename) || supported(file.previous_filename))) {
+                core.setOutput('changed', 'false');
+                core.notice('No supported source changes; no review task needed.');
+                return;
+              }
+            }
+            core.setOutput('changed', 'true');
+      - name: Send review task to the agent repository
         if: steps.source.outputs.changed == 'true'
+        uses: actions/github-script@v8
         with:
-          node-version: '24'
-          cache: npm
-          cache-dependency-path: assistant/tools/dev-assistant/package-lock.json
-      - name: Install trusted dependencies
-        if: steps.source.outputs.changed == 'true'
-        run: npm ci --ignore-scripts
-        working-directory: assistant/tools/dev-assistant
-      - name: Compute response cache configuration
-        if: steps.source.outputs.changed == 'true'
-        id: cache-config
-        run: |
-          node -e "const keys = ['LLM_MODEL', 'LLM_BASE_URL', 'LLM_EXECUTION_MODE', 'LLM_MAX_CALLS', 'LLM_MAX_INPUT_CHARACTERS', 'LLM_SMALL_TASK_PROVIDER', 'GEMINI_MODEL', 'GEMINI_BASE_URL', 'LLM_SMALL_TASK_MAX_INPUT_CHARACTERS', 'LLM_SMALL_TASK_MAX_OUTPUT_TOKENS']; const hash = require('node:crypto').createHash('sha256').update(JSON.stringify(keys.map(k => process.env[k] || ''))).digest('hex'); require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT, 'hash=' + hash + '\n');"
-      - name: Restore matching model responses
-        if: steps.source.outputs.changed == 'true'
-        id: responses
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ runner.temp }}/assistant-cache
-          key: review-responses-v1-${{ env.ASSISTANT_RUNTIME_REF }}-${{ steps.cache-config.outputs.hash }}-${{ github.event.pull_request.base.sha }}-${{ github.event.pull_request.head.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            review-responses-v1-${{ env.ASSISTANT_RUNTIME_REF }}-${{ steps.cache-config.outputs.hash }}-${{ github.event.pull_request.base.sha }}-${{ github.event.pull_request.head.sha }}-
-            review-responses-v1-${{ env.ASSISTANT_RUNTIME_REF }}-${{ steps.cache-config.outputs.hash }}-
-      - name: Review PR
-        id: review
-        if: steps.source.outputs.changed == 'true'
-        env:
-          PROJECT_ROOT: ${{ github.workspace }}/project
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          LLM_CACHE_DIR: ${{ runner.temp }}/assistant-cache
-          GITHUB_TOKEN: ${{ github.token }}
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          REPOSITORY: ${{ github.repository }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          if [ -z "$GEMINI_API_KEY" ]; then
-            echo '::error::Save GEMINI_API_KEY in repository Actions secrets for small tasks. No fallback provider was called.'
-            exit 1
-          fi
-          node assistant/tools/dev-assistant/src/review-cli.js --base "$BASE_SHA" --head "$HEAD_SHA" --repo "$REPOSITORY" --pr "$PR_NUMBER" --publish --output "$RUNNER_TEMP/ai-review"
-      - name: Preserve reusable responses after success or failure
-        if: ${{ always() && steps.responses.outcome == 'success' }}
-        uses: actions/cache/save@v4
-        with:
-          path: ${{ runner.temp }}/assistant-cache
-          key: ${{ steps.responses.outputs.cache-primary-key }}
-      - name: Save review report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ai-review-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/ai-review/
-          if-no-files-found: ignore
-          retention-days: 14
+          github-token: ${{ secrets.AGENT_DISPATCH_TOKEN }}
+          script: |
+            const pull = context.payload.pull_request;
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'Flobsterable', repo: 'cosplay-dev-assistant', workflow_id: 'agent.yml', ref: 'main',
+              inputs: { type: 'review', repository: context.repo.owner + '/' + context.repo.repo,
+                base: pull.base.sha, head: pull.head.sha, pr: String(pull.number), branch: pull.base.ref }
+            });
+            core.notice('Review task sent. The agent repository tracks execution and publishes the result.');
