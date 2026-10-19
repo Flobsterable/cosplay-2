@@ -46,6 +46,7 @@ class MyCityScreenTest {
                 }
             }
             compose.onNodeWithText("Фестиваль Москва").assertDoesNotExist()
+            compose.onNodeWithText("Найдено: 1").assertExists()
             compose.onNodeWithText("Фестиваль Омск").performScrollTo().assertExists()
             compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasText("Все города"))
             compose.onNodeWithText("Все города").performScrollTo().performClick()
