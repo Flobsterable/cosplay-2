@@ -29,7 +29,7 @@ function load(text) {
 
 test('docs runs on the registered VPS, uses job GitHub token and trusted pinned runtime', () => {
   assert.equal((workflow.match(/runs-on: \[self-hosted, linux, x64, cosplay-agent\]/g) || []).length, 2);
-  assert.equal((workflow.match(/ref: 33dec973ada96042bf036d8efa47538ae95c38e2/g) || []).length, 2);
+  assert.equal((workflow.match(/ref: e3799b0f8ce7680aab4125145a426088258041e7/g) || []).length, 2);
   assert.doesNotMatch(workflow, /secrets\.|AGENT_DISPATCH_TOKEN|createWorkflowDispatch|ubuntu-latest/);
   assert.match(workflow, /PROJECT_GITHUB_TOKEN: \$\{\{ github.token \}\}/);
   assert.match(workflow, /contents: write/); assert.match(workflow, /issues: write/);
