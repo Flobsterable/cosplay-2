@@ -13,6 +13,13 @@ jobs:
     if: ${{ !github.event.pull_request.draft && github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      ASSISTANT_RUNTIME_REF: 34d437d5c03e90cec43703c5b49659f750324fc6
+      LLM_EXECUTION_MODE: economy
+      LLM_MAX_CALLS: ${{ vars.LLM_MAX_CALLS || '24' }}
+      LLM_MAX_INPUT_CHARACTERS: ${{ vars.LLM_MAX_INPUT_CHARACTERS || '1000000' }}
+      LLM_MODEL: ${{ vars.LLM_MODEL || 'deepseek-flash' }}
+      LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://api.deepseek.com' }}
     steps:
       - name: Checkout application base
         uses: actions/checkout@v4
@@ -29,27 +36,62 @@ jobs:
           case "$PR_NUMBER" in ''|*[!0-9]*) exit 1 ;; esac
           git -C project fetch origin "+refs/pull/$PR_NUMBER/head:refs/remotes/origin/review-head"
           test "$(git -C project rev-parse refs/remotes/origin/review-head)" = "$HEAD_SHA"
+      - name: Skip changes outside supported source files
+        id: source
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git -C project diff --quiet "$BASE_SHA" "$HEAD_SHA" -- '*.kt' '*.kts' '*.toml' '*.properties' '*.xml' '.github/workflows/*.yml' '.github/workflows/*.yaml'; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'No supported source changes; no model requests needed.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            status=$?
+            test "$status" = 1 || exit "$status"
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
       - name: Checkout trusted review runtime
+        if: steps.source.outputs.changed == 'true'
         uses: actions/checkout@v4
         with:
           repository: Flobsterable/cosplay-dev-assistant
-          ref: 4a5815fd26531d057d21fcff9b3138fdb20d903c
+          ref: ${{ env.ASSISTANT_RUNTIME_REF }}
           path: assistant
           persist-credentials: false
       - uses: actions/setup-node@v4
+        if: steps.source.outputs.changed == 'true'
         with:
           node-version: '24'
           cache: npm
           cache-dependency-path: assistant/tools/dev-assistant/package-lock.json
       - name: Install trusted dependencies
+        if: steps.source.outputs.changed == 'true'
         run: npm ci --ignore-scripts
         working-directory: assistant/tools/dev-assistant
+      - name: Compute response cache configuration
+        if: steps.source.outputs.changed == 'true'
+        id: cache-config
+        run: |
+          node -e "const keys = ['LLM_MODEL', 'LLM_BASE_URL', 'LLM_EXECUTION_MODE', 'LLM_MAX_CALLS', 'LLM_MAX_INPUT_CHARACTERS']; const hash = require('node:crypto').createHash('sha256').update(JSON.stringify(keys.map(k => process.env[k] || ''))).digest('hex'); require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT, 'hash=' + hash + '\n');"
+      - name: Restore matching model responses
+        if: steps.source.outputs.changed == 'true'
+        id: responses
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/assistant-cache
+          key: review-responses-v1-${{ env.ASSISTANT_RUNTIME_REF }}-${{ steps.cache-config.outputs.hash }}-${{ github.event.pull_request.base.sha }}-${{ github.event.pull_request.head.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            review-responses-v1-${{ env.ASSISTANT_RUNTIME_REF }}-${{ steps.cache-config.outputs.hash }}-${{ github.event.pull_request.base.sha }}-${{ github.event.pull_request.head.sha }}-
+            review-responses-v1-${{ env.ASSISTANT_RUNTIME_REF }}-${{ steps.cache-config.outputs.hash }}-
       - name: Review PR
+        id: review
+        if: steps.source.outputs.changed == 'true'
         env:
           PROJECT_ROOT: ${{ github.workspace }}/project
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://api.deepseek.com' }}
-          LLM_MODEL: ${{ vars.LLM_MODEL || 'deepseek-flash' }}
+          LLM_CACHE_DIR: ${{ runner.temp }}/assistant-cache
           GITHUB_TOKEN: ${{ github.token }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
@@ -61,6 +103,12 @@ jobs:
             exit 1
           fi
           node assistant/tools/dev-assistant/src/review-cli.js --base "$BASE_SHA" --head "$HEAD_SHA" --repo "$REPOSITORY" --pr "$PR_NUMBER" --publish --output "$RUNNER_TEMP/ai-review"
+      - name: Preserve reusable responses after success or failure
+        if: ${{ always() && steps.responses.outcome == 'success' }}
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/assistant-cache
+          key: ${{ steps.responses.outputs.cache-primary-key }}
       - name: Save review report
         if: always()
         uses: actions/upload-artifact@v4
