@@ -90,6 +90,18 @@ test('workflows retain recovery, skip drafts/docs-only review, and bound paid re
     assert.match(workflow, /LLM_MAX_INPUT_CHARACTERS.*'1000000'/);
     assert.match(workflow, /LLM_CACHE_DIR: \$\{\{ runner.temp \}\}\/assistant-cache/);
     assert.match(workflow, /always\(\) && steps.responses.outcome == 'success'/);
+    assert.match(workflow, /LLM_SMALL_TASK_PROVIDER: gemini/);
+    assert.match(workflow, /GEMINI_MODEL:.*gemini-3.5-flash-lite/);
+    assert.match(workflow, /GEMINI_BASE_URL:.*generativelanguage.googleapis.com\/v1beta\/openai/);
+    assert.match(workflow, /LLM_SMALL_TASK_MAX_INPUT_CHARACTERS:.*'24000'/);
+    assert.match(workflow, /LLM_SMALL_TASK_MAX_OUTPUT_TOKENS:.*'6000'/);
+    assert.match(workflow, /LLM_API_KEY: \$\{\{ secrets.LLM_API_KEY \}\}/);
+    assert.match(workflow, /GEMINI_API_KEY: \$\{\{ secrets.GEMINI_API_KEY \}\}/);
+    const hashLine = workflow.split('\n').find(line => line.includes('const keys ='));
+    for (const key of ['LLM_SMALL_TASK_PROVIDER', 'GEMINI_MODEL', 'GEMINI_BASE_URL', 'LLM_SMALL_TASK_MAX_INPUT_CHARACTERS', 'LLM_SMALL_TASK_MAX_OUTPUT_TOKENS']) {
+      assert.ok(hashLine.includes(`'${key}'`), `routing setting ${key} is included in cache configuration hash`);
+    }
+    assert.doesNotMatch(hashLine, /API_KEY/, 'secret names and values do not enter the cache configuration hash');
   }
   assert.match(docs, /needs: sync/);
   assert.match(docs, /docs-sync-generated.patch/);
@@ -101,4 +113,19 @@ test('workflows retain recovery, skip drafts/docs-only review, and bound paid re
   assert.match(review, /'\*\.properties'/);
   assert.match(review, /'\.github\/workflows\/\*\.ya?ml'/);
   assert.match(review, /review-responses-v1-.*ASSISTANT_RUNTIME_REF.*cache-config.outputs.hash.*base.sha.*head.sha/);
+});
+
+test('both model prechecks allow Gemini-only credentials and fail fast when Gemini is missing', () => {
+  for (const name of ['docs-sync.yml', 'ai-review.yml']) {
+    const workflow = readFileSync(resolve(__dirname, '../workflows', name), 'utf8');
+    const check = workflow.match(/          if \[ -z "\$GEMINI_API_KEY" \]; then\n[\s\S]*?          fi/)[0];
+    const command = check.split('\n').map(line => line.slice(10)).join('\n');
+    const missing = spawnSync(bash, ['-c', command], { env: { ...process.env, LLM_API_KEY: '', GEMINI_API_KEY: '' }, encoding: 'utf8' });
+    assert.equal(missing.status, 1, name);
+    assert.match(missing.stdout, /Save GEMINI_API_KEY/);
+    const geminiOnly = spawnSync(bash, ['-c', command], { env: { ...process.env, LLM_API_KEY: '', GEMINI_API_KEY: 'non-secret-test-value' }, encoding: 'utf8' });
+    assert.equal(geminiOnly.status, 0, name);
+    assert.equal(geminiOnly.stdout, '');
+    assert.equal(geminiOnly.stderr, '');
+  }
 });

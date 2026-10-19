@@ -14,8 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      ASSISTANT_RUNTIME_REF: 34d437d5c03e90cec43703c5b49659f750324fc6
+      ASSISTANT_RUNTIME_REF: 764ea83e611f14480fcf12baf235842e02f2c970
       LLM_EXECUTION_MODE: economy
+      LLM_SMALL_TASK_PROVIDER: gemini
+      GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
+      GEMINI_BASE_URL: ${{ vars.GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta/openai' }}
+      LLM_SMALL_TASK_MAX_INPUT_CHARACTERS: ${{ vars.LLM_SMALL_TASK_MAX_INPUT_CHARACTERS || '24000' }}
+      LLM_SMALL_TASK_MAX_OUTPUT_TOKENS: ${{ vars.LLM_SMALL_TASK_MAX_OUTPUT_TOKENS || '6000' }}
       LLM_MAX_CALLS: ${{ vars.LLM_MAX_CALLS || '24' }}
       LLM_MAX_INPUT_CHARACTERS: ${{ vars.LLM_MAX_INPUT_CHARACTERS || '1000000' }}
       LLM_MODEL: ${{ vars.LLM_MODEL || 'deepseek-flash' }}
@@ -74,7 +79,7 @@ jobs:
         if: steps.source.outputs.changed == 'true'
         id: cache-config
         run: |
-          node -e "const keys = ['LLM_MODEL', 'LLM_BASE_URL', 'LLM_EXECUTION_MODE', 'LLM_MAX_CALLS', 'LLM_MAX_INPUT_CHARACTERS']; const hash = require('node:crypto').createHash('sha256').update(JSON.stringify(keys.map(k => process.env[k] || ''))).digest('hex'); require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT, 'hash=' + hash + '\n');"
+          node -e "const keys = ['LLM_MODEL', 'LLM_BASE_URL', 'LLM_EXECUTION_MODE', 'LLM_MAX_CALLS', 'LLM_MAX_INPUT_CHARACTERS', 'LLM_SMALL_TASK_PROVIDER', 'GEMINI_MODEL', 'GEMINI_BASE_URL', 'LLM_SMALL_TASK_MAX_INPUT_CHARACTERS', 'LLM_SMALL_TASK_MAX_OUTPUT_TOKENS']; const hash = require('node:crypto').createHash('sha256').update(JSON.stringify(keys.map(k => process.env[k] || ''))).digest('hex'); require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT, 'hash=' + hash + '\n');"
       - name: Restore matching model responses
         if: steps.source.outputs.changed == 'true'
         id: responses
@@ -91,6 +96,7 @@ jobs:
         env:
           PROJECT_ROOT: ${{ github.workspace }}/project
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           LLM_CACHE_DIR: ${{ runner.temp }}/assistant-cache
           GITHUB_TOKEN: ${{ github.token }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
@@ -98,8 +104,8 @@ jobs:
           REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          if [ -z "$LLM_API_KEY" ]; then
-            echo '::error::Set LLM_API_KEY in repository Actions secrets. Review was not performed.'
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo '::error::Save GEMINI_API_KEY in repository Actions secrets for small tasks. No fallback provider was called.'
             exit 1
           fi
           node assistant/tools/dev-assistant/src/review-cli.js --base "$BASE_SHA" --head "$HEAD_SHA" --repo "$REPOSITORY" --pr "$PR_NUMBER" --publish --output "$RUNNER_TEMP/ai-review"
