@@ -9,51 +9,160 @@ on:
       - 'gradle.properties'
       - '.github/workflows/release.yml'
       - '.github/workflows/docs-sync.yml'
-      - '.github/scripts/docs-sync-status*.cjs'
-      - '.github/scripts/docs-sync-run.sh'
       - '.github/scripts/agent-*.cjs'
+      - '.github/scripts/vps-docs-sync.test.cjs'
   workflow_dispatch:
     inputs:
       base:
-        description: 'Full base SHA before the merged change'
+        description: Full base SHA before the merged change
         required: true
       head:
-        description: 'Full merged SHA to analyse'
+        description: Full merged SHA to analyse
         required: true
 permissions:
   contents: read
 concurrency:
-  group: docs-sync-dispatch-${{ github.ref_name }}-${{ inputs.head || github.sha }}
+  group: vps-docs-sync-${{ github.ref_name }}
+  queue: max
   cancel-in-progress: false
 jobs:
   sync:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, linux, x64, cosplay-agent]
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      TARGET_BRANCH: ${{ github.ref_name }}
+      BASE_SHA: ${{ inputs.base || github.event.before }}
+      MERGED_SHA: ${{ inputs.head || github.sha }}
+      PROJECT_ROOT: ${{ github.workspace }}/project
+      ASSISTANT_ROOT: ${{ github.workspace }}/assistant
+      DOCS_SYNC_USE_PRIMARY_ONLY: 'false'
+      LLM_EXECUTION_MODE: economy
+      LLM_SMALL_TASK_PROVIDER: gemini
+      GEMINI_MODEL: gemini-3.5-flash-lite
+      GEMINI_BASE_URL: https://generativelanguage.googleapis.com/v1beta/openai
+      LLM_MODEL: deepseek-flash
+      LLM_BASE_URL: https://api.deepseek.com
+      LLM_MAX_CALLS: '24'
+      LLM_MAX_INPUT_CHARACTERS: '1000000'
+      LLM_SMALL_TASK_MAX_INPUT_CHARACTERS: '24000'
+      LLM_SMALL_TASK_MAX_OUTPUT_TOKENS: '6000'
     steps:
-      - name: Check dispatch credential
-        uses: actions/github-script@v8
+      - name: Checkout trusted agent runtime
+        uses: actions/checkout@v4
+        with:
+          repository: Flobsterable/cosplay-dev-assistant
+          ref: 33dec973ada96042bf036d8efa47538ae95c38e2
+          path: assistant
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: assistant/tools/dev-assistant/package-lock.json
+      - name: Load model configuration from the server
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const { homedir } = require('node:os');
+          const path = require('node:path');
+          const { parseEnv } = require('node:util');
+          const filename = path.join(homedir(), 'cosplay-dev-assistant/tools/dev-assistant/.env');
+          const allowed = new Set(['DOCS_SYNC_USE_PRIMARY_ONLY', 'LLM_API_KEY', 'LLM_MODEL', 'LLM_BASE_URL', 'LLM_EXECUTION_MODE', 'LLM_SMALL_TASK_PROVIDER', 'LLM_MAX_CALLS', 'LLM_MAX_INPUT_CHARACTERS', 'LLM_SMALL_TASK_MAX_INPUT_CHARACTERS', 'LLM_SMALL_TASK_MAX_OUTPUT_TOKENS', 'GEMINI_API_KEY', 'GEMINI_MODEL', 'GEMINI_BASE_URL']);
+          const text = fs.readFileSync(filename, 'utf8');
+          for (const [index, line] of text.split(/\r?\n/).entries()) {
+            if (line.trim() && !line.trim().startsWith('#') && !/^\s*(?:export\s+)?[A-Za-z_][A-Za-z0-9_]*\s*=/.test(line)) throw new Error('Invalid server environment assignment at line ' + (index + 1));
+          }
+          const entries = Object.entries(parseEnv(text)).filter(([key]) => allowed.has(key));
+          for (const [key, value] of entries) {
+            if (/[\r\n\x00]/.test(value)) throw new Error('Server environment values must be single-line: ' + key);
+          }
+          const primaryOnly = entries.find(([key]) => key === 'DOCS_SYNC_USE_PRIMARY_ONLY');
+          if (primaryOnly && !['true', 'false'].includes(primaryOnly[1])) throw new Error('DOCS_SYNC_USE_PRIMARY_ONLY must be true or false.');
+          for (const [key, value] of entries) {
+            if (key.endsWith('_API_KEY') && value) console.log('::add-mask::' + value.replaceAll('%', '%25'));
+          }
+          const cache = path.join(homedir(), '.cache/cosplay-dev-assistant/docs-responses');
+          fs.mkdirSync(cache, { recursive: true, mode: 0o700 });
+          fs.chmodSync(cache, 0o700);
+          fs.appendFileSync(process.env.GITHUB_ENV, entries.map(([key, value]) => key + '=' + value + '\n').join('') + 'LLM_CACHE_DIR=' + cache + '\n');
+          NODE
+      - name: Check model credentials without exposing values
+        run: |
+          if [ "$DOCS_SYNC_USE_PRIMARY_ONLY" = true ]; then
+            test -n "$LLM_API_KEY" || { echo '::error::LLM_API_KEY is required for explicitly configured primary-only documentation sync.'; exit 1; }
+          else
+            test -n "$GEMINI_API_KEY" || { echo '::error::GEMINI_API_KEY is missing from the server agent .env.'; exit 1; }
+          fi
+      - name: Checkout project as data
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          path: project
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Validate source range
+        working-directory: project
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$BASE_SHA" =~ ^[0-9a-f]{40}$ ]] && [[ "$MERGED_SHA" =~ ^[0-9a-f]{40}$ ]] || exit 1
+          git cat-file -e "$BASE_SHA^{commit}"
+          git cat-file -e "$MERGED_SHA^{commit}"
+          git merge-base --is-ancestor "$BASE_SHA" "$MERGED_SHA"
+          git merge-base --is-ancestor "$MERGED_SHA" HEAD
+      - name: Install trusted agent dependencies
+        working-directory: assistant/tools/dev-assistant
+        run: npm ci --ignore-scripts
+      - name: Generate, verify and commit documentation
+        working-directory: project
+        shell: bash
+        run: |
+          if [ "$DOCS_SYNC_USE_PRIMARY_ONLY" = true ]; then
+            unset GEMINI_API_KEY LLM_SMALL_TASK_PROVIDER
+            echo '::notice::Documentation sync explicitly uses the primary model; Gemini routing is disabled by server configuration.'
+          fi
+          bash "$ASSISTANT_ROOT/.github/scripts/docs-sync-run.sh"
+      - name: Preserve diagnostics and generated patch
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-sync-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/docs-sync-generation.txt
+            ${{ runner.temp }}/docs-sync-generated.patch
+          if-no-files-found: ignore
+          retention-days: 14
+  status:
+    needs: sync
+    if: ${{ always() && (needs.sync.result == 'success' || needs.sync.result == 'failure' || needs.sync.result == 'cancelled') }}
+    runs-on: [self-hosted, linux, x64, cosplay-agent]
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout trusted recovery helper
+        uses: actions/checkout@v4
+        with:
+          repository: Flobsterable/cosplay-dev-assistant
+          ref: 33dec973ada96042bf036d8efa47538ae95c38e2
+          path: assistant
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Track documentation recovery
         env:
-          AGENT_DISPATCH_TOKEN: ${{ secrets.AGENT_DISPATCH_TOKEN }}
-        with:
-          script: |
-            if (!process.env.AGENT_DISPATCH_TOKEN) {
-              core.setFailed('Save AGENT_DISPATCH_TOKEN in repository Actions secrets with Actions: write on Flobsterable/cosplay-dev-assistant (fine-grained token). The repository GITHUB_TOKEN cannot dispatch across repositories.');
-            }
-      - name: Send documentation task to the agent repository
-        uses: actions/github-script@v8
-        with:
-          github-token: ${{ secrets.AGENT_DISPATCH_TOKEN }}
-          script: |
-            const inputs = context.payload.inputs || {};
-            const branch = context.ref.replace(/^refs\/heads\//, '');
-            const base = inputs.base || context.payload.before;
-            const head = inputs.head || context.sha;
-            if (!['develop', 'main'].includes(branch) || !/^[a-f0-9]{40}$/.test(base || '') || !/^[a-f0-9]{40}$/.test(head || '')) {
-              core.setFailed('Documentation dispatch requires develop/main and full base/head commit SHAs.');
-              return;
-            }
-            await github.rest.actions.createWorkflowDispatch({
-              owner: 'Flobsterable', repo: 'cosplay-dev-assistant', workflow_id: 'agent.yml', ref: 'main',
-              inputs: { type: 'docs-sync', repository: context.repo.owner + '/' + context.repo.repo, base, head, branch }
-            });
-            core.notice('Documentation task sent. The agent repository tracks execution and recovery.');
+          PROJECT_GITHUB_TOKEN: ${{ github.token }}
+          AGENT_PROJECTS: ${{ github.repository }}
+          REQUEST_KIND: docs-sync
+          REQUEST_REPOSITORY: ${{ github.repository }}
+          REQUEST_BASE: ${{ inputs.base || github.event.before }}
+          REQUEST_HEAD: ${{ inputs.head || github.sha }}
+          REQUEST_BRANCH: ${{ github.ref_name }}
+          SYNC_RESULT: ${{ needs.sync.result }}
+        run: node assistant/.github/scripts/agent-request.cjs status
