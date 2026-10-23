@@ -1,0 +1,78 @@
+[
+  {
+    "path": "composeApp/build/test-results/desktopTest",
+    "tests": 34.0,
+    "failures": 3.0,
+    "errors": 0.0,
+    "suites": [
+      {
+        "name": "FavoriteFestivalSummaryTest[desktop]",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "FavoriteIconTest[desktop]",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "FavoritesStateTest[desktop]",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "FestivalCancellationTest[desktop]",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "FestivalCatalogCacheTest[desktop]",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "FestivalSearchTest[desktop]",
+        "tests": 6,
+        "failures": 3,
+        "errors": 0
+      },
+      {
+        "name": "MyCityScreenTest[desktop]",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "MyCityTest[desktop]",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0
+      }
+    ]
+  },
+  {
+    "path": "core/platform/build/test-results/desktopTest",
+    "tests": 12.0,
+    "failures": 0.0,
+    "errors": 0.0,
+    "suites": [
+      {
+        "name": "FavoritesRepositoryTest[desktop]",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "FileFavoritesStorageTest[desktop]",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0
+      }
+    ]
+  }
+]

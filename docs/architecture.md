@@ -2,13 +2,15 @@
 
 Cosplay 2 — Kotlin Multiplatform приложение для просмотра фестивалей cosplay2.ru.
 Платформы: Android и Desktop JVM. Интерфейс использует Compose Multiplatform и Material 3.
+Все модули используют JDK 21 и JVM target 21; версии библиотек закреплены в version catalog.
 Модули подключены в `settings.gradle.kts`.
 
 ## Модули и структура проекта
 
 | Модуль | Ответственность |
 | --- | --- |
-| `composeApp` | Точки входа Android/Desktop, тема, навигация и создание зависимостей |
+| `androidApp` | Android-точка входа, manifest/resources, signing и APK; зависит от composeApp |
+| `composeApp` | Desktop-точка входа, общий UI, тема, навигация и создание зависимостей |
 | `core/model` | DTO сериализации, модели фестивалей и состояние установки обновлений |
 | `core/network` | Фабрика Ktor HttpClient с платформенными движками |
 | `core/platform` | Платформенные реализации загрузки изображений, логов, версии, back handler и установки обновлений |
@@ -36,6 +38,7 @@ Cosplay 2 — Kotlin Multiplatform приложение для просмотр�
 
 ```mermaid
 flowchart LR
+  Android[androidApp] --> App
   App[composeApp] --> DF[data/festival]
   App --> DU[data/update]
   App --> FF[feature/festival]

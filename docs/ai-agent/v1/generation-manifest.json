@@ -1,0 +1,14 @@
+[
+  {
+    "path": "feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalSearch.kt",
+    "sha256": "DE905FB57796A43331BA55039A813E8E37E8E804C659D91DDF2C14250C466CD3"
+  },
+  {
+    "path": "composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/FestivalSearchTest.kt",
+    "sha256": "609A889555F58E1B145322C3359AEE77889ED7FB3F185B880DD89CEFC7263B3F"
+  },
+  {
+    "path": "docs/feature-flows.md",
+    "sha256": "0EB0D20063BE233AC96C854AEBD9E8C3CEE10EEA8A75496DC15C5B12F7451841"
+  }
+]

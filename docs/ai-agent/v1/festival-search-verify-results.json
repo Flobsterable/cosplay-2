@@ -1,0 +1,42 @@
+[
+  {
+    "command": ".\\gradlew.bat :composeApp:compileKotlinDesktop",
+    "exitCode": 1,
+    "startedAt": "2026-10-23T15:41:36.9937575+06:00",
+    "finishedAt": "2026-10-23T15:41:51.0457216+06:00",
+    "log": "festival-search-verify-compile-desktop.log",
+    "javaHome": "C:/Program Files/Android/Android Studio/jbr"
+  },
+  {
+    "command": ".\\gradlew.bat :composeApp:compileDebugKotlinAndroid",
+    "exitCode": 1,
+    "startedAt": "2026-10-23T15:41:51.0569355+06:00",
+    "finishedAt": "2026-10-23T15:41:52.9451323+06:00",
+    "log": "festival-search-verify-compile-android.log",
+    "javaHome": "C:/Program Files/Android/Android Studio/jbr"
+  },
+  {
+    "command": ".\\gradlew.bat :composeApp:desktopTest :core:platform:desktopTest",
+    "exitCode": 1,
+    "startedAt": "2026-10-23T15:41:52.9459952+06:00",
+    "finishedAt": "2026-10-23T15:41:54.8172137+06:00",
+    "log": "festival-search-verify-desktop-tests.log",
+    "javaHome": "C:/Program Files/Android/Android Studio/jbr"
+  },
+  {
+    "command": ".\\gradlew.bat :composeApp:lintDebug",
+    "exitCode": 1,
+    "startedAt": "2026-10-23T15:41:54.8184378+06:00",
+    "finishedAt": "2026-10-23T15:41:56.4796853+06:00",
+    "log": "festival-search-verify-android-lint.log",
+    "javaHome": "C:/Program Files/Android/Android Studio/jbr"
+  },
+  {
+    "command": "git diff --check",
+    "exitCode": 0,
+    "startedAt": "2026-10-23T15:41:56.4807595+06:00",
+    "finishedAt": "2026-10-23T15:41:56.5133528+06:00",
+    "log": "festival-search-verify-diff-check.log",
+    "javaHome": "C:/Program Files/Android/Android Studio/jbr"
+  }
+]

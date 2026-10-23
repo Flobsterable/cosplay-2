@@ -1,0 +1,262 @@
+WARNING: We recommend using a newer Android Gradle plugin to use compileSdk = 35
+
+This Android Gradle plugin (8.5.2) was tested up to compileSdk = 34.
+
+You are strongly encouraged to update your project to use a newer
+Android Gradle plugin that has been tested with compileSdk = 35.
+
+If you are already using the latest version of the Android Gradle plugin,
+you may need to wait until a newer version with support for compileSdk = 35 is available.
+
+For more information refer to the compatibility table:
+https://d.android.com/r/tools/api-level-support
+
+To suppress this warning, add/update
+    android.suppressUnsupportedCompileSdk=35
+to this project's gradle.properties.
+> Task :composeApp:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :composeApp:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForAndroidMain UP-TO-DATE
+> Task :composeApp:generateComposeResClass UP-TO-DATE
+> Task :composeApp:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :composeApp:convertXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForAndroidDebug NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForAndroidDebug NO-SOURCE
+> Task :composeApp:preBuild UP-TO-DATE
+> Task :composeApp:preDebugBuild UP-TO-DATE
+> Task :core:model:preBuild UP-TO-DATE
+> Task :core:model:preDebugBuild UP-TO-DATE
+> Task :core:model:writeDebugAarMetadata UP-TO-DATE
+> Task :core:network:preBuild UP-TO-DATE
+> Task :core:network:preDebugBuild UP-TO-DATE
+> Task :core:network:writeDebugAarMetadata UP-TO-DATE
+> Task :core:platform:preBuild UP-TO-DATE
+> Task :core:platform:preDebugBuild UP-TO-DATE
+> Task :core:platform:writeDebugAarMetadata UP-TO-DATE
+> Task :data:festival:preBuild UP-TO-DATE
+> Task :data:festival:preDebugBuild UP-TO-DATE
+> Task :data:festival:writeDebugAarMetadata UP-TO-DATE
+> Task :data:update:preBuild UP-TO-DATE
+> Task :data:update:preDebugBuild UP-TO-DATE
+> Task :data:update:writeDebugAarMetadata UP-TO-DATE
+> Task :feature:festival:preBuild UP-TO-DATE
+> Task :feature:festival:preDebugBuild UP-TO-DATE
+> Task :feature:festival:writeDebugAarMetadata UP-TO-DATE
+> Task :feature:settings:preBuild UP-TO-DATE
+> Task :feature:settings:preDebugBuild UP-TO-DATE
+> Task :feature:settings:writeDebugAarMetadata UP-TO-DATE
+> Task :feature:update:preBuild UP-TO-DATE
+> Task :feature:update:preDebugBuild UP-TO-DATE
+> Task :feature:update:writeDebugAarMetadata UP-TO-DATE
+> Task :composeApp:checkDebugAarMetadata UP-TO-DATE
+> Task :composeApp:generateDebugResValues UP-TO-DATE
+> Task :core:model:generateDebugResValues UP-TO-DATE
+> Task :core:model:generateDebugResources UP-TO-DATE
+> Task :core:model:packageDebugResources UP-TO-DATE
+> Task :core:network:generateDebugResValues UP-TO-DATE
+> Task :core:network:generateDebugResources UP-TO-DATE
+> Task :core:network:packageDebugResources UP-TO-DATE
+> Task :core:platform:generateDebugResValues UP-TO-DATE
+> Task :core:platform:generateDebugResources UP-TO-DATE
+> Task :core:platform:packageDebugResources UP-TO-DATE
+> Task :data:festival:generateDebugResValues UP-TO-DATE
+> Task :data:festival:generateDebugResources UP-TO-DATE
+> Task :data:festival:packageDebugResources UP-TO-DATE
+> Task :data:update:generateDebugResValues UP-TO-DATE
+> Task :data:update:generateDebugResources UP-TO-DATE
+> Task :data:update:packageDebugResources UP-TO-DATE
+> Task :feature:festival:generateDebugResValues UP-TO-DATE
+> Task :feature:festival:generateDebugResources UP-TO-DATE
+> Task :feature:festival:packageDebugResources UP-TO-DATE
+> Task :feature:settings:generateDebugResValues UP-TO-DATE
+> Task :feature:settings:generateDebugResources UP-TO-DATE
+> Task :feature:settings:packageDebugResources UP-TO-DATE
+> Task :feature:update:generateDebugResValues UP-TO-DATE
+> Task :feature:update:generateDebugResources UP-TO-DATE
+> Task :feature:update:packageDebugResources UP-TO-DATE
+> Task :composeApp:mapDebugSourceSetPaths UP-TO-DATE
+> Task :composeApp:generateDebugResources UP-TO-DATE
+> Task :composeApp:mergeDebugResources UP-TO-DATE
+> Task :composeApp:packageDebugResources UP-TO-DATE
+> Task :composeApp:parseDebugLocalResources UP-TO-DATE
+> Task :composeApp:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :composeApp:extractDeepLinksDebug UP-TO-DATE
+> Task :core:model:extractDeepLinksDebug UP-TO-DATE
+> Task :core:model:processDebugManifest UP-TO-DATE
+> Task :core:network:extractDeepLinksDebug UP-TO-DATE
+> Task :core:network:processDebugManifest UP-TO-DATE
+> Task :core:platform:extractDeepLinksDebug UP-TO-DATE
+> Task :core:platform:processDebugManifest UP-TO-DATE
+> Task :data:festival:extractDeepLinksDebug UP-TO-DATE
+> Task :data:festival:processDebugManifest UP-TO-DATE
+> Task :data:update:extractDeepLinksDebug UP-TO-DATE
+> Task :data:update:processDebugManifest UP-TO-DATE
+> Task :feature:festival:extractDeepLinksDebug UP-TO-DATE
+> Task :feature:festival:processDebugManifest UP-TO-DATE
+> Task :feature:settings:extractDeepLinksDebug UP-TO-DATE
+> Task :feature:settings:processDebugManifest UP-TO-DATE
+> Task :feature:update:extractDeepLinksDebug UP-TO-DATE
+> Task :feature:update:processDebugManifest UP-TO-DATE
+> Task :composeApp:processDebugMainManifest UP-TO-DATE
+> Task :composeApp:processDebugManifest UP-TO-DATE
+> Task :composeApp:processDebugManifestForPackage UP-TO-DATE
+> Task :core:model:compileDebugLibraryResources UP-TO-DATE
+> Task :core:model:parseDebugLocalResources UP-TO-DATE
+> Task :core:model:generateDebugRFile UP-TO-DATE
+> Task :core:network:compileDebugLibraryResources UP-TO-DATE
+> Task :core:network:parseDebugLocalResources UP-TO-DATE
+> Task :core:network:generateDebugRFile UP-TO-DATE
+> Task :core:platform:compileDebugLibraryResources UP-TO-DATE
+> Task :core:platform:parseDebugLocalResources UP-TO-DATE
+> Task :core:platform:generateDebugRFile UP-TO-DATE
+> Task :data:festival:compileDebugLibraryResources UP-TO-DATE
+> Task :data:festival:parseDebugLocalResources UP-TO-DATE
+> Task :data:festival:generateDebugRFile UP-TO-DATE
+> Task :data:update:compileDebugLibraryResources UP-TO-DATE
+> Task :data:update:parseDebugLocalResources UP-TO-DATE
+> Task :data:update:generateDebugRFile UP-TO-DATE
+> Task :feature:festival:compileDebugLibraryResources UP-TO-DATE
+> Task :feature:festival:parseDebugLocalResources UP-TO-DATE
+> Task :feature:festival:generateDebugRFile UP-TO-DATE
+> Task :feature:settings:compileDebugLibraryResources UP-TO-DATE
+> Task :feature:settings:parseDebugLocalResources UP-TO-DATE
+> Task :feature:settings:generateDebugRFile UP-TO-DATE
+> Task :feature:update:compileDebugLibraryResources UP-TO-DATE
+> Task :feature:update:parseDebugLocalResources UP-TO-DATE
+> Task :feature:update:generateDebugRFile UP-TO-DATE
+> Task :composeApp:processDebugResources UP-TO-DATE
+> Task :core:model:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:model:compileDebugKotlinAndroid UP-TO-DATE
+> Task :core:model:javaPreCompileDebug UP-TO-DATE
+> Task :core:model:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:model:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:network:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :core:network:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :core:network:generateComposeResClass SKIPPED
+> Task :core:network:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:network:convertXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForAndroidDebug NO-SOURCE
+> Task :core:network:generateResourceAccessorsForAndroidDebug SKIPPED
+> Task :core:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:platform:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :core:platform:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:platform:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :core:platform:generateComposeResClass SKIPPED
+> Task :core:platform:generateDebugBuildConfig UP-TO-DATE
+> Task :core:platform:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:convertXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForAndroidDebug NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForAndroidDebug SKIPPED
+> Task :core:platform:compileDebugKotlinAndroid UP-TO-DATE
+> Task :core:platform:javaPreCompileDebug UP-TO-DATE
+> Task :core:platform:compileDebugJavaWithJavac UP-TO-DATE
+> Task :core:platform:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:network:compileDebugKotlinAndroid UP-TO-DATE
+> Task :core:network:javaPreCompileDebug UP-TO-DATE
+> Task :core:network:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:network:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :data:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:festival:compileDebugKotlinAndroid UP-TO-DATE
+> Task :data:festival:javaPreCompileDebug UP-TO-DATE
+> Task :data:festival:compileDebugJavaWithJavac NO-SOURCE
+> Task :data:festival:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :data:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:update:compileDebugKotlinAndroid UP-TO-DATE
+> Task :data:update:javaPreCompileDebug UP-TO-DATE
+> Task :data:update:compileDebugJavaWithJavac NO-SOURCE
+> Task :data:update:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :feature:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:festival:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :feature:festival:generateComposeResClass SKIPPED
+> Task :feature:festival:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForAndroidDebug NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForAndroidDebug SKIPPED
+> Task :feature:festival:javaPreCompileDebug UP-TO-DATE
+> Task :feature:settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:settings:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :feature:settings:generateComposeResClass SKIPPED
+> Task :feature:settings:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForAndroidDebug NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForAndroidDebug SKIPPED
+> Task :feature:settings:compileDebugKotlinAndroid UP-TO-DATE
+> Task :feature:settings:javaPreCompileDebug UP-TO-DATE
+> Task :feature:settings:compileDebugJavaWithJavac NO-SOURCE
+> Task :feature:settings:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :feature:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:update:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :feature:update:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:update:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :feature:update:generateComposeResClass SKIPPED
+> Task :feature:update:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:update:convertXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForAndroidDebug NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForAndroidDebug NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForAndroidDebug SKIPPED
+> Task :feature:update:compileDebugKotlinAndroid UP-TO-DATE
+> Task :feature:update:javaPreCompileDebug UP-TO-DATE
+> Task :feature:update:compileDebugJavaWithJavac NO-SOURCE
+> Task :feature:update:bundleLibCompileToJarDebug UP-TO-DATE
+
+> Task :feature:festival:compileDebugKotlinAndroid
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:414:52 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:437:5 'fun ClickableText(text: AnnotatedString, modifier: Modifier = ..., style: TextStyle = ..., softWrap: Boolean = ..., overflow: TextOverflow = ..., maxLines: Int = ..., onTextLayout: (TextLayoutResult) -> Unit = ..., onClick: (Int) -> Unit): Unit' is deprecated. Use Text or BasicText and pass an AnnotatedString that contains a LinkAnnotation.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:579:18 'fun Modifier.menuAnchor(): Modifier' is deprecated. Use overload that takes MenuAnchorType and enabled parameters.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalDetailScreen.kt:115:56 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+
+> Task :feature:festival:compileDebugJavaWithJavac NO-SOURCE
+> Task :feature:festival:bundleLibCompileToJarDebug
+> Task :composeApp:compileDebugKotlinAndroid
+
+BUILD SUCCESSFUL in 9s
+115 actionable tasks: 3 executed, 112 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.0.0/userguide/configuration_cache_enabling.html

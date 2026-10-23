@@ -1,0 +1,186 @@
+
+> Configure project :core:platform
+WARNING: The 'commonTest' source directory exists, but android host tests are not enabled. To enable android host tests, add `withHostTest {}` to your android target configuration in the Gradle build file.
+Add android.sync.suppressAgpWarnings=GENERIC to the gradle.properties file to suppress this warning.
+
+> Task :composeApp:checkDesktopMainComposeLibrariesCompatibility
+> Task :composeApp:kmpPartiallyResolvedDependenciesChecker
+> Task :composeApp:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :composeApp:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonMain NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForDesktopMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForDesktopMain UP-TO-DATE
+> Task :composeApp:generateComposeResClass UP-TO-DATE
+> Task :composeApp:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :core:model:kmpPartiallyResolvedDependenciesChecker
+> Task :core:model:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:model:compileKotlinDesktop UP-TO-DATE
+> Task :core:model:compileDesktopMainJava NO-SOURCE
+> Task :core:model:desktopProcessResources NO-SOURCE
+> Task :core:model:processDesktopMainResources SKIPPED
+> Task :core:model:desktopMainClasses UP-TO-DATE
+> Task :core:model:desktopJar UP-TO-DATE
+> Task :core:network:checkDesktopMainComposeLibrariesCompatibility
+> Task :core:network:kmpPartiallyResolvedDependenciesChecker
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:network:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:network:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:network:generateComposeResClass SKIPPED
+> Task :core:network:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:checkDesktopMainComposeLibrariesCompatibility
+> Task :core:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :core:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:platform:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:platform:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:platform:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:platform:generateComposeResClass SKIPPED
+> Task :core:platform:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:compileKotlinDesktop UP-TO-DATE
+> Task :core:platform:compileDesktopMainJava NO-SOURCE
+> Task :core:platform:assembleDesktopMainResources UP-TO-DATE
+> Task :core:platform:desktopProcessResources UP-TO-DATE
+> Task :core:platform:processDesktopMainResources SKIPPED
+> Task :core:platform:desktopMainClasses UP-TO-DATE
+> Task :core:platform:desktopJar UP-TO-DATE
+> Task :core:network:compileKotlinDesktop UP-TO-DATE
+> Task :core:network:compileDesktopMainJava NO-SOURCE
+> Task :core:network:assembleDesktopMainResources UP-TO-DATE
+> Task :core:network:desktopProcessResources UP-TO-DATE
+> Task :core:network:processDesktopMainResources SKIPPED
+> Task :core:network:desktopMainClasses UP-TO-DATE
+> Task :core:network:desktopJar UP-TO-DATE
+> Task :data:festival:kmpPartiallyResolvedDependenciesChecker
+> Task :data:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:festival:compileKotlinDesktop UP-TO-DATE
+> Task :data:festival:compileDesktopMainJava NO-SOURCE
+> Task :data:festival:desktopProcessResources NO-SOURCE
+> Task :data:festival:processDesktopMainResources SKIPPED
+> Task :data:festival:desktopMainClasses UP-TO-DATE
+> Task :data:festival:desktopJar UP-TO-DATE
+> Task :data:update:kmpPartiallyResolvedDependenciesChecker
+> Task :data:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:update:compileKotlinDesktop UP-TO-DATE
+> Task :data:update:compileDesktopMainJava NO-SOURCE
+> Task :data:update:desktopProcessResources NO-SOURCE
+> Task :data:update:processDesktopMainResources SKIPPED
+> Task :data:update:desktopMainClasses UP-TO-DATE
+> Task :data:update:desktopJar UP-TO-DATE
+> Task :feature:festival:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:festival:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:festival:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:festival:generateComposeResClass SKIPPED
+> Task :feature:festival:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:festival:compileKotlinDesktop UP-TO-DATE
+> Task :feature:festival:compileDesktopMainJava NO-SOURCE
+> Task :feature:festival:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:festival:desktopProcessResources UP-TO-DATE
+> Task :feature:festival:processDesktopMainResources SKIPPED
+> Task :feature:festival:desktopMainClasses UP-TO-DATE
+> Task :feature:festival:desktopJar UP-TO-DATE
+> Task :feature:settings:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:settings:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:settings:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:settings:generateComposeResClass SKIPPED
+> Task :feature:settings:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:settings:compileKotlinDesktop UP-TO-DATE
+> Task :feature:settings:compileDesktopMainJava NO-SOURCE
+> Task :feature:settings:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:settings:desktopProcessResources UP-TO-DATE
+> Task :feature:settings:processDesktopMainResources SKIPPED
+> Task :feature:settings:desktopMainClasses UP-TO-DATE
+> Task :feature:settings:desktopJar UP-TO-DATE
+> Task :feature:update:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:update:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:update:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:update:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:update:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:update:generateComposeResClass SKIPPED
+> Task :feature:update:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:update:compileKotlinDesktop UP-TO-DATE
+> Task :feature:update:compileDesktopMainJava NO-SOURCE
+> Task :feature:update:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:update:desktopProcessResources UP-TO-DATE
+> Task :feature:update:processDesktopMainResources SKIPPED
+> Task :feature:update:desktopMainClasses UP-TO-DATE
+> Task :feature:update:desktopJar UP-TO-DATE
+> Task :composeApp:compileKotlinDesktop UP-TO-DATE
+> Task :composeApp:compileDesktopMainJava NO-SOURCE
+> Task :composeApp:checkDesktopTestComposeLibrariesCompatibility
+> Task :composeApp:assembleDesktopMainResources UP-TO-DATE
+> Task :composeApp:desktopProcessResources UP-TO-DATE
+> Task :composeApp:processDesktopMainResources SKIPPED
+> Task :composeApp:desktopMainClasses UP-TO-DATE
+> Task :composeApp:desktopJar UP-TO-DATE
+> Task :composeApp:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonTest NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForDesktopTest NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForDesktopTest NO-SOURCE
+> Task :composeApp:assembleDesktopTestResources UP-TO-DATE
+> Task :composeApp:desktopTestProcessResources UP-TO-DATE
+> Task :composeApp:processDesktopTestResources SKIPPED
+
+> Task :composeApp:compileTestKotlinDesktop
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/MyCityScreenTest.kt:25:29 'fun createComposeRule(): ComposeContentTestRule' is deprecated. Use `androidx.compose.ui.test.junit4.v2.createComposeRule` instead. The v2 APIs use `StandardTestDispatcher` by default to better simulate production behavior where coroutines are queued rather than executed immediately.
+
+> Task :composeApp:compileDesktopTestJava NO-SOURCE
+> Task :composeApp:desktopTestClasses
+> Task :composeApp:desktopTest
+
+[Incubating] Problems report is available at: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.7.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 4s
+53 actionable tasks: 18 executed, 35 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.0/userguide/configuration_cache_enabling.html

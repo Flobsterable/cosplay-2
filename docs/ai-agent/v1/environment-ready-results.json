@@ -1,0 +1,30 @@
+[
+  {
+    "command": ".\\gradlew.bat :composeApp:compileKotlinDesktop",
+    "exitCode": 0,
+    "started": "2026-10-23T15:43:22.2736882+06:00",
+    "finished": "2026-10-23T15:44:09.3741673+06:00",
+    "log": "docs/ai-agent/v1/environment-ready-compile-desktop.log"
+  },
+  {
+    "command": ".\\gradlew.bat :composeApp:compileDebugKotlinAndroid",
+    "exitCode": 0,
+    "started": "2026-10-23T15:44:09.3781568+06:00",
+    "finished": "2026-10-23T15:44:19.0658169+06:00",
+    "log": "docs/ai-agent/v1/environment-ready-compile-android.log"
+  },
+  {
+    "command": ".\\gradlew.bat :composeApp:desktopTest :core:platform:desktopTest",
+    "exitCode": 1,
+    "started": "2026-10-23T15:44:19.0660529+06:00",
+    "finished": "2026-10-23T15:44:56.5835425+06:00",
+    "log": "docs/ai-agent/v1/environment-ready-desktop-tests.log"
+  },
+  {
+    "command": ".\\gradlew.bat :composeApp:lintDebug",
+    "exitCode": 1,
+    "started": "2026-10-23T15:44:56.5836634+06:00",
+    "finished": "2026-10-23T15:45:09.9441057+06:00",
+    "log": "docs/ai-agent/v1/environment-ready-android-lint.log"
+  }
+]

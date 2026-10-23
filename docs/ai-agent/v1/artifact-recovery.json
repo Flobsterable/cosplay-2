@@ -1,0 +1,35 @@
+{
+  "recoveredOn": "2026-10-23",
+  "newGenerationPerformed": false,
+  "configurationArchive": {
+    "original": "configuration-snapshot.original.zip",
+    "originalSha256": "D2E581B50D11304C960FC9244E1CDD6D8C77773A93250315298AE0F64888D982",
+    "repaired": "configuration-snapshot.zip",
+    "repairedSha256": "B694C705D039E89ECF8F6BC2E7AD17975D03298566B9D4702242E540FE6CBF52",
+    "manifest": "instructions-manifest.json",
+    "manifestFilesVerified": 11,
+    "totalFilesPreserved": 12,
+    "fileContentsUnchanged": true,
+    "uniquePaths": true,
+    "rootSnapshotSha256": "05B769CA0334D6F983B3D463A424FA41A53131BFC2CDA87B14F8E613BF72403B"
+  },
+  "generationLog": {
+    "originalExport": "generation-events.jsonl",
+    "originalExportSha256": "62F18B169FFD6AB471A44287B247512D6A2CFEE5C62A52BE94080DBD3B468C46",
+    "originalExportLines": 44,
+    "invalidJsonLines": [
+      44
+    ],
+    "invalidUtf8": true,
+    "originalCliExitCode": 1,
+    "cliExitCodeCause": "Unknown; not replaced by the session completion status",
+    "recovered": "generation-rollout.recovered.jsonl",
+    "recoveredFormat": "Codex rollout JSONL; not a reconstruction of CLI events",
+    "sourceFileName": "rollout-2026-10-23T15-40-11-01a16821-dba8-7163-a339-9798d9be1efb.jsonl",
+    "sourceSha256": "63F9450ACF1D4105E710EBD3D19E8FC60646603102C2F6BA224339F92AD5EF19",
+    "recoveredSha256": "63F9450ACF1D4105E710EBD3D19E8FC60646603102C2F6BA224339F92AD5EF19",
+    "records": 185,
+    "finalAnswers": 1,
+    "taskComplete": "2026-10-23T09:43:11.353Z"
+  }
+}

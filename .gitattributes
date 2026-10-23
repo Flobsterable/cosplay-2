@@ -1,0 +1,5 @@
+# Preserve byte checksums of historical experiment evidence across checkouts.
+docs/ai-agent/v1/source/** -text
+docs/ai-agent/v1/root-AGENTS.snapshot.md -text
+docs/ai-agent/v1/generation-events.jsonl -text
+docs/ai-agent/v1/generation-rollout.recovered.jsonl -text

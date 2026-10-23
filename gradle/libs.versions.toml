@@ -1,17 +1,19 @@
 [versions]
-agp = "8.5.2"
-android-compileSdk = "35"
+agp = "9.4.1"
+android-compileSdk = "37"
 android-minSdk = "28"
 android-targetSdk = "35"
-activityCompose = "1.9.2"
-composeMultiplatform = "1.7.3"
-kotlin = "2.0.21"
-ktor = "2.3.12"
-kotlinxSerializationJson = "1.7.3"
-kotlinxDatetime = "0.6.1"
-kotlinxCoroutines = "1.8.0"
+activityCompose = "1.13.0"
+composeMultiplatform = "1.12.2"
+composeMaterialIcons = "1.7.3"
+kotlin = "2.4.21"
+ktor = "3.6.0"
+kotlinxSerializationJson = "1.12.0"
+kotlinxDatetime = "0.8.0"
+kotlinxCoroutines = "1.11.0"
 
 [libraries]
+compose-material-icons-core = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "composeMaterialIcons" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
@@ -25,7 +27,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
+androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

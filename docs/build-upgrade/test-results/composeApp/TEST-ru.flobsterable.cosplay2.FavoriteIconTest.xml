@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="FavoriteIconTest[desktop]" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-23T10:17:01.133Z" hostname="FLOBSTER" time="1.858">
+  <properties/>
+  <testcase name="previousYearSuccessDoesNotRenderCardsForTheNewYear[desktop]" classname="ru.flobsterable.cosplay2.FavoriteIconTest" time="1.221"/>
+  <testcase name="pointerClickOnFavoriteButtonDoesNotOpenTheParentCard[desktop]" classname="ru.flobsterable.cosplay2.FavoriteIconTest" time="0.236"/>
+  <testcase name="yearControlsStayAvailableWithoutACatalogDuringLoadingAndError[desktop]" classname="ru.flobsterable.cosplay2.FavoriteIconTest" time="0.129"/>
+  <testcase name="favoriteIconRecomposesWithoutChangingTheDetailRoute[desktop]" classname="ru.flobsterable.cosplay2.FavoriteIconTest" time="0.086"/>
+  <testcase name="recoveryRequiresAnExplicitConfirmation[desktop]" classname="ru.flobsterable.cosplay2.FavoriteIconTest" time="0.186"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>
