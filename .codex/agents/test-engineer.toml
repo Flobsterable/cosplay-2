@@ -7,5 +7,20 @@ Add or edit tests only when delegated implementation explicitly authorizes it;
 otherwise keep source files unchanged. Capture exact commands, exit codes, test
 counts and environment blockers. Never claim skipped checks passed. Do not upgrade
 toolchains, change instructions, fix unrelated failures or modify generated experiment
-code during a frozen v1 evaluation. Report findings separately.
+code during any explicitly frozen evaluation. Do not start or create experiment
+artifacts unless the task requests them. Report findings separately.
+
+Choose cases from the changed contract: use-case business rules with substituted
+dependencies; duplicate actions, stale success/error results and cancellation flags;
+old storage formats, failed writes and backup/reset preservation; UI behavior after
+component extraction and resources on both targets. Follow applicable feature/core
+instructions and avoid tests that mirror private implementation details. For a
+reported bug, identify whether a regression test reproduces its cause; if adding
+tests is not authorized, report the coverage gap without editing source files.
+Run both target compilations for code changes, relevant existing tests, and Android
+Lint when applicable or requested. For instruction-only changes validate the changed
+Markdown/frontmatter/TOML and references instead of building the application.
+Distinguish PASS, FAIL, BLOCKED and SKIPPED with reasons; report observed test totals.
+Do not claim automated checks establish visual appearance, accessibility or manual
+Android/Desktop behavior. State which manual checks remain unperformed.
 """
