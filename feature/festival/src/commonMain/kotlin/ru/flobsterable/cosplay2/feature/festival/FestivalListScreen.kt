@@ -1,28 +1,21 @@
 package ru.flobsterable.cosplay2.feature.festival
 
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -35,11 +28,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.ktor.client.HttpClient
+import ru.flobsterable.cosplay2.feature.festival.ui.catalog.components.FestivalFilters
+import ru.flobsterable.cosplay2.feature.festival.ui.catalog.components.FestivalSearchBar
 import ru.flobsterable.cosplay2.model.FestivalCatalog
 import ru.flobsterable.cosplay2.model.FestivalStatus
 import ru.flobsterable.cosplay2.model.FestivalSummary
 import ru.flobsterable.cosplay2.platform.matchesMyCity
-import ru.flobsterable.cosplay2.platform.normalizeCity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,6 +56,7 @@ fun FestivalsScreen(
     cityEnabled: Boolean,
     onChooseCity: (List<String>) -> Unit
 ) {
+    var filtersExpanded by rememberSaveable { mutableStateOf(false) }
     var query by rememberSaveable { mutableStateOf("") }
     var selectedCategory by rememberSaveable { mutableStateOf(TypeFilter.All) }
     var selectedMonth by rememberSaveable(selectedYear) { mutableStateOf(MonthFilter.All) }
@@ -91,87 +86,35 @@ fun FestivalsScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 item {
-                    OutlinedTextField(
-                        value = query,
-                        onValueChange = { query = it },
-                        modifier = Modifier.fillMaxWidth(),
-                        leadingIcon = { Icon(Icons.Rounded.Search, contentDescription = null) },
-                        placeholder = { Text("Поиск по названию, городу или описанию") },
-                        singleLine = true,
-                        shape = RoundedCornerShape(24.dp)
-                    )
+                    Column {
+                        FestivalSearchBar(
+                            query = query,
+                            onQueryChange = { query = it },
+                            filtersExpanded = filtersExpanded,
+                            onFiltersExpandedChange = { filtersExpanded = it }
+                        )
+                        FestivalFilters(
+                            expanded = filtersExpanded,
+                            festivals = filterCatalog?.festivals.orEmpty(),
+                            catalogYear = filterCatalog?.year,
+                            currentYear = currentYear,
+                            selectedYear = selectedYear,
+                            onYearSelected = onYearSelected,
+                            selectedCategory = selectedCategory,
+                            onCategorySelected = { selectedCategory = it },
+                            selectedMonth = selectedMonth,
+                            onMonthSelected = { selectedMonth = it },
+                            myCity = myCity,
+                            onlyMyCity = onlyMyCity,
+                            onCityFilterSelected = onCityFilterSelected,
+                            cityEnabled = cityEnabled,
+                            onChooseCity = onChooseCity
+                        )
+                    }
                 }
                 topContent?.let { content ->
                     item { content() }
                 }
-                item {
-                    Row(
-                        modifier = Modifier.horizontalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        FilterChip(
-                            title = "Все города",
-                            selected = !onlyMyCity || myCity.isBlank(),
-                            onClick = { onCityFilterSelected(false) }
-                        )
-                        FilterChip(
-                            title = if (myCity.isBlank()) "Мой город" else "Мой город: $myCity",
-                            selected = onlyMyCity && myCity.isNotBlank(),
-                            onClick = {
-                                if (myCity.isNotBlank()) onCityFilterSelected(true)
-                                else if (cityEnabled) onChooseCity(filterCatalog?.festivals.orEmpty()
-                                    .map { normalizeCity(it.city) }.filter { it.isNotBlank() })
-                            }
-                        )
-                        if (myCity.isNotBlank()) {
-                            TextButton(onClick = {
-                                onChooseCity(filterCatalog?.festivals.orEmpty()
-                                    .map { normalizeCity(it.city) }.filter { it.isNotBlank() })
-                            }, enabled = cityEnabled) { Text("Изменить") }
-                        }
-                    }
-                }
-                item {
-                    Row(
-                        modifier = Modifier.horizontalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        TypeFilter.entries.forEach { filter ->
-                            FilterChip(
-                                title = filter.title,
-                                selected = selectedCategory == filter,
-                                onClick = { selectedCategory = filter }
-                            )
-                        }
-                    }
-                }
-
-                val years = buildList {
-                    val start = maxOf(2013, currentYear - 6)
-                    add(ACTUAL_FILTER_YEAR)
-                    for (year in currentYear downTo start) add(year)
-                    filterCatalog?.year?.let { if (it !in this) add(1, it) }
-                    if (selectedYear !in this) add(1, selectedYear)
-                }.distinct()
-
-                item {
-                    Row(
-                        modifier = Modifier.horizontalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        years.forEach { year ->
-                            FilterChip(
-                                title = if (year == ACTUAL_FILTER_YEAR) "Актуальные" else year.toString(),
-                                selected = selectedYear == year,
-                                onClick = { onYearSelected(year) }
-                            )
-                        }
-                    }
-                }
-                item {
-                    MonthDropdown(selectedMonth = selectedMonth, onMonthSelected = { selectedMonth = it })
-                }
-
                 when {
                     state is UiState.Loading -> item {
                         LoadingBlock()
