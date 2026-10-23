@@ -26,6 +26,14 @@ kotlin {
     }
 
     sourceSets {
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
+        val desktopTest by getting {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.core)
+            }
+        }
         commonMain.dependencies {
             implementation(project(":core:model"))
             implementation(project(":core:network"))
