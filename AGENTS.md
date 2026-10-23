@@ -1,10 +1,12 @@
-# Cosplay 2 — инструкции для AI-агента, v1
+# Cosplay 2 — инструкции для AI-агента, v2
 
-Проверено по исходникам и официальной документации 23 октября 2026 года.
-Файл предназначен для Codex и действует на весь репозиторий. Это первая версия
-правил. Конфигурация и результаты первого эксперимента хранятся отдельно в
-`docs/ai-agent/v1/`; снимок правил эксперимента v1 не корректируется.
-Действующие инструкции актуализируются при изменении конфигурации проекта.
+Правила организации кода актуализированы 24 октября 2026 года.
+Статус v2 — подготовка конфигурации; второй эксперимент ещё не запускался.
+Изменения и статус подготовки описаны в `docs/ai-agent/v2/README.md`.
+Фактический стек зафиксирован по исходникам 23 октября 2026 года; при работе
+сверяй его с Gradle. Целевые правила ниже не означают завершённый рефакторинг.
+Исходная конфигурация эксперимента v1 и его результаты находятся в
+`docs/ai-agent/v1/`; архив и снимки эксперимента не редактируются.
 
 ## Перед изменениями
 
@@ -20,10 +22,6 @@
   без соответствующего запроса пользователя.
 - Перед изменением файла читай вложенные AGENTS.md на пути к нему, даже если
   сессия запущена из корня. Для релевантной задачи загружай skill из `.agents/skills/`.
-
-После отдельных миграций сборки AGP 9 и JDK 21 сведения о версиях и Android-командах
-актуализированы. Исходные инструкции эксперимента v1 сохранены в архиве
-`docs/ai-agent/v1/configuration-snapshot.zip`; это не итерация улучшения правил.
 
 ## Фактический стек
 
@@ -47,7 +45,7 @@
 или успешную сборку. При ошибке toolchain сообщи точную причину; не обновляй
 Gradle/AGP/Kotlin автоматически в рамках несвязанной задачи.
 
-## Архитектура и расположение кода
+## Фактическая архитектура и расположение кода
 
 Все десять модулей объявлены в `settings.gradle.kts`:
 
@@ -77,9 +75,25 @@ Gradle/AGP/Kotlin автоматически в рамках несвязанн�
 ViewModel, DI-фреймворк и отдельный domain/use-case модуль сейчас не используются.
 Не представляй MVVM/Clean Architecture как уже реализованную архитектуру.
 Рекомендации Android о слоях и однонаправленном потоке применяй к этим владельцам
-состояния; вводить ViewModel или use cases следует отдельным обоснованным изменением.
+состояния. ViewModel и DI-фреймворк не вводи без отдельного обоснования.
 
-### Границы и продуктовые контракты
+## Целевые правила нового и перерабатываемого кода
+
+- UI декомпозируется на Screen и самостоятельные компоненты в подпапках
+  `ui/<экран>/components/` и `ui/components/`. Подробности — в `feature/AGENTS.md`.
+- Бизнес-сценарии оформляются как `*UseCase` в
+  `composeApp/.../domain/<сценарий>/usecase/`; детали — в `composeApp/AGENTS.md`.
+  Вёрстка и локальные UI-действия не требуют use cases.
+- Общие элементы размещаются по ответственности в core; правила зависимостей,
+  подпапок и целевого `core/ui` — в `core/AGENTS.md`. Модуль core/ui пока отсутствует.
+  Его создание допустимо в задаче на общий UI при наличии реальных потребителей.
+- Применяй эти соглашения к затронутому сценарию, без массового переноса проекта.
+  Рефакторинг сохраняет callbacks, владение состоянием, ключи effects, доступность,
+  навигацию и внешний вид. Изменения поведения/дизайна обозначай явно.
+- Примеры существующего кода и шаблон компонента вынесены в
+  `docs/ai-agent/code-examples.md`; читай нужный пример, а не весь справочник.
+
+## Обязательные границы и продуктовые контракты
 
 - Screen отображает данные и вызывает callbacks. Запросы конкретного API и
   преобразования DTO принадлежат data-модулям; общие модели — `core/model`.
@@ -121,6 +135,26 @@ ViewModel, DI-фреймворк и отдельный domain/use-case моду�
   Новые wildcard imports не добавляй; существующий порядок не переформатируй массово.
   Kotlin использует видимость объявлений, отдельного блока exports нет.
 
+## Строки и локализация
+
+- Новые и изменяемые пользовательские тексты выноси в строковые ресурсы:
+  заголовки, кнопки, подсказки, сообщения об ошибках и подписи доступности.
+  Не заменяй ресурсы Kotlin-константами. Серверный контент, пользовательский ввод,
+  URL, ключи протоколов, логи и тестовые данные не являются переводами интерфейса.
+- Для общего Compose UI используй Compose Multiplatform Resources в модуле,
+  которому принадлежит UI: `src/commonMain/composeResources/values/strings.xml`.
+  Не используй Android `R.string` в commonMain и не создавай зависимость feature
+  от composeApp ради ресурсов. Используй устойчивые смысловые имена `snake_case`.
+- На момент добавления правила зависимость `compose.components.resources` есть
+  в composeApp, но в feature-модулях её нет; файлов строковых ресурсов пока нет.
+  При первой задаче на строки подключай ресурсы только в затронутых UI-модулях
+  и проверяй Android/Desktop. Это необходимая настройка для задачи, а не повод
+  переносить все строки приложения или добавлять новый модуль.
+- Подставляемые значения передавай параметрами целого ресурса, не собирай фразы
+  конкатенацией. Для количественных форм используй plural-ресурсы. Сохраняй русский
+  текст по умолчанию; новые переводы добавляй по задаче. Не передавай Compose Res
+  в data/core:model: локализованный текст определяется на уровне UI.
+
 ## Compose и Coroutines
 
 - Поднимай состояние к ближайшему общему владельцу; передавай данные вниз,
@@ -147,94 +181,22 @@ ViewModel, DI-фреймворк и отдельный domain/use-case моду�
   без явного контракта. Не запускай новый collect при каждой рекомпозиции.
   Flow.catch обрабатывает upstream; ошибки обработчика collect обрабатывай отдельно.
 
-## Пять образцов из текущего проекта
+## Сохранность данных и конкурирующие действия
 
-Ниже короткие выдержки; полные реализации остаются в исходниках. Заимствуй
-указанное свойство примера, а не все решения окружающего файла.
-
-### 1. Явный контракт repository
-
-`data/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/data/festival/CosplayRepository.kt`:
-
-```kotlin
-interface CosplayRepository {
-    suspend fun getFestivalCatalog(year: Int): FestivalCatalog
-    suspend fun getFestivalDetail(festival: FestivalSummary): FestivalDetail
-}
-```
-
-Зависимость выражена интерфейсом, параметр года явный, результат типизирован.
-
-### 2. Исчерпывающее состояние UI
-
-`feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/UiState.kt`:
-
-```kotlin
-sealed interface UiState<out T> {
-    data object Loading : UiState<Nothing>
-    data class Success<T>(val data: T) : UiState<T>
-    data class Error(val message: String) : UiState<Nothing>
-}
-```
-
-Используй исчерпывающий `when`, чтобы новое состояние не осталось без UI.
-
-### 3. Ошибка запроса не поглощает отмену
-
-`data/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/data/festival/CosplayRepositoryImpl.kt`:
-
-```kotlin
-private inline fun <T> catchingFestivalRequest(block: () -> T): Result<T> = try {
-    Result.success(block())
-} catch (cancelled: CancellationException) {
-    throw cancelled
-} catch (error: Exception) {
-    Result.failure(error)
-}
-```
-
-В исходнике импортирован `kotlin.coroutines.cancellation.CancellationException`.
-Helper приватный: не вызывай его из другого файла. Поведение покрывает
-`composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/FestivalCancellationTest.kt`.
-
-### 4. Ресурс освобождается владельцем
-
-`composeApp/src/commonMain/kotlin/ru/flobsterable/cosplay2/App.kt`, фрагменты CosplayApp:
-
-```kotlin
-val client = remember { createHttpClient() }
-```
-
-```kotlin
-DisposableEffect(Unit) {
-    onDispose {
-        client.close()
-    }
-}
-```
-
-Клиент здесь стабилен на время композиции. Для заменяемого ресурса ключ эффекта
-должен отслеживать сам ресурс.
-
-### 5. Запись перед обновлением видимого состояния
-
-`composeApp/src/commonMain/kotlin/ru/flobsterable/cosplay2/MyCityState.kt`, метод:
-
-```kotlin
-suspend fun save(value: String) = mutex.withLock {
-    isSaving = true
-    try {
-        val normalized = normalizeCity(value)
-        withContext(Dispatchers.IO) { storage.write(normalized) }
-        city = normalized
-    } finally {
-        isSaving = false
-    }
-}
-```
-
-Записи сериализованы Mutex, UI обновляется после успешного сохранения, флаг
-сбрасывается также при ошибке или отмене. Поля и импорты смотри в исходном классе.
+- Изменяя формат избранного или настроек, сохраняй чтение ранее записанных данных
+  либо добавляй явную миграцию. Ошибка чтения не равна успешному пустому результату.
+  Не стирай повреждённые данные автоматически; сохраняй предусмотренный backup
+  и явное подтверждение сброса. Подробности — в `core/platform/AGENTS.md`.
+- Для повторных сохранений, скачиваний и отправок задай политику: сериализация,
+  объединение или отклонение дубликатов. Защищай операцию у владельца состояния,
+  а не только disabled-кнопкой. Разные действия, например повторное переключение
+  избранного, не должны теряться из-за общего запрета.
+- При смене года, фестиваля или другого входа отменяй старую работу и исключай
+  запись её результата поверх нового состояния. Проверяй также ошибки и finally:
+  старая операция не должна сбрасывать флаг новой. Флаги восстанавливай при отмене.
+- Пользователю показывай понятную ошибку и доступное следующее действие, сохраняя
+  ввод для повтора. Технические детали направляй в безопасный AppLogger;
+  exception.message не является готовым пользовательским сообщением.
 
 ## Пять запрещённых антипаттернов для нового кода
 
@@ -249,38 +211,6 @@ suspend fun save(value: String) = mutex.withLock {
 5. `println`/`printStackTrace` как прикладное логирование, секреты или чувствительные
    данные в логах. Используй AppLogger с безопасным содержимым; существующий
    `LogLevel.ALL` в HttpClientFactory не является образцом для логирования секретов.
-
-## Шаблон типового UI-файла
-
-Предлагаемый шаблон, не существующий экран и не выполненная пробная генерация.
-Размещать в `feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/`
-только когда задача действительно требует нового компонента. Использованы уже
-доступные этому модулю зависимости; API/репозитория внутри UI нет.
-
-```kotlin
-package ru.flobsterable.cosplay2.feature.festival
-
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-
-@Composable
-fun FestivalActionCard(
-    title: String,
-    actionLabel: String,
-    onOpen: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Column(modifier = modifier) {
-        Text(text = title)
-        Button(onClick = onOpen) {
-            Text(text = actionLabel)
-        }
-    }
-}
-```
 
 ## Проверка изменений
 
@@ -300,83 +230,31 @@ Detekt/ktlint/Spotless в просмотренных Gradle-файлах не н
 Существующие тесты проверяют отмену запросов, кэш, избранное, город и Compose UI.
 Проверяй ошибку, пустой ответ, смену входных параметров и отмену для затронутого сценария.
 UI-тестам Desktop может понадобиться графическая среда.
+Исправление бага сопровождай регрессионным тестом, воспроизводящим его причину,
+когда это возможно в существующей конфигурации. Если тест не добавлен, объясни
+причину и фактический способ проверки. Проверяй наблюдаемое поведение и контракт,
+а не структуру private helpers. Для простой правки текста или чистого перемещения
+без изменения логики не добавляй тесты, повторяющие реализацию.
 
 В отчёте укажи фактически выполненные проверки и причины пропусков. При изменении
 поведения обнови конкретный затронутый документ из `docs/`. Изменение только
-этого Markdown-файла не требует сборки приложения. Не выдавай наличие команд
+инструкций и Markdown-документов не требует сборки приложения; выполни git diff --check. Не выдавай наличие команд
 в инструкции за успешный запуск.
 
-## Глобальные, проектные и локальные правила (конфигурация v1)
+## Локальные правила, skills и роли
 
-- Личный глобальный `~/.codex/AGENTS.md`: язык общения, общие предпочтения,
-  работа с секретами и формат отчёта. Не помещай туда версии и контракты Cosplay 2.
-  В рамках настройки v1 файл создан; версионируемая копия находится в
-  `docs/ai-agent/global/AGENTS.md`. Стек конкретного приложения остаётся в корне проекта.
-- Корневой `AGENTS.md` (этот файл): стек, связи модулей, единые conventions,
-  источники и проверки. Он хранится в Git вместе с проектом.
-- Вложенный `<module>/AGENTS.md` при необходимости: только дополнительные правила
-  соответствующего поддерева. Более глубокие правила уточняют родительские;
-  прямые инструкции пользователя и системные ограничения имеют приоритет.
-  Локальные правила установлены в `androidApp`, `composeApp`, `data/festival`,
-  `core/platform` и `feature/festival`.
-- Предлагаемые места при росте правил: `data/festival/AGENTS.md` для контрактов
-  API/парсинга; `core/platform/AGENTS.md` для actual и storage;
-  `feature/festival/AGENTS.md` для UI/фильтров.
-  Не дублируй весь корневой документ. Для ревью учитывай действующую версию
-  `docs/review-rules.md` согласно описанному там порядку изменения правил.
+Личные правила — в ~/.codex/AGENTS.md (копия: docs/ai-agent/global/AGENTS.md).
+Перед изменением файла читай все AGENTS.md на пути к нему, включая промежуточные
+feature/core и правила модуля; не полагайся только на автоматически загруженный текст.
+Не дублируй корневые правила во вложенных файлах.
 
-## Субагенты и skills v1
+Repo skills в .agents/skills/: kmp-architecture — границы и use cases,
+compose-multiplatform — UI, kotlin-code-style — Kotlin, kmp-testing — проверки.
+Применяй по задаче; источники и подробный workflow находятся в соответствующем skill.
 
-Рабочие роли объявлены в `.codex/agents/code-reviewer.toml` и
-`.codex/agents/test-engineer.toml`. Формат проверяется установленным Codex;
-при запуске новой сессии роли обнаруживаются автоматически. Для небольшой
-задачи достаточно одного агента. При независимых работах основной агент может
-разделить чтение и проверку по следующим ролям:
-
-| Роль | Область | Ожидаемый результат |
-| --- | --- | --- |
-| KMP reviewer | Gradle, core/network, core/platform | Границы source sets, обе actual, риски сборки |
-| Data reviewer | data/festival, data/update, модели | Контракты API, парсинг, fallback, cancellation |
-| Compose reviewer | composeApp, feature/* | Владение состоянием, effects, навигация, UI-состояния |
-| Verification reviewer | Существующие тесты и docs | Регрессии, реальные результаты команд, расхождения документации |
-
-Основной агент задаёт границы работы, сверяет выводы и интегрирует результат.
-Параллельное редактирование одних файлов не назначать; результаты другого агента
-проверять по diff и тестам. Если инструмент субагентов недоступен, выполнять эти
-проверки последовательно и не заявлять, что субагенты запускались.
-
-Установлены `.agents/skills/<name>/SKILL.md`: `kmp-architecture`,
-`kotlin-code-style`, `compose-multiplatform`, `kmp-testing`. Выбирай их по описанию
-задачи; skill задаёт workflow и ссылки на фактические файлы, а не копию архитектуры.
-Общие личные skills остаются вне проекта. `code-reviewer` выполняет независимое
-ревью без редактирования; `test-engineer` проверяет тесты и команды с явным
-разрешением основной задачи на добавление тестов. Оба наследуют разрешения родителя.
-Упомянутый в `docs/dev-assistant.md` внешний cosplay-dev-assistant — отдельный
-инструмент; его конфигурация здесь не исследована и не изменяется.
-
-## Официальные источники и их применение
-
-- [Codex: AGENTS.md](https://developers.openai.com/codex/guides/agents-md)
-  — глобальные и вложенные инструкции, порядок обнаружения.
-- [Codex: skills](https://developers.openai.com/codex/skills)
-  — repo skills в `.agents/skills`, обязательные name/description.
-- [Codex: subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents)
-  — project agents в `.codex/agents/*.toml`.
-
-Актуальные страницы просмотрены 23 октября 2026 года. Свежие примеры могут
-использовать более новые версии, чем этот проект; проверяй доступность каждого API.
-
-- [JetBrains: KMP source set hierarchy](https://kotlinlang.org/docs/multiplatform/multiplatform-hierarchy.html)
-  — общий код и платформенные source sets, стандартная иерархия.
-- [JetBrains: Kotlin coding conventions](https://kotlinlang.org/docs/coding-conventions.html)
-  — naming, форматирование, структура объявлений.
-- [Android Developers: architecture recommendations](https://developer.android.com/topic/architecture/recommendations)
-  — слои, repository, однонаправленный поток; рекомендации адаптируются к текущей архитектуре.
-- [JetBrains: Compose Multiplatform lifecycle](https://kotlinlang.org/docs/multiplatform/compose-lifecycle.html)
-  — общий lifecycle и особенности Main dispatcher на Desktop при внедрении lifecycle API.
-- [Android Developers: Compose side effects](https://developer.android.com/develop/ui/compose/side-effects)
-  — ключи effects, запуск работы и освобождение ресурсов.
-- [JetBrains: Coroutines basics](https://kotlinlang.org/docs/coroutines-basics.html)
-  — scope и structured concurrency.
-- [JetBrains: Coroutine exceptions handling](https://kotlinlang.org/docs/exception-handling.html)
-  — распространение ошибок и отмены.
+Роли .codex/agents/code-reviewer.toml и test-engineer.toml задают независимое
+read-only ревью и проверку соответственно. Изменение тестов требует разрешения
+основной задачи. При делегировании задавай границы, сохраняй чужие изменения,
+не назначай параллельное редактирование одного файла и проверяй результат.
+Не заявляй запуск субагентов или проверок, которые фактически не выполнялись.
+Внешний cosplay-dev-assistant из docs/dev-assistant.md здесь не настраивается.
