@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AppVersionComparisonTest[desktop]" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-23T20:06:28.444Z" hostname="FLOBSTER" time="0.051">
+  <properties/>
+  <testcase name="prereleaseInstallOffersSameVersionStableRelease[desktop]" classname="ru.flobsterable.cosplay2.AppVersionComparisonTest" time="0.041"/>
+  <testcase name="stableInstallDoesNotOfferSameVersionPrerelease[desktop]" classname="ru.flobsterable.cosplay2.AppVersionComparisonTest" time="0.0"/>
+  <testcase name="prereleaseIdentifiersFollowNumericAndLexicalPrecedence[desktop]" classname="ru.flobsterable.cosplay2.AppVersionComparisonTest" time="0.005"/>
+  <testcase name="buildMetadataDoesNotChangePrecedence[desktop]" classname="ru.flobsterable.cosplay2.AppVersionComparisonTest" time="0.001"/>
+  <testcase name="numericVersionsAndPrefixRemainCompatible[desktop]" classname="ru.flobsterable.cosplay2.AppVersionComparisonTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,125 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index b6c8a74..940fd21 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -258,3 +258,13 @@ read-only ревью и проверку соответственно. Изме
+ не назначай параллельное редактирование одного файла и проверяй результат.
+ Не заявляй запуск субагентов или проверок, которые фактически не выполнялись.
+ Внешний cosplay-dev-assistant из docs/dev-assistant.md здесь не настраивается.
++
++## Профили задач
++
++По запросу Bug Fix, Research, Build Upgrade или Review загружай соответствующий SKILL.md
++из `.agents/skills/profile-bug-fix/`, `.agents/skills/profile-research/` или
++`.agents/skills/profile-build-upgrade/` или `.agents/skills/profile-review/`.
++Research и Review не изменяют файлы;
++найденные исправления оформляются отдельной задачей Bug Fix.
++Инструкции, установка в Codex и результаты
++пробных запусков: `docs/ai-agent/profiles/README.md`. Профили дополняют правила проекта.
+diff --git a/README.md b/README.md
+index 2af1eb8..6e5eca2 100644
+--- a/README.md
++++ b/README.md
+@@ -14,6 +14,7 @@ Compose Multiplatform приложение для просмотра фести
+ - [Фичи и экраны](docs/features.md): что уже сделано, пользовательские флоу, состояния и ограничения.
+ - [Реализация экранов](docs/screens.md): компоненты, состояние, навигация и добавление нового UI.
+ - [Автообновление документации](docs/docs-sync.md): после слияния PR агент проверяет и коммитит README/docs в целевую ветку.
++- [Профили Codex](docs/ai-agent/profiles/README.md): Bug Fix, Research, Build Upgrade и дополнительный Review, установка и логи испытаний.
+ 
+ - [Открыть репозиторий](https://github.com/Flobsterable/cosplay-2)
+ - [Последний релиз](https://github.com/Flobsterable/cosplay-2/releases/latest)
+diff --git a/core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt b/core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt
+index 2b7b640..ea15191 100644
+--- a/core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt
++++ b/core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt
+@@ -132,22 +132,45 @@ sealed interface AppUpdateInstallState {
+ }
+ 
+ fun compareAppVersions(left: String, right: String): Int {
+-    fun normalize(value: String): List<Int> = value
+-        .removePrefix("v")
+-        .split(".", "-", "_")
+-        .mapNotNull { it.toIntOrNull() }
+-
+-    val leftParts = normalize(left)
+-    val rightParts = normalize(right)
++    val leftVersion = left.removePrefix("v").substringBefore('+')
++    val rightVersion = right.removePrefix("v").substringBefore('+')
++    val leftParts = leftVersion.substringBefore('-').split(".", "_")
++    val rightParts = rightVersion.substringBefore('-').split(".", "_")
+     val maxSize = maxOf(leftParts.size, rightParts.size)
+ 
+     for (index in 0 until maxSize) {
+-        val leftPart = leftParts.getOrElse(index) { 0 }
+-        val rightPart = rightParts.getOrElse(index) { 0 }
+-        if (leftPart != rightPart) {
+-            return leftPart.compareTo(rightPart)
+-        }
++        val comparison = compareVersionIdentifiers(
++            leftParts.getOrElse(index) { "0" },
++            rightParts.getOrElse(index) { "0" }
++        )
++        if (comparison != 0) return comparison
++    }
++
++    val leftPrerelease = leftVersion.substringAfter('-', "")
++    val rightPrerelease = rightVersion.substringAfter('-', "")
++    if (leftPrerelease.isEmpty() && rightPrerelease.isEmpty()) return 0
++    if (leftPrerelease.isEmpty()) return 1
++    if (rightPrerelease.isEmpty()) return -1
++
++    val leftIdentifiers = leftPrerelease.split('.')
++    val rightIdentifiers = rightPrerelease.split('.')
++    for (index in 0 until minOf(leftIdentifiers.size, rightIdentifiers.size)) {
++        val comparison = compareVersionIdentifiers(leftIdentifiers[index], rightIdentifiers[index])
++        if (comparison != 0) return comparison
+     }
+ 
+-    return 0
++    return leftIdentifiers.size.compareTo(rightIdentifiers.size)
++}
++
++private fun compareVersionIdentifiers(left: String, right: String): Int {
++    val leftIsNumeric = left.isNotEmpty() && left.all { it in '0'..'9' }
++    val rightIsNumeric = right.isNotEmpty() && right.all { it in '0'..'9' }
++    if (leftIsNumeric && rightIsNumeric) {
++        val leftNumber = left.trimStart('0').ifEmpty { "0" }
++        val rightNumber = right.trimStart('0').ifEmpty { "0" }
++        val lengthComparison = leftNumber.length.compareTo(rightNumber.length)
++        return if (lengthComparison != 0) lengthComparison else leftNumber.compareTo(rightNumber)
++    }
++    if (leftIsNumeric != rightIsNumeric) return if (leftIsNumeric) -1 else 1
++    return left.compareTo(right)
+ }
+diff --git a/docs/README.md b/docs/README.md
+index b258876..dea7df6 100644
+--- a/docs/README.md
++++ b/docs/README.md
+@@ -22,6 +22,7 @@ Cosplay 2 — Android/Desktop приложение для просмотра ф
+ | Как работает AI-ревью PR? | [Ревью](ai-review.md) |
+ | Как обновляются README/docs после слияния PR? | [Автообновление документации](docs-sync.md) |
+ | Какие особенности проекта проверяет ревью? | [Правила проекта](review-rules.md) |
++| Как включить Bug Fix, Research, Build Upgrade и Review в Codex? | [Профили агента](ai-agent/profiles/README.md) |
+ 
+ ## Основные технологии
+ 
+diff --git a/docs/feature-flows.md b/docs/feature-flows.md
+index 6874b9f..802a4b3 100644
+--- a/docs/feature-flows.md
++++ b/docs/feature-flows.md
+@@ -71,6 +71,15 @@ GitHubUpdateRepository запрашивает последний релиз Flob
+ затем файлы с MIME application/vnd.android.package-archive.
+ Баннер показывается при наличии pendingUpdate или более новой версии относительно AppVersion.versionName.
+ 
++Сравнение версий игнорирует префикс `v` и build metadata после `+`.
++Сначала сравниваются числовые компоненты основной версии (пропущенные равны нулю),
++затем prerelease после `-`: стабильная версия старше prerelease с той же основой.
++Например, `1.0.0-rc.1` → `1.0.0` предлагает обновление, обратный переход — нет.
++Идентификаторы prerelease сравниваются по порядку: числовые — численно,
++текстовые — лексикографически; числовой ниже текстового, более короткая равная
++последовательность ниже длинной. Основная версия имеет приоритет:
++`1.0.1-rc.1` старше `1.0.0`.
++
+ Android AppUpdateLauncher скачивает APK и вызывает системный установщик.
+ Пользователь подтверждает установку и при необходимости разрешает установку из этого источника.
+ Desktop открывает asset/страницу релиза через браузер. Это не обновление через Play Store.

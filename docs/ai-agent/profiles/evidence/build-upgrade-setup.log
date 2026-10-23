@@ -1,0 +1,20 @@
+Profile configuration checks
+Skill is valid!
+codex -p bug-fix debug prompt-input: exit=0, developer instructions match=True
+codex -p research debug prompt-input: exit=0, developer instructions match=True
+codex -p build-upgrade debug prompt-input: exit=0, developer instructions match=True
+codex -p review debug prompt-input: exit=0, developer instructions match=True
+bug-fix: TOML/YAML PASS; installed bytes match; permission settings preserved
+research: TOML/YAML PASS; installed bytes match; permission settings preserved
+build-upgrade: TOML/YAML PASS; installed bytes match; permission settings preserved
+review: TOML/YAML PASS; installed bytes match; permission settings preserved
+Installed bug-fix.config.toml and skills/profile-bug-fix
+Installed research.config.toml and skills/profile-research
+Installed build-upgrade.config.toml and skills/profile-build-upgrade
+Installed review.config.toml and skills/profile-review
+Installed bug-fix.config.toml and skills/profile-bug-fix
+Installed research.config.toml and skills/profile-research
+Installed build-upgrade.config.toml and skills/profile-build-upgrade
+Installed review.config.toml and skills/profile-review
+Isolated four-profile installer twice: PASS; base config and unrelated file preserved
+git diff --check exit=0

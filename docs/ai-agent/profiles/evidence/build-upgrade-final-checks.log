@@ -1,0 +1,3 @@
+Markdown local links: PASS (14 files)
+Numbered-day/document-version labels absent in profile materials: PASS
+git diff --check: exit 0

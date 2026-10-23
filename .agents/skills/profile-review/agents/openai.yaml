@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review"
+  short_description: "Проверить diff и найти подтверждённые регрессии"
+  default_prompt: "Используй $profile-review для независимого ревью текущего diff."

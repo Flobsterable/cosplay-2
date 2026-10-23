@@ -14,6 +14,7 @@ Compose Multiplatform приложение для просмотра фести�
 - [Фичи и экраны](docs/features.md): что уже сделано, пользовательские флоу, состояния и ограничения.
 - [Реализация экранов](docs/screens.md): компоненты, состояние, навигация и добавление нового UI.
 - [Автообновление документации](docs/docs-sync.md): после слияния PR агент проверяет и коммитит README/docs в целевую ветку.
+- [Профили Codex](docs/ai-agent/profiles/README.md): Bug Fix, Research, Build Upgrade и дополнительный Review, установка и логи испытаний.
 
 - [Открыть репозиторий](https://github.com/Flobsterable/cosplay-2)
 - [Последний релиз](https://github.com/Flobsterable/cosplay-2/releases/latest)
