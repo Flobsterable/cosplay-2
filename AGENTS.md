@@ -3,7 +3,8 @@
 Проверено по исходникам и официальной документации 23 октября 2026 года.
 Файл предназначен для Codex и действует на весь репозиторий. Это первая версия
 правил. Конфигурация и результаты первого эксперимента хранятся отдельно в
-`docs/ai-agent/v1/`; после эксперимента правила v1 не корректируются.
+`docs/ai-agent/v1/`; снимок правил эксперимента v1 не корректируется.
+Действующие инструкции актуализируются при изменении конфигурации проекта.
 
 ## Перед изменениями
 
@@ -20,7 +21,7 @@
 - Перед изменением файла читай вложенные AGENTS.md на пути к нему, даже если
   сессия запущена из корня. Для релевантной задачи загружай skill из `.agents/skills/`.
 
-После отдельной миграции сборки AGP 9 сведения о версиях и Android-командах
+После отдельных миграций сборки AGP 9 и JDK 21 сведения о версиях и Android-командах
 актуализированы. Исходные инструкции эксперимента v1 сохранены в архиве
 `docs/ai-agent/v1/configuration-snapshot.zip`; это не итерация улучшения правил.
 
@@ -32,13 +33,13 @@
 | --- | --- |
 | Kotlin Multiplatform и Compose compiler plugin | 2.4.21 |
 | Compose Multiplatform / Material 3 | Compose 1.12.2; Material 3 через Compose dependencies |
-| Ktor Client | 2.3.12; OkHttp для Android, CIO для Desktop |
-| kotlinx.serialization JSON | 1.7.3 |
-| kotlinx.datetime | 0.6.1 |
-| kotlinx.coroutines | 1.8.0 |
-| Android Gradle Plugin | 9.3.3 |
+| Ktor Client | 3.6.0; OkHttp для Android, CIO для Desktop |
+| kotlinx.serialization JSON | 1.12.0 |
+| kotlinx.datetime | 0.8.0 |
+| kotlinx.coroutines | 1.11.0 |
+| Android Gradle Plugin | 9.4.1 |
 | Android | minSdk 28, compileSdk 37, targetSdk 35 |
-| JVM | toolchain и bytecode target 17 |
+| JVM | toolchain и bytecode target 21; критерий Gradle daemon — Java 21 |
 | Gradle Wrapper | 9.7.0 в `gradle/wrapper/gradle-wrapper.properties` |
 
 Цели — Android и Desktop JVM (`jvm("desktop")`). iOS и web не настроены.
@@ -316,8 +317,8 @@ UI-тестам Desktop может понадобиться графическа
 - Вложенный `<module>/AGENTS.md` при необходимости: только дополнительные правила
   соответствующего поддерева. Более глубокие правила уточняют родительские;
   прямые инструкции пользователя и системные ограничения имеют приоритет.
-  Локальные правила установлены в `composeApp`, `data/festival`, `core/platform`
-  и `feature/festival`.
+  Локальные правила установлены в `androidApp`, `composeApp`, `data/festival`,
+  `core/platform` и `feature/festival`.
 - Предлагаемые места при росте правил: `data/festival/AGENTS.md` для контрактов
   API/парсинга; `core/platform/AGENTS.md` для actual и storage;
   `feature/festival/AGENTS.md` для UI/фильтров.

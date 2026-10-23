@@ -1,0 +1,22 @@
+[
+  {
+    "skill": "compose-multiplatform",
+    "exitCode": 0,
+    "output": "Skill is valid!"
+  },
+  {
+    "skill": "kmp-architecture",
+    "exitCode": 0,
+    "output": "Skill is valid!"
+  },
+  {
+    "skill": "kmp-testing",
+    "exitCode": 0,
+    "output": "Skill is valid!"
+  },
+  {
+    "skill": "kotlin-code-style",
+    "exitCode": 0,
+    "output": "Skill is valid!"
+  }
+]

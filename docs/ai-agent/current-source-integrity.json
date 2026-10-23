@@ -1,0 +1,33 @@
+{
+  "checkedOn": "2026-10-23",
+  "context": "Working tests were corrected after v1; archived generation remains unchanged",
+  "files": [
+    {
+      "path": "feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalSearch.kt",
+      "originalSha256": "DE905FB57796A43331BA55039A813E8E37E8E804C659D91DDF2C14250C466CD3",
+      "archivedSha256": "DE905FB57796A43331BA55039A813E8E37E8E804C659D91DDF2C14250C466CD3",
+      "currentSha256": "81726055401A829595D3AC6702B1F54CF0F29733D96D8A6E893A1F9DA21F5102",
+      "archiveMatchesOriginal": true,
+      "currentMatchesOriginal": false,
+      "currentTextMatchesOriginal": true
+    },
+    {
+      "path": "composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/FestivalSearchTest.kt",
+      "originalSha256": "609A889555F58E1B145322C3359AEE77889ED7FB3F185B880DD89CEFC7263B3F",
+      "archivedSha256": "609A889555F58E1B145322C3359AEE77889ED7FB3F185B880DD89CEFC7263B3F",
+      "currentSha256": "571D99B5A8C0665A0393602456297666E4641A65D67B1267C2C14C6767EDD3B2",
+      "archiveMatchesOriginal": true,
+      "currentMatchesOriginal": false,
+      "currentTextMatchesOriginal": false
+    },
+    {
+      "path": "docs/feature-flows.md",
+      "originalSha256": "0EB0D20063BE233AC96C854AEBD9E8C3CEE10EEA8A75496DC15C5B12F7451841",
+      "archivedSha256": "0EB0D20063BE233AC96C854AEBD9E8C3CEE10EEA8A75496DC15C5B12F7451841",
+      "currentSha256": "0EB0D20063BE233AC96C854AEBD9E8C3CEE10EEA8A75496DC15C5B12F7451841",
+      "archiveMatchesOriginal": true,
+      "currentMatchesOriginal": true,
+      "currentTextMatchesOriginal": true
+    }
+  ]
+}

@@ -20,8 +20,11 @@ fakes/Compose harness; новые библиотеки для локальног
 - :androidApp:lintDebug для Android Lint, git diff --check для whitespace.
 
 Сохраняй команду, exit code и полный log. Различай FAIL кода и BLOCKED окружением.
-При отсутствии Java сначала используй установленный JDK 17/Android Studio JBR
-через JAVA_HOME процесса; не меняй глобальное окружение или Gradle-версии.
+Определи требуемую Java по Gradle-файлам и gradle/gradle-daemon-jvm.properties:
+сейчас toolchain, JVM target и критерий daemon — Java 21. При отсутствии Java
+используй установленный JDK через JAVA_HOME процесса; Android Studio JBR может
+служить launcher, но её версия не заменяет требуемую toolchain. Не меняй глобальное
+окружение или Gradle-версии.
 Не выдавай отсутствие ktlint/detekt за успешный lint и не исправляй несвязанные
 toolchain-проблемы. Результат: команды, реальные totals тестов, дефекты и ограничения.
 
