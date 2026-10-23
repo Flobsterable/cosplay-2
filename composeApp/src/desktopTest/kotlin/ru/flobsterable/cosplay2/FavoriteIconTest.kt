@@ -125,6 +125,7 @@ class FavoriteIconTest {
                         myCity = "", onlyMyCity = false, onCityFilterSelected = {}, cityEnabled = true, onChooseCity = {})
                 }
             }
+            compose.onNodeWithContentDescription("Показать фильтры").performClick()
             compose.onNodeWithText("2025").performClick()
             compose.runOnIdle {
                 assertEquals(2025, picked)

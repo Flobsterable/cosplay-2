@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.hasScrollToIndexAction
@@ -47,14 +48,22 @@ class MyCityScreenTest {
                 }
             }
             compose.onNodeWithText("Фестиваль Москва").assertDoesNotExist()
+            compose.onNodeWithText("Все города").assertDoesNotExist()
             compose.onNodeWithText("Найдено: 1").assertExists()
             compose.onNodeWithText("Фестиваль Омск").performScrollTo().assertExists()
             compose.onNode(hasScrollToIndexAction()).performScrollToIndex(0)
+            compose.onNodeWithContentDescription("Показать фильтры").performClick()
             compose.onNodeWithText("Все города").performScrollTo().performClick()
             compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasText("Фестиваль Москва"))
             compose.onNodeWithText("Фестиваль Москва").assertExists()
             compose.onNode(hasScrollToIndexAction()).performScrollToIndex(0)
             compose.onNodeWithText("Мой город: Омск").performScrollTo().performClick()
+            compose.onNodeWithText("Фестиваль Москва").assertDoesNotExist()
+            compose.onNodeWithContentDescription("Скрыть фильтры").performClick()
+            compose.onNodeWithText("Все города").assertDoesNotExist()
+            compose.onNodeWithText("Найдено: 1").assertExists()
+            compose.onNodeWithContentDescription("Показать фильтры").performClick()
+            compose.onNodeWithText("Мой город: Омск").assertExists()
             compose.onNodeWithText("Фестиваль Москва").assertDoesNotExist()
         } finally {
             client.close()
