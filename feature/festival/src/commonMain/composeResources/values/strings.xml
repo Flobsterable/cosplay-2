@@ -1,0 +1,10 @@
+<resources>
+    <string name="catalog_search_hint">Поиск по названию, городу или описанию</string>
+    <string name="catalog_show_filters">Показать фильтры</string>
+    <string name="catalog_hide_filters">Скрыть фильтры</string>
+    <string name="catalog_all_cities">Все города</string>
+    <string name="catalog_my_city">Мой город</string>
+    <string name="catalog_selected_city">Мой город: %1$s</string>
+    <string name="catalog_change_city">Изменить</string>
+    <string name="catalog_actual_year">Актуальные</string>
+</resources>
