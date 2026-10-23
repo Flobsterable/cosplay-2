@@ -1,0 +1,11 @@
+AppVersionComparisonTest[desktop]: tests=5, failures=0, errors=0, skipped=0
+FavoriteFestivalSummaryTest[desktop]: tests=2, failures=0, errors=0, skipped=0
+FavoriteIconTest[desktop]: tests=5, failures=0, errors=0, skipped=0
+FavoritesStateTest[desktop]: tests=9, failures=0, errors=0, skipped=0
+FestivalCancellationTest[desktop]: tests=2, failures=0, errors=0, skipped=0
+FestivalCatalogCacheTest[desktop]: tests=6, failures=0, errors=0, skipped=0
+FestivalSearchTest[desktop]: tests=7, failures=0, errors=0, skipped=0
+MyCityScreenTest[desktop]: tests=1, failures=0, errors=0, skipped=0
+MyCityTest[desktop]: tests=3, failures=0, errors=0, skipped=0
+FavoritesRepositoryTest[desktop]: tests=8, failures=0, errors=0, skipped=0
+FileFavoritesStorageTest[desktop]: tests=4, failures=0, errors=0, skipped=0

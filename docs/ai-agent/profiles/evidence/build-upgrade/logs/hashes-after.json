@@ -1,0 +1,102 @@
+[
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\.codex\\agents\\code-reviewer.toml",
+    "Hash": "07951C44B8F9712C511D63048C06989FFFA79429FD6FB7F21E0A1528D2536388"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\.codex\\agents\\test-engineer.toml",
+    "Hash": "B9BB4E6AB8DD13BFF9272D59693AEEE4C7BC3ACA05C017A9D24BE34532A0E95D"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\.github\\workflows\\ai-review.yml",
+    "Hash": "C5E4798B8F67A4852F4269A30E4FDCA606061BFB0BEB372D20CA8A61B544B5DA"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\.github\\workflows\\docs-sync.yml",
+    "Hash": "CF7C3C3DD218876390D8C1555AAA0485CA62A02D5DE156D6B28C7C013A8B6358"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\.github\\workflows\\release.yml",
+    "Hash": "938FF84FCD8503FCAE69B77783120C344E3C7FB72D7833473D6EB065056BBB4D"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\androidApp\\build.gradle.kts",
+    "Hash": "A5EC0A35132DCE9801F7E563F3EF4C3724EF9CEF099C588EE8D1F30BFCAD50B1"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\build.gradle.kts",
+    "Hash": "C80CF4BDF7D3D8EA54E5B3219B0A327880D364E02113FC8666F931D7E23C949E"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\composeApp\\build.gradle.kts",
+    "Hash": "8F9BA9615155851DBAB40DF0B3A388F63B874E3FE125EDEB35B3726A4F5A5E8D"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\core\\model\\build.gradle.kts",
+    "Hash": "93D9B5A6DD4C5181C81D3E77F2F62B23F9BC2972CA6CD3FEB143703549D04D13"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\core\\network\\build.gradle.kts",
+    "Hash": "018C70206946E9D7570C55F9068C137E406A0A88A1BF2F4BBF48B8447587CB67"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\core\\platform\\build.gradle.kts",
+    "Hash": "B77242F4AEFEE97AAFCDEF8B1FF256E3667F8376CC0A9454B1BB96A35F8BDB03"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\data\\festival\\build.gradle.kts",
+    "Hash": "48B0D0C1409556452A1906E5E8F9B9622A52D133B97BA4950B07C3AF0065305B"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\data\\update\\build.gradle.kts",
+    "Hash": "03FD69BAB2845F47D7A2D9224C45FE3C6ECFEC4E60932601151C49455DDEE8F8"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\docs\\build-upgrade\\maven-mirror.init.gradle.kts",
+    "Hash": "5B0B0D46EAFEC2C69C9099036AC1EA6B20ECA4DD9BA60A1E0A9E14434D69B3CE"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\feature\\festival\\build.gradle.kts",
+    "Hash": "1888947C63BECBBE1E9E575F464F16B7D8BB6E64706ACD9045857F74538B0211"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\feature\\settings\\build.gradle.kts",
+    "Hash": "FA8107CEAFB49AC91E215D89DEE93D90E02AC65B606135EEC849407C3B9B9CF8"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\feature\\update\\build.gradle.kts",
+    "Hash": "B5EA8CC366CDC7422E510A775F63FFAB31C1F954767D7D1E894387F310D6CD9A"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\gradle.properties",
+    "Hash": "19B0D5E4BF77B4BD5E6DBB2517621D1DD06C491B2B0696F099F5A401C77BE62D"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\gradle\\gradle-daemon-jvm.properties",
+    "Hash": "0B7E35774A1E0FA9944C817D31D1DFBB31F655A60149E4F0336B9E0F5CAA4778"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\gradle\\libs.versions.toml",
+    "Hash": "66FDF0F11E54263B2662FDBCBDDC7B26DB9EFA9BEE5BD3D5A3CC37381121BE8A"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\gradle\\wrapper\\gradle-wrapper.jar",
+    "Hash": "7A9CE74CFF467CA1BF60A4FCD9F05185ACCEDA4D0F382434D393E17864262C5D"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\gradle\\wrapper\\gradle-wrapper.properties",
+    "Hash": "378F31622194278939BFB0560BB4145D6E605CA534CA76022DD9B02B3986458E"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\gradlew",
+    "Hash": "0367E8C7D789376A26AF723E17B3F05CB09F07361DA0AC0AEF75D4693C42B001"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\gradlew.bat",
+    "Hash": "D539676C48B596AFDA64C963EC8F7EE56C7B3FE7E3B81D1DBE2D1A1E3DD9E9F8"
+  },
+  {
+    "Path": "C:\\Users\\loki5\\AndroidStudioProjects\\cosplay-2\\settings.gradle.kts",
+    "Hash": "44AB1C2A71C01E6ABD473C25156B1D3A8BB2C8B37AB223E7FE96B271B95F5079"
+  }
+]

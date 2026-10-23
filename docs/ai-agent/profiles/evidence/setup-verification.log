@@ -1,0 +1,41 @@
+Setup verification 2026-10-24
+Traceback (most recent call last):
+  File "C:\Users\loki5\.codex\skills\.system\skill-creator\scripts\quick_validate.py", line 10, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+Validator initially blocked: bundled Python lacked PyYAML. Installed PyYAML 6.0.3 into ignored build/profile-validation-deps only, without changing project dependencies. Retrying static validation.
+Skill is valid!
+codex -p bug-fix debug prompt-input: exit=0, exact developer instructions match=False
+Prompt comparison corrected to ignore runtime trailing newline and CRLF/LF. Earlier exact comparison was a validator error, not a profile execution.
+Skill is valid!
+codex -p bug-fix debug prompt-input: exit=0, developer instructions match (newline-normalized)=True
+
+Path : C:\Users\loki5\AndroidStudioProjects\cosplay-2\.agents\skills\profile-bug-fix\SKILL.md
+Hash : F134194AE05548E991959D49B09D51403BA76715A286C06D4D86A08C477A8864
+
+
+Skill is valid!
+codex -p research debug prompt-input: exit=0, developer instructions match (newline-normalized)=True
+
+Path : C:\Users\loki5\AndroidStudioProjects\cosplay-2\.agents\skills\profile-research\SKILL.md
+Hash : 7C662D38A3EA5D78D15FE8189AFE5988B983492113BDBD41A680D802DA6CDA1D
+
+
+Skill is valid!
+codex -p review debug prompt-input: exit=0, developer instructions match (newline-normalized)=True
+
+Path : C:\Users\loki5\AndroidStudioProjects\cosplay-2\.agents\skills\profile-review\SKILL.md
+Hash : FE43746FDE49B5B3AC02D88BE7390EBC395CF968E5ECA69C3015C2D7564C9DCC
+
+
+Early setup probes: --strict-config with features and --profile with features were rejected by CLI command routing; replaced with supported debug prompt-input. No behavioural trial ran in those probes.
+bug-fix: TOML/YAML parsed; installed skill bytes match; sandbox verified
+research: TOML/YAML parsed; installed skill bytes match; sandbox verified
+review: TOML/YAML parsed; installed skill bytes match; sandbox verified
+Installed bug-fix.config.toml and skills/profile-bug-fix
+Installed research.config.toml and skills/profile-research
+Installed review.config.toml and skills/profile-review
+Installed bug-fix.config.toml and skills/profile-bug-fix
+Installed research.config.toml and skills/profile-research
+Installed review.config.toml and skills/profile-review
+Isolated installer run twice: PASS, byte hashes unchanged; base config and unrelated file preserved.

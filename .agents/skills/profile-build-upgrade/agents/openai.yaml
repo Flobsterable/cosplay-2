@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Upgrade"
+  short_description: "Обновить сборку и библиотеки с проверками и откатом"
+  default_prompt: "Используй $profile-build-upgrade для безопасного обновления сборки и зависимостей с проверкой совместимости."
