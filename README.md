@@ -5,8 +5,8 @@ Compose Multiplatform приложение для просмотра фести�
 [![GitHub Repo](https://img.shields.io/badge/GitHub-cosplay--2-181717?logo=github)](https://github.com/Flobsterable/cosplay-2)
 [![Latest Release](https://img.shields.io/github/v/release/Flobsterable/cosplay-2?display_name=tag&logo=github)](https://github.com/Flobsterable/cosplay-2/releases/latest)
 [![Release Workflow](https://img.shields.io/github/actions/workflow/status/Flobsterable/cosplay-2/release.yml?branch=main&label=release&logo=githubactions)](https://github.com/Flobsterable/cosplay-2/actions/workflows/release.yml)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
-[![Compose Multiplatform](https://img.shields.io/badge/Compose_Multiplatform-1.7.3-4285F4)](https://www.jetbrains.com/lp/compose-multiplatform/)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4.21-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
+[![Compose Multiplatform](https://img.shields.io/badge/Compose_Multiplatform-1.12.2-4285F4)](https://www.jetbrains.com/lp/compose-multiplatform/)
 
 **Быстрые ссылки**
 
@@ -41,6 +41,7 @@ Compose Multiplatform приложение для просмотра фести�
 
 ## Технологии
 
+- JDK 21 / JVM target 21; AGP 9.4.1 и Gradle 9.7.0
 - Kotlin Multiplatform
 - Compose Multiplatform
 - Material 3
@@ -48,11 +49,16 @@ Compose Multiplatform приложение для просмотра фести�
 - kotlinx.serialization
 - kotlinx.datetime
 
+Версии зависимостей закреплены в `gradle/libs.versions.toml`.
+Переход на актуальные библиотеки и JDK 21 описан в
+[отчёте обновления](docs/build-upgrade/JDK21-UPGRADE.md).
+
 ## Архитектура
 
 Проект разбит на модули, чтобы UI, сеть и платформенные интеграции не жили в одном месте.
 
-- `:composeApp` — app shell, navigation, composition root, Android/Desktop targets
+- `:androidApp` — Android entry point, manifest/resources, signing и сборка APK
+- `:composeApp` — общий app shell, navigation, composition root, Android library/Desktop targets
 - `:core:model` — общие модели и DTO
 - `:core:network` — настройка Ktor `HttpClient`
 - `:core:platform` — platform-specific интеграции: back handler, image loading, updater launcher, app version
@@ -84,15 +90,15 @@ Compose Multiplatform приложение для просмотра фести�
 ### Android debug
 
 ```bash
-./gradlew :composeApp:installDebug
+./gradlew :androidApp:installDebug
 ```
 
 ### Полезные команды
 
 ```bash
 ./gradlew :composeApp:compileKotlinDesktop
-./gradlew :composeApp:compileDebugKotlinAndroid
-./gradlew :composeApp:assembleRelease
+./gradlew :composeApp:compileAndroidMain
+./gradlew :androidApp:assembleRelease
 ```
 
 ## Версионирование

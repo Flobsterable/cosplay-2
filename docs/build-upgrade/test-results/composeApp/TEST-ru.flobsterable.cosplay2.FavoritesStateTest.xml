@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="FavoritesStateTest[desktop]" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-23T10:17:02.993Z" hostname="FLOBSTER" time="0.044">
+  <properties/>
+  <testcase name="explicitResetRecoversFromCorruptionAndAllowsSavingAgain[desktop]" classname="ru.flobsterable.cosplay2.FavoritesStateTest" time="0.026"/>
+  <testcase name="repeatedEqualErrorsAreQueuedSeparately[desktop]" classname="ru.flobsterable.cosplay2.FavoritesStateTest" time="0.004"/>
+  <testcase name="rapidChangesAreSerializedAndPersisted[desktop]" classname="ru.flobsterable.cosplay2.FavoritesStateTest" time="0.004"/>
+  <testcase name="failedReloadRetainsLastSuccessfulCards[desktop]" classname="ru.flobsterable.cosplay2.FavoritesStateTest" time="0.001"/>
+  <testcase name="corruptStorageBlocksChangesUntilLoadSucceeds[desktop]" classname="ru.flobsterable.cosplay2.FavoritesStateTest" time="0.001"/>
+  <testcase name="failedWriteKeepsPreviouslySavedStateAndAllowsRetry[desktop]" classname="ru.flobsterable.cosplay2.FavoritesStateTest" time="0.002"/>
+  <testcase name="reloadKeepsCardsVisibleAndDoesNotLoseAQueuedToggle[desktop]" classname="ru.flobsterable.cosplay2.FavoritesStateTest" time="0.004"/>
+  <testcase name="buttonsAreUnavailableOnlyWhileAWriteIsPending[desktop]" classname="ru.flobsterable.cosplay2.FavoritesStateTest" time="0.001"/>
+  <testcase name="directToggleBeforeLoadingExplainsHowToRecover[desktop]" classname="ru.flobsterable.cosplay2.FavoritesStateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

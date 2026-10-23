@@ -11,6 +11,7 @@ import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.hasScrollToIndexAction
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.performScrollToNode
+import androidx.compose.ui.test.performScrollToIndex
 import org.junit.Rule
 import org.junit.Test
 import ru.flobsterable.cosplay2.feature.festival.FestivalsScreen
@@ -48,11 +49,11 @@ class MyCityScreenTest {
             compose.onNodeWithText("Фестиваль Москва").assertDoesNotExist()
             compose.onNodeWithText("Найдено: 1").assertExists()
             compose.onNodeWithText("Фестиваль Омск").performScrollTo().assertExists()
-            compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasText("Все города"))
+            compose.onNode(hasScrollToIndexAction()).performScrollToIndex(0)
             compose.onNodeWithText("Все города").performScrollTo().performClick()
             compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasText("Фестиваль Москва"))
             compose.onNodeWithText("Фестиваль Москва").assertExists()
-            compose.onNode(hasScrollToIndexAction()).performScrollToNode(hasText("Мой город: Омск"))
+            compose.onNode(hasScrollToIndexAction()).performScrollToIndex(0)
             compose.onNodeWithText("Мой город: Омск").performScrollTo().performClick()
             compose.onNodeWithText("Фестиваль Москва").assertDoesNotExist()
         } finally {

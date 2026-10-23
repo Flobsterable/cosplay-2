@@ -1,0 +1,202 @@
+[
+  {
+    "context": "feature/festival",
+    "expected": "kmp-architecture",
+    "detected": true
+  },
+  {
+    "context": "feature/festival",
+    "expected": "kotlin-code-style",
+    "detected": true
+  },
+  {
+    "context": "feature/festival",
+    "expected": "compose-multiplatform",
+    "detected": true
+  },
+  {
+    "context": "feature/festival",
+    "expected": "kmp-testing",
+    "detected": true
+  },
+  {
+    "context": "feature/festival",
+    "expected": "code-reviewer",
+    "detected": true
+  },
+  {
+    "context": "feature/festival",
+    "expected": "test-engineer",
+    "detected": true
+  },
+  {
+    "context": "feature/festival",
+    "expected": "# Festival UI",
+    "detected": true
+  },
+  {
+    "context": "feature/festival",
+    "expected": "# Личные глобальные инструкции Codex",
+    "detected": true
+  },
+  {
+    "context": "composeApp",
+    "expected": "kmp-architecture",
+    "detected": true
+  },
+  {
+    "context": "composeApp",
+    "expected": "kotlin-code-style",
+    "detected": true
+  },
+  {
+    "context": "composeApp",
+    "expected": "compose-multiplatform",
+    "detected": true
+  },
+  {
+    "context": "composeApp",
+    "expected": "kmp-testing",
+    "detected": true
+  },
+  {
+    "context": "composeApp",
+    "expected": "code-reviewer",
+    "detected": true
+  },
+  {
+    "context": "composeApp",
+    "expected": "test-engineer",
+    "detected": true
+  },
+  {
+    "context": "composeApp",
+    "expected": "# App shell",
+    "detected": true
+  },
+  {
+    "context": "composeApp",
+    "expected": "# Личные глобальные инструкции Codex",
+    "detected": true
+  },
+  {
+    "context": "data/festival",
+    "expected": "kmp-architecture",
+    "detected": true
+  },
+  {
+    "context": "data/festival",
+    "expected": "kotlin-code-style",
+    "detected": true
+  },
+  {
+    "context": "data/festival",
+    "expected": "compose-multiplatform",
+    "detected": true
+  },
+  {
+    "context": "data/festival",
+    "expected": "kmp-testing",
+    "detected": true
+  },
+  {
+    "context": "data/festival",
+    "expected": "code-reviewer",
+    "detected": true
+  },
+  {
+    "context": "data/festival",
+    "expected": "test-engineer",
+    "detected": true
+  },
+  {
+    "context": "data/festival",
+    "expected": "# Festival data",
+    "detected": true
+  },
+  {
+    "context": "data/festival",
+    "expected": "# Личные глобальные инструкции Codex",
+    "detected": true
+  },
+  {
+    "context": ".",
+    "expected": "kmp-architecture",
+    "detected": true
+  },
+  {
+    "context": ".",
+    "expected": "kotlin-code-style",
+    "detected": true
+  },
+  {
+    "context": ".",
+    "expected": "compose-multiplatform",
+    "detected": true
+  },
+  {
+    "context": ".",
+    "expected": "kmp-testing",
+    "detected": true
+  },
+  {
+    "context": ".",
+    "expected": "code-reviewer",
+    "detected": true
+  },
+  {
+    "context": ".",
+    "expected": "test-engineer",
+    "detected": true
+  },
+  {
+    "context": ".",
+    "expected": "# Cosplay 2",
+    "detected": true
+  },
+  {
+    "context": ".",
+    "expected": "# Личные глобальные инструкции Codex",
+    "detected": true
+  },
+  {
+    "context": "core/platform",
+    "expected": "kmp-architecture",
+    "detected": true
+  },
+  {
+    "context": "core/platform",
+    "expected": "kotlin-code-style",
+    "detected": true
+  },
+  {
+    "context": "core/platform",
+    "expected": "compose-multiplatform",
+    "detected": true
+  },
+  {
+    "context": "core/platform",
+    "expected": "kmp-testing",
+    "detected": true
+  },
+  {
+    "context": "core/platform",
+    "expected": "code-reviewer",
+    "detected": true
+  },
+  {
+    "context": "core/platform",
+    "expected": "test-engineer",
+    "detected": true
+  },
+  {
+    "context": "core/platform",
+    "expected": "# Platform integrations",
+    "detected": true
+  },
+  {
+    "context": "core/platform",
+    "expected": "# Личные глобальные инструкции Codex",
+    "detected": true
+  }
+]

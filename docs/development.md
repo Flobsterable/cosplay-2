@@ -3,22 +3,36 @@
 ## Запуск приложения
 
 Используйте Gradle Wrapper из корня репозитория. Для Android необходим Android SDK.
-Release workflow использует JDK 17; локальную Java и SDK нужно настроить для Gradle.
+Release workflow и компиляция всех модулей используют JDK 21 и JVM target 21.
+Gradle daemon также закреплён на Java 21 в `gradle/gradle-daemon-jvm.properties`;
+этот критерий имеет приоритет над Java запуска Wrapper и настройкой Gradle JDK.
+Для запуска Gradle выберите JDK 21 или поддерживаемую Gradle встроенную JBR
+Android Studio. Если JDK 21 не установлена, Gradle автоматически загрузит её через Foojay resolver
+в свой пользовательский кэш. Для первой загрузки нужен доступ к интернету.
+В Android Studio выберите установленную JDK/JBR в Settings → Build, Execution,
+Deployment → Build Tools → Gradle → Gradle JDK, затем выполните Sync Project with Gradle Files.
+В терминале задайте JAVA_HOME на установленную JDK перед запуском Wrapper.
+Android SDK необходимо установить отдельно.
 
 ```bash
 ./gradlew :composeApp:run
-./gradlew :composeApp:installDebug
+./gradlew :androidApp:installDebug
 ```
 
 Первая команда запускает Desktop JVM приложение, вторая устанавливает Android debug-сборку.
 В Windows используйте `gradlew.bat` вместо `./gradlew`.
 
+Android-точка входа и APK находятся в `androidApp`; `composeApp` — общая KMP-библиотека.
+Требуется Android SDK Platform 37 для compileSdk; targetSdk остаётся 35.
+Подробности обновления toolchain: [build-upgrade](build-upgrade/README.md).
+Текущие версии и результаты перехода на JDK 21: [JDK21-UPGRADE.md](build-upgrade/JDK21-UPGRADE.md).
+
 ## Проверка сборки
 
 ```bash
 ./gradlew :composeApp:compileKotlinDesktop
-./gradlew :composeApp:compileDebugKotlinAndroid
-./gradlew :composeApp:assembleRelease
+./gradlew :composeApp:compileAndroidMain
+./gradlew :androidApp:assembleRelease
 ```
 
 

@@ -1,0 +1,209 @@
+
+> Configure project :composeApp
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:30:28: 'fun provideDelegate(thisRef: Any?, property: KProperty<*>): ExistingDomainObjectDelegate<CapturedType(out KotlinSourceSet)>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:30:28: 'val <T : Any, U : NamedDomainObjectCollection<out T>> U.getting: NamedDomainObjectCollectionDelegateProvider<out T>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:30:28: 'fun <T> ExistingDomainObjectDelegate<out T>.getValue(receiver: Any?, property: KProperty<*>): T' is deprecated. Use the named() API instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:33:36: 'val runtime: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:34:36: 'val foundation: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:35:36: 'val material3: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:36:36: 'val ui: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:37:36: 'val components: ComposePlugin.CommonComponentsDependencies' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:37:47: 'val resources: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:38:36: 'val components: ComposePlugin.CommonComponentsDependencies' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:38:47: 'val uiToolingPreview: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:58:28: 'fun provideDelegate(thisRef: Any?, property: KProperty<*>): ExistingDomainObjectDelegate<KotlinSourceSet>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:58:28: 'fun <T : Any, U : NamedDomainObjectCollection<T>> U.getting(configuration: T.() -> Unit): NamedDomainObjectCollectionDelegateProvider<T>' is deprecated. Use 'val element = getByName(name) { }' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:58:28: 'fun <T> ExistingDomainObjectDelegate<out T>.getValue(receiver: Any?, property: KProperty<*>): T' is deprecated. Use the named() API instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:60:48: 'val uiTestJUnit4: String' is deprecated. Specify dependency directly.
+
+> Configure project :core:platform
+WARNING: The 'commonTest' source directory exists, but android host tests are not enabled. To enable android host tests, add `withHostTest {}` to your android target configuration in the Gradle build file.
+Add android.sync.suppressAgpWarnings=GENERIC to the gradle.properties file to suppress this warning.
+
+> Task :composeApp:checkDesktopMainComposeLibrariesCompatibility
+> Task :composeApp:kmpPartiallyResolvedDependenciesChecker
+> Task :composeApp:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :composeApp:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonMain NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForDesktopMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForDesktopMain
+> Task :composeApp:generateComposeResClass
+> Task :composeApp:generateExpectResourceCollectorsForCommonMain
+> Task :core:model:kmpPartiallyResolvedDependenciesChecker
+> Task :core:model:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:model:desktopProcessResources NO-SOURCE
+> Task :core:model:processDesktopMainResources SKIPPED
+> Task :core:network:checkDesktopMainComposeLibrariesCompatibility
+> Task :core:network:kmpPartiallyResolvedDependenciesChecker
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:network:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:network:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:network:generateComposeResClass SKIPPED
+> Task :core:network:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:checkDesktopMainComposeLibrariesCompatibility
+> Task :core:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :core:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:platform:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:platform:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:platform:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:platform:generateComposeResClass SKIPPED
+> Task :core:platform:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:assembleDesktopMainResources
+> Task :core:platform:desktopProcessResources
+> Task :core:platform:processDesktopMainResources SKIPPED
+> Task :core:network:assembleDesktopMainResources
+> Task :core:network:desktopProcessResources
+> Task :core:network:processDesktopMainResources SKIPPED
+> Task :data:festival:kmpPartiallyResolvedDependenciesChecker
+> Task :data:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:festival:desktopProcessResources NO-SOURCE
+> Task :data:festival:processDesktopMainResources SKIPPED
+> Task :data:update:kmpPartiallyResolvedDependenciesChecker
+> Task :data:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:update:desktopProcessResources NO-SOURCE
+> Task :data:update:processDesktopMainResources SKIPPED
+> Task :feature:festival:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:festival:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:festival:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:festival:generateComposeResClass SKIPPED
+> Task :feature:festival:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:festival:assembleDesktopMainResources
+> Task :feature:festival:desktopProcessResources
+> Task :feature:festival:processDesktopMainResources SKIPPED
+> Task :feature:settings:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:settings:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:settings:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:settings:generateComposeResClass SKIPPED
+> Task :feature:settings:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:model:compileKotlinDesktop
+> Task :core:model:compileDesktopMainJava NO-SOURCE
+> Task :core:model:desktopMainClasses
+> Task :core:model:desktopJar
+> Task :feature:settings:assembleDesktopMainResources
+> Task :feature:settings:desktopProcessResources
+> Task :feature:settings:processDesktopMainResources SKIPPED
+> Task :feature:update:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:update:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:update:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:update:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:update:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:update:generateComposeResClass SKIPPED
+> Task :feature:update:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:update:assembleDesktopMainResources
+> Task :feature:update:desktopProcessResources
+> Task :feature:update:processDesktopMainResources SKIPPED
+> Task :composeApp:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForAndroidMain
+> Task :composeApp:androidPreBuild UP-TO-DATE
+> Task :composeApp:preAndroidMainBuild UP-TO-DATE
+> Task :composeApp:generateAndroidMainEmptyResourceFiles
+> Task :composeApp:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :composeApp:packageAndroidMainResources
+> Task :feature:settings:compileKotlinDesktop
+> Task :feature:settings:compileDesktopMainJava NO-SOURCE
+> Task :feature:settings:desktopMainClasses
+> Task :feature:settings:desktopJar
+> Task :core:model:androidPreBuild UP-TO-DATE
+> Task :core:model:preAndroidMainBuild UP-TO-DATE
+> Task :core:model:generateAndroidMainEmptyResourceFiles
+> Task :composeApp:parseAndroidMainLocalResources
+> Task :core:model:packageAndroidMainResources
+> Task :core:network:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :core:network:androidPreBuild UP-TO-DATE
+> Task :core:network:preAndroidMainBuild UP-TO-DATE
+> Task :core:network:generateAndroidMainEmptyResourceFiles
+> Task :core:model:parseAndroidMainLocalResources
+> Task :core:network:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :core:model:generateAndroidMainRFile
+> Task :core:network:packageAndroidMainResources
+> Task :composeApp:generateAndroidMainRFile
+
+> Task :feature:update:compileKotlinDesktop FAILED
+e: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/update/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/update/UpdateScreen.kt:16:34 Unresolved reference 'icons'.
+e: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/update/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/update/UpdateScreen.kt:17:34 Unresolved reference 'icons'.
+e: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/update/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/update/UpdateScreen.kt:56:30 Unresolved reference 'Icons'.
+
+> Task :core:platform:compileKotlinDesktop
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/commonMain/kotlin/ru/flobsterable/cosplay2/platform/AppLogger.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/commonMain/kotlin/ru/flobsterable/cosplay2/platform/AppVersion.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/desktopMain/kotlin/ru/flobsterable/cosplay2/platform/AppLogger.desktop.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/desktopMain/kotlin/ru/flobsterable/cosplay2/platform/AppVersion.desktop.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+
+> Task :core:model:compileAndroidMain
+
+[Incubating] Problems report is available at: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':feature:update:compileKotlinDesktop' (registered in build file 'feature\update\build.gradle.kts').
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Kotlin compiler: UNRESOLVED_IMPORT
+       Kotlin compiler error
+         Unresolved reference 'icons'.
+         Location: C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/update/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/update/UpdateScreen.kt line 16
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.7.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1m 44s
+48 actionable tasks: 48 executed

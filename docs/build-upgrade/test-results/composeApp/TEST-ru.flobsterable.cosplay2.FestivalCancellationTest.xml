@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="FestivalCancellationTest[desktop]" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-23T10:17:03.038Z" hostname="FLOBSTER" time="0.009">
+  <properties/>
+  <testcase name="cancellationAtEveryCatalogRequestPropagatesInsteadOfReturningFallback[desktop]" classname="ru.flobsterable.cosplay2.FestivalCancellationTest" time="0.007"/>
+  <testcase name="cancellationAtEveryDetailRequestPropagates[desktop]" classname="ru.flobsterable.cosplay2.FestivalCancellationTest" time="0.002"/>
+  <system-out><![CDATA[DEBUG [CosplayRepo] Loading archive page https://cosplay2.ru/archive/2026
+DEBUG [CosplayRepo] Loading archive page https://cosplay2.ru/archive/2026
+DEBUG [CosplayRepo] Loading festivals from /api/events/filter_list with wid=18294ee4a7d9ffd9 and active_year=2026
+DEBUG [CosplayRepo] Loading archive page https://cosplay2.ru/archive/2026
+DEBUG [CosplayRepo] Loading festivals from /api/events/filter_list with wid=4f92f371a275e80e and active_year=2026
+DEBUG [CosplayRepo] Loaded 0 festivals from /api/events/filter_list
+DEBUG [CosplayRepo] Loading event types from /api/events/get_types
+DEBUG [CosplayRepo] Loading festival detail for id=1, url=https://example.com
+DEBUG [CosplayRepo] Loading festival detail for id=1, url=https://example.com
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

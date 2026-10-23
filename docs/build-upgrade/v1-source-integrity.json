@@ -1,0 +1,14 @@
+[
+  {
+    "path": "feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalSearch.kt",
+    "unchanged": true
+  },
+  {
+    "path": "composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/FestivalSearchTest.kt",
+    "unchanged": true
+  },
+  {
+    "path": "docs/feature-flows.md",
+    "unchanged": true
+  }
+]

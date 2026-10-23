@@ -1,0 +1,9 @@
+{
+  "command": ".\\gradlew.bat :composeApp:lintDebug",
+  "exitCode": 1,
+  "startedAt": "2026-10-23T15:42:39.5580297+06:00",
+  "finishedAt": "2026-10-23T15:42:42.1442545+06:00",
+  "log": "festival-search-verify-sdk-retry-android-lint.log",
+  "javaHome": "C:\\Program Files\\Android\\Android Studio\\jbr",
+  "androidHome": "C:\\Users\\loki5\\AppData\\Local\\Android\\Sdk"
+}

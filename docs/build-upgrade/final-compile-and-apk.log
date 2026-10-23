@@ -1,0 +1,493 @@
+
+> Configure project :composeApp
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:30:28: 'fun provideDelegate(thisRef: Any?, property: KProperty<*>): ExistingDomainObjectDelegate<CapturedType(out KotlinSourceSet)>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:30:28: 'val <T : Any, U : NamedDomainObjectCollection<out T>> U.getting: NamedDomainObjectCollectionDelegateProvider<out T>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:30:28: 'fun <T> ExistingDomainObjectDelegate<out T>.getValue(receiver: Any?, property: KProperty<*>): T' is deprecated. Use the named() API instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:33:36: 'val runtime: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:34:36: 'val foundation: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:35:36: 'val material3: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:36:36: 'val ui: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:37:36: 'val components: ComposePlugin.CommonComponentsDependencies' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:37:47: 'val resources: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:38:36: 'val components: ComposePlugin.CommonComponentsDependencies' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:38:47: 'val uiToolingPreview: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:58:28: 'fun provideDelegate(thisRef: Any?, property: KProperty<*>): ExistingDomainObjectDelegate<KotlinSourceSet>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:58:28: 'fun <T : Any, U : NamedDomainObjectCollection<T>> U.getting(configuration: T.() -> Unit): NamedDomainObjectCollectionDelegateProvider<T>' is deprecated. Use 'val element = getByName(name) { }' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:58:28: 'fun <T> ExistingDomainObjectDelegate<out T>.getValue(receiver: Any?, property: KProperty<*>): T' is deprecated. Use the named() API instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build.gradle.kts:60:48: 'val uiTestJUnit4: String' is deprecated. Specify dependency directly.
+
+> Configure project :core:network
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/network/build.gradle.kts:31:28: 'fun provideDelegate(thisRef: Any?, property: KProperty<*>): ExistingDomainObjectDelegate<CapturedType(out KotlinSourceSet)>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/network/build.gradle.kts:31:28: 'val <T : Any, U : NamedDomainObjectCollection<out T>> U.getting: NamedDomainObjectCollectionDelegateProvider<out T>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/network/build.gradle.kts:31:28: 'fun <T> ExistingDomainObjectDelegate<out T>.getValue(receiver: Any?, property: KProperty<*>): T' is deprecated. Use the named() API instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/network/build.gradle.kts:34:36: 'val runtime: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/network/build.gradle.kts:35:36: 'val ui: String' is deprecated. Specify dependency directly.
+
+> Configure project :core:platform
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/build.gradle.kts:12:33: 'fun RegisteringDomainObjectDelegateProviderWithAction<out TaskContainer, Task>.provideDelegate(receiver: Any?, property: KProperty<*>): ExistingDomainObjectDelegate<TaskProvider<Task>>' is deprecated. Use 'val task = tasks.register(name) { }' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/build.gradle.kts:12:33: 'fun <T : Any, C : NamedDomainObjectContainer<T>> C.registering(action: T.() -> Unit): RegisteringDomainObjectDelegateProviderWithAction<out C, T>' is deprecated. Use 'val element = register(name) { }' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/build.gradle.kts:12:33: 'fun <T> ExistingDomainObjectDelegate<out T>.getValue(receiver: Any?, property: KProperty<*>): T' is deprecated. Use the named() API instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/build.gradle.kts:46:28: 'fun provideDelegate(thisRef: Any?, property: KProperty<*>): ExistingDomainObjectDelegate<CapturedType(out KotlinSourceSet)>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/build.gradle.kts:46:28: 'val <T : Any, U : NamedDomainObjectCollection<out T>> U.getting: NamedDomainObjectCollectionDelegateProvider<out T>' is deprecated. Use 'val element = getByName(name)' instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/build.gradle.kts:46:28: 'fun <T> ExistingDomainObjectDelegate<out T>.getValue(receiver: Any?, property: KProperty<*>): T' is deprecated. Use the named() API instead. See the Gradle 9.6 upgrading guide.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/build.gradle.kts:49:36: 'val runtime: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/build.gradle.kts:50:36: 'val ui: String' is deprecated. Specify dependency directly.
+WARNING: The 'commonTest' source directory exists, but android host tests are not enabled. To enable android host tests, add `withHostTest {}` to your android target configuration in the Gradle build file.
+Add android.sync.suppressAgpWarnings=GENERIC to the gradle.properties file to suppress this warning.
+
+> Configure project :feature:festival
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/build.gradle.kts:31:36: 'val runtime: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/build.gradle.kts:32:36: 'val foundation: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/build.gradle.kts:33:36: 'val material3: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/build.gradle.kts:34:36: 'val ui: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/build.gradle.kts:35:36: 'val materialIconsExtended: String' is deprecated. This artifact is pinned to version 1.7.3 and will not receive updates. Either use this version explicitly or migrate to Material Symbols (vector resources). See https://kotlinlang.org/docs/multiplatform/whats-new-compose-180.html.
+
+> Configure project :feature:settings
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/settings/build.gradle.kts:31:36: 'val runtime: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/settings/build.gradle.kts:32:36: 'val foundation: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/settings/build.gradle.kts:33:36: 'val material3: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/settings/build.gradle.kts:34:36: 'val ui: String' is deprecated. Specify dependency directly.
+
+> Configure project :feature:update
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/update/build.gradle.kts:31:36: 'val runtime: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/update/build.gradle.kts:32:36: 'val foundation: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/update/build.gradle.kts:33:36: 'val material3: String' is deprecated. Specify dependency directly.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/update/build.gradle.kts:35:36: 'val ui: String' is deprecated. Specify dependency directly.
+
+> Task :composeApp:checkDesktopMainComposeLibrariesCompatibility
+> Task :composeApp:kmpPartiallyResolvedDependenciesChecker
+> Task :composeApp:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :composeApp:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonMain NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForDesktopMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForDesktopMain
+> Task :composeApp:generateComposeResClass
+> Task :composeApp:generateExpectResourceCollectorsForCommonMain
+> Task :core:model:kmpPartiallyResolvedDependenciesChecker
+> Task :core:model:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:model:desktopProcessResources NO-SOURCE
+> Task :core:model:processDesktopMainResources SKIPPED
+> Task :core:network:checkDesktopMainComposeLibrariesCompatibility
+> Task :core:network:kmpPartiallyResolvedDependenciesChecker
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:network:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:network:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:network:generateComposeResClass SKIPPED
+> Task :core:network:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:checkDesktopMainComposeLibrariesCompatibility
+> Task :core:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :core:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:platform:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:platform:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:platform:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:platform:generateComposeResClass SKIPPED
+> Task :core:platform:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:assembleDesktopMainResources
+> Task :core:platform:desktopProcessResources UP-TO-DATE
+> Task :core:platform:processDesktopMainResources SKIPPED
+> Task :core:network:assembleDesktopMainResources
+> Task :core:network:desktopProcessResources UP-TO-DATE
+> Task :core:network:processDesktopMainResources SKIPPED
+> Task :data:festival:kmpPartiallyResolvedDependenciesChecker
+> Task :data:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:festival:desktopProcessResources NO-SOURCE
+> Task :data:festival:processDesktopMainResources SKIPPED
+> Task :data:update:kmpPartiallyResolvedDependenciesChecker
+> Task :data:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:update:desktopProcessResources NO-SOURCE
+> Task :data:update:processDesktopMainResources SKIPPED
+> Task :feature:festival:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:festival:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:festival:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:festival:generateComposeResClass SKIPPED
+> Task :feature:festival:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:festival:assembleDesktopMainResources
+> Task :feature:festival:desktopProcessResources UP-TO-DATE
+> Task :feature:festival:processDesktopMainResources SKIPPED
+> Task :feature:settings:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:settings:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:settings:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:settings:generateComposeResClass SKIPPED
+> Task :feature:settings:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:settings:assembleDesktopMainResources
+> Task :feature:settings:desktopProcessResources UP-TO-DATE
+> Task :feature:settings:processDesktopMainResources SKIPPED
+> Task :feature:update:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:update:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:update:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:update:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:update:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:update:generateComposeResClass SKIPPED
+> Task :feature:update:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:update:assembleDesktopMainResources
+> Task :feature:update:desktopProcessResources UP-TO-DATE
+> Task :feature:update:processDesktopMainResources SKIPPED
+> Task :composeApp:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForAndroidMain
+> Task :composeApp:androidPreBuild UP-TO-DATE
+> Task :composeApp:preAndroidMainBuild UP-TO-DATE
+> Task :composeApp:generateAndroidMainEmptyResourceFiles
+> Task :composeApp:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :composeApp:packageAndroidMainResources
+> Task :core:model:androidPreBuild UP-TO-DATE
+> Task :core:model:preAndroidMainBuild UP-TO-DATE
+> Task :core:model:generateAndroidMainEmptyResourceFiles
+> Task :core:model:packageAndroidMainResources
+> Task :core:network:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :core:network:androidPreBuild UP-TO-DATE
+> Task :core:network:preAndroidMainBuild UP-TO-DATE
+> Task :core:network:generateAndroidMainEmptyResourceFiles
+> Task :core:network:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :core:network:packageAndroidMainResources
+> Task :core:platform:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :core:platform:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :core:platform:androidPreBuild UP-TO-DATE
+> Task :core:platform:preAndroidMainBuild UP-TO-DATE
+> Task :core:platform:generateAndroidMainEmptyResourceFiles
+> Task :core:platform:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :core:model:parseAndroidMainLocalResources
+> Task :core:platform:packageAndroidMainResources
+> Task :core:network:parseAndroidMainLocalResources
+> Task :composeApp:parseAndroidMainLocalResources
+> Task :core:platform:generateAppVersion
+> Task :data:festival:androidPreBuild UP-TO-DATE
+> Task :data:festival:preAndroidMainBuild UP-TO-DATE
+> Task :core:platform:parseAndroidMainLocalResources
+> Task :data:festival:generateAndroidMainEmptyResourceFiles
+> Task :composeApp:generateAndroidMainRFile
+> Task :core:network:generateAndroidMainRFile
+> Task :core:platform:generateAndroidMainRFile
+> Task :core:model:generateAndroidMainRFile
+> Task :data:festival:packageAndroidMainResources
+> Task :data:update:androidPreBuild UP-TO-DATE
+> Task :data:update:preAndroidMainBuild UP-TO-DATE
+> Task :data:update:generateAndroidMainEmptyResourceFiles
+> Task :data:festival:parseAndroidMainLocalResources
+> Task :data:update:packageAndroidMainResources
+> Task :feature:festival:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :data:festival:generateAndroidMainRFile
+> Task :feature:festival:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :feature:festival:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :feature:festival:androidPreBuild UP-TO-DATE
+> Task :feature:festival:preAndroidMainBuild UP-TO-DATE
+> Task :feature:festival:generateAndroidMainEmptyResourceFiles
+> Task :data:update:parseAndroidMainLocalResources
+> Task :feature:festival:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :data:update:generateAndroidMainRFile
+> Task :feature:festival:packageAndroidMainResources
+> Task :feature:settings:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :feature:settings:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :feature:settings:androidPreBuild UP-TO-DATE
+> Task :feature:settings:preAndroidMainBuild UP-TO-DATE
+> Task :feature:settings:generateAndroidMainEmptyResourceFiles
+> Task :feature:festival:parseAndroidMainLocalResources
+> Task :feature:settings:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :feature:festival:generateAndroidMainRFile
+> Task :feature:settings:packageAndroidMainResources
+> Task :feature:update:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :feature:update:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :feature:update:androidPreBuild UP-TO-DATE
+> Task :feature:update:preAndroidMainBuild UP-TO-DATE
+> Task :feature:update:generateAndroidMainEmptyResourceFiles
+> Task :feature:update:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :feature:settings:parseAndroidMainLocalResources
+> Task :feature:update:packageAndroidMainResources
+> Task :androidApp:preBuild UP-TO-DATE
+> Task :androidApp:preDebugBuild UP-TO-DATE
+> Task :androidApp:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :feature:settings:generateAndroidMainRFile
+> Task :feature:update:parseAndroidMainLocalResources
+> Task :androidApp:generateDebugResources
+> Task :feature:update:generateAndroidMainRFile
+> Task :androidApp:packageDebugResources
+> Task :core:model:compileKotlinDesktop
+> Task :core:model:compileAndroidMain
+> Task :feature:settings:compileKotlinDesktop
+> Task :feature:settings:compileAndroidMain
+> Task :androidApp:processDebugNavigationResources
+> Task :core:model:compileDesktopMainJava NO-SOURCE
+> Task :core:model:desktopMainClasses
+> Task :core:model:desktopJar UP-TO-DATE
+> Task :feature:settings:compileDesktopMainJava NO-SOURCE
+> Task :feature:settings:desktopMainClasses
+> Task :feature:settings:desktopJar UP-TO-DATE
+> Task :androidApp:generateDebugAssets UP-TO-DATE
+> Task :composeApp:generateAndroidMainAssets UP-TO-DATE
+> Task :androidApp:javaPreCompileDebug
+> Task :androidApp:parseDebugLocalResources
+> Task :composeApp:mergeAndroidMainAssets
+> Task :core:model:generateAndroidMainAssets UP-TO-DATE
+> Task :feature:settings:bundleAndroidMainClassesToCompileJar
+> Task :core:model:bundleAndroidMainClassesToCompileJar
+> Task :core:model:mergeAndroidMainAssets
+> Task :androidApp:generateDebugRFile
+> Task :core:network:generateAndroidMainAssets UP-TO-DATE
+> Task :core:network:mergeAndroidMainAssets
+> Task :core:platform:generateAndroidMainAssets UP-TO-DATE
+> Task :core:platform:mergeAndroidMainAssets
+> Task :data:festival:generateAndroidMainAssets UP-TO-DATE
+> Task :data:festival:mergeAndroidMainAssets
+> Task :data:update:generateAndroidMainAssets UP-TO-DATE
+> Task :data:update:mergeAndroidMainAssets
+> Task :feature:festival:generateAndroidMainAssets UP-TO-DATE
+> Task :feature:festival:mergeAndroidMainAssets
+> Task :feature:settings:generateAndroidMainAssets UP-TO-DATE
+> Task :feature:settings:mergeAndroidMainAssets
+> Task :feature:update:generateAndroidMainAssets UP-TO-DATE
+> Task :feature:update:mergeAndroidMainAssets
+> Task :androidApp:mergeDebugAssets
+> Task :androidApp:compressDebugAssets
+
+> Task :core:platform:compileKotlinDesktop
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/commonMain/kotlin/ru/flobsterable/cosplay2/platform/AppLogger.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/commonMain/kotlin/ru/flobsterable/cosplay2/platform/AppVersion.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/desktopMain/kotlin/ru/flobsterable/cosplay2/platform/AppLogger.desktop.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/desktopMain/kotlin/ru/flobsterable/cosplay2/platform/AppVersion.desktop.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+
+> Task :feature:update:compileKotlinDesktop
+
+> Task :core:platform:compileAndroidMain
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/androidMain/kotlin/ru/flobsterable/cosplay2/platform/AppLogger.android.kt:5:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/androidMain/kotlin/ru/flobsterable/cosplay2/platform/AppVersion.android.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/commonMain/kotlin/ru/flobsterable/cosplay2/platform/AppLogger.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/core/platform/src/commonMain/kotlin/ru/flobsterable/cosplay2/platform/AppVersion.kt:3:1 'expect'/'actual' classes (including interfaces, objects, annotations, enums, and 'actual' typealiases) are in Beta. Consider using the '-Xexpect-actual-classes' flag to suppress this warning. Also see: https://youtrack.jetbrains.com/issue/KT-61573
+
+> Task :feature:update:compileAndroidMain
+> Task :androidApp:generateDebugGlobalSynthetics
+> Task :core:platform:compileDesktopMainJava NO-SOURCE
+> Task :core:platform:desktopMainClasses
+> Task :core:platform:desktopJar UP-TO-DATE
+> Task :feature:update:compileDesktopMainJava NO-SOURCE
+> Task :feature:update:desktopMainClasses
+> Task :feature:update:desktopJar
+> Task :feature:update:bundleAndroidMainClassesToCompileJar
+> Task :core:model:processAndroidMainJavaRes
+> Task :core:platform:bundleAndroidMainClassesToCompileJar
+> Task :core:platform:processAndroidMainJavaRes
+> Task :core:network:compileKotlinDesktop
+> Task :core:network:compileDesktopMainJava NO-SOURCE
+> Task :core:network:desktopMainClasses
+> Task :core:network:desktopJar UP-TO-DATE
+> Task :data:update:compileKotlinDesktop
+> Task :core:network:compileAndroidMain
+> Task :data:festival:compileKotlinDesktop
+
+> Task :feature:festival:compileKotlinDesktop
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:414:52 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:437:5 'fun ClickableText(text: AnnotatedString, modifier: Modifier = ..., style: TextStyle = ..., softWrap: Boolean = ..., overflow: TextOverflow = ..., maxLines: Int = ..., onTextLayout: (TextLayoutResult) -> Unit = ..., onClick: (Int) -> Unit): Unit' is deprecated. Use Text or BasicText and pass an AnnotatedString that contains a LinkAnnotation. Check LinkAnnotation's documentation for more details and samples.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:579:18 'fun Modifier.menuAnchor(): Modifier' is deprecated. Use overload that takes ExposedDropdownMenuAnchorType and enabled parameters.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalDetailScreen.kt:115:56 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+
+> Task :data:festival:compileDesktopMainJava NO-SOURCE
+> Task :data:festival:desktopMainClasses
+> Task :data:festival:desktopJar UP-TO-DATE
+> Task :data:update:compileDesktopMainJava NO-SOURCE
+> Task :data:update:desktopMainClasses
+> Task :data:update:desktopJar UP-TO-DATE
+> Task :core:network:processAndroidMainJavaRes
+> Task :feature:settings:processAndroidMainJavaRes
+> Task :feature:update:processAndroidMainJavaRes
+> Task :core:network:bundleAndroidMainClassesToCompileJar
+> Task :feature:festival:compileDesktopMainJava NO-SOURCE
+> Task :feature:festival:desktopMainClasses
+> Task :feature:festival:desktopJar UP-TO-DATE
+> Task :androidApp:checkDebugDuplicateClasses
+
+> Task :feature:festival:compileAndroidMain
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:414:52 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:437:5 'fun ClickableText(text: AnnotatedString, modifier: Modifier = ..., style: TextStyle = ..., softWrap: Boolean = ..., overflow: TextOverflow = ..., maxLines: Int = ..., onTextLayout: (TextLayoutResult) -> Unit = ..., onClick: (Int) -> Unit): Unit' is deprecated. Use Text or BasicText and pass an AnnotatedString that contains a LinkAnnotation. Check LinkAnnotation's documentation for more details and samples.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:579:18 'fun Modifier.menuAnchor(): Modifier' is deprecated. Use overload that takes ExposedDropdownMenuAnchorType and enabled parameters.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalDetailScreen.kt:115:56 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+
+> Task :feature:festival:processAndroidMainJavaRes
+> Task :feature:festival:bundleAndroidMainClassesToCompileJar
+> Task :androidApp:desugarDebugFileDependencies
+> Task :data:update:compileAndroidMain
+> Task :data:festival:compileAndroidMain
+> Task :composeApp:compileKotlinDesktop
+> Task :androidApp:mergeExtDexDebug
+> Task :data:festival:bundleAndroidMainClassesToCompileJar
+> Task :data:festival:processAndroidMainJavaRes
+> Task :data:update:processAndroidMainJavaRes
+> Task :core:network:bundleLibRuntimeToDirAndroidMain
+> Task :data:update:bundleAndroidMainClassesToCompileJar
+> Task :data:update:bundleLibRuntimeToDirAndroidMain
+> Task :composeApp:writeAndroidMainAarMetadata
+> Task :feature:update:bundleLibRuntimeToDirAndroidMain
+> Task :data:festival:bundleLibRuntimeToDirAndroidMain
+> Task :core:platform:bundleLibRuntimeToDirAndroidMain
+> Task :core:model:bundleLibRuntimeToDirAndroidMain
+> Task :feature:settings:bundleLibRuntimeToDirAndroidMain
+> Task :feature:festival:bundleLibRuntimeToDirAndroidMain
+> Task :core:model:writeAndroidMainAarMetadata
+> Task :core:network:writeAndroidMainAarMetadata
+> Task :core:platform:writeAndroidMainAarMetadata
+> Task :data:festival:writeAndroidMainAarMetadata
+> Task :data:update:writeAndroidMainAarMetadata
+> Task :feature:festival:writeAndroidMainAarMetadata
+> Task :feature:settings:writeAndroidMainAarMetadata
+> Task :feature:update:writeAndroidMainAarMetadata
+> Task :androidApp:mapDebugSourceSetPaths
+> Task :androidApp:checkDebugAarMetadata
+> Task :androidApp:compileDebugNavigationResources
+> Task :composeApp:compileAndroidMain
+> Task :composeApp:processAndroidMainJavaRes
+> Task :androidApp:createDebugCompatibleScreenManifests
+> Task :androidApp:extractDeepLinksDebug
+> Task :composeApp:bundleAndroidMainClassesToCompileJar
+> Task :composeApp:processAndroidMainManifest
+> Task :core:network:processAndroidMainManifest
+> Task :core:model:processAndroidMainManifest
+> Task :composeApp:bundleLibRuntimeToDirAndroidMain
+> Task :androidApp:mergeDebugResources
+> Task :core:platform:processAndroidMainManifest
+> Task :data:festival:processAndroidMainManifest
+> Task :data:update:processAndroidMainManifest
+> Task :composeApp:mapAndroidMainSourceSetPaths
+> Task :feature:festival:processAndroidMainManifest
+> Task :feature:settings:processAndroidMainManifest
+> Task :feature:update:processAndroidMainManifest
+> Task :composeApp:compileAndroidMainLibraryResources
+> Task :androidApp:processDebugMainManifest
+> Task :androidApp:processDebugManifest
+> Task :core:model:mapAndroidMainSourceSetPaths
+> Task :core:model:compileAndroidMainLibraryResources
+> Task :core:network:mapAndroidMainSourceSetPaths
+> Task :core:network:compileAndroidMainLibraryResources
+> Task :core:platform:mapAndroidMainSourceSetPaths
+> Task :core:platform:compileAndroidMainLibraryResources
+> Task :data:festival:mapAndroidMainSourceSetPaths
+> Task :data:festival:compileAndroidMainLibraryResources
+> Task :androidApp:processDebugManifestForPackage
+> Task :data:update:mapAndroidMainSourceSetPaths
+> Task :data:update:compileAndroidMainLibraryResources
+> Task :feature:festival:mapAndroidMainSourceSetPaths
+> Task :feature:festival:compileAndroidMainLibraryResources
+> Task :feature:settings:mapAndroidMainSourceSetPaths
+> Task :feature:settings:compileAndroidMainLibraryResources
+> Task :feature:update:mapAndroidMainSourceSetPaths
+> Task :feature:update:compileAndroidMainLibraryResources
+> Task :androidApp:mergeDebugJniLibFolders
+> Task :composeApp:mergeAndroidMainJniLibFolders
+> Task :composeApp:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :composeApp:copyAndroidMainJniLibsProjectOnly
+> Task :core:model:mergeAndroidMainJniLibFolders
+> Task :core:model:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :core:model:copyAndroidMainJniLibsProjectOnly
+> Task :core:network:mergeAndroidMainJniLibFolders
+> Task :core:network:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :core:network:copyAndroidMainJniLibsProjectOnly
+> Task :core:platform:mergeAndroidMainJniLibFolders
+> Task :core:platform:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :core:platform:copyAndroidMainJniLibsProjectOnly
+> Task :data:festival:mergeAndroidMainJniLibFolders
+> Task :data:festival:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :data:festival:copyAndroidMainJniLibsProjectOnly
+> Task :data:update:mergeAndroidMainJniLibFolders
+> Task :data:update:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :data:update:copyAndroidMainJniLibsProjectOnly
+> Task :feature:festival:mergeAndroidMainJniLibFolders
+> Task :feature:festival:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :feature:festival:copyAndroidMainJniLibsProjectOnly
+> Task :feature:settings:mergeAndroidMainJniLibFolders
+> Task :feature:settings:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :feature:settings:copyAndroidMainJniLibsProjectOnly
+> Task :feature:update:mergeAndroidMainJniLibFolders
+> Task :feature:update:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :androidApp:mergeLibDexDebug
+> Task :feature:update:copyAndroidMainJniLibsProjectOnly
+> Task :androidApp:validateSigningDebug
+> Task :androidApp:compileDebugKotlin
+> Task :androidApp:compileDebugJavaWithJavac NO-SOURCE
+> Task :androidApp:processDebugResources
+> Task :androidApp:processDebugJavaRes
+> Task :androidApp:mergeDebugNativeLibs
+> Task :androidApp:dexBuilderDebug
+> Task :androidApp:mergeProjectDexDebug
+> Task :androidApp:writeDebugAppMetadata
+> Task :androidApp:writeDebugSigningConfigVersions
+
+> Task :androidApp:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so. Run with --info option to learn more.
+[CXX1101] NDK at C:\Users\loki5\AppData\Local\Android\Sdk\ndk-bundle did not have a source.properties file
+[CXX1101] NDK at C:\Users\loki5\AppData\Local\Android\Sdk\ndk-bundle did not have a source.properties file
+[CXX1101] NDK at C:\Users\loki5\AppData\Local\Android\Sdk\ndk-bundle did not have a source.properties file
+[CXX1101] NDK at C:\Users\loki5\AppData\Local\Android\Sdk\ndk-bundle did not have a source.properties file
+
+> Task :androidApp:mergeDebugJavaResource
+> Task :androidApp:packageDebug
+> Task :androidApp:createDebugApkListingFileRedirect
+> Task :androidApp:assembleDebug
+
+[Incubating] Problems report is available at: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.7.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 17s
+224 actionable tasks: 212 executed, 12 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.0/userguide/configuration_cache_enabling.html

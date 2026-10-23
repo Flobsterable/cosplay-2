@@ -1,0 +1,167 @@
+> Task :composeApp:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :composeApp:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonMain NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForDesktopMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForDesktopMain UP-TO-DATE
+> Task :composeApp:generateComposeResClass UP-TO-DATE
+> Task :composeApp:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :core:model:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:model:compileKotlinDesktop UP-TO-DATE
+> Task :core:model:desktopProcessResources NO-SOURCE
+> Task :core:model:desktopMainClasses UP-TO-DATE
+> Task :core:model:desktopJar UP-TO-DATE
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:network:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:network:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:network:generateComposeResClass SKIPPED
+> Task :core:network:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:platform:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:platform:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:platform:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:platform:generateComposeResClass SKIPPED
+> Task :core:platform:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:compileKotlinDesktop UP-TO-DATE
+> Task :core:platform:assembleDesktopMainResources UP-TO-DATE
+> Task :core:platform:desktopProcessResources UP-TO-DATE
+> Task :core:platform:desktopMainClasses UP-TO-DATE
+> Task :core:platform:desktopJar UP-TO-DATE
+> Task :core:network:compileKotlinDesktop UP-TO-DATE
+> Task :core:network:assembleDesktopMainResources UP-TO-DATE
+> Task :core:network:desktopProcessResources UP-TO-DATE
+> Task :core:network:desktopMainClasses UP-TO-DATE
+> Task :core:network:desktopJar UP-TO-DATE
+> Task :data:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:festival:compileKotlinDesktop UP-TO-DATE
+> Task :data:festival:desktopProcessResources NO-SOURCE
+> Task :data:festival:desktopMainClasses UP-TO-DATE
+> Task :data:festival:desktopJar UP-TO-DATE
+> Task :data:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:update:compileKotlinDesktop UP-TO-DATE
+> Task :data:update:desktopProcessResources NO-SOURCE
+> Task :data:update:desktopMainClasses UP-TO-DATE
+> Task :data:update:desktopJar UP-TO-DATE
+> Task :feature:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:festival:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:festival:generateComposeResClass SKIPPED
+> Task :feature:festival:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:festival:compileKotlinDesktop UP-TO-DATE
+> Task :feature:festival:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:festival:desktopProcessResources UP-TO-DATE
+> Task :feature:festival:desktopMainClasses UP-TO-DATE
+> Task :feature:festival:desktopJar UP-TO-DATE
+> Task :feature:settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:settings:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:settings:generateComposeResClass SKIPPED
+> Task :feature:settings:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:settings:compileKotlinDesktop UP-TO-DATE
+> Task :feature:settings:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:settings:desktopProcessResources UP-TO-DATE
+> Task :feature:settings:desktopMainClasses UP-TO-DATE
+> Task :feature:settings:desktopJar UP-TO-DATE
+> Task :feature:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:update:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:update:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:update:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:update:generateComposeResClass SKIPPED
+> Task :feature:update:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:update:compileKotlinDesktop UP-TO-DATE
+> Task :feature:update:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:update:desktopProcessResources UP-TO-DATE
+> Task :feature:update:desktopMainClasses UP-TO-DATE
+> Task :feature:update:desktopJar UP-TO-DATE
+> Task :composeApp:compileKotlinDesktop UP-TO-DATE
+> Task :composeApp:assembleDesktopMainResources UP-TO-DATE
+> Task :composeApp:desktopProcessResources UP-TO-DATE
+> Task :composeApp:desktopMainClasses UP-TO-DATE
+> Task :composeApp:desktopJar UP-TO-DATE
+> Task :composeApp:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonTest NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForDesktopTest NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForDesktopTest NO-SOURCE
+> Task :composeApp:assembleDesktopTestResources UP-TO-DATE
+> Task :composeApp:desktopTestProcessResources UP-TO-DATE
+> Task :core:platform:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForCommonTest SKIPPED
+> Task :core:platform:convertXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForDesktopTest NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForDesktopTest SKIPPED
+> Task :core:platform:assembleDesktopTestResources UP-TO-DATE
+> Task :core:platform:desktopTestProcessResources UP-TO-DATE
+> Task :composeApp:compileTestKotlinDesktop
+> Task :composeApp:desktopTestClasses
+> Task :core:platform:compileTestKotlinDesktop
+
+> Task :composeApp:desktopTest
+
+FestivalSearchTest[desktop] > allWordsMayMatchAcrossTitleAndCityInAnyOrder[desktop] FAILED
+    java.lang.AssertionError at FestivalSearchTest.kt:28
+
+FestivalSearchTest[desktop] > findsCyrillicInTitleAndCityIgnoringCase[desktop] FAILED
+    java.lang.AssertionError at FestivalSearchTest.kt:19
+
+FestivalSearchTest[desktop] > splitsRepeatedAndUnicodeWhitespace[desktop] FAILED
+    java.lang.AssertionError at FestivalSearchTest.kt:36
+
+34 tests completed, 3 failed
+
+> Task :composeApp:desktopTest FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':composeApp:desktopTest'.
+> There were failing tests. See the report at: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/composeApp/build/reports/tests/desktopTest/index.html
+
+* Try:
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+
+BUILD FAILED in 37s
+40 actionable tasks: 3 executed, 37 up-to-date

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="FavoritesRepositoryTest[desktop]" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-23T10:14:13.799Z" hostname="FLOBSTER" time="0.082">
+  <properties/>
+  <testcase name="eventTypeTitleIsSavedAndOlderCardsWithoutItStillLoad[desktop]" classname="ru.flobsterable.cosplay2.platform.FavoritesRepositoryTest" time="0.076"/>
+  <testcase name="legacyJsonWithoutEventTypeTitleUsesNullDefault[desktop]" classname="ru.flobsterable.cosplay2.platform.FavoritesRepositoryTest" time="0.0"/>
+  <testcase name="cardsSurviveRepositoryRecreationAndRemoval[desktop]" classname="ru.flobsterable.cosplay2.platform.FavoritesRepositoryTest" time="0.002"/>
+  <testcase name="corruptedOrFutureDataIsNotSilentlyReplacedWithEmptyList[desktop]" classname="ru.flobsterable.cosplay2.platform.FavoritesRepositoryTest" time="0.001"/>
+  <testcase name="missingStorageIsEmpty[desktop]" classname="ru.flobsterable.cosplay2.platform.FavoritesRepositoryTest" time="0.0"/>
+  <testcase name="resetArchivesCorruptDataBeforeWritingAnEmptyCollection[desktop]" classname="ru.flobsterable.cosplay2.platform.FavoritesRepositoryTest" time="0.0"/>
+  <testcase name="duplicateIdsAreNotSavedTwice[desktop]" classname="ru.flobsterable.cosplay2.platform.FavoritesRepositoryTest" time="0.0"/>
+  <testcase name="backupFailurePreventsResetAndPreservesTheOriginalFile[desktop]" classname="ru.flobsterable.cosplay2.platform.FavoritesRepositoryTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

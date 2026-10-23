@@ -1,0 +1,144 @@
+diff --git a/docs/feature-flows.md b/docs/feature-flows.md
+index 7697074..6874b9f 100644
+--- a/docs/feature-flows.md
++++ b/docs/feature-flows.md
+@@ -32,6 +32,14 @@ App.kt сортирует успешный список по startTime пере
+ Выбор другого года меняет selectedYear в App.kt и запускает загрузку каталога.
+ При смене года selectedMonth сбрасывается в All через rememberSaveable(selectedYear).
+ 
++Отдельный `FestivalSearch` в `feature/festival/commonMain` принимает список
++`FestivalSummary` и строку запроса. Он ищет без учёта регистра по названию и городу:
++разбивает запрос по пробельным символам и оставляет фестиваль, только если каждое
++слово найдено хотя бы в одном из этих полей. Пустой запрос возвращает весь список;
++порядок элементов сохраняется, входной список не изменяется. Сервис пока не
++подключён к экрану каталога, где остаётся описанный выше поиск по одной подстроке
++в названии, городе и описании.
++
+ ## Открытие деталей фестиваля
+ 
+ При нажатии карточки AppRoute меняется на FestivalDetails(festival).
+diff --git a/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalSearch.kt b/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalSearch.kt
+new file mode 100644
+index 0000000..81a1dd5
+--- /dev/null
++++ b/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalSearch.kt
+@@ -0,0 +1,31 @@
++package ru.flobsterable.cosplay2.feature.festival
++
++import ru.flobsterable.cosplay2.model.FestivalSummary
++
++class FestivalSearch {
++    fun search(festivals: List<FestivalSummary>, query: String): List<FestivalSummary> {
++        val words = buildList {
++            val word = StringBuilder()
++            for (character in query) {
++                if (character.isWhitespace()) {
++                    if (word.isNotEmpty()) {
++                        add(word.toString())
++                        word.clear()
++                    }
++                } else {
++                    word.append(character)
++                }
++            }
++            if (word.isNotEmpty()) add(word.toString())
++        }
++
++        if (words.isEmpty()) return festivals.toList()
++
++        return festivals.filter { festival ->
++            words.all { word ->
++                festival.title.contains(word, ignoreCase = true) ||
++                    festival.city.contains(word, ignoreCase = true)
++            }
++        }
++    }
++}
+diff --git a/composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/FestivalSearchTest.kt b/composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/FestivalSearchTest.kt
+new file mode 100644
+index 0000000..8fd118c
+--- /dev/null
++++ b/composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/FestivalSearchTest.kt
+@@ -0,0 +1,82 @@
++package ru.flobsterable.cosplay2
++
++import kotlin.test.Test
++import kotlin.test.assertEquals
++import ru.flobsterable.cosplay2.feature.festival.FestivalSearch
++import ru.flobsterable.cosplay2.model.FestivalStatus
++import ru.flobsterable.cosplay2.model.FestivalSummary
++
++class FestivalSearchTest {
++    private val search = FestivalSearch()
++
++    @Test
++    fun findsCyrillicInTitleAndCityIgnoringCase() {
++        val titleMatch = festival(1, "КОСМИЧЕСКИЙ фестиваль", "Томск")
++        val cityMatch = festival(2, "Летний бал", "ОМСК")
++        val festivals = listOf(titleMatch, cityMatch)
++
++        assertEquals(listOf(titleMatch), search.search(festivals, "космический"))
++        assertEquals(listOf(cityMatch), search.search(festivals, "омск"))
++    }
++
++    @Test
++    fun allWordsMayMatchAcrossTitleAndCityInAnyOrder() {
++        val match = festival(1, "Аниме Фестиваль", "Омск")
++        val titleOnly = festival(2, "Аниме фестиваль", "Томск")
++        val cityOnly = festival(3, "Концерт", "Омск")
++
++        assertEquals(listOf(match), search.search(listOf(match, titleOnly, cityOnly), "ОМСК аниме"))
++    }
++
++    @Test
++    fun splitsRepeatedAndUnicodeWhitespace() {
++        val match = festival(1, "Аниме фестиваль", "Омск")
++        val other = festival(2, "Аниме фестиваль", "Томск")
++
++        assertEquals(listOf(match), search.search(listOf(match, other), " \tАниме\n\u00A0ОМСК\r "))
++    }
++
++    @Test
++    fun blankQueryReturnsAllAndEmptyInputReturnsEmpty() {
++        val festivals = listOf(festival(1, "Первый", "Омск"), festival(2, "Второй", "Томск"))
++
++        assertEquals(festivals, search.search(festivals, ""))
++        assertEquals(festivals, search.search(festivals, " \t\n\u00A0 "))
++        assertEquals(emptyList(), search.search(emptyList(), "Омск"))
++        assertEquals(emptyList(), search.search(emptyList(), "  "))
++    }
++
++    @Test
++    fun ignoresDescriptionAndReturnsNoMatchesWhenAWordIsMissing() {
++        val festival = festival(1, "Аниме", "Омск", description = "Косплей")
++
++        assertEquals(emptyList(), search.search(listOf(festival), "косплей"))
++        assertEquals(emptyList(), search.search(listOf(festival), "аниме Москва"))
++    }
++
++    @Test
++    fun preservesOrderAndDoesNotModifyInput() {
++        val first = festival(3, "Аниме", "Омск")
++        val excluded = festival(2, "Концерт", "Москва")
++        val second = festival(1, "Аниме", "Томск")
++        val festivals = mutableListOf(first, excluded, second)
++        val original = festivals.toList()
++
++        assertEquals(listOf(first, second), search.search(festivals, "аниме"))
++        assertEquals(original, festivals)
++    }
++
++    private fun festival(id: Long, title: String, city: String, description: String = "") = FestivalSummary(
++        id = id,
++        title = title,
++        description = description,
++        city = city,
++        country = "Россия",
++        eventTypeId = 1,
++        startTime = "2026-11-01",
++        endTime = "2026-11-02",
++        displayTime = "1–2 ноября",
++        status = FestivalStatus.Future,
++        url = "https://example.com/$id"
++    )
++}

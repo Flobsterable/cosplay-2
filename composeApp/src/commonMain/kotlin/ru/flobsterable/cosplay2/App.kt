@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.CancellationException
 import io.ktor.client.HttpClient
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.todayIn
 import ru.flobsterable.cosplay2.data.festival.CosplayApiImpl

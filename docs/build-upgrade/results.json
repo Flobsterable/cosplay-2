@@ -1,0 +1,33 @@
+[
+  {
+    "tasks": [
+      ":composeApp:compileKotlinDesktop",
+      ":composeApp:compileAndroidMain",
+      ":androidApp:assembleDebug"
+    ],
+    "exitCode": 1,
+    "started": "2026-10-23T16:03:24.6901700+06:00",
+    "finished": "2026-10-23T16:05:09.5803633+06:00",
+    "log": "docs/build-upgrade/compile-and-apk.log"
+  },
+  {
+    "tasks": [
+      ":composeApp:desktopTest",
+      ":core:platform:desktopTest",
+      "--continue"
+    ],
+    "exitCode": 1,
+    "started": "2026-10-23T16:05:09.5836083+06:00",
+    "finished": "2026-10-23T16:05:26.7081445+06:00",
+    "log": "docs/build-upgrade/tests.log"
+  },
+  {
+    "tasks": [
+      ":androidApp:lintDebug"
+    ],
+    "exitCode": 1,
+    "started": "2026-10-23T16:05:26.7082761+06:00",
+    "finished": "2026-10-23T16:08:01.0860556+06:00",
+    "log": "docs/build-upgrade/lint.log"
+  }
+]

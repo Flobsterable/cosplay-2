@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MyCityScreenTest[desktop]" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-23T10:17:03.065Z" hostname="FLOBSTER" time="0.363">
+  <properties/>
+  <testcase name="savedCityFiltersCatalogAndAllCitiesRestoresOtherEvents[desktop]" classname="ru.flobsterable.cosplay2.MyCityScreenTest" time="0.363"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

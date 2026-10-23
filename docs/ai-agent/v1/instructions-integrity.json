@@ -1,0 +1,46 @@
+[
+  {
+    "path": "AGENTS.md",
+    "unchanged": true
+  },
+  {
+    "path": "composeApp\\AGENTS.md",
+    "unchanged": true
+  },
+  {
+    "path": "core\\platform\\AGENTS.md",
+    "unchanged": true
+  },
+  {
+    "path": "data\\festival\\AGENTS.md",
+    "unchanged": true
+  },
+  {
+    "path": "feature\\festival\\AGENTS.md",
+    "unchanged": true
+  },
+  {
+    "path": ".agents\\skills\\compose-multiplatform\\SKILL.md",
+    "unchanged": true
+  },
+  {
+    "path": ".agents\\skills\\kmp-architecture\\SKILL.md",
+    "unchanged": true
+  },
+  {
+    "path": ".agents\\skills\\kmp-testing\\SKILL.md",
+    "unchanged": true
+  },
+  {
+    "path": ".agents\\skills\\kotlin-code-style\\SKILL.md",
+    "unchanged": true
+  },
+  {
+    "path": ".codex\\agents\\code-reviewer.toml",
+    "unchanged": true
+  },
+  {
+    "path": ".codex\\agents\\test-engineer.toml",
+    "unchanged": true
+  }
+]

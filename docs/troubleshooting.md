@@ -1,5 +1,21 @@
 # Диагностика приложения
 
+## Gradle не находит Java 21 при импорте проекта
+
+Ошибка `Cannot find a Java installation ... languageVersion=21` означает, что
+Gradle не нашёл JDK для компиляции. Ошибка `Failed building KotlinMPPGradleModel`
+может быть следствием этой же причины при синхронизации IDE.
+
+В settings.gradle.kts подключён Foojay resolver: при отсутствии локальной JDK 21
+Gradle загружает её автоматически. Разрешите доступ к Gradle Plugin Portal,
+Foojay и серверу выбранного дистрибутива JDK, затем повторите синхронизацию.
+Без сети установите JDK 21 вручную и выберите её как Gradle JDK в Android Studio
+или задайте JAVA_HOME в терминале. После смены JDK остановите старый daemon
+командой `.\gradlew.bat --stop` и повторите сборку.
+
+Если старый журнал по-прежнему требует `languageVersion=17`, проверьте, что IDE
+открыла актуальную папку проекта, и повторите синхронизацию: текущие модули используют 21.
+
 ## Отображаются демонстрационные фестивали
 
 При ошибке POST /api/events/filter_list CosplayRepositoryImpl возвращает встроенные
@@ -48,5 +64,5 @@ AndroidManifest.xml содержит INTERNET и REQUEST_INSTALL_PACKAGES.
 Тег должен равняться v + APP_VERSION_NAME из gradle.properties.
 Для подписания нужны четыре секрета: ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD,
 ANDROID_KEY_ALIAS и ANDROID_KEY_PASSWORD. Значения секретов не публикуйте в логах и документации.
-Ожидаемый результат assembleRelease — composeApp/build/outputs/apk/release/composeApp-release.apk.
+Ожидаемый результат :androidApp:assembleRelease — androidApp/build/outputs/apk/release/androidApp-release.apk.
 Порядок выпуска описан в development.md.

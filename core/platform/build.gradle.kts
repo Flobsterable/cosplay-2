@@ -2,28 +2,47 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
 }
 
-kotlin {
-    jvmToolchain(17)
+val generatedVersionDirectory = layout.buildDirectory.dir("generated/appVersion/kotlin")
+val generateAppVersion by tasks.registering {
+    val versionName = providers.gradleProperty("APP_VERSION_NAME")
+    inputs.property("versionName", versionName)
+    outputs.dir(generatedVersionDirectory)
+    doLast {
+        val targetFile = generatedVersionDirectory.get().file("ru/flobsterable/cosplay2/platform/AppBuildInfo.kt").asFile
+        targetFile.parentFile.mkdirs()
+        targetFile.writeText("package ru.flobsterable.cosplay2.platform\n\ninternal const val APP_VERSION_NAME = \"${versionName.get()}\"\n")
+    }
+}
 
-    androidTarget {
+kotlin {
+    jvmToolchain(21)
+
+    android {
+        namespace = "ru.flobsterable.cosplay2.core.platform"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        androidResources.enable = true
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
     jvm("desktop") {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
     sourceSets {
+        androidMain {
+            kotlin.srcDir(generateAppVersion.map { generatedVersionDirectory.get() })
+        }
         val desktopMain by getting
 
         commonMain.dependencies {
@@ -45,28 +64,5 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
         }
-    }
-}
-
-android {
-    namespace = "ru.flobsterable.cosplay2.core.platform"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        buildConfigField(
-            "String",
-            "APP_VERSION_NAME",
-            "\"${providers.gradleProperty("APP_VERSION_NAME").get()}\""
-        )
-    }
-
-    buildFeatures {
-        buildConfig = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 }

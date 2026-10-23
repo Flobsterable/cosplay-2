@@ -1,0 +1,132 @@
+Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
+> Task :composeApp:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :composeApp:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonMain NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForDesktopMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForDesktopMain UP-TO-DATE
+> Task :composeApp:generateComposeResClass UP-TO-DATE
+> Task :composeApp:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :core:model:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:model:compileKotlinDesktop UP-TO-DATE
+> Task :core:model:desktopProcessResources NO-SOURCE
+> Task :core:model:desktopMainClasses UP-TO-DATE
+> Task :core:model:desktopJar UP-TO-DATE
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:network:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:network:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:network:generateComposeResClass SKIPPED
+> Task :core:network:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:platform:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:platform:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:platform:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:platform:generateComposeResClass SKIPPED
+> Task :core:platform:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:compileKotlinDesktop UP-TO-DATE
+> Task :core:platform:assembleDesktopMainResources UP-TO-DATE
+> Task :core:platform:desktopProcessResources UP-TO-DATE
+> Task :core:platform:desktopMainClasses UP-TO-DATE
+> Task :core:platform:desktopJar UP-TO-DATE
+> Task :core:network:compileKotlinDesktop UP-TO-DATE
+> Task :core:network:assembleDesktopMainResources UP-TO-DATE
+> Task :core:network:desktopProcessResources UP-TO-DATE
+> Task :core:network:desktopMainClasses UP-TO-DATE
+> Task :core:network:desktopJar UP-TO-DATE
+> Task :data:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:festival:compileKotlinDesktop UP-TO-DATE
+> Task :data:festival:desktopProcessResources NO-SOURCE
+> Task :data:festival:desktopMainClasses UP-TO-DATE
+> Task :data:festival:desktopJar UP-TO-DATE
+> Task :data:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:update:compileKotlinDesktop UP-TO-DATE
+> Task :data:update:desktopProcessResources NO-SOURCE
+> Task :data:update:desktopMainClasses UP-TO-DATE
+> Task :data:update:desktopJar UP-TO-DATE
+> Task :feature:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:festival:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:festival:generateComposeResClass SKIPPED
+> Task :feature:festival:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:festival:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:festival:desktopProcessResources UP-TO-DATE
+> Task :feature:settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:settings:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:settings:generateComposeResClass SKIPPED
+> Task :feature:settings:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:settings:compileKotlinDesktop UP-TO-DATE
+> Task :feature:settings:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:settings:desktopProcessResources UP-TO-DATE
+> Task :feature:settings:desktopMainClasses UP-TO-DATE
+> Task :feature:settings:desktopJar UP-TO-DATE
+> Task :feature:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:update:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:update:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:update:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:update:generateComposeResClass SKIPPED
+> Task :feature:update:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:update:compileKotlinDesktop UP-TO-DATE
+> Task :feature:update:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:update:desktopProcessResources UP-TO-DATE
+> Task :feature:update:desktopMainClasses UP-TO-DATE
+> Task :feature:update:desktopJar UP-TO-DATE
+
+> Task :feature:festival:compileKotlinDesktop
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:414:52 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:437:5 'fun ClickableText(text: AnnotatedString, modifier: Modifier = ..., style: TextStyle = ..., softWrap: Boolean = ..., overflow: TextOverflow = ..., maxLines: Int = ..., onTextLayout: (TextLayoutResult) -> Unit = ..., onClick: (Int) -> Unit): Unit' is deprecated. Use Text or BasicText and pass an AnnotatedString that contains a LinkAnnotation.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:579:18 'fun Modifier.menuAnchor(): Modifier' is deprecated. Use overload that takes MenuAnchorType and enabled parameters.
+w: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalDetailScreen.kt:115:56 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+
+> Task :feature:festival:desktopMainClasses
+> Task :feature:festival:desktopJar
+> Task :composeApp:compileKotlinDesktop
+
+[Incubating] Problems report is available at: file:///C:/Users/loki5/Documents/Codex/projects/cosplay-2/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.0.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 46s
+30 actionable tasks: 3 executed, 27 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.0.0/userguide/configuration_cache_enabling.html
