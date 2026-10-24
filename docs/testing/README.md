@@ -47,6 +47,13 @@ Skill доступен в `.agents/skills/two-level-testing`. Установка
 Команды из корня, Java launcher должен быть установлен и совместим с Gradle;
 daemon/toolchain закреплены на Java 21. Нужен Android SDK 37.
 
+В `sdkmanager` базовая платформа API 37 имеет точное имя
+`platforms;android-37.0` (проверено через `sdkmanager --list`);
+`platforms;android-37` отсутствует и останавливает CI до запуска тестов.
+Workflow устанавливает пакет `37.0`, сохраняя `compileSdk = 37` в проекте.
+Регрессионная проверка конфигурации запускается перед установкой SDK:
+`node --test .github/scripts/verification-sdk.test.cjs`.
+
 ```powershell
 .\scripts\verify.ps1 -OutputDirectory build/verification/run-001
 # После MCP-прогона и сохранения smoke.json:

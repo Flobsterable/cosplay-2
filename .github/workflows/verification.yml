@@ -23,9 +23,12 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: gradle
+      - name: Check SDK package configuration
+        shell: pwsh
+        run: node --test .github/scripts/verification-sdk.test.cjs
       - name: Install compile SDK
         shell: pwsh
-        run: '& "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat" "platforms;android-37"'
+        run: '& "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat" "platforms;android-37.0"'
       - name: Code tests, both targets and Android Lint
         shell: pwsh
         run: ./scripts/verify.ps1 -CodeOnly
