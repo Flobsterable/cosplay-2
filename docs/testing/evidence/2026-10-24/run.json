@@ -1,0 +1,45 @@
+{
+  "startedAt": "2026-10-24T02:50:52.0520436+06:00",
+  "revision": "0e092fe94f816674085a016f342bad9683788173",
+  "sourceHash": "ceaf98c89b6992708bf827a88c7bff523d56a829a4383739892045d0f086da98",
+  "commands": [
+    {
+      "name": "tests",
+      "arguments": [
+        ":core:model:desktopTest",
+        ":data:festival:desktopTest",
+        ":data:update:desktopTest",
+        ":core:platform:desktopTest",
+        ":composeApp:desktopTest",
+        "--console=plain",
+        "-I",
+        "docs/build-upgrade/maven-mirror.init.gradle.kts"
+      ],
+      "exitCode": 0,
+      "log": "tests.log"
+    },
+    {
+      "name": "compile",
+      "arguments": [
+        ":composeApp:compileKotlinDesktop",
+        ":composeApp:compileAndroidMain",
+        "--console=plain",
+        "-I",
+        "docs/build-upgrade/maven-mirror.init.gradle.kts"
+      ],
+      "exitCode": 0,
+      "log": "compile.log"
+    },
+    {
+      "name": "lint",
+      "arguments": [
+        ":androidApp:lintDebug",
+        "--console=plain",
+        "-I",
+        "docs/build-upgrade/maven-mirror.init.gradle.kts"
+      ],
+      "exitCode": 0,
+      "log": "lint.log"
+    }
+  ]
+}

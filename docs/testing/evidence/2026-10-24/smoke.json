@@ -1,0 +1,170 @@
+{
+  "revision": "0e092fe94f816674085a016f342bad9683788173",
+  "sourceHash": "ceaf98c89b6992708bf827a88c7bff523d56a829a4383739892045d0f086da98",
+  "platform": "Desktop JVM / Windows",
+  "transport": "MCP Computer Use / node_repl / @oai/sky",
+  "build": "Текущие локальные исходники; gradle APP_VERSION_NAME=1.0.2; Desktop UI показывает 1.0.0; запущено :composeApp:run; APPDATA=build/verification/initial/appdata; Ограничения: Android UI не прогонялся; GitHub Actions удалённо не запускался. Новые 17 тестов прошли с первого запуска (../initial/new-tests.log).",
+  "scenarios": [
+    {
+      "id": "S01",
+      "status": "PASS",
+      "diagnosis": "Нарушений ожидаемого поведения не обнаружено.",
+      "steps": [
+        {
+          "id": "S01-1",
+          "status": "PASS",
+          "actual": "Каталог загрузился: найдено 64 фестиваля, показаны карточки; демонстрационный fallback не отображается.",
+          "screenshot": "screenshots/S01-1.png"
+        },
+        {
+          "id": "S01-2",
+          "status": "PASS",
+          "actual": "Поиск «Планета Косплея» сократил каталог с 64 до 1 карточки.",
+          "screenshot": "screenshots/S01-2.png"
+        },
+        {
+          "id": "S01-3",
+          "status": "PASS",
+          "actual": "Для SMOKE_NO_MATCH_7429 показано «Ничего не найдено» и совет снять фильтр или сократить запрос.",
+          "screenshot": "screenshots/S01-3.png"
+        },
+        {
+          "id": "S01-4",
+          "status": "PASS",
+          "actual": "После очистки запроса снова найдено 64 фестиваля, карточки восстановлены.",
+          "screenshot": "screenshots/S01-4.png"
+        }
+      ]
+    },
+    {
+      "id": "S02",
+      "status": "PASS",
+      "diagnosis": "Нарушений ожидаемого поведения не обнаружено.",
+      "steps": [
+        {
+          "id": "S02-1",
+          "status": "PASS",
+          "actual": "Выбран 2026 год, после загрузки найдено 360 событий; старый список не показан во время загрузки. Год API отдельно подтверждается кодовыми тестами.",
+          "screenshot": "screenshots/S02-1.png"
+        },
+        {
+          "id": "S02-2",
+          "status": "PASS",
+          "actual": "Выбран Январь 2026: вместо 360 найдено 23 события.",
+          "screenshot": "screenshots/S02-2.png"
+        },
+        {
+          "id": "S02-3",
+          "status": "PASS",
+          "actual": "После Настройки → Назад сохранены 2026 и Январь. Дополнительный снимок: screenshots/S02-3-settings.png.",
+          "screenshot": "screenshots/S02-3.png"
+        },
+        {
+          "id": "S02-4",
+          "status": "PASS",
+          "actual": "Выбран 2025; месяц автоматически сброшен с Января на Все месяцы.",
+          "screenshot": "screenshots/S02-4.png"
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "status": "PASS",
+      "diagnosis": "Нарушений ожидаемого поведения не обнаружено.",
+      "steps": [
+        {
+          "id": "S03-1",
+          "status": "PASS",
+          "actual": "У «Необычный Новый год!» звезда стала заполненной. Перед добавлением проверено пустое избранное: screenshots/S03-precondition.png.",
+          "screenshot": "screenshots/S03-1.png"
+        },
+        {
+          "id": "S03-2",
+          "status": "PASS",
+          "actual": "В Избранном появилась карточка «Необычный Новый год!», Набережные Челны, 3 января.",
+          "screenshot": "screenshots/S03-2.png"
+        },
+        {
+          "id": "S03-3",
+          "status": "PASS",
+          "actual": "Открыты детали «Необычный Новый год!»: 3 января 2025, звезда активна.",
+          "screenshot": "screenshots/S03-3.png"
+        },
+        {
+          "id": "S03-4",
+          "status": "PASS",
+          "actual": "Назад из деталей вернул в Избранное, карточка «Необычный Новый год!» осталась.",
+          "screenshot": "screenshots/S03-4.png"
+        },
+        {
+          "id": "S03-5",
+          "status": "PASS",
+          "actual": "Только добавленная тестом запись удалена: карточек нет, показано «Добавьте фестивали в избранное».",
+          "screenshot": "screenshots/S03-5.png"
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "status": "PASS",
+      "diagnosis": "Нарушений ожидаемого поведения не обнаружено.",
+      "steps": [
+        {
+          "id": "S04-1",
+          "status": "PASS",
+          "actual": "В Настройках открыт диалог «Мой город» с полем Город; Сохранить неактивно до ввода.",
+          "screenshot": "screenshots/S04-1.png"
+        },
+        {
+          "id": "S04-2",
+          "status": "PASS",
+          "actual": "После сохранения в Настройках указан город Набережные Челны. Ввод: screenshots/S04-2-input.png.",
+          "screenshot": "screenshots/S04-2.png"
+        },
+        {
+          "id": "S04-3",
+          "status": "PASS",
+          "actual": "Фильтр Мой город: Набережные Челны активен; найдено 4 события вместо 336. Активный фильтр: screenshots/S04-3-filter.png. Проверены все четыре карточки: Необычный Новый год!, CH.FLEX FEST, Arkana Fest, Рубикон — Набережные Челны; screenshots/S04-3-city-1.png … S04-3-city-4.png.",
+          "screenshot": "screenshots/S04-3.png"
+        },
+        {
+          "id": "S04-4",
+          "status": "PASS",
+          "actual": "После отключения фильтра восстановлены 336 событий (screenshots/S04-4-all.png); повторно открытые Настройки сохранили Набережные Челны.",
+          "screenshot": "screenshots/S04-4.png"
+        }
+      ]
+    },
+    {
+      "id": "S05",
+      "status": "PASS",
+      "diagnosis": "Нарушений ожидаемого поведения не обнаружено.",
+      "steps": [
+        {
+          "id": "S05-1",
+          "status": "PASS",
+          "actual": "Поддержка открыта: «Отправка сообщений пока недоступна», поле Сообщение и неактивная Отправить; история пустая.",
+          "screenshot": "screenshots/S05-1.png"
+        },
+        {
+          "id": "S05-2",
+          "status": "PASS",
+          "actual": "В поле виден SMOKE_DRAFT_7429; Отправить осталась неактивной, история пуста.",
+          "screenshot": "screenshots/S05-2.png"
+        },
+        {
+          "id": "S05-3",
+          "status": "PASS",
+          "actual": "Назад из Поддержки открыл Настройки.",
+          "screenshot": "screenshots/S05-3.png"
+        },
+        {
+          "id": "S05-4",
+          "status": "PASS",
+          "actual": "После повторного открытия Поддержки SMOKE_DRAFT_7429 сохранён; Отправить неактивна, ответов и отправленных сообщений нет.",
+          "screenshot": "screenshots/S05-4.png"
+        }
+      ]
+    }
+  ]
+}

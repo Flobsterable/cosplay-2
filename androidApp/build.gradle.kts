@@ -48,6 +48,11 @@ android {
     }
 
     buildTypes {
+        getByName("debug") {
+            if (providers.gradleProperty("androidSmoke").orNull == "true") {
+                applicationIdSuffix = ".smoke"
+            }
+        }
         getByName("release") {
             isMinifyEnabled = false
             if (
