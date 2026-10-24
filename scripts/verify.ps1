@@ -2,6 +2,8 @@
 param(
     [string]$OutputDirectory = 'build/verification/latest',
     [string]$GradleInitScript,
+    [ValidateSet('Desktop', 'Android')]
+    [string]$TargetPlatform = 'Desktop',
     [switch]$ReportOnly,
     [switch]$CodeOnly
 )
@@ -16,7 +18,7 @@ function Write-JsonFile($Path, $Value) {
 }
 function Get-SourceHash {
     $paths = @(& git ls-files --cached --others --exclude-standard) |
-        Where-Object { $_ -match '\.(kt|kts|properties|toml|ps1|ya?ml)$' -or $_ -eq 'docs/testing/smoke.json' } |
+        Where-Object { $_ -match '\.(kt|kts|properties|toml|ps1|mjs|ya?ml)$' -or $_ -eq 'docs/testing/smoke.json' } |
         Sort-Object -Unique
     $entries = foreach ($path in $paths) {
         if (Test-Path -LiteralPath $path -PathType Leaf) {
@@ -39,6 +41,7 @@ if (!$ReportOnly) {
         startedAt = [DateTimeOffset]::Now.ToString('o')
         revision = (& git rev-parse HEAD | Out-String).Trim()
         sourceHash = Get-SourceHash
+        targetPlatform = $TargetPlatform
         commands = @()
     }
     Write-JsonFile $runFile $run
@@ -47,6 +50,9 @@ if (!$ReportOnly) {
             ':core:platform:desktopTest', ':composeApp:desktopTest')
         compile = @(':composeApp:compileKotlinDesktop', ':composeApp:compileAndroidMain')
         lint = @(':androidApp:lintDebug')
+    }
+    if ($TargetPlatform -eq 'Android') {
+        $groups.compile += @(':androidApp:assembleDebug', '-PandroidSmoke=true')
     }
     foreach ($name in $groups.Keys) {
         $arguments = @($groups[$name]) + @('--console=plain')
@@ -113,7 +119,23 @@ if (Test-Path -LiteralPath $smokeFile) {
     $plan = Get-Content docs/testing/smoke.json -Raw | ConvertFrom-Json
     $smokePassed = $smoke.sourceHash -eq $run.sourceHash -and $smoke.revision -eq $run.revision -and
         $smoke.transport -match 'MCP' -and @($smoke.scenarios).Count -eq @($plan.scenarios).Count
+    if ($run.targetPlatform -eq 'Android') {
+        $deviceFile = Join-Path $outputPath 'android-device.json'
+        if (!(Test-Path -LiteralPath $deviceFile)) { $smokePassed = $false }
+        else {
+            $device = Get-Content -LiteralPath $deviceFile -Raw | ConvertFrom-Json
+            if ($smoke.platform -notmatch '^Android' -or $smoke.device -ne $device.device -or
+                $smoke.mcpDevice -ne $device.mcpDevice -or
+                $smoke.packageName -ne 'ru.flobsterable.cosplay2.smoke' -or
+                $smoke.apkSha256 -ne $device.apkSha256 -or $device.sourceHash -ne $run.sourceHash -or
+                $device.revision -ne $run.revision) { $smokePassed = $false }
+        }
+    }
     $lines.Add("Платформа: $($smoke.platform). Инструмент: $($smoke.transport). Сборка: $($smoke.build).")
+    if ($run.targetPlatform -eq 'Android') {
+        $lines.Add("Android: $($smoke.device), MCP device: $($smoke.mcpDevice); package: $($smoke.packageName); APK SHA-256: $($smoke.apkSha256).")
+        if (!$smokePassed) { $lines.Add('BLOCKED: проверьте Android-свидетельства, package/device/APK hash и версию исходников.') }
+    }
     $lines.Add('')
     foreach ($scenario in $plan.scenarios) {
         $matches = @($smoke.scenarios | Where-Object { $_.id -eq $scenario.id })

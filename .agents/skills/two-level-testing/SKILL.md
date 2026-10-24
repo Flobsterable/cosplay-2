@@ -28,6 +28,15 @@ description: "Run Cosplay 2 code tests and autonomous MCP UI smoke with screensh
    для реально существующей web-цели, которой сейчас нет. Для Computer Use прочитай
    его skill и используй поддерживаемые API. При отсутствии MCP/устройства запиши
    BLOCKED с причиной, не подменяй MCP кодовыми Compose-тестами.
+   Для Android следуй `docs/testing/android.md`: verify с `-TargetPlatform Android`,
+   затем prepare-android-smoke.ps1 с явно выбранным эмулятором. MCP cosplay_android
+   управляет тестовой установкой `ru.flobsterable.cosplay2.smoke`; личные данные не
+   сбрасывай. Предпочитай `androidAction` из плана, проверь системный BACK и IME.
+   В Android-отчёт перенеси device/mcpDevice/packageName/apkSha256 из
+   android-device.json. Desktop smoke не подтверждает Android.
+   До перезагрузки каталога tools можно запустить
+   `node scripts/android-mcp.mjs --session` через терминальный инструмент и отправлять
+   JSON-запросы по документации. Это тот же stdio MCP, не прямой ADB UI fallback.
 5. Пройди каждый шаг `smoke.json` через UI. Перед действием наблюдай текущий экран,
    после действия проверь ожидаемый результат и сохрани настоящий снимок в
    `<run>/screenshots/<step-id>.png`. Для окна с несколькими снимками сохраняй

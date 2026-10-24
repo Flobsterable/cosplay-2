@@ -71,6 +71,10 @@ exit 2 — код прошёл, UI имеет FAIL/BLOCKED или ещё не в
 
 ## MCP и тестовый профиль
 
+Для Android добавлен [workflow Mobile MCP](android.md): установка MCP в Codex,
+изолированный debug APK, подготовка эмулятора и отчёт с Android BACK/IME.
+Промпт: «Используй $two-level-testing для Android и прогони оба уровня».
+
 Доступные платформы — Android и Desktop JVM. Для Android нужен подключённый mobile
 MCP с наблюдением, кликами, вводом и screenshots и устройство/эмулятор. Для Desktop
 подходит MCP Computer Use (`node_repl` + `@oai/sky`). Playwright MCP предназначен для
