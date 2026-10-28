@@ -1,0 +1,4 @@
+Local Markdown links: PASS (11 files)
+[{"module": "composeApp", "tests": 40, "failures": 0, "errors": 0, "skipped": 0}, {"module": "core/platform", "tests": 12, "failures": 0, "errors": 0, "skipped": 0}]
+Current Gradle XML totals match recorded trial: PASS
+git diff --check exit=0

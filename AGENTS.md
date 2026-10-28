@@ -214,6 +214,14 @@ ViewModel, DI-фреймворк и отдельный domain/use-case моду�
 
 ## Проверка изменений
 
+Для полного цикла тестирования, подготовки/обновления PR и проверки новой фичи
+применяй `.agents/skills/two-level-testing/SKILL.md`: code tests → MCP UI smoke →
+единый отчёт со снимками каждого шага. План — `docs/testing/smoke.json`, команды и
+промпты — `docs/testing/README.md`. Проверяй текущую сборку и обновляй затронутые
+сценарии после изменения контракта. При недоступном MCP/устройстве фиксируй BLOCKED;
+зелёный code job сам по себе не подтверждает полный цикл. Публикация PR/отчёта
+по-прежнему требует соответствующего запроса.
+
 Запускай команды из корня через Wrapper. В PowerShell:
 
 ```powershell
@@ -258,3 +266,12 @@ read-only ревью и проверку соответственно. Изме�
 не назначай параллельное редактирование одного файла и проверяй результат.
 Не заявляй запуск субагентов или проверок, которые фактически не выполнялись.
 Внешний cosplay-dev-assistant из docs/dev-assistant.md здесь не настраивается.
+
+## Профили задач
+
+По запросу Bug Fix, Research, Build Upgrade или Review загружай соответствующий SKILL.md
+из `.agents/skills/profile-bug-fix/`, `.agents/skills/profile-research/`,
+`.agents/skills/profile-build-upgrade/` или `.agents/skills/profile-review/`.
+Research и Review не изменяют файлы; найденные исправления оформляются отдельной
+задачей Bug Fix. Инструкции, установка в Codex и результаты пробных запусков:
+`docs/ai-agent/profiles/README.md`. Профили дополняют правила проекта.

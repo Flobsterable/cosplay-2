@@ -1,0 +1,174 @@
+{
+  "revision": "040f9fcbb85fcee03cd57046406b3509c7c066e0",
+  "sourceHash": "7115f536a78aaba828c93c1de99c6a9a46e7c9a6eeb67582d0c73ec15c5058fb",
+  "platform": "Android 16 / API 36 / Pixel 9 emulator",
+  "transport": "Mobile MCP 1.0.12 / stdio / TypeScript SDK client",
+  "device": "emulator-5554",
+  "mcpDevice": "Pixel_9",
+  "packageName": "ru.flobsterable.cosplay2.smoke",
+  "apkSha256": "8E1A837897D1EE80BBA8813705C4C4D994239EBE00A7318F10E00D0E6BCBE21E",
+  "build": "APP_VERSION_NAME=1.0.2, отдельный debug package .smoke; часы эмулятора синхронизированы с компьютером; QWERTY IME проверена отдельно от первоначального handwriting-режима.",
+  "scenarios": [
+    {
+      "id": "S01",
+      "status": "PASS",
+      "diagnosis": "Ожидаемое поведение подтверждено через MCP.",
+      "steps": [
+        {
+          "id": "S01-1",
+          "status": "PASS",
+          "actual": "После синхронизации часов каталог загрузился с сервера: 61 событие; видна карточка АЗИЯ ЗОН | ВРЕМЯ ВЕДЬМ.",
+          "screenshot": "screenshots/S01-1.png"
+        },
+        {
+          "id": "S01-2",
+          "status": "PASS",
+          "actual": "В поиске АЗИЯ: найден 1 фестиваль АЗИЯ ЗОН | ВРЕМЯ ВЕДЬМ вместо 61.",
+          "screenshot": "screenshots/S01-2.png"
+        },
+        {
+          "id": "S01-3",
+          "status": "PASS",
+          "actual": "SMOKE_NO_MATCH_7429 даёт Ничего не найдено и подсказку снять фильтр или сократить запрос.",
+          "screenshot": "screenshots/S01-3.png"
+        },
+        {
+          "id": "S01-4",
+          "status": "PASS",
+          "actual": "После очистки поиска восстановились 61 событие и карточки.",
+          "screenshot": "screenshots/S01-4.png"
+        }
+      ]
+    },
+    {
+      "id": "S02",
+      "status": "PASS",
+      "diagnosis": "Ожидаемое поведение подтверждено через MCP.",
+      "steps": [
+        {
+          "id": "S02-1",
+          "status": "PASS",
+          "actual": "Выбран 2026; загружено 360 событий, первая карточка Hanzan party: special event, 9–10 января.",
+          "screenshot": "screenshots/S02-1.png"
+        },
+        {
+          "id": "S02-2",
+          "status": "PASS",
+          "actual": "Фильтр Январь 2026 сократил каталог с 360 до 23 событий.",
+          "screenshot": "screenshots/S02-2.png"
+        },
+        {
+          "id": "S02-3",
+          "status": "PASS",
+          "actual": "Системный BACK из Настроек вернул в каталог; 2026 и Январь сохранены. Дополнительный снимок S02-3-settings.png.",
+          "screenshot": "screenshots/S02-3.png"
+        },
+        {
+          "id": "S02-4",
+          "status": "PASS",
+          "actual": "Выбран 2025, найдено 336 событий, месяц сброшен на Все месяцы.",
+          "screenshot": "screenshots/S02-4.png"
+        }
+      ]
+    },
+    {
+      "id": "S03",
+      "status": "PASS",
+      "diagnosis": "Ожидаемое поведение подтверждено через MCP.",
+      "steps": [
+        {
+          "id": "S03-1",
+          "status": "PASS",
+          "actual": "Необычный Новый год! добавлен: звезда заполнена; semantics: Удалить из избранного. До добавления избранное пустое (S03-precondition.png).",
+          "screenshot": "screenshots/S03-1.png"
+        },
+        {
+          "id": "S03-2",
+          "status": "PASS",
+          "actual": "Избранное содержит Необычный Новый год!, 3 января, Набережные Челны.",
+          "screenshot": "screenshots/S03-2.png"
+        },
+        {
+          "id": "S03-3",
+          "status": "PASS",
+          "actual": "Детали Необычный Новый год! загружены: 3 января 2025, Набережные Челны, активная звезда.",
+          "screenshot": "screenshots/S03-3.png"
+        },
+        {
+          "id": "S03-4",
+          "status": "PASS",
+          "actual": "Системный BACK из деталей вернул в Избранное с той же карточкой.",
+          "screenshot": "screenshots/S03-4.png"
+        },
+        {
+          "id": "S03-5",
+          "status": "PASS",
+          "actual": "Добавленная тестом запись удалена; показано пустое избранное.",
+          "screenshot": "screenshots/S03-5.png"
+        }
+      ]
+    },
+    {
+      "id": "S04",
+      "status": "PASS",
+      "diagnosis": "Ожидаемое поведение подтверждено через MCP.",
+      "steps": [
+        {
+          "id": "S04-1",
+          "status": "PASS",
+          "actual": "В Настройках открыт Мой город с полем ввода; Сохранить неактивна до ввода.",
+          "screenshot": "screenshots/S04-1.png"
+        },
+        {
+          "id": "S04-2",
+          "status": "PASS",
+          "actual": "Настройки показывают сохранённый город Набережные Челны.",
+          "screenshot": "screenshots/S04-2.png"
+        },
+        {
+          "id": "S04-3",
+          "status": "PASS",
+          "actual": "Мой город: Набережные Челны включился при сохранении; осталось 4 события. Все четыре карточки проверены: Необычный Новый год!, CH.FLEX FEST, Arkana Fest, Рубикон — Набережные Челны (S04-3-cities-1-2.png и S04-3-cities-3-4.png).",
+          "screenshot": "screenshots/S04-3.png"
+        },
+        {
+          "id": "S04-4",
+          "status": "PASS",
+          "actual": "После Все города восстановлены 336 событий (S04-4-all.png). В Настройках город Набережные Челны сохранился.",
+          "screenshot": "screenshots/S04-4.png"
+        }
+      ]
+    },
+    {
+      "id": "S05",
+      "status": "FAIL",
+      "diagnosis": "При обычной QWERTY IME текст черновика визуально скрыт, но сохранён в semantics и появляется после BACK. Повторено дважды. Вероятное место: SupportScreen.kt, Column с padding(padding).imePadding(), в сочетании с adjustResize в AndroidManifest.xml; возможна двойная обработка IME insets. Это гипотеза причины, layout/insets нужно проверить отдельным Bug Fix. Handwriting-режим отличается: BACK сразу вернул Настройки; после перехода на QWERTY первый BACK скрывает IME, второй открывает Настройки.",
+      "steps": [
+        {
+          "id": "S05-1",
+          "status": "PASS",
+          "actual": "Поддержка сообщает об отключённой отправке; история пуста, поле Сообщение доступно, кнопка Отправить disabled.",
+          "screenshot": "screenshots/S05-1.png"
+        },
+        {
+          "id": "S05-2",
+          "status": "FAIL",
+          "actual": "С floating handwriting IME текст виден (S05-2.png). При обычной QWERTY IME поле визуально сжимается и SMOKE_DRAFT_7429 не виден, хотя дерево элементов содержит этот текст. Повторено после переоткрытия Поддержки (S05-ime-repeated.png). После BACK текст снова виден (S05-3-ime-hidden.png). Отправка остаётся disabled.",
+          "screenshot": "screenshots/S05-2-standard-ime.png"
+        },
+        {
+          "id": "S05-3",
+          "status": "PASS",
+          "actual": "На обычной QWERTY IME первый системный BACK скрыл клавиатуру, оставив Поддержку и SMOKE_DRAFT_7429 (S05-3-ime-hidden.png); второй BACK вернул Настройки. Первоначальный handwriting-режим возвращал Настройки одним BACK (S05-3-handwriting-attempt.png).",
+          "screenshot": "screenshots/S05-3.png"
+        },
+        {
+          "id": "S05-4",
+          "status": "PASS",
+          "actual": "После повторного открытия Поддержки SMOKE_DRAFT_7429 сохранился, отправка disabled и история пустая.",
+          "screenshot": "screenshots/S05-4.png"
+        }
+      ]
+    }
+  ]
+}

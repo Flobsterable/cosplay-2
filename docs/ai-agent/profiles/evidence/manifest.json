@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-24",
+  "timezone": "Asia/Omsk",
+  "baseCommit": "3321573eed416e90feea635a95295c6ff2b81afb",
+  "codexVersion": "codex-cli 0.163.0-alpha.11.1",
+  "behaviourRuns": [
+    {
+      "profile": "bug-fix",
+      "agent": "/root/bug_fix_trial",
+      "attempt": 1,
+      "result": "PASS",
+      "mode": "subagent with skill"
+    },
+    {
+      "profile": "research",
+      "agent": "/root/research_trial",
+      "attempt": 1,
+      "result": "PASS_STATIC",
+      "mode": "subagent with skill"
+    },
+    {
+      "profile": "review",
+      "agent": "/root/review_trial",
+      "attempt": 1,
+      "result": "PASS_STATIC",
+      "mode": "subagent with skill"
+    }
+  ],
+  "context": "Subagents inherited current session history; not a blind benchmark.",
+  "nativeCliCheck": "All three -p profiles verified using debug prompt-input, not codex exec task runs.",
+  "profileRevisionsAfterAttempt1": 0,
+  "files": {
+    ".agents/skills/profile-bug-fix/agents/openai.yaml": "6ce9023510c6c0decfad6b46fc24cce61de62dcf47645242e64e4935e2205093",
+    ".agents/skills/profile-bug-fix/SKILL.md": "f134194ae05548e991959d49b09d51403ba76715a286c06d4d86a08c477a8864",
+    ".agents/skills/profile-research/agents/openai.yaml": "84e9d380046e2fec26b3db27577f5a7b0e210ee9449f06544eb4c454f57d1ee9",
+    ".agents/skills/profile-research/SKILL.md": "7c662d38a3ea5d78d15fe8189afe5988b983492113bdbd41a680d802da6cda1d",
+    ".agents/skills/profile-review/agents/openai.yaml": "c70c4da8c79a71ee2dc90a6c7d86f8d7f4cce17e570ce92a615e918ab6a9a0f1",
+    ".agents/skills/profile-review/SKILL.md": "fe43746fde49b5b3ac02d88be7390ebc395cf968e5eca69c3015c2d7564c9dcc",
+    ".codex/install-profiles.ps1": "f82d963420b61a90fda4570c687a2eec0cb023972ff6720ed0bfb40fbdabb9a0",
+    "composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/AppVersionComparisonTest.kt": "9202e2602cbdf503f2b17974391b3ea7129f2e5613124752cb3053a712bb7adc",
+    "core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt": "a0a003b877e488f324f0472ed63c2a9de83eec6bc24c9ad416fde4f8305e3d88",
+    "docs/ai-agent/profiles/evidence/bug-fix/diff-check.log": "93e33971e423329b600492d0e3cb405b8bc4512dbdc8d15722799b60e3129829",
+    "docs/ai-agent/profiles/evidence/bug-fix/fix.patch": "84169b491007ff6c0f5408ff80194f0aa37346316425b0743aba8f306b41e4e6",
+    "docs/ai-agent/profiles/evidence/bug-fix/green-after.log": "2490bb6c2d2d3ccdbcea4897f1f1a1cb7fcd17cf758f39c6cb0366d4ecb039e2",
+    "docs/ai-agent/profiles/evidence/bug-fix/green-tests.xml": "319dff62efbbbf4ddbafb4cce84686367d11317cad5982843b997e9ffc5b3401",
+    "docs/ai-agent/profiles/evidence/bug-fix/red-before.log": "1c8e08ea63e32ac338207768b1bccb977964347976b8a985ab97e133d6113129",
+    "docs/ai-agent/profiles/evidence/bug-fix/response.md": "149bad74266a5e28176e4e2b2bc15b21dcd7d7f5119dbf210921665fd558153f",
+    "docs/ai-agent/profiles/evidence/bug-fix/task.md": "eb0e198decd98c320ff6333312450d57dfa0a5d6adfbbe394f8c5852deb0b6d2",
+    "docs/ai-agent/profiles/evidence/bug-fix/verification-tests.txt": "55e752bc7945c533ac67c12361a64aa61f488ad8f816ca301d49e2c5f8eb15c1",
+    "docs/ai-agent/profiles/evidence/bug-fix/verification.log": "1489819e864c661f1e1a46ea74a1efac6a87eae3310804e449719a5a628095a1",
+    "docs/ai-agent/profiles/evidence/final-verification.log": "d7dbe346ffc0e4930a521860aa8a2df15cfe3f71e3b20c146384e948083721f7",
+    "docs/ai-agent/profiles/evidence/research-response.md": "a8f54f14d8c9baa4ec3990654d419e00f4748400bbaad5c0d964f6ebcdbc586d",
+    "docs/ai-agent/profiles/evidence/research-task.md": "3d23a98507276e0c2360689d9513f82fd03f0f67b81a9a01cc1c298efdc29879",
+    "docs/ai-agent/profiles/evidence/review-response.md": "7b18c2e74de43f3784cd965b888fe210405b918055e954aaf5bc6edcaa2f2783",
+    "docs/ai-agent/profiles/evidence/review-task.md": "ecd3bfd2ba30e47d48b4e9d01ff182e20d9c07e1d8a45d3478808c06e1cc8e5a",
+    "docs/ai-agent/profiles/evidence/setup-verification.log": "cdf359c981715ad70722fea4c510c58d993054532a57b2c3557b321be0bb53c0",
+    "docs/feature-flows.md": "cda9882aff66cc1d17629e7ac242135ae30f11777a2299d961fb88af05a748a4"
+  }
+}

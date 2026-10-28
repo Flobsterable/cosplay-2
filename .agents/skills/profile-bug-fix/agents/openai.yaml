@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bug Fix"
+  short_description: "Найти причину бага, исправить и проверить результат"
+  default_prompt: "Используй $profile-bug-fix для исправления описанного бага."

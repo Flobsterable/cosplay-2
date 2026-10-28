@@ -1,0 +1,12 @@
+ M AGENTS.md
+ M README.md
+ M core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt
+ M docs/README.md
+ M docs/feature-flows.md
+?? .agents/skills/profile-bug-fix/
+?? .agents/skills/profile-build-upgrade/
+?? .agents/skills/profile-research/
+?? .agents/skills/profile-review/
+?? .codex/install-profiles.ps1
+?? composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/AppVersionComparisonTest.kt
+?? docs/ai-agent/profiles/

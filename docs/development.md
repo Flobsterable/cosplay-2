@@ -29,6 +29,11 @@ Android-точка входа и APK находятся в `androidApp`; `compos
 
 ## Проверка сборки
 
+Два уровня проверки (код и самостоятельный UI smoke агента через MCP), команды,
+промпты для PR/новой фичи и формат единого отчёта описаны в
+[testing/README.md](testing/README.md). Workflow `verification.yml` выполняет
+кодовый уровень на PR; MCP smoke запускается в интерактивной сессии агента.
+
 ```bash
 ./gradlew :composeApp:compileKotlinDesktop
 ./gradlew :composeApp:compileAndroidMain

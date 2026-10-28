@@ -132,22 +132,45 @@ sealed interface AppUpdateInstallState {
 }
 
 fun compareAppVersions(left: String, right: String): Int {
-    fun normalize(value: String): List<Int> = value
-        .removePrefix("v")
-        .split(".", "-", "_")
-        .mapNotNull { it.toIntOrNull() }
-
-    val leftParts = normalize(left)
-    val rightParts = normalize(right)
+    val leftVersion = left.removePrefix("v").substringBefore('+')
+    val rightVersion = right.removePrefix("v").substringBefore('+')
+    val leftParts = leftVersion.substringBefore('-').split(".", "_")
+    val rightParts = rightVersion.substringBefore('-').split(".", "_")
     val maxSize = maxOf(leftParts.size, rightParts.size)
 
     for (index in 0 until maxSize) {
-        val leftPart = leftParts.getOrElse(index) { 0 }
-        val rightPart = rightParts.getOrElse(index) { 0 }
-        if (leftPart != rightPart) {
-            return leftPart.compareTo(rightPart)
-        }
+        val comparison = compareVersionIdentifiers(
+            leftParts.getOrElse(index) { "0" },
+            rightParts.getOrElse(index) { "0" }
+        )
+        if (comparison != 0) return comparison
     }
 
-    return 0
+    val leftPrerelease = leftVersion.substringAfter('-', "")
+    val rightPrerelease = rightVersion.substringAfter('-', "")
+    if (leftPrerelease.isEmpty() && rightPrerelease.isEmpty()) return 0
+    if (leftPrerelease.isEmpty()) return 1
+    if (rightPrerelease.isEmpty()) return -1
+
+    val leftIdentifiers = leftPrerelease.split('.')
+    val rightIdentifiers = rightPrerelease.split('.')
+    for (index in 0 until minOf(leftIdentifiers.size, rightIdentifiers.size)) {
+        val comparison = compareVersionIdentifiers(leftIdentifiers[index], rightIdentifiers[index])
+        if (comparison != 0) return comparison
+    }
+
+    return leftIdentifiers.size.compareTo(rightIdentifiers.size)
+}
+
+private fun compareVersionIdentifiers(left: String, right: String): Int {
+    val leftIsNumeric = left.isNotEmpty() && left.all { it in '0'..'9' }
+    val rightIsNumeric = right.isNotEmpty() && right.all { it in '0'..'9' }
+    if (leftIsNumeric && rightIsNumeric) {
+        val leftNumber = left.trimStart('0').ifEmpty { "0" }
+        val rightNumber = right.trimStart('0').ifEmpty { "0" }
+        val lengthComparison = leftNumber.length.compareTo(rightNumber.length)
+        return if (lengthComparison != 0) lengthComparison else leftNumber.compareTo(rightNumber)
+    }
+    if (leftIsNumeric != rightIsNumeric) return if (leftIsNumeric) -1 else 1
+    return left.compareTo(right)
 }

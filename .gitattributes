@@ -3,3 +3,9 @@ docs/ai-agent/v1/source/** -text
 docs/ai-agent/v1/root-AGENTS.snapshot.md -text
 docs/ai-agent/v1/generation-events.jsonl -text
 docs/ai-agent/v1/generation-rollout.recovered.jsonl -text
+
+# Preserve recorded profile evidence, including whitespace in raw command output and patches.
+docs/ai-agent/profiles/evidence/** -text whitespace=cr-at-eol
+docs/ai-agent/profiles/evidence/**/*.log -whitespace
+docs/ai-agent/profiles/evidence/**/*.patch -whitespace
+docs/ai-agent/profiles/evidence/**/*.diff -whitespace

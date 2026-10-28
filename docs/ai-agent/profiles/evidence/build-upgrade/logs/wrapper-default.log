@@ -1,0 +1,13 @@
+ 
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 
+ 
+Please set the JAVA_HOME variable in your environment to match the 
+location of your Java installation. 
+ 
+ERROR: JAVA_HOME is set to an invalid directory: "= 1>&2
+ 
+Please set the JAVA_HOME variable in your environment to match the 
+location of your Java installation. 
+'""' is not recognized as an internal or external command,
+operable program or batch file.
+EXIT_CODE=9009

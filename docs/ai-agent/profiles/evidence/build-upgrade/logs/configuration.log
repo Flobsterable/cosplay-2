@@ -1,0 +1,380 @@
+Initialized native services in: C:\Users\loki5\.gradle\native
+Initialized jansi services in: C:\Users\loki5\.gradle\native
+Found daemon DaemonInfo{pid=33408, address=[06209d39-18fb-4c1e-981f-d2aa7602ead1 port:50644, addresses:[/127.0.0.1]], state=Idle, lastBusy=1792750619628, context=DefaultDaemonContext[uid=c825ee36-bccf-4fc1-8d55-3198c68a9135,javaHome=C:\Users\loki5\Documents\Codex\2026-10-23\referenced-chatgpt-conversation-this-is-an\work\jdk17\jdk-17.0.20.1+1,javaVersion=17,javaVendor=Eclipse Adoptium,daemonRegistryDir=C:\Users\loki5\.gradle\daemon,pid=33408,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx4g,-Dfile.encoding=UTF-8,-Duser.country=RU,-Duser.language=ru,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=Compatible with Java 21, any vendor, nativeImageCapable=false (from gradle/gradle-daemon-jvm.properties), daemonOpts=[-Xmx4g, -Dfile.encoding=UTF-8, -Duser.country=RU, -Duser.language=ru, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=c825ee36-bccf-4fc1-8d55-3198c68a9135,javaHome=C:\Users\loki5\Documents\Codex\2026-10-23\referenced-chatgpt-conversation-this-is-an\work\jdk17\jdk-17.0.20.1+1,javaVersion=17,javaVendor=Eclipse Adoptium,daemonRegistryDir=C:\Users\loki5\.gradle\daemon,pid=33408,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx4g,-Dfile.encoding=UTF-8,-Duser.country=RU,-Duser.language=ru,-Duser.variant]
+
+  Looking for a different daemon...
+The client will now receive all logging from the daemon (pid: 29576). The daemon log file: C:\Users\loki5\.gradle\daemon\9.7.0\daemon-29576.out.log
+Starting 7th build in daemon [uptime: 41 mins 11.878 secs, performance: 99%, GC rate: 0.00/s, heap usage: 0% of 4 GiB]
+Using 16 worker leases.
+Operational build model parameters: {cachingModelBuilding=false, configurationCache=false, configurationCacheDisabledReason=null, configurationCacheParallelLoad=false, configurationCacheParallelStore=false, configureOnDemand=false, invalidateCoupledProjects=false, isolatedProjects=false, isolatedProjectsDiagnostics=false, isolatedProjectsDangerouslyIgnoreProblems=false, modelAsProjectDependency=false, modelBuilding=false, parallelModelBuilding=false, parallelProjectConfiguration=false, parallelProjectExecution=false, vintage=true}
+Now considering [C:\Users\loki5\AndroidStudioProjects\cosplay-2] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Resolved plugin [id: 'org.gradle.toolchains.foojay-resolver-convention', version: '1.0.0']
+Settings evaluated using settings file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\settings.gradle.kts'.
+Projects loaded. Root project using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\build.gradle.kts'.
+Included projects: [root project 'Cosplay', project ':androidApp', project ':composeApp', project ':core', project ':data', project ':feature', project ':core:model', project ':core:network', project ':core:platform', project ':data:festival', project ':data:update', project ':feature:festival', project ':feature:settings', project ':feature:update']
+
+> Configure project :
+Evaluating root project 'Cosplay' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21', apply: false]
+Resolved plugin [id: 'com.android.application', version: '9.4.1', apply: false]
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1', apply: false]
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21', apply: false]
+
+> Configure project :androidApp
+Evaluating project ':androidApp' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\androidApp\build.gradle.kts'.
+Resolved plugin [id: 'com.android.application', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Build d94c5db6-8b3c-48f6-baeb-a3e19fdb2ade is started
+Using default execution profile
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+
+> Configure project :composeApp
+Evaluating project ':composeApp' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :core
+Evaluating project ':core' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\build.gradle'.
+
+> Configure project :data
+Evaluating project ':data' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\build.gradle'.
+
+> Configure project :feature
+Evaluating project ':feature' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\build.gradle'.
+
+> Configure project :core:model
+Evaluating project ':core:model' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\model\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+compileSdkVersion=android-37.0
+
+> Configure project :core:network
+Evaluating project ':core:network' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\network\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :core:platform
+Evaluating project ':core:platform' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\platform\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+WARNING: The 'commonTest' source directory exists, but android host tests are not enabled. To enable android host tests, add `withHostTest {}` to your android target configuration in the Gradle build file.
+Add android.sync.suppressAgpWarnings=GENERIC to the gradle.properties file to suppress this warning.
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :data:festival
+Evaluating project ':data:festival' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\festival\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+compileSdkVersion=android-37.0
+
+> Configure project :data:update
+Evaluating project ':data:update' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\update\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+compileSdkVersion=android-37.0
+
+> Configure project :feature:festival
+Evaluating project ':feature:festival' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :feature:settings
+Evaluating project ':feature:settings' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :feature:update
+Evaluating project ':feature:update' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+All projects evaluated.
+Task name matched 'help'
+Task name matched 'javaToolchains'
+Selected primary task 'help' from project :
+Selected primary task 'javaToolchains' from project :
+Tasks to be executed: [task ':help', task ':javaToolchains']
+Tasks that were excluded: []
+Resolve mutations for :help (Thread[#702,Execution worker,5,main]) started.
+:help (Thread[#702,Execution worker,5,main]) started.
+
+> Task :help
+Caching disabled for task ':help' because:
+  Build cache is disabled
+Task ':help' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+
+Welcome to Gradle 9.7.0.
+
+To run a build, run gradlew <task> ...
+
+To see a list of available tasks, run gradlew tasks
+
+To see more detail about a task, run gradlew help --task <task>
+
+To see a list of command-line options, run gradlew --help
+
+For more detail on using Gradle, see https://docs.gradle.org/9.7.0/userguide/command_line_interface.html
+
+For troubleshooting, visit https://help.gradle.org
+Resolve mutations for :javaToolchains (Thread[#702,Execution worker,5,main]) started.
+:javaToolchains (Thread[#713,Execution worker Thread 12,5,main]) started.
+
+> Task :javaToolchains
+Caching disabled for task ':javaToolchains' because:
+  Build cache is disabled
+Task ':javaToolchains' is not up-to-date because:
+  Task is untracked because: Produces only non-cacheable console output
+
+ + Options
+     | Auto-detection:     Enabled
+     | Auto-download:      Enabled
+
+ + Eclipse Temurin JDK 17 (17.0.20.1+1)
+     | Location:           C:\Users\loki5\.jdks\temurin-17.0.20.1
+     | Language Version:   17
+     | Vendor:             Eclipse Temurin
+     | Architecture:       amd64
+     | Is JDK:             true
+     | Detected by:        IntelliJ
+
+ + OpenJDK JDK 21 (21.0.2+13-58)
+     | Location:           C:\Users\loki5\.jdks\openjdk-21.0.2
+     | Language Version:   21
+     | Vendor:             Oracle
+     | Architecture:       amd64
+     | Is JDK:             true
+     | Detected by:        Current JVM
+
+ + JetBrains JDK 25 (25.0.3+-15898627-b508.16)
+     | Location:           C:\Program Files\Android\Android Studio\jbr
+     | Language Version:   25
+     | Vendor:             JetBrains
+     | Architecture:       amd64
+     | Is JDK:             true
+     | Detected by:        environment variable 'JAVA_HOME'
+
+Build d94c5db6-8b3c-48f6-baeb-a3e19fdb2ade is closed
+
+[Incubating] Problems report is available at: file:///C:/Users/loki5/AndroidStudioProjects/cosplay-2/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.7.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 3s
+2 actionable tasks: 2 executed
+Watched directory hierarchies: [C:\Users\loki5\AndroidStudioProjects\cosplay-2]
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.0/userguide/configuration_cache_enabling.html
+EXIT_CODE=0
