@@ -1,0 +1,51 @@
+{
+  "repository": "https://github.com/addyosmani/agent-skills",
+  "revision": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+  "license": "MIT",
+  "adaptation": "Cosplay 2; compact entrypoints; execution protocol 4",
+  "skills": [
+    {
+      "name": "planning-and-task-breakdown",
+      "path": ".agents/skills/planning-and-task-breakdown/SKILL.md",
+      "upstreamBlobSha1": "296249b64334bcfd1aeaefd27b9e3e5494e38ec0",
+      "adaptedSha256": "2e122264d3d05ae7f73f221f1cfa35bee84550e82aa219fb74f70915a2b1a0ba",
+      "referencePath": ".agents/skills/planning-and-task-breakdown/references/upstream-reference.md",
+      "referenceSha256": "8d0aefeb8545a63d8781d4c1748be68aca22e17d2cdea340c42f99d939463672"
+    },
+    {
+      "name": "incremental-implementation",
+      "path": ".agents/skills/incremental-implementation/SKILL.md",
+      "upstreamBlobSha1": "9c4f49bc841adb3c0f98baaa9eabd435a5b64ef9",
+      "adaptedSha256": "435d0dbadaba8ab461401f7658ce55f62c52f84407f3f6e38a7ea45902056f87",
+      "referencePath": ".agents/skills/incremental-implementation/references/upstream-reference.md",
+      "referenceSha256": "cc4ae94ff6b471acc7df5764e5be174e181ad4dc6bc8eb99d8aa3e72a6838f10"
+    },
+    {
+      "name": "context-engineering",
+      "path": ".agents/skills/context-engineering/SKILL.md",
+      "upstreamBlobSha1": "fb8bb5f85128302b231d301c1201da1e223f6869",
+      "adaptedSha256": "b9edc9657bd00ad1a6348703b3568ab12352f5f00adab3decbe90f0e6d788408",
+      "referencePath": ".agents/skills/context-engineering/references/upstream-reference.md",
+      "referenceSha256": "d9b33b77e4cbb5dbe7ddddca579b31939b48302f7bf268150a2597a37c883575"
+    },
+    {
+      "name": "debugging-and-error-recovery",
+      "path": ".agents/skills/debugging-and-error-recovery/SKILL.md",
+      "upstreamBlobSha1": "356da20365a7cd6825b4ffad14be39280c92cdfc",
+      "adaptedSha256": "100dffab31fec5ee4995ee785ab6f991552ad65e1c888617cd063e559b8dc2f0",
+      "referencePath": ".agents/skills/debugging-and-error-recovery/references/upstream-reference.md",
+      "referenceSha256": "c2b3df5be8e945627f34f96551d2e4a974322a32b665017fd19e60e18d4e0586"
+    },
+    {
+      "name": "code-review-and-quality",
+      "path": ".agents/skills/code-review-and-quality/SKILL.md",
+      "upstreamBlobSha1": "08209ff2208d2883d48d945f7754c428b77f8d87",
+      "adaptedSha256": "fce818426652e919c3fb6d3cbf8af3c921b16bd793e362e4f46cebdb8ab3ff6c",
+      "referencePath": ".agents/skills/code-review-and-quality/references/upstream-reference.md",
+      "referenceSha256": "ccc4520cbe8a21085a1129135caa20dff5152355732a95144cb587b06ffdf6f5"
+    }
+  ],
+  "digestNormalization": "UTF-8 with LF line endings",
+  "entrypointCharsBefore": 76114,
+  "entrypointCharsAfter": 5116
+}

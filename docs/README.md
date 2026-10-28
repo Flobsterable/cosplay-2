@@ -24,6 +24,7 @@ Cosplay 2 — Android/Desktop приложение для просмотра ф�
 | Как обновляются README/docs после слияния PR? | [Автообновление документации](docs-sync.md) |
 | Какие особенности проекта проверяет ревью? | [Правила проекта](review-rules.md) |
 | Как включить Bug Fix, Research, Build Upgrade и Review в Codex? | [Профили агента](ai-agent/profiles/README.md) |
+| Как запустить Execution Loop и измерить минуты без вмешательства? | [Execution Loop](ai-agent/execution-loop/README.md) |
 
 ## Основные технологии
 

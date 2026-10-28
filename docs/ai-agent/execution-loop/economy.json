@@ -1,0 +1,7 @@
+{
+  "directDocs": true,
+  "maxCallsPerRun": 60,
+  "maxCallsPerTask": 10,
+  "maxPromptChars": 12000,
+  "maxReportedTokens": 250000
+}
