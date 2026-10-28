@@ -73,6 +73,8 @@ function agent(options = {}) {
             if (options.reviewCrash) throw new Error('review CLI crashed');
             if (options.invalidApproval) result.verdict = 'UNKNOWN';
         } else {
+            assert.deepEqual(args.slice(args.indexOf('-s'), args.indexOf('-s') + 2), ['-s', 'workspace-write']);
+            assert.ok(args.includes('sandbox_workspace_write.network_access=true'));
             const fail = options.fail?.includes(id) && (!options.once || !failures.has(id));
             if (fail) failures.add(id);
             fs.appendFileSync(path.join(cwd, `${id}.md`), 'step output\n');

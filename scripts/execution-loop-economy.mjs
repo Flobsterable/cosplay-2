@@ -11,7 +11,16 @@ export function economyOptions(options = {}) {
         !Number.isInteger(result.tokenReserve) || result.tokenReserve < 0 ||
         typeof result.stopOnMissingUsage !== 'boolean' || !Number.isFinite(result.maxCallMinutes) || result.maxCallMinutes <= 0 ||
         !Number.isInteger(result.toolOutputTokens) || result.toolOutputTokens < 256) throw new Error('Invalid economy limits');
+    if (result.stageCallMinutes !== undefined && (!result.stageCallMinutes || typeof result.stageCallMinutes !== 'object' ||
+        Array.isArray(result.stageCallMinutes) || Object.entries(result.stageCallMinutes).some(([stage, minutes]) =>
+            !['plan', 'work', 'review', 'recover'].includes(stage) || !Number.isFinite(minutes) || minutes <= 0))) {
+        throw new Error('Invalid stage call limits');
+    }
     return result;
+}
+
+export function callTimeout(limits, stage, remainingMs) {
+    return Math.min(remainingMs, (limits.stageCallMinutes?.[stage] ?? limits.maxCallMinutes) * 60000);
 }
 
 export function assertCallBudget(limits, calls, taskId) {

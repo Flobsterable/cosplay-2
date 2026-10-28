@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { compactContext, directDocumentationPlan, reportedUsage, economyOptions, assertCallBudget } from './execution-loop-economy.mjs';
+import { compactContext, directDocumentationPlan, reportedUsage, economyOptions, assertCallBudget, callTimeout } from './execution-loop-economy.mjs';
 
 test('documentation fast path preserves criteria and explicit earlier dependencies', () => {
     const task = { id: 'EL-03', kind: 'docs', title: 'Update docs', acceptance: 'Describe EL-01 behavior', dependsOn: ['EL-02'] };
@@ -19,6 +19,15 @@ test('reserve and unknown usage stop before another request while initial call i
     assert.doesNotThrow(() => assertCallBudget(limits, [{ task: 'EL-01', usage: { totalTokens: 799 } }], 'EL-02'));
     assert.throws(() => economyOptions({ maxCallMinutes: 0 }));
     assert.throws(() => economyOptions({ toolOutputTokens: 0 }));
+});
+
+test('stage-specific time limits retain the task deadline and validate every override', () => {
+    const limits = economyOptions({ maxCallMinutes: 20, stageCallMinutes: { work: 20, review: 5 } });
+    assert.equal(callTimeout(limits, 'work', 1800000), 1200000);
+    assert.equal(callTimeout(limits, 'review', 1800000), 300000);
+    assert.equal(callTimeout(limits, 'work', 3000), 3000);
+    assert.throws(() => economyOptions({ stageCallMinutes: { review: 0 } }));
+    assert.throws(() => economyOptions({ stageCallMinutes: { unknown: 5 } }));
 });
 
 test('compact planner context omits duplicated history criteria but keeps current acceptance', () => {

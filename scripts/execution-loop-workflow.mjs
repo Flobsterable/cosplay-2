@@ -3,7 +3,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
 import { createHash } from 'node:crypto';
-import { economyOptions, assertCallBudget, directDocumentationPlan, compactContext, reportedUsage } from './execution-loop-economy.mjs';
+import { economyOptions, assertCallBudget, callTimeout, directDocumentationPlan, compactContext, reportedUsage } from './execution-loop-economy.mjs';
 import { createGitHubPublisher } from './execution-loop-publish.mjs';
 import { matchingRecipe, recipePlan, checkRecipe, checkPatch } from './execution-loop-checks.mjs';
 
@@ -180,7 +180,8 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
         fs.writeFileSync(path.join(stageDir, 'prompt.txt'), prompt);
         const args = ['-a', 'never', '-c', `tool_output_token_limit=${limits.toolOutputTokens}`, 'exec', '-C', workspace, '--json', '--output-schema', schemaPath, '-o', resultPath];
         if (model && model !== 'default') args.push('-m', model);
-        if (stage === 'plan' || stage === 'review') args.push('-s', 'read-only');
+        args.push('-s', stage === 'plan' || stage === 'review' ? 'read-only' : 'workspace-write');
+        if (stage === 'work' || stage === 'recover') args.push('-c', 'sandbox_workspace_write.network_access=true');
         if (provider !== 'cloud') args.push('--oss', '--local-provider', provider);
         args.push('-');
         const log = path.join(stageDir, 'agent.log');
@@ -191,11 +192,11 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
         run.modelCalls.push(call);
         persist();
         try {
-            await execute(codex, args, workspace, Math.min(budget, limits.maxCallMinutes * 60000), log, prompt);
+            await execute(codex, args, workspace, callTimeout(limits, stage, budget), log, prompt);
             call.result = 'RETURNED';
         } catch (error) {
             call.result = 'FAILED';
-            if (error.message === 'Task timeout' && budget > limits.maxCallMinutes * 60000) throw new Error('Budget: model call time limit reached');
+            if (error.message === 'Task timeout' && budget > callTimeout(limits, stage, budget)) throw new Error('Budget: model call time limit reached');
             throw error;
         }
         finally {
