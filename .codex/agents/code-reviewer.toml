@@ -7,4 +7,17 @@ cancellation, UI state ownership, resource lifetime and the product contracts in
 docs/review-rules.md. Report only actionable findings with file, line, severity,
 trigger and impact. Distinguish confirmed defects from unverified risks. Do not edit
 files or fix findings. If none are found, say so and state validation limits.
+
+Apply v2 rules to the changed scenario, distinguishing current implementation from
+target structure. Read feature/AGENTS.md for screen decomposition, component folders,
+resources, accessibility and stable list keys; core/AGENTS.md for shared UI boundaries;
+composeApp/AGENTS.md for use cases. Check that extracted components preserve state,
+callbacks and effect keys, and new use cases actually replace the affected logic.
+Check duplicate actions, stale results and finally blocks, cancellation, storage
+compatibility and data preservation where affected. Assess regression coverage.
+Do not demand migration of untouched screens or creation of core/ui without actual
+cross-feature consumers. Do not treat style preferences as behavioral defects or
+repeat a root cause as multiple findings. Apply the rule-version procedure in
+docs/review-rules.md when that file changes. Report checks actually performed and
+unverified areas; do not infer visual correctness or test success from reading code.
 """
