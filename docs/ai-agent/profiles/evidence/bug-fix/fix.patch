@@ -1,0 +1,136 @@
+diff --git a/core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt b/core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt
+index 2b7b640..ea15191 100644
+--- a/core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt
++++ b/core/model/src/commonMain/kotlin/ru/flobsterable/cosplay2/model/Models.kt
+@@ -132,22 +132,45 @@ sealed interface AppUpdateInstallState {
+ }
+ 
+ fun compareAppVersions(left: String, right: String): Int {
+-    fun normalize(value: String): List<Int> = value
+-        .removePrefix("v")
+-        .split(".", "-", "_")
+-        .mapNotNull { it.toIntOrNull() }
+-
+-    val leftParts = normalize(left)
+-    val rightParts = normalize(right)
++    val leftVersion = left.removePrefix("v").substringBefore('+')
++    val rightVersion = right.removePrefix("v").substringBefore('+')
++    val leftParts = leftVersion.substringBefore('-').split(".", "_")
++    val rightParts = rightVersion.substringBefore('-').split(".", "_")
+     val maxSize = maxOf(leftParts.size, rightParts.size)
+ 
+     for (index in 0 until maxSize) {
+-        val leftPart = leftParts.getOrElse(index) { 0 }
+-        val rightPart = rightParts.getOrElse(index) { 0 }
+-        if (leftPart != rightPart) {
+-            return leftPart.compareTo(rightPart)
+-        }
++        val comparison = compareVersionIdentifiers(
++            leftParts.getOrElse(index) { "0" },
++            rightParts.getOrElse(index) { "0" }
++        )
++        if (comparison != 0) return comparison
++    }
++
++    val leftPrerelease = leftVersion.substringAfter('-', "")
++    val rightPrerelease = rightVersion.substringAfter('-', "")
++    if (leftPrerelease.isEmpty() && rightPrerelease.isEmpty()) return 0
++    if (leftPrerelease.isEmpty()) return 1
++    if (rightPrerelease.isEmpty()) return -1
++
++    val leftIdentifiers = leftPrerelease.split('.')
++    val rightIdentifiers = rightPrerelease.split('.')
++    for (index in 0 until minOf(leftIdentifiers.size, rightIdentifiers.size)) {
++        val comparison = compareVersionIdentifiers(leftIdentifiers[index], rightIdentifiers[index])
++        if (comparison != 0) return comparison
+     }
+ 
+-    return 0
++    return leftIdentifiers.size.compareTo(rightIdentifiers.size)
++}
++
++private fun compareVersionIdentifiers(left: String, right: String): Int {
++    val leftIsNumeric = left.isNotEmpty() && left.all { it in '0'..'9' }
++    val rightIsNumeric = right.isNotEmpty() && right.all { it in '0'..'9' }
++    if (leftIsNumeric && rightIsNumeric) {
++        val leftNumber = left.trimStart('0').ifEmpty { "0" }
++        val rightNumber = right.trimStart('0').ifEmpty { "0" }
++        val lengthComparison = leftNumber.length.compareTo(rightNumber.length)
++        return if (lengthComparison != 0) lengthComparison else leftNumber.compareTo(rightNumber)
++    }
++    if (leftIsNumeric != rightIsNumeric) return if (leftIsNumeric) -1 else 1
++    return left.compareTo(right)
+ }
+diff --git a/docs/feature-flows.md b/docs/feature-flows.md
+index 6874b9f..802a4b3 100644
+--- a/docs/feature-flows.md
++++ b/docs/feature-flows.md
+@@ -71,6 +71,15 @@ GitHubUpdateRepository запрашивает последний релиз Flob
+ затем файлы с MIME application/vnd.android.package-archive.
+ Баннер показывается при наличии pendingUpdate или более новой версии относительно AppVersion.versionName.
+ 
++Сравнение версий игнорирует префикс `v` и build metadata после `+`.
++Сначала сравниваются числовые компоненты основной версии (пропущенные равны нулю),
++затем prerelease после `-`: стабильная версия старше prerelease с той же основой.
++Например, `1.0.0-rc.1` → `1.0.0` предлагает обновление, обратный переход — нет.
++Идентификаторы prerelease сравниваются по порядку: числовые — численно,
++текстовые — лексикографически; числовой ниже текстового, более короткая равная
++последовательность ниже длинной. Основная версия имеет приоритет:
++`1.0.1-rc.1` старше `1.0.0`.
++
+ Android AppUpdateLauncher скачивает APK и вызывает системный установщик.
+ Пользователь подтверждает установку и при необходимости разрешает установку из этого источника.
+ Desktop открывает asset/страницу релиза через браузер. Это не обновление через Play Store.
+diff --git a/composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/AppVersionComparisonTest.kt b/composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/AppVersionComparisonTest.kt
+new file mode 100644
+index 0000000..ecad8af
+--- /dev/null
++++ b/composeApp/src/desktopTest/kotlin/ru/flobsterable/cosplay2/AppVersionComparisonTest.kt
+@@ -0,0 +1,47 @@
++package ru.flobsterable.cosplay2
++
++import kotlin.test.Test
++import kotlin.test.assertEquals
++import kotlin.test.assertFalse
++import kotlin.test.assertTrue
++import ru.flobsterable.cosplay2.feature.update.isNewerVersion
++import ru.flobsterable.cosplay2.model.compareAppVersions
++
++class AppVersionComparisonTest {
++    @Test
++    fun stableInstallDoesNotOfferSameVersionPrerelease() {
++        assertFalse(isNewerVersion("1.0.0", "1.0.0-rc.1"))
++    }
++
++    @Test
++    fun prereleaseInstallOffersSameVersionStableRelease() {
++        assertTrue(isNewerVersion("1.0.0-rc.1", "1.0.0"))
++    }
++
++    @Test
++    fun prereleaseIdentifiersFollowNumericAndLexicalPrecedence() {
++        val versions = listOf(
++            "1.0.0-alpha", "1.0.0-alpha.1", "1.0.0-alpha.beta",
++            "1.0.0-beta", "1.0.0-beta.2", "1.0.0-beta.11", "1.0.0-rc.1", "1.0.0"
++        )
++        versions.zipWithNext().forEach { (older, newer) ->
++            assertTrue(compareAppVersions(older, newer) < 0, "$older < $newer")
++            assertTrue(compareAppVersions(newer, older) > 0, "$newer > $older")
++        }
++    }
++
++    @Test
++    fun numericVersionsAndPrefixRemainCompatible() {
++        assertTrue(isNewerVersion("v1.9.9", "v1.10.0"))
++        assertTrue(isNewerVersion("1.0.0", "1.0.1-rc.1"))
++        assertFalse(isNewerVersion("2.0.0", "1.99.99"))
++        assertEquals(0, compareAppVersions("v1.0", "1.0.0"))
++        assertFalse(isNewerVersion("1.0.0", "1.0.0"))
++    }
++
++    @Test
++    fun buildMetadataDoesNotChangePrecedence() {
++        assertEquals(0, compareAppVersions("v1.0.0+build.1", "1.0.0+build.2"))
++        assertEquals(0, compareAppVersions("1.0.0-rc.1+build.1", "1.0.0-rc.1+build.2"))
++    }
++}

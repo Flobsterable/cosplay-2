@@ -1,0 +1,13 @@
+{
+  "directDocs": true,
+  "maxCallsPerRun": 40,
+  "maxCallsPerTask": 6,
+  "maxPromptChars": 6000,
+  "maxReportedTokens": 1500000,
+  "tokenReserve": 50000,
+  "stopOnMissingUsage": true,
+  "maxCallMinutes": 20,
+  "stageCallMinutes": { "plan": 5, "work": 20, "review": 5, "recover": 5 },
+  "toolOutputTokens": 1500,
+  "serviceTier": "default"
+}

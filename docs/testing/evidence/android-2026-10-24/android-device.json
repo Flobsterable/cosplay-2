@@ -1,0 +1,12 @@
+{
+  "device": "emulator-5554",
+  "mcpDevice": "Pixel_9",
+  "model": "sdk_gphone64_x86_64",
+  "apiLevel": "36",
+  "packageName": "ru.flobsterable.cosplay2.smoke",
+  "apkSha256": "8E1A837897D1EE80BBA8813705C4C4D994239EBE00A7318F10E00D0E6BCBE21E",
+  "sourceHash": "7115f536a78aaba828c93c1de99c6a9a46e7c9a6eeb67582d0c73ec15c5058fb",
+  "revision": "040f9fcbb85fcee03cd57046406b3509c7c066e0",
+  "installedAt": "2026-10-24T15:25:02.3272854+06:00",
+  "clockDriftSeconds": 0
+}

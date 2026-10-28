@@ -1,0 +1,2022 @@
+Initialized native services in: C:\Users\loki5\.gradle\native
+Initialized jansi services in: C:\Users\loki5\.gradle\native
+Found daemon DaemonInfo{pid=33408, address=[06209d39-18fb-4c1e-981f-d2aa7602ead1 port:50644, addresses:[/127.0.0.1]], state=Idle, lastBusy=1792750619628, context=DefaultDaemonContext[uid=c825ee36-bccf-4fc1-8d55-3198c68a9135,javaHome=C:\Users\loki5\Documents\Codex\2026-10-23\referenced-chatgpt-conversation-this-is-an\work\jdk17\jdk-17.0.20.1+1,javaVersion=17,javaVendor=Eclipse Adoptium,daemonRegistryDir=C:\Users\loki5\.gradle\daemon,pid=33408,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx4g,-Dfile.encoding=UTF-8,-Duser.country=RU,-Duser.language=ru,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=Compatible with Java 21, any vendor, nativeImageCapable=false (from gradle/gradle-daemon-jvm.properties), daemonOpts=[-Xmx4g, -Dfile.encoding=UTF-8, -Duser.country=RU, -Duser.language=ru, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=c825ee36-bccf-4fc1-8d55-3198c68a9135,javaHome=C:\Users\loki5\Documents\Codex\2026-10-23\referenced-chatgpt-conversation-this-is-an\work\jdk17\jdk-17.0.20.1+1,javaVersion=17,javaVendor=Eclipse Adoptium,daemonRegistryDir=C:\Users\loki5\.gradle\daemon,pid=33408,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx4g,-Dfile.encoding=UTF-8,-Duser.country=RU,-Duser.language=ru,-Duser.variant]
+
+  Looking for a different daemon...
+The client will now receive all logging from the daemon (pid: 29576). The daemon log file: C:\Users\loki5\.gradle\daemon\9.7.0\daemon-29576.out.log
+Starting 8th build in daemon [uptime: 41 mins 36.884 secs, performance: 99%, GC rate: 0.00/s, heap usage: 0% of 4 GiB]
+Using 16 worker leases.
+Operational build model parameters: {cachingModelBuilding=false, configurationCache=false, configurationCacheDisabledReason=null, configurationCacheParallelLoad=false, configurationCacheParallelStore=false, configureOnDemand=false, invalidateCoupledProjects=false, isolatedProjects=false, isolatedProjectsDiagnostics=false, isolatedProjectsDangerouslyIgnoreProblems=false, modelAsProjectDependency=false, modelBuilding=false, parallelModelBuilding=false, parallelProjectConfiguration=false, parallelProjectExecution=false, vintage=true}
+Now considering [C:\Users\loki5\AndroidStudioProjects\cosplay-2] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Resolved plugin [id: 'org.gradle.toolchains.foojay-resolver-convention', version: '1.0.0']
+Settings evaluated using settings file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\settings.gradle.kts'.
+Projects loaded. Root project using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\build.gradle.kts'.
+Included projects: [root project 'Cosplay', project ':androidApp', project ':composeApp', project ':core', project ':data', project ':feature', project ':core:model', project ':core:network', project ':core:platform', project ':data:festival', project ':data:update', project ':feature:festival', project ':feature:settings', project ':feature:update']
+
+> Configure project :
+Evaluating root project 'Cosplay' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21', apply: false]
+Resolved plugin [id: 'com.android.application', version: '9.4.1', apply: false]
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1', apply: false]
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21', apply: false]
+
+> Configure project :androidApp
+Evaluating project ':androidApp' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\androidApp\build.gradle.kts'.
+Resolved plugin [id: 'com.android.application', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Build 2fd32616-1ab2-4d3b-967a-14f45175b2e6 is started
+Using default execution profile
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+Detected Android Gradle Plugin compose compiler configuration
+
+> Configure project :composeApp
+Evaluating project ':composeApp' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :core
+Evaluating project ':core' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\build.gradle'.
+
+> Configure project :data
+Evaluating project ':data' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\build.gradle'.
+
+> Configure project :feature
+Evaluating project ':feature' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\build.gradle'.
+
+> Configure project :core:model
+Evaluating project ':core:model' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\model\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+compileSdkVersion=android-37.0
+
+> Configure project :core:network
+Evaluating project ':core:network' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\network\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :core:platform
+Evaluating project ':core:platform' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\platform\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+WARNING: The 'commonTest' source directory exists, but android host tests are not enabled. To enable android host tests, add `withHostTest {}` to your android target configuration in the Gradle build file.
+Add android.sync.suppressAgpWarnings=GENERIC to the gradle.properties file to suppress this warning.
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :data:festival
+Evaluating project ':data:festival' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\festival\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+compileSdkVersion=android-37.0
+
+> Configure project :data:update
+Evaluating project ':data:update' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\update\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.serialization', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+compileSdkVersion=android-37.0
+
+> Configure project :feature:festival
+Evaluating project ':feature:festival' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :feature:settings
+Evaluating project ':feature:settings' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+
+> Configure project :feature:update
+Evaluating project ':feature:update' using build file 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.4.21']
+Resolved plugin [id: 'com.android.kotlin.multiplatform.library', version: '9.4.1']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.12.2']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.4.21']
+Using Kotlin Gradle Plugin gradle96 variant
+Created androidJvm target
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Created compile task: compileAndroidMain
+Using default execution profile
+Configure multi-module compose resources
+Configure compose resources generation
+Configure resource accessors generation for androidMain
+Configure Res object generation for commonMain
+Configure resource accessors generation for commonMain
+Configure resource accessors generation for commonTest
+Configure expect resource collectors generation for commonMain
+Configure actual resource collectors generation for androidMain
+Configure compose resources with KotlinMultiplatformAndroidComponentsExtension
+Configure resource accessors generation for desktopMain
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+Configure resource accessors generation for desktopTest
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure actual resource collectors generation for desktopMain
+Configure main resources for 'desktop' target
+Configure test resources for 'desktop' target
+compileSdkVersion=android-37.0
+Configure androidMain resources for 'android' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+Configure resource accessors generation for desktopDev
+kotlin scripting plugin: created the scripting discovery configuration: devKotlinScriptDef
+Configure dev resources for 'desktop' target
+All projects evaluated.
+Task path ':composeApp:compileKotlinDesktop' matched project ':composeApp'
+Task name matched 'compileKotlinDesktop'
+Task path ':composeApp:compileAndroidMain' matched project ':composeApp'
+Task name matched 'compileAndroidMain'
+Selected primary task 'compileKotlinDesktop' from project :composeApp
+Selected primary task 'compileAndroidMain' from project :composeApp
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+compileSdkVersion=android-37.0
+Tasks to be executed: [task ':composeApp:checkDesktopMainComposeLibrariesCompatibility', task ':composeApp:kmpPartiallyResolvedDependenciesChecker', task ':composeApp:checkKotlinGradlePluginConfigurationErrors', task ':composeApp:convertXmlValueResourcesForCommonMain', task ':composeApp:copyNonXmlValueResourcesForCommonMain', task ':composeApp:prepareComposeResourcesTaskForCommonMain', task ':composeApp:generateResourceAccessorsForCommonMain', task ':composeApp:convertXmlValueResourcesForDesktopMain', task ':composeApp:copyNonXmlValueResourcesForDesktopMain', task ':composeApp:prepareComposeResourcesTaskForDesktopMain', task ':composeApp:generateResourceAccessorsForDesktopMain', task ':composeApp:generateActualResourceCollectorsForDesktopMain', task ':composeApp:generateComposeResClass', task ':composeApp:generateExpectResourceCollectorsForCommonMain', task ':core:model:kmpPartiallyResolvedDependenciesChecker', task ':core:model:checkKotlinGradlePluginConfigurationErrors', task ':core:model:compileKotlinDesktop', task ':core:model:compileDesktopMainJava', task ':core:model:desktopProcessResources', task ':core:model:processDesktopMainResources', task ':core:model:desktopMainClasses', task ':core:model:desktopJar', task ':core:network:checkDesktopMainComposeLibrariesCompatibility', task ':core:network:kmpPartiallyResolvedDependenciesChecker', task ':core:network:checkKotlinGradlePluginConfigurationErrors', task ':core:network:convertXmlValueResourcesForCommonMain', task ':core:network:copyNonXmlValueResourcesForCommonMain', task ':core:network:prepareComposeResourcesTaskForCommonMain', task ':core:network:generateResourceAccessorsForCommonMain', task ':core:network:convertXmlValueResourcesForDesktopMain', task ':core:network:copyNonXmlValueResourcesForDesktopMain', task ':core:network:prepareComposeResourcesTaskForDesktopMain', task ':core:network:generateResourceAccessorsForDesktopMain', task ':core:network:generateActualResourceCollectorsForDesktopMain', task ':core:network:generateComposeResClass', task ':core:network:generateExpectResourceCollectorsForCommonMain', task ':core:platform:checkDesktopMainComposeLibrariesCompatibility', task ':core:platform:kmpPartiallyResolvedDependenciesChecker', task ':core:platform:checkKotlinGradlePluginConfigurationErrors', task ':core:platform:convertXmlValueResourcesForCommonMain', task ':core:platform:copyNonXmlValueResourcesForCommonMain', task ':core:platform:prepareComposeResourcesTaskForCommonMain', task ':core:platform:generateResourceAccessorsForCommonMain', task ':core:platform:convertXmlValueResourcesForDesktopMain', task ':core:platform:copyNonXmlValueResourcesForDesktopMain', task ':core:platform:prepareComposeResourcesTaskForDesktopMain', task ':core:platform:generateResourceAccessorsForDesktopMain', task ':core:platform:generateActualResourceCollectorsForDesktopMain', task ':core:platform:generateComposeResClass', task ':core:platform:generateExpectResourceCollectorsForCommonMain', task ':core:platform:compileKotlinDesktop', task ':core:platform:compileDesktopMainJava', task ':core:platform:assembleDesktopMainResources', task ':core:platform:desktopProcessResources', task ':core:platform:processDesktopMainResources', task ':core:platform:desktopMainClasses', task ':core:platform:desktopJar', task ':core:network:compileKotlinDesktop', task ':core:network:compileDesktopMainJava', task ':core:network:assembleDesktopMainResources', task ':core:network:desktopProcessResources', task ':core:network:processDesktopMainResources', task ':core:network:desktopMainClasses', task ':core:network:desktopJar', task ':data:festival:kmpPartiallyResolvedDependenciesChecker', task ':data:festival:checkKotlinGradlePluginConfigurationErrors', task ':data:festival:compileKotlinDesktop', task ':data:festival:compileDesktopMainJava', task ':data:festival:desktopProcessResources', task ':data:festival:processDesktopMainResources', task ':data:festival:desktopMainClasses', task ':data:festival:desktopJar', task ':data:update:kmpPartiallyResolvedDependenciesChecker', task ':data:update:checkKotlinGradlePluginConfigurationErrors', task ':data:update:compileKotlinDesktop', task ':data:update:compileDesktopMainJava', task ':data:update:desktopProcessResources', task ':data:update:processDesktopMainResources', task ':data:update:desktopMainClasses', task ':data:update:desktopJar', task ':feature:festival:checkDesktopMainComposeLibrariesCompatibility', task ':feature:festival:kmpPartiallyResolvedDependenciesChecker', task ':feature:festival:checkKotlinGradlePluginConfigurationErrors', task ':feature:festival:convertXmlValueResourcesForCommonMain', task ':feature:festival:copyNonXmlValueResourcesForCommonMain', task ':feature:festival:prepareComposeResourcesTaskForCommonMain', task ':feature:festival:generateResourceAccessorsForCommonMain', task ':feature:festival:convertXmlValueResourcesForDesktopMain', task ':feature:festival:copyNonXmlValueResourcesForDesktopMain', task ':feature:festival:prepareComposeResourcesTaskForDesktopMain', task ':feature:festival:generateResourceAccessorsForDesktopMain', task ':feature:festival:generateActualResourceCollectorsForDesktopMain', task ':feature:festival:generateComposeResClass', task ':feature:festival:generateExpectResourceCollectorsForCommonMain', task ':feature:festival:compileKotlinDesktop', task ':feature:festival:compileDesktopMainJava', task ':feature:festival:assembleDesktopMainResources', task ':feature:festival:desktopProcessResources', task ':feature:festival:processDesktopMainResources', task ':feature:festival:desktopMainClasses', task ':feature:festival:desktopJar', task ':feature:settings:checkDesktopMainComposeLibrariesCompatibility', task ':feature:settings:kmpPartiallyResolvedDependenciesChecker', task ':feature:settings:checkKotlinGradlePluginConfigurationErrors', task ':feature:settings:convertXmlValueResourcesForCommonMain', task ':feature:settings:copyNonXmlValueResourcesForCommonMain', task ':feature:settings:prepareComposeResourcesTaskForCommonMain', task ':feature:settings:generateResourceAccessorsForCommonMain', task ':feature:settings:convertXmlValueResourcesForDesktopMain', task ':feature:settings:copyNonXmlValueResourcesForDesktopMain', task ':feature:settings:prepareComposeResourcesTaskForDesktopMain', task ':feature:settings:generateResourceAccessorsForDesktopMain', task ':feature:settings:generateActualResourceCollectorsForDesktopMain', task ':feature:settings:generateComposeResClass', task ':feature:settings:generateExpectResourceCollectorsForCommonMain', task ':feature:settings:compileKotlinDesktop', task ':feature:settings:compileDesktopMainJava', task ':feature:settings:assembleDesktopMainResources', task ':feature:settings:desktopProcessResources', task ':feature:settings:processDesktopMainResources', task ':feature:settings:desktopMainClasses', task ':feature:settings:desktopJar', task ':feature:update:checkDesktopMainComposeLibrariesCompatibility', task ':feature:update:kmpPartiallyResolvedDependenciesChecker', task ':feature:update:checkKotlinGradlePluginConfigurationErrors', task ':feature:update:convertXmlValueResourcesForCommonMain', task ':feature:update:copyNonXmlValueResourcesForCommonMain', task ':feature:update:prepareComposeResourcesTaskForCommonMain', task ':feature:update:generateResourceAccessorsForCommonMain', task ':feature:update:convertXmlValueResourcesForDesktopMain', task ':feature:update:copyNonXmlValueResourcesForDesktopMain', task ':feature:update:prepareComposeResourcesTaskForDesktopMain', task ':feature:update:generateResourceAccessorsForDesktopMain', task ':feature:update:generateActualResourceCollectorsForDesktopMain', task ':feature:update:generateComposeResClass', task ':feature:update:generateExpectResourceCollectorsForCommonMain', task ':feature:update:compileKotlinDesktop', task ':feature:update:compileDesktopMainJava', task ':feature:update:assembleDesktopMainResources', task ':feature:update:desktopProcessResources', task ':feature:update:processDesktopMainResources', task ':feature:update:desktopMainClasses', task ':feature:update:desktopJar', task ':composeApp:compileKotlinDesktop', task ':composeApp:convertXmlValueResourcesForAndroidMain', task ':composeApp:copyNonXmlValueResourcesForAndroidMain', task ':composeApp:prepareComposeResourcesTaskForAndroidMain', task ':composeApp:generateResourceAccessorsForAndroidMain', task ':composeApp:generateActualResourceCollectorsForAndroidMain', task ':composeApp:androidPreBuild', task ':composeApp:preAndroidMainBuild', task ':composeApp:generateAndroidMainEmptyResourceFiles', task ':composeApp:copyAndroidMainComposeResourcesToAndroidAssets', task ':composeApp:packageAndroidMainResources', task ':composeApp:parseAndroidMainLocalResources', task ':composeApp:generateAndroidMainRFile', task ':core:model:androidPreBuild', task ':core:model:preAndroidMainBuild', task ':core:model:generateAndroidMainEmptyResourceFiles', task ':core:model:packageAndroidMainResources', task ':core:model:parseAndroidMainLocalResources', task ':core:model:generateAndroidMainRFile', task ':core:model:compileAndroidMain', task ':core:model:bundleAndroidMainClassesToCompileJar', task ':core:network:convertXmlValueResourcesForAndroidMain', task ':core:network:copyNonXmlValueResourcesForAndroidMain', task ':core:network:prepareComposeResourcesTaskForAndroidMain', task ':core:network:generateResourceAccessorsForAndroidMain', task ':core:network:generateActualResourceCollectorsForAndroidMain', task ':core:network:androidPreBuild', task ':core:network:preAndroidMainBuild', task ':core:network:generateAndroidMainEmptyResourceFiles', task ':core:network:copyAndroidMainComposeResourcesToAndroidAssets', task ':core:network:packageAndroidMainResources', task ':core:network:parseAndroidMainLocalResources', task ':core:network:generateAndroidMainRFile', task ':core:platform:convertXmlValueResourcesForAndroidMain', task ':core:platform:copyNonXmlValueResourcesForAndroidMain', task ':core:platform:prepareComposeResourcesTaskForAndroidMain', task ':core:platform:generateResourceAccessorsForAndroidMain', task ':core:platform:generateActualResourceCollectorsForAndroidMain', task ':core:platform:androidPreBuild', task ':core:platform:preAndroidMainBuild', task ':core:platform:generateAndroidMainEmptyResourceFiles', task ':core:platform:copyAndroidMainComposeResourcesToAndroidAssets', task ':core:platform:packageAndroidMainResources', task ':core:platform:parseAndroidMainLocalResources', task ':core:platform:generateAndroidMainRFile', task ':core:platform:generateAppVersion', task ':core:platform:compileAndroidMain', task ':core:platform:bundleAndroidMainClassesToCompileJar', task ':core:network:compileAndroidMain', task ':core:network:bundleAndroidMainClassesToCompileJar', task ':data:festival:androidPreBuild', task ':data:festival:preAndroidMainBuild', task ':data:festival:generateAndroidMainEmptyResourceFiles', task ':data:festival:packageAndroidMainResources', task ':data:festival:parseAndroidMainLocalResources', task ':data:festival:generateAndroidMainRFile', task ':data:festival:compileAndroidMain', task ':data:festival:bundleAndroidMainClassesToCompileJar', task ':data:update:androidPreBuild', task ':data:update:preAndroidMainBuild', task ':data:update:generateAndroidMainEmptyResourceFiles', task ':data:update:packageAndroidMainResources', task ':data:update:parseAndroidMainLocalResources', task ':data:update:generateAndroidMainRFile', task ':data:update:compileAndroidMain', task ':data:update:bundleAndroidMainClassesToCompileJar', task ':feature:festival:convertXmlValueResourcesForAndroidMain', task ':feature:festival:copyNonXmlValueResourcesForAndroidMain', task ':feature:festival:prepareComposeResourcesTaskForAndroidMain', task ':feature:festival:generateResourceAccessorsForAndroidMain', task ':feature:festival:generateActualResourceCollectorsForAndroidMain', task ':feature:festival:androidPreBuild', task ':feature:festival:preAndroidMainBuild', task ':feature:festival:generateAndroidMainEmptyResourceFiles', task ':feature:festival:copyAndroidMainComposeResourcesToAndroidAssets', task ':feature:festival:packageAndroidMainResources', task ':feature:festival:parseAndroidMainLocalResources', task ':feature:festival:generateAndroidMainRFile', task ':feature:festival:compileAndroidMain', task ':feature:festival:bundleAndroidMainClassesToCompileJar', task ':feature:settings:convertXmlValueResourcesForAndroidMain', task ':feature:settings:copyNonXmlValueResourcesForAndroidMain', task ':feature:settings:prepareComposeResourcesTaskForAndroidMain', task ':feature:settings:generateResourceAccessorsForAndroidMain', task ':feature:settings:generateActualResourceCollectorsForAndroidMain', task ':feature:settings:androidPreBuild', task ':feature:settings:preAndroidMainBuild', task ':feature:settings:generateAndroidMainEmptyResourceFiles', task ':feature:settings:copyAndroidMainComposeResourcesToAndroidAssets', task ':feature:settings:packageAndroidMainResources', task ':feature:settings:parseAndroidMainLocalResources', task ':feature:settings:generateAndroidMainRFile', task ':feature:settings:compileAndroidMain', task ':feature:settings:bundleAndroidMainClassesToCompileJar', task ':feature:update:convertXmlValueResourcesForAndroidMain', task ':feature:update:copyNonXmlValueResourcesForAndroidMain', task ':feature:update:prepareComposeResourcesTaskForAndroidMain', task ':feature:update:generateResourceAccessorsForAndroidMain', task ':feature:update:generateActualResourceCollectorsForAndroidMain', task ':feature:update:androidPreBuild', task ':feature:update:preAndroidMainBuild', task ':feature:update:generateAndroidMainEmptyResourceFiles', task ':feature:update:copyAndroidMainComposeResourcesToAndroidAssets', task ':feature:update:packageAndroidMainResources', task ':feature:update:parseAndroidMainLocalResources', task ':feature:update:generateAndroidMainRFile', task ':feature:update:compileAndroidMain', task ':feature:update:bundleAndroidMainClassesToCompileJar', task ':composeApp:compileAndroidMain']
+Tasks that were excluded: []
+Resolve mutations for :composeApp:checkDesktopMainComposeLibrariesCompatibility (Thread[#760,Execution worker,5,main]) started.
+destroyer locations for task group 0 (Thread[#761,Execution worker Thread 2,5,main]) started.
+:composeApp:checkDesktopMainComposeLibrariesCompatibility (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :composeApp:checkDesktopMainComposeLibrariesCompatibility
+Caching disabled for task ':composeApp:checkDesktopMainComposeLibrariesCompatibility' because:
+  Build cache is disabled
+Task ':composeApp:checkDesktopMainComposeLibrariesCompatibility' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :composeApp:kmpPartiallyResolvedDependenciesChecker (Thread[#765,Execution worker Thread 6,5,main]) started.
+:composeApp:kmpPartiallyResolvedDependenciesChecker (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:kmpPartiallyResolvedDependenciesChecker
+Caching disabled for task ':composeApp:kmpPartiallyResolvedDependenciesChecker' because:
+  Build cache is disabled
+Task ':composeApp:kmpPartiallyResolvedDependenciesChecker' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Execution stopped by some action with message: null
+Resolve mutations for :composeApp:checkKotlinGradlePluginConfigurationErrors (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:checkKotlinGradlePluginConfigurationErrors (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':composeApp:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :composeApp:convertXmlValueResourcesForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:convertXmlValueResourcesForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:convertXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':composeApp:convertXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:copyNonXmlValueResourcesForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:copyNonXmlValueResourcesForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':composeApp:copyNonXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:prepareComposeResourcesTaskForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:prepareComposeResourcesTaskForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+Skipping task ':composeApp:prepareComposeResourcesTaskForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:generateResourceAccessorsForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:generateResourceAccessorsForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:generateResourceAccessorsForCommonMain NO-SOURCE
+Skipping task ':composeApp:generateResourceAccessorsForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:convertXmlValueResourcesForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:convertXmlValueResourcesForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:convertXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':composeApp:convertXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:copyNonXmlValueResourcesForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:copyNonXmlValueResourcesForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':composeApp:copyNonXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:prepareComposeResourcesTaskForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:prepareComposeResourcesTaskForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+Skipping task ':composeApp:prepareComposeResourcesTaskForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:generateResourceAccessorsForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:generateResourceAccessorsForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:generateResourceAccessorsForDesktopMain NO-SOURCE
+Skipping task ':composeApp:generateResourceAccessorsForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:generateActualResourceCollectorsForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:generateActualResourceCollectorsForDesktopMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:generateActualResourceCollectorsForDesktopMain UP-TO-DATE
+Caching disabled for task ':composeApp:generateActualResourceCollectorsForDesktopMain' because:
+  Build cache is disabled
+  IDE import task — not worth caching
+Skipping task ':composeApp:generateActualResourceCollectorsForDesktopMain' as it is up-to-date.
+Resolve mutations for :composeApp:generateComposeResClass (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:generateComposeResClass (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:generateComposeResClass UP-TO-DATE
+Caching disabled for task ':composeApp:generateComposeResClass' because:
+  Build cache is disabled
+  IDE import task — not worth caching
+Skipping task ':composeApp:generateComposeResClass' as it is up-to-date.
+Resolve mutations for :composeApp:generateExpectResourceCollectorsForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+:composeApp:generateExpectResourceCollectorsForCommonMain (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :composeApp:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+Caching disabled for task ':composeApp:generateExpectResourceCollectorsForCommonMain' because:
+  Build cache is disabled
+  IDE import task — not worth caching
+Skipping task ':composeApp:generateExpectResourceCollectorsForCommonMain' as it is up-to-date.
+Resolve mutations for :core:model:kmpPartiallyResolvedDependenciesChecker (Thread[#770,Execution worker Thread 11,5,main]) started.
+:core:model:kmpPartiallyResolvedDependenciesChecker (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :core:model:kmpPartiallyResolvedDependenciesChecker
+Caching disabled for task ':core:model:kmpPartiallyResolvedDependenciesChecker' because:
+  Build cache is disabled
+Task ':core:model:kmpPartiallyResolvedDependenciesChecker' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Execution stopped by some action with message: null
+Resolve mutations for :core:model:checkKotlinGradlePluginConfigurationErrors (Thread[#770,Execution worker Thread 11,5,main]) started.
+:core:model:checkKotlinGradlePluginConfigurationErrors (Thread[#760,Execution worker,5,main]) started.
+
+> Task :core:model:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':core:model:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :core:model:compileKotlinDesktop (Thread[#760,Execution worker,5,main]) started.
+:core:model:compileKotlinDesktop (Thread[#760,Execution worker,5,main]) started.
+
+> Task :core:model:compileKotlinDesktop UP-TO-DATE
+Caching disabled for task ':core:model:compileKotlinDesktop' because:
+  Build cache is disabled
+Skipping task ':core:model:compileKotlinDesktop' as it is up-to-date.
+Resolve mutations for :core:model:compileDesktopMainJava (Thread[#760,Execution worker,5,main]) started.
+:core:model:compileDesktopMainJava (Thread[#760,Execution worker,5,main]) started.
+
+> Task :core:model:compileDesktopMainJava NO-SOURCE
+Skipping task ':core:model:compileDesktopMainJava' as it has no source files and no previous output files.
+Resolve mutations for :core:model:desktopProcessResources (Thread[#760,Execution worker,5,main]) started.
+:core:model:desktopProcessResources (Thread[#760,Execution worker,5,main]) started.
+
+> Task :core:model:desktopProcessResources NO-SOURCE
+Skipping task ':core:model:desktopProcessResources' as it has no source files and no previous output files.
+Resolve mutations for :core:model:processDesktopMainResources (Thread[#760,Execution worker,5,main]) started.
+:core:model:processDesktopMainResources (Thread[#760,Execution worker,5,main]) started.
+
+> Task :core:model:processDesktopMainResources SKIPPED
+Skipping task ':core:model:processDesktopMainResources' as task onlyIf 'Task is enabled' is false.
+Resolve mutations for :core:model:desktopMainClasses (Thread[#760,Execution worker,5,main]) started.
+:core:model:desktopMainClasses (Thread[#760,Execution worker,5,main]) started.
+
+> Task :core:model:desktopMainClasses UP-TO-DATE
+Skipping task ':core:model:desktopMainClasses' as it has no actions.
+Resolve mutations for :core:model:desktopJar (Thread[#760,Execution worker,5,main]) started.
+:core:model:desktopJar (Thread[#760,Execution worker,5,main]) started.
+
+> Task :core:model:desktopJar UP-TO-DATE
+Caching disabled for task ':core:model:desktopJar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':core:model:desktopJar' as it is up-to-date.
+work action resolve model-desktop.jar (project ':core:model') (Thread[#760,Execution worker,5,main]) started.
+Resolve mutations for :core:network:checkDesktopMainComposeLibrariesCompatibility (Thread[#760,Execution worker,5,main]) started.
+:core:network:checkDesktopMainComposeLibrariesCompatibility (Thread[#766,Execution worker Thread 7,5,main]) started.
+
+> Task :core:network:checkDesktopMainComposeLibrariesCompatibility
+Caching disabled for task ':core:network:checkDesktopMainComposeLibrariesCompatibility' because:
+  Build cache is disabled
+Task ':core:network:checkDesktopMainComposeLibrariesCompatibility' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :core:network:kmpPartiallyResolvedDependenciesChecker (Thread[#766,Execution worker Thread 7,5,main]) started.
+:core:network:kmpPartiallyResolvedDependenciesChecker (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:kmpPartiallyResolvedDependenciesChecker
+Caching disabled for task ':core:network:kmpPartiallyResolvedDependenciesChecker' because:
+  Build cache is disabled
+Task ':core:network:kmpPartiallyResolvedDependenciesChecker' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Execution stopped by some action with message: null
+Resolve mutations for :core:network:checkKotlinGradlePluginConfigurationErrors (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:checkKotlinGradlePluginConfigurationErrors (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':core:network:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :core:network:convertXmlValueResourcesForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:convertXmlValueResourcesForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:convertXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\network\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':core:network:convertXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :core:network:copyNonXmlValueResourcesForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:copyNonXmlValueResourcesForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\network\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':core:network:copyNonXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :core:network:prepareComposeResourcesTaskForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:prepareComposeResourcesTaskForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+Skipping task ':core:network:prepareComposeResourcesTaskForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :core:network:generateResourceAccessorsForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:generateResourceAccessorsForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:generateResourceAccessorsForCommonMain SKIPPED
+Skipping task ':core:network:generateResourceAccessorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:network:convertXmlValueResourcesForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:convertXmlValueResourcesForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:convertXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\network\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':core:network:convertXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :core:network:copyNonXmlValueResourcesForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:copyNonXmlValueResourcesForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\network\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':core:network:copyNonXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :core:network:prepareComposeResourcesTaskForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:prepareComposeResourcesTaskForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+Skipping task ':core:network:prepareComposeResourcesTaskForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :core:network:generateResourceAccessorsForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:generateResourceAccessorsForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:generateResourceAccessorsForDesktopMain SKIPPED
+Skipping task ':core:network:generateResourceAccessorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:network:generateActualResourceCollectorsForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:generateActualResourceCollectorsForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:generateActualResourceCollectorsForDesktopMain SKIPPED
+Skipping task ':core:network:generateActualResourceCollectorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:network:generateComposeResClass (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:generateComposeResClass (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:generateComposeResClass SKIPPED
+Skipping task ':core:network:generateComposeResClass' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:network:generateExpectResourceCollectorsForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:network:generateExpectResourceCollectorsForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:network:generateExpectResourceCollectorsForCommonMain SKIPPED
+Skipping task ':core:network:generateExpectResourceCollectorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:platform:checkDesktopMainComposeLibrariesCompatibility (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:platform:checkDesktopMainComposeLibrariesCompatibility (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :core:platform:checkDesktopMainComposeLibrariesCompatibility
+Caching disabled for task ':core:platform:checkDesktopMainComposeLibrariesCompatibility' because:
+  Build cache is disabled
+Task ':core:platform:checkDesktopMainComposeLibrariesCompatibility' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :core:platform:kmpPartiallyResolvedDependenciesChecker (Thread[#769,Execution worker Thread 10,5,main]) started.
+:core:platform:kmpPartiallyResolvedDependenciesChecker (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :core:platform:kmpPartiallyResolvedDependenciesChecker
+Caching disabled for task ':core:platform:kmpPartiallyResolvedDependenciesChecker' because:
+  Build cache is disabled
+Task ':core:platform:kmpPartiallyResolvedDependenciesChecker' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Execution stopped by some action with message: null
+Resolve mutations for :core:platform:checkKotlinGradlePluginConfigurationErrors (Thread[#765,Execution worker Thread 6,5,main]) started.
+:core:platform:checkKotlinGradlePluginConfigurationErrors (Thread[#772,Execution worker Thread 13,5,main]) started.
+
+> Task :core:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':core:platform:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :core:platform:convertXmlValueResourcesForCommonMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+:core:platform:convertXmlValueResourcesForCommonMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+
+> Task :core:platform:convertXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\platform\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':core:platform:convertXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:copyNonXmlValueResourcesForCommonMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+:core:platform:copyNonXmlValueResourcesForCommonMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+
+> Task :core:platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\platform\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':core:platform:copyNonXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:prepareComposeResourcesTaskForCommonMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+:core:platform:prepareComposeResourcesTaskForCommonMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+
+> Task :core:platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+Skipping task ':core:platform:prepareComposeResourcesTaskForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:generateResourceAccessorsForCommonMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+:core:platform:generateResourceAccessorsForCommonMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+
+> Task :core:platform:generateResourceAccessorsForCommonMain SKIPPED
+Skipping task ':core:platform:generateResourceAccessorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:platform:convertXmlValueResourcesForDesktopMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+:core:platform:convertXmlValueResourcesForDesktopMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+
+> Task :core:platform:convertXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\platform\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':core:platform:convertXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:copyNonXmlValueResourcesForDesktopMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+:core:platform:copyNonXmlValueResourcesForDesktopMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+
+> Task :core:platform:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\platform\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':core:platform:copyNonXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:prepareComposeResourcesTaskForDesktopMain (Thread[#772,Execution worker Thread 13,5,main]) started.
+:core:platform:prepareComposeResourcesTaskForDesktopMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :core:platform:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+Skipping task ':core:platform:prepareComposeResourcesTaskForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:generateResourceAccessorsForDesktopMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:core:platform:generateResourceAccessorsForDesktopMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :core:platform:generateResourceAccessorsForDesktopMain SKIPPED
+Skipping task ':core:platform:generateResourceAccessorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:platform:generateActualResourceCollectorsForDesktopMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:core:platform:generateActualResourceCollectorsForDesktopMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :core:platform:generateActualResourceCollectorsForDesktopMain SKIPPED
+Skipping task ':core:platform:generateActualResourceCollectorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:platform:generateComposeResClass (Thread[#771,Execution worker Thread 12,5,main]) started.
+:core:platform:generateComposeResClass (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :core:platform:generateComposeResClass SKIPPED
+Skipping task ':core:platform:generateComposeResClass' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:platform:generateExpectResourceCollectorsForCommonMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:core:platform:generateExpectResourceCollectorsForCommonMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :core:platform:generateExpectResourceCollectorsForCommonMain SKIPPED
+Skipping task ':core:platform:generateExpectResourceCollectorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:platform:compileKotlinDesktop (Thread[#771,Execution worker Thread 12,5,main]) started.
+:core:platform:compileKotlinDesktop (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :core:platform:compileKotlinDesktop UP-TO-DATE
+Caching disabled for task ':core:platform:compileKotlinDesktop' because:
+  Build cache is disabled
+Skipping task ':core:platform:compileKotlinDesktop' as it is up-to-date.
+Resolve mutations for :core:platform:compileDesktopMainJava (Thread[#771,Execution worker Thread 12,5,main]) started.
+:core:platform:compileDesktopMainJava (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :core:platform:compileDesktopMainJava NO-SOURCE
+Skipping task ':core:platform:compileDesktopMainJava' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:assembleDesktopMainResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+:core:platform:assembleDesktopMainResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :core:platform:assembleDesktopMainResources UP-TO-DATE
+Caching disabled for task ':core:platform:assembleDesktopMainResources' because:
+  Build cache is disabled
+  There is no logic, just copy files
+Skipping task ':core:platform:assembleDesktopMainResources' as it is up-to-date.
+Resolve mutations for :core:platform:desktopProcessResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+:core:platform:desktopProcessResources (Thread[#766,Execution worker Thread 7,5,main]) started.
+
+> Task :core:platform:desktopProcessResources UP-TO-DATE
+Caching disabled for task ':core:platform:desktopProcessResources' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':core:platform:desktopProcessResources' as it is up-to-date.
+Resolve mutations for :core:platform:processDesktopMainResources (Thread[#766,Execution worker Thread 7,5,main]) started.
+:core:platform:processDesktopMainResources (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :core:platform:processDesktopMainResources SKIPPED
+Skipping task ':core:platform:processDesktopMainResources' as task onlyIf 'Task is enabled' is false.
+Resolve mutations for :core:platform:desktopMainClasses (Thread[#761,Execution worker Thread 2,5,main]) started.
+:core:platform:desktopMainClasses (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :core:platform:desktopMainClasses UP-TO-DATE
+Skipping task ':core:platform:desktopMainClasses' as it has no actions.
+Resolve mutations for :core:platform:desktopJar (Thread[#770,Execution worker Thread 11,5,main]) started.
+:core:platform:desktopJar (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :core:platform:desktopJar UP-TO-DATE
+Caching disabled for task ':core:platform:desktopJar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':core:platform:desktopJar' as it is up-to-date.
+work action resolve platform-desktop.jar (project ':core:platform') (Thread[#770,Execution worker Thread 11,5,main]) started.
+Resolve mutations for :core:network:compileKotlinDesktop (Thread[#770,Execution worker Thread 11,5,main]) started.
+:core:network:compileKotlinDesktop (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :core:network:compileKotlinDesktop UP-TO-DATE
+Caching disabled for task ':core:network:compileKotlinDesktop' because:
+  Build cache is disabled
+Skipping task ':core:network:compileKotlinDesktop' as it is up-to-date.
+Resolve mutations for :core:network:compileDesktopMainJava (Thread[#770,Execution worker Thread 11,5,main]) started.
+:core:network:compileDesktopMainJava (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :core:network:compileDesktopMainJava NO-SOURCE
+Skipping task ':core:network:compileDesktopMainJava' as it has no source files and no previous output files.
+Resolve mutations for :core:network:assembleDesktopMainResources (Thread[#770,Execution worker Thread 11,5,main]) started.
+:core:network:assembleDesktopMainResources (Thread[#759,included builds,5,main]) started.
+
+> Task :core:network:assembleDesktopMainResources UP-TO-DATE
+Caching disabled for task ':core:network:assembleDesktopMainResources' because:
+  Build cache is disabled
+  There is no logic, just copy files
+Skipping task ':core:network:assembleDesktopMainResources' as it is up-to-date.
+Resolve mutations for :core:network:desktopProcessResources (Thread[#759,included builds,5,main]) started.
+:core:network:desktopProcessResources (Thread[#759,included builds,5,main]) started.
+
+> Task :core:network:desktopProcessResources UP-TO-DATE
+Caching disabled for task ':core:network:desktopProcessResources' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':core:network:desktopProcessResources' as it is up-to-date.
+Resolve mutations for :core:network:processDesktopMainResources (Thread[#759,included builds,5,main]) started.
+:core:network:processDesktopMainResources (Thread[#759,included builds,5,main]) started.
+
+> Task :core:network:processDesktopMainResources SKIPPED
+Skipping task ':core:network:processDesktopMainResources' as task onlyIf 'Task is enabled' is false.
+Resolve mutations for :core:network:desktopMainClasses (Thread[#759,included builds,5,main]) started.
+:core:network:desktopMainClasses (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :core:network:desktopMainClasses UP-TO-DATE
+Skipping task ':core:network:desktopMainClasses' as it has no actions.
+Resolve mutations for :core:network:desktopJar (Thread[#765,Execution worker Thread 6,5,main]) started.
+:core:network:desktopJar (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :core:network:desktopJar UP-TO-DATE
+Caching disabled for task ':core:network:desktopJar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':core:network:desktopJar' as it is up-to-date.
+work action resolve network-desktop.jar (project ':core:network') (Thread[#765,Execution worker Thread 6,5,main]) started.
+Resolve mutations for :data:festival:kmpPartiallyResolvedDependenciesChecker (Thread[#765,Execution worker Thread 6,5,main]) started.
+:data:festival:kmpPartiallyResolvedDependenciesChecker (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :data:festival:kmpPartiallyResolvedDependenciesChecker
+Caching disabled for task ':data:festival:kmpPartiallyResolvedDependenciesChecker' because:
+  Build cache is disabled
+Task ':data:festival:kmpPartiallyResolvedDependenciesChecker' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Execution stopped by some action with message: null
+Resolve mutations for :data:festival:checkKotlinGradlePluginConfigurationErrors (Thread[#765,Execution worker Thread 6,5,main]) started.
+:data:festival:checkKotlinGradlePluginConfigurationErrors (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :data:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':data:festival:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :data:festival:compileKotlinDesktop (Thread[#773,Execution worker Thread 14,5,main]) started.
+:data:festival:compileKotlinDesktop (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :data:festival:compileKotlinDesktop UP-TO-DATE
+Caching disabled for task ':data:festival:compileKotlinDesktop' because:
+  Build cache is disabled
+Skipping task ':data:festival:compileKotlinDesktop' as it is up-to-date.
+Resolve mutations for :data:festival:compileDesktopMainJava (Thread[#773,Execution worker Thread 14,5,main]) started.
+:data:festival:compileDesktopMainJava (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :data:festival:compileDesktopMainJava NO-SOURCE
+Skipping task ':data:festival:compileDesktopMainJava' as it has no source files and no previous output files.
+Resolve mutations for :data:festival:desktopProcessResources (Thread[#773,Execution worker Thread 14,5,main]) started.
+:data:festival:desktopProcessResources (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :data:festival:desktopProcessResources NO-SOURCE
+Skipping task ':data:festival:desktopProcessResources' as it has no source files and no previous output files.
+Resolve mutations for :data:festival:processDesktopMainResources (Thread[#773,Execution worker Thread 14,5,main]) started.
+:data:festival:processDesktopMainResources (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :data:festival:processDesktopMainResources SKIPPED
+Skipping task ':data:festival:processDesktopMainResources' as task onlyIf 'Task is enabled' is false.
+Resolve mutations for :data:festival:desktopMainClasses (Thread[#773,Execution worker Thread 14,5,main]) started.
+:data:festival:desktopMainClasses (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :data:festival:desktopMainClasses UP-TO-DATE
+Skipping task ':data:festival:desktopMainClasses' as it has no actions.
+Resolve mutations for :data:festival:desktopJar (Thread[#762,Execution worker Thread 3,5,main]) started.
+:data:festival:desktopJar (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :data:festival:desktopJar UP-TO-DATE
+Caching disabled for task ':data:festival:desktopJar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':data:festival:desktopJar' as it is up-to-date.
+work action resolve festival-desktop.jar (project ':data:festival') (Thread[#762,Execution worker Thread 3,5,main]) started.
+Resolve mutations for :data:update:kmpPartiallyResolvedDependenciesChecker (Thread[#762,Execution worker Thread 3,5,main]) started.
+:data:update:kmpPartiallyResolvedDependenciesChecker (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:kmpPartiallyResolvedDependenciesChecker
+Caching disabled for task ':data:update:kmpPartiallyResolvedDependenciesChecker' because:
+  Build cache is disabled
+Task ':data:update:kmpPartiallyResolvedDependenciesChecker' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Execution stopped by some action with message: null
+Resolve mutations for :data:update:checkKotlinGradlePluginConfigurationErrors (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:checkKotlinGradlePluginConfigurationErrors (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':data:update:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :data:update:compileKotlinDesktop (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:compileKotlinDesktop (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:compileKotlinDesktop UP-TO-DATE
+Caching disabled for task ':data:update:compileKotlinDesktop' because:
+  Build cache is disabled
+Skipping task ':data:update:compileKotlinDesktop' as it is up-to-date.
+Resolve mutations for :data:update:compileDesktopMainJava (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:compileDesktopMainJava (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:compileDesktopMainJava NO-SOURCE
+Skipping task ':data:update:compileDesktopMainJava' as it has no source files and no previous output files.
+Resolve mutations for :data:update:desktopProcessResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:desktopProcessResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:desktopProcessResources NO-SOURCE
+Skipping task ':data:update:desktopProcessResources' as it has no source files and no previous output files.
+Resolve mutations for :data:update:processDesktopMainResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:processDesktopMainResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:processDesktopMainResources SKIPPED
+Skipping task ':data:update:processDesktopMainResources' as task onlyIf 'Task is enabled' is false.
+Resolve mutations for :data:update:desktopMainClasses (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:desktopMainClasses (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:desktopMainClasses UP-TO-DATE
+Skipping task ':data:update:desktopMainClasses' as it has no actions.
+Resolve mutations for :data:update:desktopJar (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:desktopJar (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:desktopJar UP-TO-DATE
+Caching disabled for task ':data:update:desktopJar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':data:update:desktopJar' as it is up-to-date.
+work action resolve update-desktop.jar (project ':data:update') (Thread[#764,Execution worker Thread 5,5,main]) started.
+Resolve mutations for :feature:festival:checkDesktopMainComposeLibrariesCompatibility (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:festival:checkDesktopMainComposeLibrariesCompatibility (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:festival:checkDesktopMainComposeLibrariesCompatibility
+Caching disabled for task ':feature:festival:checkDesktopMainComposeLibrariesCompatibility' because:
+  Build cache is disabled
+Task ':feature:festival:checkDesktopMainComposeLibrariesCompatibility' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :feature:festival:kmpPartiallyResolvedDependenciesChecker (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:festival:kmpPartiallyResolvedDependenciesChecker (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:festival:kmpPartiallyResolvedDependenciesChecker
+Caching disabled for task ':feature:festival:kmpPartiallyResolvedDependenciesChecker' because:
+  Build cache is disabled
+Task ':feature:festival:kmpPartiallyResolvedDependenciesChecker' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Execution stopped by some action with message: null
+Resolve mutations for :feature:festival:checkKotlinGradlePluginConfigurationErrors (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:festival:checkKotlinGradlePluginConfigurationErrors (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':feature:festival:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :feature:festival:convertXmlValueResourcesForCommonMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:convertXmlValueResourcesForCommonMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:convertXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':feature:festival:convertXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:copyNonXmlValueResourcesForCommonMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:copyNonXmlValueResourcesForCommonMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':feature:festival:copyNonXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:prepareComposeResourcesTaskForCommonMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:prepareComposeResourcesTaskForCommonMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+Skipping task ':feature:festival:prepareComposeResourcesTaskForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:generateResourceAccessorsForCommonMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:generateResourceAccessorsForCommonMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:generateResourceAccessorsForCommonMain SKIPPED
+Skipping task ':feature:festival:generateResourceAccessorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:festival:convertXmlValueResourcesForDesktopMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:convertXmlValueResourcesForDesktopMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:convertXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':feature:festival:convertXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:copyNonXmlValueResourcesForDesktopMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:copyNonXmlValueResourcesForDesktopMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':feature:festival:copyNonXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:prepareComposeResourcesTaskForDesktopMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:prepareComposeResourcesTaskForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :feature:festival:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+Skipping task ':feature:festival:prepareComposeResourcesTaskForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:generateResourceAccessorsForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:feature:festival:generateResourceAccessorsForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :feature:festival:generateResourceAccessorsForDesktopMain SKIPPED
+Skipping task ':feature:festival:generateResourceAccessorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:festival:generateActualResourceCollectorsForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:feature:festival:generateActualResourceCollectorsForDesktopMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :feature:festival:generateActualResourceCollectorsForDesktopMain SKIPPED
+Skipping task ':feature:festival:generateActualResourceCollectorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:festival:generateComposeResClass (Thread[#769,Execution worker Thread 10,5,main]) started.
+:feature:festival:generateComposeResClass (Thread[#760,Execution worker,5,main]) started.
+
+> Task :feature:festival:generateComposeResClass SKIPPED
+Skipping task ':feature:festival:generateComposeResClass' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:festival:generateExpectResourceCollectorsForCommonMain (Thread[#760,Execution worker,5,main]) started.
+:feature:festival:generateExpectResourceCollectorsForCommonMain (Thread[#760,Execution worker,5,main]) started.
+
+> Task :feature:festival:generateExpectResourceCollectorsForCommonMain SKIPPED
+Skipping task ':feature:festival:generateExpectResourceCollectorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:festival:compileKotlinDesktop (Thread[#760,Execution worker,5,main]) started.
+:feature:festival:compileKotlinDesktop (Thread[#760,Execution worker,5,main]) started.
+
+> Task :feature:festival:compileKotlinDesktop UP-TO-DATE
+Caching disabled for task ':feature:festival:compileKotlinDesktop' because:
+  Build cache is disabled
+Skipping task ':feature:festival:compileKotlinDesktop' as it is up-to-date.
+Resolve mutations for :feature:festival:compileDesktopMainJava (Thread[#760,Execution worker,5,main]) started.
+:feature:festival:compileDesktopMainJava (Thread[#760,Execution worker,5,main]) started.
+
+> Task :feature:festival:compileDesktopMainJava NO-SOURCE
+Skipping task ':feature:festival:compileDesktopMainJava' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:assembleDesktopMainResources (Thread[#760,Execution worker,5,main]) started.
+:feature:festival:assembleDesktopMainResources (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :feature:festival:assembleDesktopMainResources UP-TO-DATE
+Caching disabled for task ':feature:festival:assembleDesktopMainResources' because:
+  Build cache is disabled
+  There is no logic, just copy files
+Skipping task ':feature:festival:assembleDesktopMainResources' as it is up-to-date.
+Resolve mutations for :feature:festival:desktopProcessResources (Thread[#770,Execution worker Thread 11,5,main]) started.
+:feature:festival:desktopProcessResources (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :feature:festival:desktopProcessResources UP-TO-DATE
+Caching disabled for task ':feature:festival:desktopProcessResources' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':feature:festival:desktopProcessResources' as it is up-to-date.
+Resolve mutations for :feature:festival:processDesktopMainResources (Thread[#770,Execution worker Thread 11,5,main]) started.
+:feature:festival:processDesktopMainResources (Thread[#770,Execution worker Thread 11,5,main]) started.
+
+> Task :feature:festival:processDesktopMainResources SKIPPED
+Skipping task ':feature:festival:processDesktopMainResources' as task onlyIf 'Task is enabled' is false.
+Resolve mutations for :feature:festival:desktopMainClasses (Thread[#770,Execution worker Thread 11,5,main]) started.
+:feature:festival:desktopMainClasses (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:festival:desktopMainClasses UP-TO-DATE
+Skipping task ':feature:festival:desktopMainClasses' as it has no actions.
+Resolve mutations for :feature:festival:desktopJar (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:festival:desktopJar (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:festival:desktopJar UP-TO-DATE
+Caching disabled for task ':feature:festival:desktopJar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':feature:festival:desktopJar' as it is up-to-date.
+work action resolve festival-desktop.jar (project ':feature:festival') (Thread[#761,Execution worker Thread 2,5,main]) started.
+Resolve mutations for :feature:settings:checkDesktopMainComposeLibrariesCompatibility (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:settings:checkDesktopMainComposeLibrariesCompatibility (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:settings:checkDesktopMainComposeLibrariesCompatibility
+Caching disabled for task ':feature:settings:checkDesktopMainComposeLibrariesCompatibility' because:
+  Build cache is disabled
+Task ':feature:settings:checkDesktopMainComposeLibrariesCompatibility' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :feature:settings:kmpPartiallyResolvedDependenciesChecker (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:settings:kmpPartiallyResolvedDependenciesChecker (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :feature:settings:kmpPartiallyResolvedDependenciesChecker
+Caching disabled for task ':feature:settings:kmpPartiallyResolvedDependenciesChecker' because:
+  Build cache is disabled
+Task ':feature:settings:kmpPartiallyResolvedDependenciesChecker' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Execution stopped by some action with message: null
+Resolve mutations for :feature:settings:checkKotlinGradlePluginConfigurationErrors (Thread[#774,Execution worker Thread 15,5,main]) started.
+:feature:settings:checkKotlinGradlePluginConfigurationErrors (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':feature:settings:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :feature:settings:convertXmlValueResourcesForCommonMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:settings:convertXmlValueResourcesForCommonMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:settings:convertXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':feature:settings:convertXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:copyNonXmlValueResourcesForCommonMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:settings:copyNonXmlValueResourcesForCommonMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:settings:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':feature:settings:copyNonXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:prepareComposeResourcesTaskForCommonMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:settings:prepareComposeResourcesTaskForCommonMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:settings:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+Skipping task ':feature:settings:prepareComposeResourcesTaskForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:generateResourceAccessorsForCommonMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:settings:generateResourceAccessorsForCommonMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:settings:generateResourceAccessorsForCommonMain SKIPPED
+Skipping task ':feature:settings:generateResourceAccessorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:settings:convertXmlValueResourcesForDesktopMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:settings:convertXmlValueResourcesForDesktopMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:settings:convertXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':feature:settings:convertXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:copyNonXmlValueResourcesForDesktopMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:settings:copyNonXmlValueResourcesForDesktopMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :feature:settings:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':feature:settings:copyNonXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:prepareComposeResourcesTaskForDesktopMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+:feature:settings:prepareComposeResourcesTaskForDesktopMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :feature:settings:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+Skipping task ':feature:settings:prepareComposeResourcesTaskForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:generateResourceAccessorsForDesktopMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+:feature:settings:generateResourceAccessorsForDesktopMain (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :feature:settings:generateResourceAccessorsForDesktopMain SKIPPED
+Skipping task ':feature:settings:generateResourceAccessorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:settings:generateActualResourceCollectorsForDesktopMain (Thread[#762,Execution worker Thread 3,5,main]) started.
+:feature:settings:generateActualResourceCollectorsForDesktopMain (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :feature:settings:generateActualResourceCollectorsForDesktopMain SKIPPED
+Skipping task ':feature:settings:generateActualResourceCollectorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:settings:generateComposeResClass (Thread[#762,Execution worker Thread 3,5,main]) started.
+:feature:settings:generateComposeResClass (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :feature:settings:generateComposeResClass SKIPPED
+Skipping task ':feature:settings:generateComposeResClass' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:settings:generateExpectResourceCollectorsForCommonMain (Thread[#762,Execution worker Thread 3,5,main]) started.
+:feature:settings:generateExpectResourceCollectorsForCommonMain (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :feature:settings:generateExpectResourceCollectorsForCommonMain SKIPPED
+Skipping task ':feature:settings:generateExpectResourceCollectorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:settings:compileKotlinDesktop (Thread[#762,Execution worker Thread 3,5,main]) started.
+:feature:settings:compileKotlinDesktop (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :feature:settings:compileKotlinDesktop UP-TO-DATE
+Caching disabled for task ':feature:settings:compileKotlinDesktop' because:
+  Build cache is disabled
+Skipping task ':feature:settings:compileKotlinDesktop' as it is up-to-date.
+Resolve mutations for :feature:settings:compileDesktopMainJava (Thread[#762,Execution worker Thread 3,5,main]) started.
+:feature:settings:compileDesktopMainJava (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :feature:settings:compileDesktopMainJava NO-SOURCE
+Skipping task ':feature:settings:compileDesktopMainJava' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:assembleDesktopMainResources (Thread[#762,Execution worker Thread 3,5,main]) started.
+:feature:settings:assembleDesktopMainResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:settings:assembleDesktopMainResources UP-TO-DATE
+Caching disabled for task ':feature:settings:assembleDesktopMainResources' because:
+  Build cache is disabled
+  There is no logic, just copy files
+Skipping task ':feature:settings:assembleDesktopMainResources' as it is up-to-date.
+Resolve mutations for :feature:settings:desktopProcessResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:settings:desktopProcessResources (Thread[#760,Execution worker,5,main]) started.
+
+> Task :feature:settings:desktopProcessResources UP-TO-DATE
+Caching disabled for task ':feature:settings:desktopProcessResources' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':feature:settings:desktopProcessResources' as it is up-to-date.
+Resolve mutations for :feature:settings:processDesktopMainResources (Thread[#760,Execution worker,5,main]) started.
+:feature:settings:processDesktopMainResources (Thread[#760,Execution worker,5,main]) started.
+
+> Task :feature:settings:processDesktopMainResources SKIPPED
+Skipping task ':feature:settings:processDesktopMainResources' as task onlyIf 'Task is enabled' is false.
+Resolve mutations for :feature:settings:desktopMainClasses (Thread[#760,Execution worker,5,main]) started.
+:feature:settings:desktopMainClasses (Thread[#768,Execution worker Thread 9,5,main]) started.
+
+> Task :feature:settings:desktopMainClasses UP-TO-DATE
+Skipping task ':feature:settings:desktopMainClasses' as it has no actions.
+Resolve mutations for :feature:settings:desktopJar (Thread[#768,Execution worker Thread 9,5,main]) started.
+:feature:settings:desktopJar (Thread[#768,Execution worker Thread 9,5,main]) started.
+
+> Task :feature:settings:desktopJar UP-TO-DATE
+Caching disabled for task ':feature:settings:desktopJar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':feature:settings:desktopJar' as it is up-to-date.
+work action resolve settings-desktop.jar (project ':feature:settings') (Thread[#768,Execution worker Thread 9,5,main]) started.
+Resolve mutations for :feature:update:checkDesktopMainComposeLibrariesCompatibility (Thread[#768,Execution worker Thread 9,5,main]) started.
+:feature:update:checkDesktopMainComposeLibrariesCompatibility (Thread[#768,Execution worker Thread 9,5,main]) started.
+
+> Task :feature:update:checkDesktopMainComposeLibrariesCompatibility
+Caching disabled for task ':feature:update:checkDesktopMainComposeLibrariesCompatibility' because:
+  Build cache is disabled
+Task ':feature:update:checkDesktopMainComposeLibrariesCompatibility' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :feature:update:kmpPartiallyResolvedDependenciesChecker (Thread[#768,Execution worker Thread 9,5,main]) started.
+:feature:update:kmpPartiallyResolvedDependenciesChecker (Thread[#768,Execution worker Thread 9,5,main]) started.
+
+> Task :feature:update:kmpPartiallyResolvedDependenciesChecker
+Caching disabled for task ':feature:update:kmpPartiallyResolvedDependenciesChecker' because:
+  Build cache is disabled
+Task ':feature:update:kmpPartiallyResolvedDependenciesChecker' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Execution stopped by some action with message: null
+Resolve mutations for :feature:update:checkKotlinGradlePluginConfigurationErrors (Thread[#768,Execution worker Thread 9,5,main]) started.
+:feature:update:checkKotlinGradlePluginConfigurationErrors (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :feature:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':feature:update:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :feature:update:convertXmlValueResourcesForCommonMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:feature:update:convertXmlValueResourcesForCommonMain (Thread[#759,included builds,5,main]) started.
+
+> Task :feature:update:convertXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':feature:update:convertXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:copyNonXmlValueResourcesForCommonMain (Thread[#759,included builds,5,main]) started.
+:feature:update:copyNonXmlValueResourcesForCommonMain (Thread[#759,included builds,5,main]) started.
+
+> Task :feature:update:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\build\generated\compose\resourceGenerator\preparedResources\commonMain\composeResources', not found
+Skipping task ':feature:update:copyNonXmlValueResourcesForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:prepareComposeResourcesTaskForCommonMain (Thread[#759,included builds,5,main]) started.
+:feature:update:prepareComposeResourcesTaskForCommonMain (Thread[#759,included builds,5,main]) started.
+
+> Task :feature:update:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+Skipping task ':feature:update:prepareComposeResourcesTaskForCommonMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:generateResourceAccessorsForCommonMain (Thread[#759,included builds,5,main]) started.
+:feature:update:generateResourceAccessorsForCommonMain (Thread[#759,included builds,5,main]) started.
+
+> Task :feature:update:generateResourceAccessorsForCommonMain SKIPPED
+Skipping task ':feature:update:generateResourceAccessorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:update:convertXmlValueResourcesForDesktopMain (Thread[#759,included builds,5,main]) started.
+:feature:update:convertXmlValueResourcesForDesktopMain (Thread[#759,included builds,5,main]) started.
+
+> Task :feature:update:convertXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':feature:update:convertXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:copyNonXmlValueResourcesForDesktopMain (Thread[#759,included builds,5,main]) started.
+:feature:update:copyNonXmlValueResourcesForDesktopMain (Thread[#759,included builds,5,main]) started.
+
+> Task :feature:update:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\build\generated\compose\resourceGenerator\preparedResources\desktopMain\composeResources', not found
+Skipping task ':feature:update:copyNonXmlValueResourcesForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:prepareComposeResourcesTaskForDesktopMain (Thread[#759,included builds,5,main]) started.
+:feature:update:prepareComposeResourcesTaskForDesktopMain (Thread[#759,included builds,5,main]) started.
+
+> Task :feature:update:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+Skipping task ':feature:update:prepareComposeResourcesTaskForDesktopMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:generateResourceAccessorsForDesktopMain (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:update:generateResourceAccessorsForDesktopMain (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:update:generateResourceAccessorsForDesktopMain SKIPPED
+Skipping task ':feature:update:generateResourceAccessorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:update:generateActualResourceCollectorsForDesktopMain (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:update:generateActualResourceCollectorsForDesktopMain (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:update:generateActualResourceCollectorsForDesktopMain SKIPPED
+Skipping task ':feature:update:generateActualResourceCollectorsForDesktopMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:update:generateComposeResClass (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:update:generateComposeResClass (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:update:generateComposeResClass SKIPPED
+Skipping task ':feature:update:generateComposeResClass' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:update:generateExpectResourceCollectorsForCommonMain (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:update:generateExpectResourceCollectorsForCommonMain (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:update:generateExpectResourceCollectorsForCommonMain SKIPPED
+Skipping task ':feature:update:generateExpectResourceCollectorsForCommonMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:update:compileKotlinDesktop (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:update:compileKotlinDesktop (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:update:compileKotlinDesktop UP-TO-DATE
+Caching disabled for task ':feature:update:compileKotlinDesktop' because:
+  Build cache is disabled
+Skipping task ':feature:update:compileKotlinDesktop' as it is up-to-date.
+Resolve mutations for :feature:update:compileDesktopMainJava (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:update:compileDesktopMainJava (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:update:compileDesktopMainJava NO-SOURCE
+Skipping task ':feature:update:compileDesktopMainJava' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:assembleDesktopMainResources (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:update:assembleDesktopMainResources (Thread[#760,Execution worker,5,main]) started.
+
+> Task :feature:update:assembleDesktopMainResources UP-TO-DATE
+Caching disabled for task ':feature:update:assembleDesktopMainResources' because:
+  Build cache is disabled
+  There is no logic, just copy files
+Skipping task ':feature:update:assembleDesktopMainResources' as it is up-to-date.
+Resolve mutations for :feature:update:desktopProcessResources (Thread[#760,Execution worker,5,main]) started.
+:feature:update:desktopProcessResources (Thread[#760,Execution worker,5,main]) started.
+
+> Task :feature:update:desktopProcessResources UP-TO-DATE
+Caching disabled for task ':feature:update:desktopProcessResources' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':feature:update:desktopProcessResources' as it is up-to-date.
+Resolve mutations for :feature:update:processDesktopMainResources (Thread[#760,Execution worker,5,main]) started.
+:feature:update:processDesktopMainResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:update:processDesktopMainResources SKIPPED
+Skipping task ':feature:update:processDesktopMainResources' as task onlyIf 'Task is enabled' is false.
+Resolve mutations for :feature:update:desktopMainClasses (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:update:desktopMainClasses (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :feature:update:desktopMainClasses UP-TO-DATE
+Skipping task ':feature:update:desktopMainClasses' as it has no actions.
+Resolve mutations for :feature:update:desktopJar (Thread[#773,Execution worker Thread 14,5,main]) started.
+:feature:update:desktopJar (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :feature:update:desktopJar UP-TO-DATE
+Caching disabled for task ':feature:update:desktopJar' because:
+  Build cache is disabled
+  Not worth caching
+Skipping task ':feature:update:desktopJar' as it is up-to-date.
+work action resolve update-desktop.jar (project ':feature:update') (Thread[#773,Execution worker Thread 14,5,main]) started.
+Resolve mutations for :composeApp:compileKotlinDesktop (Thread[#773,Execution worker Thread 14,5,main]) started.
+:composeApp:compileKotlinDesktop (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :composeApp:compileKotlinDesktop UP-TO-DATE
+Caching disabled for task ':composeApp:compileKotlinDesktop' because:
+  Build cache is disabled
+Skipping task ':composeApp:compileKotlinDesktop' as it is up-to-date.
+Resolve mutations for :composeApp:convertXmlValueResourcesForAndroidMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+:composeApp:convertXmlValueResourcesForAndroidMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :composeApp:convertXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':composeApp:convertXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:copyNonXmlValueResourcesForAndroidMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+:composeApp:copyNonXmlValueResourcesForAndroidMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :composeApp:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':composeApp:copyNonXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:prepareComposeResourcesTaskForAndroidMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:composeApp:prepareComposeResourcesTaskForAndroidMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :composeApp:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+Skipping task ':composeApp:prepareComposeResourcesTaskForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:generateResourceAccessorsForAndroidMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:composeApp:generateResourceAccessorsForAndroidMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+
+> Task :composeApp:generateResourceAccessorsForAndroidMain NO-SOURCE
+Skipping task ':composeApp:generateResourceAccessorsForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :composeApp:generateActualResourceCollectorsForAndroidMain (Thread[#769,Execution worker Thread 10,5,main]) started.
+:composeApp:generateActualResourceCollectorsForAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :composeApp:generateActualResourceCollectorsForAndroidMain UP-TO-DATE
+Caching disabled for task ':composeApp:generateActualResourceCollectorsForAndroidMain' because:
+  Build cache is disabled
+  IDE import task — not worth caching
+Skipping task ':composeApp:generateActualResourceCollectorsForAndroidMain' as it is up-to-date.
+Resolve mutations for :composeApp:androidPreBuild (Thread[#763,Execution worker Thread 4,5,main]) started.
+:composeApp:androidPreBuild (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :composeApp:androidPreBuild UP-TO-DATE
+Skipping task ':composeApp:androidPreBuild' as it has no actions.
+Resolve mutations for :composeApp:preAndroidMainBuild (Thread[#774,Execution worker Thread 15,5,main]) started.
+:composeApp:preAndroidMainBuild (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :composeApp:preAndroidMainBuild UP-TO-DATE
+Skipping task ':composeApp:preAndroidMainBuild' as it has no actions.
+Resolve mutations for :composeApp:generateAndroidMainEmptyResourceFiles (Thread[#765,Execution worker Thread 6,5,main]) started.
+:composeApp:generateAndroidMainEmptyResourceFiles (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :composeApp:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+Caching disabled for task ':composeApp:generateAndroidMainEmptyResourceFiles' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':composeApp:generateAndroidMainEmptyResourceFiles' as it is up-to-date.
+Resolve mutations for :composeApp:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#765,Execution worker Thread 6,5,main]) started.
+:composeApp:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :composeApp:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+Caching disabled for task ':composeApp:copyAndroidMainComposeResourcesToAndroidAssets' because:
+  Build cache is disabled
+  Not worth caching — fast file copy operation
+Skipping task ':composeApp:copyAndroidMainComposeResourcesToAndroidAssets' as it is up-to-date.
+Resolve mutations for :composeApp:packageAndroidMainResources (Thread[#765,Execution worker Thread 6,5,main]) started.
+:composeApp:packageAndroidMainResources (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :composeApp:packageAndroidMainResources UP-TO-DATE
+Caching disabled for task ':composeApp:packageAndroidMainResources' because:
+  Build cache is disabled
+Skipping task ':composeApp:packageAndroidMainResources' as it is up-to-date.
+Resolve mutations for :composeApp:parseAndroidMainLocalResources (Thread[#765,Execution worker Thread 6,5,main]) started.
+:composeApp:parseAndroidMainLocalResources (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :composeApp:parseAndroidMainLocalResources UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':composeApp:parseAndroidMainLocalResources' because:
+  Build cache is disabled
+Skipping task ':composeApp:parseAndroidMainLocalResources' as it is up-to-date.
+Resolve mutations for :composeApp:generateAndroidMainRFile (Thread[#765,Execution worker Thread 6,5,main]) started.
+:composeApp:generateAndroidMainRFile (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :composeApp:generateAndroidMainRFile UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':composeApp:generateAndroidMainRFile' because:
+  Build cache is disabled
+Skipping task ':composeApp:generateAndroidMainRFile' as it is up-to-date.
+Resolve mutations for :core:model:androidPreBuild (Thread[#765,Execution worker Thread 6,5,main]) started.
+:core:model:androidPreBuild (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :core:model:androidPreBuild UP-TO-DATE
+Skipping task ':core:model:androidPreBuild' as it has no actions.
+Resolve mutations for :core:model:preAndroidMainBuild (Thread[#765,Execution worker Thread 6,5,main]) started.
+:core:model:preAndroidMainBuild (Thread[#766,Execution worker Thread 7,5,main]) started.
+
+> Task :core:model:preAndroidMainBuild UP-TO-DATE
+Skipping task ':core:model:preAndroidMainBuild' as it has no actions.
+Resolve mutations for :core:model:generateAndroidMainEmptyResourceFiles (Thread[#766,Execution worker Thread 7,5,main]) started.
+:core:model:generateAndroidMainEmptyResourceFiles (Thread[#766,Execution worker Thread 7,5,main]) started.
+
+> Task :core:model:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+Caching disabled for task ':core:model:generateAndroidMainEmptyResourceFiles' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':core:model:generateAndroidMainEmptyResourceFiles' as it is up-to-date.
+Resolve mutations for :core:model:packageAndroidMainResources (Thread[#766,Execution worker Thread 7,5,main]) started.
+:core:model:packageAndroidMainResources (Thread[#766,Execution worker Thread 7,5,main]) started.
+
+> Task :core:model:packageAndroidMainResources UP-TO-DATE
+Caching disabled for task ':core:model:packageAndroidMainResources' because:
+  Build cache is disabled
+Skipping task ':core:model:packageAndroidMainResources' as it is up-to-date.
+Resolve mutations for :core:model:parseAndroidMainLocalResources (Thread[#766,Execution worker Thread 7,5,main]) started.
+:core:model:parseAndroidMainLocalResources (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :core:model:parseAndroidMainLocalResources UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':core:model:parseAndroidMainLocalResources' because:
+  Build cache is disabled
+Skipping task ':core:model:parseAndroidMainLocalResources' as it is up-to-date.
+Resolve mutations for :core:model:generateAndroidMainRFile (Thread[#762,Execution worker Thread 3,5,main]) started.
+:core:model:generateAndroidMainRFile (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :core:model:generateAndroidMainRFile UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':core:model:generateAndroidMainRFile' because:
+  Build cache is disabled
+Skipping task ':core:model:generateAndroidMainRFile' as it is up-to-date.
+Resolve mutations for :core:model:compileAndroidMain (Thread[#762,Execution worker Thread 3,5,main]) started.
+:core:model:compileAndroidMain (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :core:model:compileAndroidMain UP-TO-DATE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\model\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\model\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\model\src\androidMain\kotlin', not found
+Caching disabled for task ':core:model:compileAndroidMain' because:
+  Build cache is disabled
+Skipping task ':core:model:compileAndroidMain' as it is up-to-date.
+Resolve mutations for :core:model:bundleAndroidMainClassesToCompileJar (Thread[#762,Execution worker Thread 3,5,main]) started.
+:core:model:bundleAndroidMainClassesToCompileJar (Thread[#762,Execution worker Thread 3,5,main]) started.
+
+> Task :core:model:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+Caching disabled for task ':core:model:bundleAndroidMainClassesToCompileJar' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':core:model:bundleAndroidMainClassesToCompileJar' as it is up-to-date.
+work action resolve classes.jar (project ':core:model') (Thread[#762,Execution worker Thread 3,5,main]) started.
+Resolve mutations for :core:network:convertXmlValueResourcesForAndroidMain (Thread[#768,Execution worker Thread 9,5,main]) started.
+:core:network:convertXmlValueResourcesForAndroidMain (Thread[#768,Execution worker Thread 9,5,main]) started.
+
+> Task :core:network:convertXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\network\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':core:network:convertXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :core:network:copyNonXmlValueResourcesForAndroidMain (Thread[#768,Execution worker Thread 9,5,main]) started.
+:core:network:copyNonXmlValueResourcesForAndroidMain (Thread[#768,Execution worker Thread 9,5,main]) started.
+
+> Task :core:network:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\network\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':core:network:copyNonXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :core:network:prepareComposeResourcesTaskForAndroidMain (Thread[#768,Execution worker Thread 9,5,main]) started.
+:core:network:prepareComposeResourcesTaskForAndroidMain (Thread[#766,Execution worker Thread 7,5,main]) started.
+
+> Task :core:network:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+Skipping task ':core:network:prepareComposeResourcesTaskForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :core:network:generateResourceAccessorsForAndroidMain (Thread[#766,Execution worker Thread 7,5,main]) started.
+:core:network:generateResourceAccessorsForAndroidMain (Thread[#766,Execution worker Thread 7,5,main]) started.
+
+> Task :core:network:generateResourceAccessorsForAndroidMain SKIPPED
+Skipping task ':core:network:generateResourceAccessorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:network:generateActualResourceCollectorsForAndroidMain (Thread[#766,Execution worker Thread 7,5,main]) started.
+:core:network:generateActualResourceCollectorsForAndroidMain (Thread[#766,Execution worker Thread 7,5,main]) started.
+
+> Task :core:network:generateActualResourceCollectorsForAndroidMain SKIPPED
+Skipping task ':core:network:generateActualResourceCollectorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:network:androidPreBuild (Thread[#766,Execution worker Thread 7,5,main]) started.
+:core:network:androidPreBuild (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :core:network:androidPreBuild UP-TO-DATE
+Skipping task ':core:network:androidPreBuild' as it has no actions.
+Resolve mutations for :core:network:preAndroidMainBuild (Thread[#773,Execution worker Thread 14,5,main]) started.
+:core:network:preAndroidMainBuild (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :core:network:preAndroidMainBuild UP-TO-DATE
+Skipping task ':core:network:preAndroidMainBuild' as it has no actions.
+Resolve mutations for :core:network:generateAndroidMainEmptyResourceFiles (Thread[#765,Execution worker Thread 6,5,main]) started.
+:core:network:generateAndroidMainEmptyResourceFiles (Thread[#765,Execution worker Thread 6,5,main]) started.
+
+> Task :core:network:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+Caching disabled for task ':core:network:generateAndroidMainEmptyResourceFiles' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':core:network:generateAndroidMainEmptyResourceFiles' as it is up-to-date.
+Resolve mutations for :core:network:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#765,Execution worker Thread 6,5,main]) started.
+:core:network:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :core:network:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+Caching disabled for task ':core:network:copyAndroidMainComposeResourcesToAndroidAssets' because:
+  Build cache is disabled
+  Not worth caching — fast file copy operation
+Skipping task ':core:network:copyAndroidMainComposeResourcesToAndroidAssets' as it is up-to-date.
+Resolve mutations for :core:network:packageAndroidMainResources (Thread[#774,Execution worker Thread 15,5,main]) started.
+:core:network:packageAndroidMainResources (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :core:network:packageAndroidMainResources UP-TO-DATE
+Caching disabled for task ':core:network:packageAndroidMainResources' because:
+  Build cache is disabled
+Skipping task ':core:network:packageAndroidMainResources' as it is up-to-date.
+Resolve mutations for :core:network:parseAndroidMainLocalResources (Thread[#774,Execution worker Thread 15,5,main]) started.
+:core:network:parseAndroidMainLocalResources (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :core:network:parseAndroidMainLocalResources UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':core:network:parseAndroidMainLocalResources' because:
+  Build cache is disabled
+Skipping task ':core:network:parseAndroidMainLocalResources' as it is up-to-date.
+Resolve mutations for :core:network:generateAndroidMainRFile (Thread[#774,Execution worker Thread 15,5,main]) started.
+:core:network:generateAndroidMainRFile (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :core:network:generateAndroidMainRFile UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':core:network:generateAndroidMainRFile' because:
+  Build cache is disabled
+Skipping task ':core:network:generateAndroidMainRFile' as it is up-to-date.
+Resolve mutations for :core:platform:convertXmlValueResourcesForAndroidMain (Thread[#774,Execution worker Thread 15,5,main]) started.
+:core:platform:convertXmlValueResourcesForAndroidMain (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :core:platform:convertXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\platform\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':core:platform:convertXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:copyNonXmlValueResourcesForAndroidMain (Thread[#774,Execution worker Thread 15,5,main]) started.
+:core:platform:copyNonXmlValueResourcesForAndroidMain (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :core:platform:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\core\platform\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':core:platform:copyNonXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:prepareComposeResourcesTaskForAndroidMain (Thread[#774,Execution worker Thread 15,5,main]) started.
+:core:platform:prepareComposeResourcesTaskForAndroidMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :core:platform:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+Skipping task ':core:platform:prepareComposeResourcesTaskForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :core:platform:generateResourceAccessorsForAndroidMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:core:platform:generateResourceAccessorsForAndroidMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :core:platform:generateResourceAccessorsForAndroidMain SKIPPED
+Skipping task ':core:platform:generateResourceAccessorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:platform:generateActualResourceCollectorsForAndroidMain (Thread[#767,Execution worker Thread 8,5,main]) started.
+:core:platform:generateActualResourceCollectorsForAndroidMain (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :core:platform:generateActualResourceCollectorsForAndroidMain SKIPPED
+Skipping task ':core:platform:generateActualResourceCollectorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :core:platform:androidPreBuild (Thread[#761,Execution worker Thread 2,5,main]) started.
+:core:platform:androidPreBuild (Thread[#760,Execution worker,5,main]) started.
+
+> Task :core:platform:androidPreBuild UP-TO-DATE
+Skipping task ':core:platform:androidPreBuild' as it has no actions.
+Resolve mutations for :core:platform:preAndroidMainBuild (Thread[#760,Execution worker,5,main]) started.
+:core:platform:preAndroidMainBuild (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:platform:preAndroidMainBuild UP-TO-DATE
+Skipping task ':core:platform:preAndroidMainBuild' as it has no actions.
+Resolve mutations for :core:platform:generateAndroidMainEmptyResourceFiles (Thread[#763,Execution worker Thread 4,5,main]) started.
+:core:platform:generateAndroidMainEmptyResourceFiles (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+Caching disabled for task ':core:platform:generateAndroidMainEmptyResourceFiles' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':core:platform:generateAndroidMainEmptyResourceFiles' as it is up-to-date.
+Resolve mutations for :core:platform:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#763,Execution worker Thread 4,5,main]) started.
+:core:platform:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:platform:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+Caching disabled for task ':core:platform:copyAndroidMainComposeResourcesToAndroidAssets' because:
+  Build cache is disabled
+  Not worth caching — fast file copy operation
+Skipping task ':core:platform:copyAndroidMainComposeResourcesToAndroidAssets' as it is up-to-date.
+Resolve mutations for :core:platform:packageAndroidMainResources (Thread[#763,Execution worker Thread 4,5,main]) started.
+:core:platform:packageAndroidMainResources (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:platform:packageAndroidMainResources UP-TO-DATE
+Caching disabled for task ':core:platform:packageAndroidMainResources' because:
+  Build cache is disabled
+Skipping task ':core:platform:packageAndroidMainResources' as it is up-to-date.
+Resolve mutations for :core:platform:parseAndroidMainLocalResources (Thread[#763,Execution worker Thread 4,5,main]) started.
+:core:platform:parseAndroidMainLocalResources (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:platform:parseAndroidMainLocalResources UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':core:platform:parseAndroidMainLocalResources' because:
+  Build cache is disabled
+Skipping task ':core:platform:parseAndroidMainLocalResources' as it is up-to-date.
+Resolve mutations for :core:platform:generateAndroidMainRFile (Thread[#763,Execution worker Thread 4,5,main]) started.
+:core:platform:generateAndroidMainRFile (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:platform:generateAndroidMainRFile UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':core:platform:generateAndroidMainRFile' because:
+  Build cache is disabled
+Skipping task ':core:platform:generateAndroidMainRFile' as it is up-to-date.
+Resolve mutations for :core:platform:generateAppVersion (Thread[#763,Execution worker Thread 4,5,main]) started.
+:core:platform:generateAppVersion (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:platform:generateAppVersion UP-TO-DATE
+Custom actions are attached to task ':core:platform:generateAppVersion'.
+Caching disabled for task ':core:platform:generateAppVersion' because:
+  Build cache is disabled
+  Gradle would require more information to cache this task
+Skipping task ':core:platform:generateAppVersion' as it is up-to-date.
+Resolve mutations for :core:platform:compileAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+:core:platform:compileAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:platform:compileAndroidMain UP-TO-DATE
+Caching disabled for task ':core:platform:compileAndroidMain' because:
+  Build cache is disabled
+Skipping task ':core:platform:compileAndroidMain' as it is up-to-date.
+Resolve mutations for :core:platform:bundleAndroidMainClassesToCompileJar (Thread[#763,Execution worker Thread 4,5,main]) started.
+:core:platform:bundleAndroidMainClassesToCompileJar (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:platform:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+Caching disabled for task ':core:platform:bundleAndroidMainClassesToCompileJar' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':core:platform:bundleAndroidMainClassesToCompileJar' as it is up-to-date.
+work action resolve classes.jar (project ':core:platform') (Thread[#763,Execution worker Thread 4,5,main]) started.
+Resolve mutations for :core:network:compileAndroidMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+:core:network:compileAndroidMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :core:network:compileAndroidMain UP-TO-DATE
+Caching disabled for task ':core:network:compileAndroidMain' because:
+  Build cache is disabled
+Skipping task ':core:network:compileAndroidMain' as it is up-to-date.
+Resolve mutations for :core:network:bundleAndroidMainClassesToCompileJar (Thread[#773,Execution worker Thread 14,5,main]) started.
+:core:network:bundleAndroidMainClassesToCompileJar (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :core:network:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+Caching disabled for task ':core:network:bundleAndroidMainClassesToCompileJar' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':core:network:bundleAndroidMainClassesToCompileJar' as it is up-to-date.
+work action resolve classes.jar (project ':core:network') (Thread[#763,Execution worker Thread 4,5,main]) started.
+Resolve mutations for :data:festival:androidPreBuild (Thread[#767,Execution worker Thread 8,5,main]) started.
+:data:festival:androidPreBuild (Thread[#772,Execution worker Thread 13,5,main]) started.
+
+> Task :data:festival:androidPreBuild UP-TO-DATE
+Skipping task ':data:festival:androidPreBuild' as it has no actions.
+Resolve mutations for :data:festival:preAndroidMainBuild (Thread[#772,Execution worker Thread 13,5,main]) started.
+:data:festival:preAndroidMainBuild (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:festival:preAndroidMainBuild UP-TO-DATE
+Skipping task ':data:festival:preAndroidMainBuild' as it has no actions.
+Resolve mutations for :data:festival:generateAndroidMainEmptyResourceFiles (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:festival:generateAndroidMainEmptyResourceFiles (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:festival:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+Caching disabled for task ':data:festival:generateAndroidMainEmptyResourceFiles' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':data:festival:generateAndroidMainEmptyResourceFiles' as it is up-to-date.
+Resolve mutations for :data:festival:packageAndroidMainResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:festival:packageAndroidMainResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:festival:packageAndroidMainResources UP-TO-DATE
+Caching disabled for task ':data:festival:packageAndroidMainResources' because:
+  Build cache is disabled
+Skipping task ':data:festival:packageAndroidMainResources' as it is up-to-date.
+Resolve mutations for :data:festival:parseAndroidMainLocalResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:festival:parseAndroidMainLocalResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:festival:parseAndroidMainLocalResources UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':data:festival:parseAndroidMainLocalResources' because:
+  Build cache is disabled
+Skipping task ':data:festival:parseAndroidMainLocalResources' as it is up-to-date.
+Resolve mutations for :data:festival:generateAndroidMainRFile (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:festival:generateAndroidMainRFile (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:festival:generateAndroidMainRFile UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':data:festival:generateAndroidMainRFile' because:
+  Build cache is disabled
+Skipping task ':data:festival:generateAndroidMainRFile' as it is up-to-date.
+Resolve mutations for :data:festival:compileAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:festival:compileAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:festival:compileAndroidMain UP-TO-DATE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\festival\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\festival\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\festival\src\androidMain\kotlin', not found
+Caching disabled for task ':data:festival:compileAndroidMain' because:
+  Build cache is disabled
+Skipping task ':data:festival:compileAndroidMain' as it is up-to-date.
+Resolve mutations for :data:festival:bundleAndroidMainClassesToCompileJar (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:festival:bundleAndroidMainClassesToCompileJar (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:festival:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+Caching disabled for task ':data:festival:bundleAndroidMainClassesToCompileJar' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':data:festival:bundleAndroidMainClassesToCompileJar' as it is up-to-date.
+work action resolve classes.jar (project ':data:festival') (Thread[#764,Execution worker Thread 5,5,main]) started.
+Resolve mutations for :data:update:androidPreBuild (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:androidPreBuild (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:androidPreBuild UP-TO-DATE
+Skipping task ':data:update:androidPreBuild' as it has no actions.
+Resolve mutations for :data:update:preAndroidMainBuild (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:preAndroidMainBuild (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:preAndroidMainBuild UP-TO-DATE
+Skipping task ':data:update:preAndroidMainBuild' as it has no actions.
+Resolve mutations for :data:update:generateAndroidMainEmptyResourceFiles (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:generateAndroidMainEmptyResourceFiles (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+Caching disabled for task ':data:update:generateAndroidMainEmptyResourceFiles' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':data:update:generateAndroidMainEmptyResourceFiles' as it is up-to-date.
+Resolve mutations for :data:update:packageAndroidMainResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:packageAndroidMainResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:packageAndroidMainResources UP-TO-DATE
+Caching disabled for task ':data:update:packageAndroidMainResources' because:
+  Build cache is disabled
+Skipping task ':data:update:packageAndroidMainResources' as it is up-to-date.
+Resolve mutations for :data:update:parseAndroidMainLocalResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:parseAndroidMainLocalResources (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:parseAndroidMainLocalResources UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':data:update:parseAndroidMainLocalResources' because:
+  Build cache is disabled
+Skipping task ':data:update:parseAndroidMainLocalResources' as it is up-to-date.
+Resolve mutations for :data:update:generateAndroidMainRFile (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:generateAndroidMainRFile (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:generateAndroidMainRFile UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':data:update:generateAndroidMainRFile' because:
+  Build cache is disabled
+Skipping task ':data:update:generateAndroidMainRFile' as it is up-to-date.
+Resolve mutations for :data:update:compileAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:compileAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:compileAndroidMain UP-TO-DATE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\update\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\update\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\data\update\src\androidMain\kotlin', not found
+Caching disabled for task ':data:update:compileAndroidMain' because:
+  Build cache is disabled
+Skipping task ':data:update:compileAndroidMain' as it is up-to-date.
+Resolve mutations for :data:update:bundleAndroidMainClassesToCompileJar (Thread[#764,Execution worker Thread 5,5,main]) started.
+:data:update:bundleAndroidMainClassesToCompileJar (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :data:update:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+Caching disabled for task ':data:update:bundleAndroidMainClassesToCompileJar' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':data:update:bundleAndroidMainClassesToCompileJar' as it is up-to-date.
+work action resolve classes.jar (project ':data:update') (Thread[#764,Execution worker Thread 5,5,main]) started.
+Resolve mutations for :feature:festival:convertXmlValueResourcesForAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:festival:convertXmlValueResourcesForAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:festival:convertXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':feature:festival:convertXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:copyNonXmlValueResourcesForAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:festival:copyNonXmlValueResourcesForAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:festival:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':feature:festival:copyNonXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:prepareComposeResourcesTaskForAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:festival:prepareComposeResourcesTaskForAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:festival:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+Skipping task ':feature:festival:prepareComposeResourcesTaskForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:festival:generateResourceAccessorsForAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:festival:generateResourceAccessorsForAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+
+> Task :feature:festival:generateResourceAccessorsForAndroidMain SKIPPED
+Skipping task ':feature:festival:generateResourceAccessorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:festival:generateActualResourceCollectorsForAndroidMain (Thread[#764,Execution worker Thread 5,5,main]) started.
+:feature:festival:generateActualResourceCollectorsForAndroidMain (Thread[#773,Execution worker Thread 14,5,main]) started.
+
+> Task :feature:festival:generateActualResourceCollectorsForAndroidMain SKIPPED
+Skipping task ':feature:festival:generateActualResourceCollectorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:festival:androidPreBuild (Thread[#773,Execution worker Thread 14,5,main]) started.
+:feature:festival:androidPreBuild (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:androidPreBuild UP-TO-DATE
+Skipping task ':feature:festival:androidPreBuild' as it has no actions.
+Resolve mutations for :feature:festival:preAndroidMainBuild (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:preAndroidMainBuild (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:preAndroidMainBuild UP-TO-DATE
+Skipping task ':feature:festival:preAndroidMainBuild' as it has no actions.
+Resolve mutations for :feature:festival:generateAndroidMainEmptyResourceFiles (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:generateAndroidMainEmptyResourceFiles (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:festival:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+Caching disabled for task ':feature:festival:generateAndroidMainEmptyResourceFiles' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':feature:festival:generateAndroidMainEmptyResourceFiles' as it is up-to-date.
+Resolve mutations for :feature:festival:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:festival:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:festival:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+Caching disabled for task ':feature:festival:copyAndroidMainComposeResourcesToAndroidAssets' because:
+  Build cache is disabled
+  Not worth caching — fast file copy operation
+Skipping task ':feature:festival:copyAndroidMainComposeResourcesToAndroidAssets' as it is up-to-date.
+Resolve mutations for :feature:festival:packageAndroidMainResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:festival:packageAndroidMainResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:festival:packageAndroidMainResources UP-TO-DATE
+Caching disabled for task ':feature:festival:packageAndroidMainResources' because:
+  Build cache is disabled
+Skipping task ':feature:festival:packageAndroidMainResources' as it is up-to-date.
+Resolve mutations for :feature:festival:parseAndroidMainLocalResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:festival:parseAndroidMainLocalResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:festival:parseAndroidMainLocalResources UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':feature:festival:parseAndroidMainLocalResources' because:
+  Build cache is disabled
+Skipping task ':feature:festival:parseAndroidMainLocalResources' as it is up-to-date.
+Resolve mutations for :feature:festival:generateAndroidMainRFile (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:festival:generateAndroidMainRFile (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:festival:generateAndroidMainRFile UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':feature:festival:generateAndroidMainRFile' because:
+  Build cache is disabled
+Skipping task ':feature:festival:generateAndroidMainRFile' as it is up-to-date.
+Resolve mutations for :feature:festival:compileAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:festival:compileAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:festival:compileAndroidMain UP-TO-DATE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\festival\src\androidMain\kotlin', not found
+Caching disabled for task ':feature:festival:compileAndroidMain' because:
+  Build cache is disabled
+Skipping task ':feature:festival:compileAndroidMain' as it is up-to-date.
+Resolve mutations for :feature:festival:bundleAndroidMainClassesToCompileJar (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:festival:bundleAndroidMainClassesToCompileJar (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:festival:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+Caching disabled for task ':feature:festival:bundleAndroidMainClassesToCompileJar' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':feature:festival:bundleAndroidMainClassesToCompileJar' as it is up-to-date.
+work action resolve classes.jar (project ':feature:festival') (Thread[#759,included builds,5,main]) started.
+Resolve mutations for :feature:settings:convertXmlValueResourcesForAndroidMain (Thread[#759,included builds,5,main]) started.
+:feature:settings:convertXmlValueResourcesForAndroidMain (Thread[#759,included builds,5,main]) started.
+
+> Task :feature:settings:convertXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':feature:settings:convertXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:copyNonXmlValueResourcesForAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+:feature:settings:copyNonXmlValueResourcesForAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :feature:settings:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':feature:settings:copyNonXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:prepareComposeResourcesTaskForAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+:feature:settings:prepareComposeResourcesTaskForAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :feature:settings:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+Skipping task ':feature:settings:prepareComposeResourcesTaskForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:settings:generateResourceAccessorsForAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+:feature:settings:generateResourceAccessorsForAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :feature:settings:generateResourceAccessorsForAndroidMain SKIPPED
+Skipping task ':feature:settings:generateResourceAccessorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:settings:generateActualResourceCollectorsForAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+:feature:settings:generateActualResourceCollectorsForAndroidMain (Thread[#763,Execution worker Thread 4,5,main]) started.
+
+> Task :feature:settings:generateActualResourceCollectorsForAndroidMain SKIPPED
+Skipping task ':feature:settings:generateActualResourceCollectorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:settings:androidPreBuild (Thread[#763,Execution worker Thread 4,5,main]) started.
+:feature:settings:androidPreBuild (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:settings:androidPreBuild UP-TO-DATE
+Skipping task ':feature:settings:androidPreBuild' as it has no actions.
+Resolve mutations for :feature:settings:preAndroidMainBuild (Thread[#767,Execution worker Thread 8,5,main]) started.
+:feature:settings:preAndroidMainBuild (Thread[#767,Execution worker Thread 8,5,main]) started.
+
+> Task :feature:settings:preAndroidMainBuild UP-TO-DATE
+Skipping task ':feature:settings:preAndroidMainBuild' as it has no actions.
+Resolve mutations for :feature:settings:generateAndroidMainEmptyResourceFiles (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:settings:generateAndroidMainEmptyResourceFiles (Thread[#761,Execution worker Thread 2,5,main]) started.
+
+> Task :feature:settings:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+Caching disabled for task ':feature:settings:generateAndroidMainEmptyResourceFiles' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':feature:settings:generateAndroidMainEmptyResourceFiles' as it is up-to-date.
+Resolve mutations for :feature:settings:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#761,Execution worker Thread 2,5,main]) started.
+:feature:settings:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :feature:settings:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+Caching disabled for task ':feature:settings:copyAndroidMainComposeResourcesToAndroidAssets' because:
+  Build cache is disabled
+  Not worth caching — fast file copy operation
+Skipping task ':feature:settings:copyAndroidMainComposeResourcesToAndroidAssets' as it is up-to-date.
+Resolve mutations for :feature:settings:packageAndroidMainResources (Thread[#774,Execution worker Thread 15,5,main]) started.
+:feature:settings:packageAndroidMainResources (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :feature:settings:packageAndroidMainResources UP-TO-DATE
+Caching disabled for task ':feature:settings:packageAndroidMainResources' because:
+  Build cache is disabled
+Skipping task ':feature:settings:packageAndroidMainResources' as it is up-to-date.
+Resolve mutations for :feature:settings:parseAndroidMainLocalResources (Thread[#774,Execution worker Thread 15,5,main]) started.
+:feature:settings:parseAndroidMainLocalResources (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :feature:settings:parseAndroidMainLocalResources UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':feature:settings:parseAndroidMainLocalResources' because:
+  Build cache is disabled
+Skipping task ':feature:settings:parseAndroidMainLocalResources' as it is up-to-date.
+Resolve mutations for :feature:settings:generateAndroidMainRFile (Thread[#774,Execution worker Thread 15,5,main]) started.
+:feature:settings:generateAndroidMainRFile (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :feature:settings:generateAndroidMainRFile UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':feature:settings:generateAndroidMainRFile' because:
+  Build cache is disabled
+Skipping task ':feature:settings:generateAndroidMainRFile' as it is up-to-date.
+Resolve mutations for :feature:settings:compileAndroidMain (Thread[#774,Execution worker Thread 15,5,main]) started.
+:feature:settings:compileAndroidMain (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :feature:settings:compileAndroidMain UP-TO-DATE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\settings\src\androidMain\kotlin', not found
+Caching disabled for task ':feature:settings:compileAndroidMain' because:
+  Build cache is disabled
+Skipping task ':feature:settings:compileAndroidMain' as it is up-to-date.
+Resolve mutations for :feature:settings:bundleAndroidMainClassesToCompileJar (Thread[#774,Execution worker Thread 15,5,main]) started.
+:feature:settings:bundleAndroidMainClassesToCompileJar (Thread[#774,Execution worker Thread 15,5,main]) started.
+
+> Task :feature:settings:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+Caching disabled for task ':feature:settings:bundleAndroidMainClassesToCompileJar' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':feature:settings:bundleAndroidMainClassesToCompileJar' as it is up-to-date.
+work action resolve classes.jar (project ':feature:settings') (Thread[#774,Execution worker Thread 15,5,main]) started.
+Resolve mutations for :feature:update:convertXmlValueResourcesForAndroidMain (Thread[#774,Execution worker Thread 15,5,main]) started.
+:feature:update:convertXmlValueResourcesForAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:convertXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':feature:update:convertXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:copyNonXmlValueResourcesForAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:copyNonXmlValueResourcesForAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\build\generated\compose\resourceGenerator\preparedResources\androidMain\composeResources', not found
+Skipping task ':feature:update:copyNonXmlValueResourcesForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:prepareComposeResourcesTaskForAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:prepareComposeResourcesTaskForAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+Skipping task ':feature:update:prepareComposeResourcesTaskForAndroidMain' as it has no source files and no previous output files.
+Resolve mutations for :feature:update:generateResourceAccessorsForAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:generateResourceAccessorsForAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:generateResourceAccessorsForAndroidMain SKIPPED
+Skipping task ':feature:update:generateResourceAccessorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:update:generateActualResourceCollectorsForAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:generateActualResourceCollectorsForAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:generateActualResourceCollectorsForAndroidMain SKIPPED
+Skipping task ':feature:update:generateActualResourceCollectorsForAndroidMain' as task onlyIf 'Task satisfies onlyIf spec' is false.
+Resolve mutations for :feature:update:androidPreBuild (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:androidPreBuild (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:androidPreBuild UP-TO-DATE
+Skipping task ':feature:update:androidPreBuild' as it has no actions.
+Resolve mutations for :feature:update:preAndroidMainBuild (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:preAndroidMainBuild (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:preAndroidMainBuild UP-TO-DATE
+Skipping task ':feature:update:preAndroidMainBuild' as it has no actions.
+Resolve mutations for :feature:update:generateAndroidMainEmptyResourceFiles (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:generateAndroidMainEmptyResourceFiles (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+Caching disabled for task ':feature:update:generateAndroidMainEmptyResourceFiles' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':feature:update:generateAndroidMainEmptyResourceFiles' as it is up-to-date.
+Resolve mutations for :feature:update:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:copyAndroidMainComposeResourcesToAndroidAssets (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+Caching disabled for task ':feature:update:copyAndroidMainComposeResourcesToAndroidAssets' because:
+  Build cache is disabled
+  Not worth caching — fast file copy operation
+Skipping task ':feature:update:copyAndroidMainComposeResourcesToAndroidAssets' as it is up-to-date.
+Resolve mutations for :feature:update:packageAndroidMainResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:packageAndroidMainResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:packageAndroidMainResources UP-TO-DATE
+Caching disabled for task ':feature:update:packageAndroidMainResources' because:
+  Build cache is disabled
+Skipping task ':feature:update:packageAndroidMainResources' as it is up-to-date.
+Resolve mutations for :feature:update:parseAndroidMainLocalResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:parseAndroidMainLocalResources (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:parseAndroidMainLocalResources UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':feature:update:parseAndroidMainLocalResources' because:
+  Build cache is disabled
+Skipping task ':feature:update:parseAndroidMainLocalResources' as it is up-to-date.
+Resolve mutations for :feature:update:generateAndroidMainRFile (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:generateAndroidMainRFile (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:generateAndroidMainRFile UP-TO-DATE
+compileSdkVersion=android-37.0
+Caching disabled for task ':feature:update:generateAndroidMainRFile' because:
+  Build cache is disabled
+Skipping task ':feature:update:generateAndroidMainRFile' as it is up-to-date.
+Resolve mutations for :feature:update:compileAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:compileAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:compileAndroidMain UP-TO-DATE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\feature\update\src\androidMain\kotlin', not found
+Caching disabled for task ':feature:update:compileAndroidMain' because:
+  Build cache is disabled
+Skipping task ':feature:update:compileAndroidMain' as it is up-to-date.
+Resolve mutations for :feature:update:bundleAndroidMainClassesToCompileJar (Thread[#771,Execution worker Thread 12,5,main]) started.
+:feature:update:bundleAndroidMainClassesToCompileJar (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :feature:update:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+Caching disabled for task ':feature:update:bundleAndroidMainClassesToCompileJar' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':feature:update:bundleAndroidMainClassesToCompileJar' as it is up-to-date.
+work action resolve classes.jar (project ':feature:update') (Thread[#771,Execution worker Thread 12,5,main]) started.
+Resolve mutations for :composeApp:compileAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+:composeApp:compileAndroidMain (Thread[#771,Execution worker Thread 12,5,main]) started.
+
+> Task :composeApp:compileAndroidMain UP-TO-DATE
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\kotlin\androidMainResourceAccessors', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\kotlin\commonMainResourceAccessors', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\kotlin\androidMainResourceAccessors', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\kotlin\commonMainResourceAccessors', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\src\androidMain\kotlin', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\kotlin\androidMainResourceAccessors', not found
+file or directory 'C:\Users\loki5\AndroidStudioProjects\cosplay-2\composeApp\build\generated\compose\resourceGenerator\kotlin\commonMainResourceAccessors', not found
+Caching disabled for task ':composeApp:compileAndroidMain' because:
+  Build cache is disabled
+Skipping task ':composeApp:compileAndroidMain' as it is up-to-date.
+Build 2fd32616-1ab2-4d3b-967a-14f45175b2e6 is closed
+
+[Incubating] Problems report is available at: file:///C:/Users/loki5/AndroidStudioProjects/cosplay-2/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.7.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2s
+106 actionable tasks: 15 executed, 91 up-to-date
+Watched directory hierarchies: [C:\Users\loki5\AndroidStudioProjects\cosplay-2]
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.0/userguide/configuration_cache_enabling.html
+EXIT_CODE=0

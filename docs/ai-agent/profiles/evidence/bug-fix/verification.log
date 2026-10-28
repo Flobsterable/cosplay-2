@@ -1,0 +1,469 @@
+COMMAND: .\gradlew.bat -I docs/build-upgrade/maven-mirror.init.gradle.kts :composeApp:compileKotlinDesktop :composeApp:compileAndroidMain :composeApp:desktopTest :core:platform:desktopTest :androidApp:lintDebug
+
+> Configure project :core:platform
+WARNING: The 'commonTest' source directory exists, but android host tests are not enabled. To enable android host tests, add `withHostTest {}` to your android target configuration in the Gradle build file.
+Add android.sync.suppressAgpWarnings=GENERIC to the gradle.properties file to suppress this warning.
+
+> Task :composeApp:checkDesktopMainComposeLibrariesCompatibility
+> Task :composeApp:kmpPartiallyResolvedDependenciesChecker
+> Task :composeApp:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :composeApp:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonMain NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForDesktopMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForDesktopMain UP-TO-DATE
+> Task :composeApp:generateComposeResClass UP-TO-DATE
+> Task :composeApp:generateExpectResourceCollectorsForCommonMain UP-TO-DATE
+> Task :core:model:kmpPartiallyResolvedDependenciesChecker
+> Task :core:model:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:model:compileKotlinDesktop UP-TO-DATE
+> Task :core:model:compileDesktopMainJava NO-SOURCE
+> Task :core:model:desktopProcessResources NO-SOURCE
+> Task :core:model:processDesktopMainResources SKIPPED
+> Task :core:model:desktopMainClasses UP-TO-DATE
+> Task :core:model:desktopJar UP-TO-DATE
+> Task :core:network:checkDesktopMainComposeLibrariesCompatibility
+> Task :core:network:kmpPartiallyResolvedDependenciesChecker
+> Task :core:network:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:network:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:network:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:network:generateComposeResClass SKIPPED
+> Task :core:network:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:checkDesktopMainComposeLibrariesCompatibility
+> Task :core:platform:kmpPartiallyResolvedDependenciesChecker
+> Task :core:platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:platform:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForCommonMain SKIPPED
+> Task :core:platform:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :core:platform:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :core:platform:generateComposeResClass SKIPPED
+> Task :core:platform:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :core:platform:compileKotlinDesktop UP-TO-DATE
+> Task :core:platform:compileDesktopMainJava NO-SOURCE
+> Task :core:platform:assembleDesktopMainResources UP-TO-DATE
+> Task :core:platform:desktopProcessResources UP-TO-DATE
+> Task :core:platform:processDesktopMainResources SKIPPED
+> Task :core:platform:desktopMainClasses UP-TO-DATE
+> Task :core:platform:desktopJar UP-TO-DATE
+> Task :core:network:compileKotlinDesktop UP-TO-DATE
+> Task :core:network:compileDesktopMainJava NO-SOURCE
+> Task :core:network:assembleDesktopMainResources UP-TO-DATE
+> Task :core:network:desktopProcessResources UP-TO-DATE
+> Task :core:network:processDesktopMainResources SKIPPED
+> Task :core:network:desktopMainClasses UP-TO-DATE
+> Task :core:network:desktopJar UP-TO-DATE
+> Task :data:festival:kmpPartiallyResolvedDependenciesChecker
+> Task :data:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:festival:compileKotlinDesktop UP-TO-DATE
+> Task :data:festival:compileDesktopMainJava NO-SOURCE
+> Task :data:festival:desktopProcessResources NO-SOURCE
+> Task :data:festival:processDesktopMainResources SKIPPED
+> Task :data:festival:desktopMainClasses UP-TO-DATE
+> Task :data:festival:desktopJar UP-TO-DATE
+> Task :data:update:kmpPartiallyResolvedDependenciesChecker
+> Task :data:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :data:update:compileKotlinDesktop UP-TO-DATE
+> Task :data:update:compileDesktopMainJava NO-SOURCE
+> Task :data:update:desktopProcessResources NO-SOURCE
+> Task :data:update:processDesktopMainResources SKIPPED
+> Task :data:update:desktopMainClasses UP-TO-DATE
+> Task :data:update:desktopJar UP-TO-DATE
+> Task :feature:festival:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:festival:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:festival:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:festival:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:festival:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:festival:generateComposeResClass SKIPPED
+> Task :feature:festival:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:festival:compileKotlinDesktop UP-TO-DATE
+> Task :feature:festival:compileDesktopMainJava NO-SOURCE
+> Task :feature:festival:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:festival:desktopProcessResources UP-TO-DATE
+> Task :feature:festival:processDesktopMainResources SKIPPED
+> Task :feature:festival:desktopMainClasses UP-TO-DATE
+> Task :feature:festival:desktopJar UP-TO-DATE
+> Task :feature:settings:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:settings:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:settings:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:settings:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:settings:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:settings:generateComposeResClass SKIPPED
+> Task :feature:settings:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:settings:compileKotlinDesktop UP-TO-DATE
+> Task :feature:settings:compileDesktopMainJava NO-SOURCE
+> Task :feature:settings:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:settings:desktopProcessResources UP-TO-DATE
+> Task :feature:settings:processDesktopMainResources SKIPPED
+> Task :feature:settings:desktopMainClasses UP-TO-DATE
+> Task :feature:settings:desktopJar UP-TO-DATE
+> Task :feature:update:checkDesktopMainComposeLibrariesCompatibility
+> Task :feature:update:kmpPartiallyResolvedDependenciesChecker
+> Task :feature:update:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:update:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForCommonMain SKIPPED
+> Task :feature:update:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :feature:update:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :feature:update:generateComposeResClass SKIPPED
+> Task :feature:update:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :feature:update:compileKotlinDesktop UP-TO-DATE
+> Task :feature:update:compileDesktopMainJava NO-SOURCE
+> Task :feature:update:assembleDesktopMainResources UP-TO-DATE
+> Task :feature:update:desktopProcessResources UP-TO-DATE
+> Task :feature:update:processDesktopMainResources SKIPPED
+> Task :feature:update:desktopMainClasses UP-TO-DATE
+> Task :feature:update:desktopJar UP-TO-DATE
+> Task :composeApp:compileKotlinDesktop UP-TO-DATE
+> Task :composeApp:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForAndroidMain NO-SOURCE
+> Task :composeApp:generateActualResourceCollectorsForAndroidMain UP-TO-DATE
+> Task :composeApp:androidPreBuild UP-TO-DATE
+> Task :composeApp:preAndroidMainBuild UP-TO-DATE
+> Task :composeApp:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :composeApp:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+> Task :composeApp:packageAndroidMainResources UP-TO-DATE
+> Task :composeApp:parseAndroidMainLocalResources UP-TO-DATE
+> Task :composeApp:generateAndroidMainRFile UP-TO-DATE
+> Task :core:model:androidPreBuild UP-TO-DATE
+> Task :core:model:preAndroidMainBuild UP-TO-DATE
+> Task :core:model:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :core:model:packageAndroidMainResources UP-TO-DATE
+> Task :core:model:parseAndroidMainLocalResources UP-TO-DATE
+> Task :core:model:generateAndroidMainRFile UP-TO-DATE
+> Task :core:network:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:network:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:network:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :core:network:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :core:network:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :core:network:androidPreBuild UP-TO-DATE
+> Task :core:network:preAndroidMainBuild UP-TO-DATE
+> Task :core:network:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :core:network:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+> Task :core:network:packageAndroidMainResources UP-TO-DATE
+> Task :core:network:parseAndroidMainLocalResources UP-TO-DATE
+> Task :core:network:generateAndroidMainRFile UP-TO-DATE
+> Task :core:platform:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :core:platform:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :core:platform:androidPreBuild UP-TO-DATE
+> Task :core:platform:preAndroidMainBuild UP-TO-DATE
+> Task :core:platform:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :core:platform:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+> Task :core:platform:packageAndroidMainResources UP-TO-DATE
+> Task :core:platform:parseAndroidMainLocalResources UP-TO-DATE
+> Task :core:platform:generateAndroidMainRFile UP-TO-DATE
+> Task :core:platform:generateAppVersion UP-TO-DATE
+> Task :data:festival:androidPreBuild UP-TO-DATE
+> Task :data:festival:preAndroidMainBuild UP-TO-DATE
+> Task :data:festival:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :data:festival:packageAndroidMainResources UP-TO-DATE
+> Task :data:festival:parseAndroidMainLocalResources UP-TO-DATE
+> Task :data:festival:generateAndroidMainRFile UP-TO-DATE
+> Task :data:update:androidPreBuild UP-TO-DATE
+> Task :data:update:preAndroidMainBuild UP-TO-DATE
+> Task :data:update:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :data:update:packageAndroidMainResources UP-TO-DATE
+> Task :data:update:parseAndroidMainLocalResources UP-TO-DATE
+> Task :data:update:generateAndroidMainRFile UP-TO-DATE
+> Task :feature:festival:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:festival:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:festival:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :feature:festival:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :feature:festival:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :feature:festival:androidPreBuild UP-TO-DATE
+> Task :feature:festival:preAndroidMainBuild UP-TO-DATE
+> Task :feature:festival:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :feature:festival:copyAndroidMainComposeResourcesToAndroidAssets
+> Task :feature:festival:packageAndroidMainResources UP-TO-DATE
+> Task :feature:festival:parseAndroidMainLocalResources UP-TO-DATE
+> Task :feature:festival:generateAndroidMainRFile UP-TO-DATE
+> Task :feature:settings:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:settings:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:settings:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :feature:settings:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :feature:settings:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :feature:settings:androidPreBuild UP-TO-DATE
+> Task :feature:settings:preAndroidMainBuild UP-TO-DATE
+> Task :feature:settings:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :feature:settings:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+> Task :feature:settings:packageAndroidMainResources UP-TO-DATE
+> Task :feature:settings:parseAndroidMainLocalResources UP-TO-DATE
+> Task :feature:settings:generateAndroidMainRFile UP-TO-DATE
+> Task :feature:settings:compileAndroidMain UP-TO-DATE
+> Task :feature:settings:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :feature:update:convertXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:update:copyNonXmlValueResourcesForAndroidMain NO-SOURCE
+> Task :feature:update:prepareComposeResourcesTaskForAndroidMain NO-SOURCE
+> Task :feature:update:generateResourceAccessorsForAndroidMain SKIPPED
+> Task :feature:update:generateActualResourceCollectorsForAndroidMain SKIPPED
+> Task :feature:update:androidPreBuild UP-TO-DATE
+> Task :feature:update:preAndroidMainBuild UP-TO-DATE
+> Task :feature:update:generateAndroidMainEmptyResourceFiles UP-TO-DATE
+> Task :feature:update:copyAndroidMainComposeResourcesToAndroidAssets UP-TO-DATE
+> Task :feature:update:packageAndroidMainResources UP-TO-DATE
+> Task :feature:update:parseAndroidMainLocalResources UP-TO-DATE
+> Task :feature:update:generateAndroidMainRFile UP-TO-DATE
+> Task :composeApp:compileDesktopMainJava NO-SOURCE
+> Task :composeApp:checkDesktopTestComposeLibrariesCompatibility
+> Task :composeApp:assembleDesktopMainResources UP-TO-DATE
+> Task :composeApp:desktopProcessResources UP-TO-DATE
+> Task :composeApp:processDesktopMainResources SKIPPED
+> Task :composeApp:desktopMainClasses UP-TO-DATE
+> Task :composeApp:desktopJar UP-TO-DATE
+> Task :composeApp:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForCommonTest NO-SOURCE
+> Task :composeApp:convertXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :composeApp:copyNonXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :composeApp:prepareComposeResourcesTaskForDesktopTest NO-SOURCE
+> Task :composeApp:generateResourceAccessorsForDesktopTest NO-SOURCE
+> Task :composeApp:compileTestKotlinDesktop UP-TO-DATE
+> Task :composeApp:compileDesktopTestJava NO-SOURCE
+> Task :composeApp:assembleDesktopTestResources UP-TO-DATE
+> Task :composeApp:desktopTestProcessResources UP-TO-DATE
+> Task :composeApp:processDesktopTestResources SKIPPED
+> Task :composeApp:desktopTestClasses UP-TO-DATE
+> Task :core:model:compileAndroidMain
+> Task :composeApp:desktopTest
+> Task :core:platform:checkDesktopTestComposeLibrariesCompatibility
+> Task :core:platform:convertXmlValueResourcesForCommonTest NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForCommonTest NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForCommonTest NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForCommonTest SKIPPED
+> Task :core:platform:convertXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :core:platform:copyNonXmlValueResourcesForDesktopTest NO-SOURCE
+> Task :core:platform:prepareComposeResourcesTaskForDesktopTest NO-SOURCE
+> Task :core:platform:generateResourceAccessorsForDesktopTest SKIPPED
+> Task :core:model:bundleAndroidMainClassesToCompileJar
+> Task :core:platform:assembleDesktopTestResources
+> Task :core:platform:desktopTestProcessResources
+> Task :core:platform:processDesktopTestResources SKIPPED
+> Task :core:model:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :core:network:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :core:platform:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :data:festival:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :data:update:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :feature:festival:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :feature:settings:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :feature:update:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :composeApp:checkAndroidMainAarMetadata UP-TO-DATE
+> Task :composeApp:processAndroidMainManifest UP-TO-DATE
+> Task :composeApp:writeAndroidMainAarMetadata UP-TO-DATE
+> Task :androidApp:preBuild UP-TO-DATE
+> Task :androidApp:preDebugBuild UP-TO-DATE
+> Task :androidApp:generateDebugResources UP-TO-DATE
+> Task :androidApp:packageDebugResources UP-TO-DATE
+> Task :androidApp:processDebugNavigationResources UP-TO-DATE
+> Task :androidApp:parseDebugLocalResources UP-TO-DATE
+> Task :androidApp:generateDebugRFile UP-TO-DATE
+> Task :androidApp:javaPreCompileDebug UP-TO-DATE
+> Task :androidApp:checkDebugAarMetadata UP-TO-DATE
+> Task :androidApp:mapDebugSourceSetPaths UP-TO-DATE
+> Task :androidApp:compileDebugNavigationResources UP-TO-DATE
+> Task :core:platform:compileAndroidMain
+> Task :androidApp:mergeDebugResources UP-TO-DATE
+> Task :core:platform:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :core:network:compileAndroidMain UP-TO-DATE
+> Task :core:network:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :feature:update:compileAndroidMain
+> Task :data:festival:compileAndroidMain
+> Task :data:update:compileAndroidMain
+> Task :data:festival:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :data:update:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :feature:update:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :androidApp:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :androidApp:extractDeepLinksDebug UP-TO-DATE
+> Task :core:model:processAndroidMainManifest UP-TO-DATE
+> Task :core:network:processAndroidMainManifest UP-TO-DATE
+> Task :core:platform:processAndroidMainManifest UP-TO-DATE
+> Task :data:festival:processAndroidMainManifest UP-TO-DATE
+> Task :data:update:processAndroidMainManifest UP-TO-DATE
+> Task :feature:festival:processAndroidMainManifest UP-TO-DATE
+> Task :feature:settings:processAndroidMainManifest UP-TO-DATE
+> Task :feature:update:processAndroidMainManifest UP-TO-DATE
+> Task :androidApp:processDebugMainManifest UP-TO-DATE
+> Task :androidApp:processDebugManifest UP-TO-DATE
+> Task :androidApp:processDebugManifestForPackage UP-TO-DATE
+> Task :composeApp:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :composeApp:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :core:model:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :core:model:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :core:network:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :core:network:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :core:platform:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :core:platform:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :data:festival:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :data:festival:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :data:update:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :data:update:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :feature:festival:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :feature:festival:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :feature:settings:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :feature:settings:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :feature:update:mapAndroidMainSourceSetPaths UP-TO-DATE
+> Task :feature:update:compileAndroidMainLibraryResources UP-TO-DATE
+> Task :androidApp:processDebugResources UP-TO-DATE
+> Task :androidApp:preDebugAndroidTestBuild SKIPPED
+> Task :composeApp:prepareLintJarForPublish UP-TO-DATE
+> Task :androidApp:extractProguardFiles UP-TO-DATE
+> Task :core:model:processAndroidMainJavaRes UP-TO-DATE
+> Task :core:model:prepareLintJarForPublish UP-TO-DATE
+> Task :core:network:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :core:network:processAndroidMainJavaRes UP-TO-DATE
+> Task :core:network:createFullJarAndroidMain UP-TO-DATE
+> Task :core:network:prepareLintJarForPublish UP-TO-DATE
+> Task :core:platform:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :core:platform:processAndroidMainJavaRes UP-TO-DATE
+> Task :core:platform:createFullJarAndroidMain UP-TO-DATE
+> Task :core:platform:prepareLintJarForPublish UP-TO-DATE
+> Task :data:festival:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :data:festival:processAndroidMainJavaRes UP-TO-DATE
+> Task :data:festival:createFullJarAndroidMain UP-TO-DATE
+> Task :core:model:bundleAndroidMainClassesToRuntimeJar
+> Task :data:festival:prepareLintJarForPublish UP-TO-DATE
+> Task :core:model:createFullJarAndroidMain
+> Task :data:update:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :data:update:processAndroidMainJavaRes UP-TO-DATE
+> Task :data:update:createFullJarAndroidMain UP-TO-DATE
+> Task :data:update:prepareLintJarForPublish UP-TO-DATE
+> Task :feature:festival:prepareLintJarForPublish UP-TO-DATE
+> Task :feature:settings:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :feature:settings:processAndroidMainJavaRes UP-TO-DATE
+> Task :feature:settings:createFullJarAndroidMain UP-TO-DATE
+> Task :feature:settings:prepareLintJarForPublish UP-TO-DATE
+> Task :feature:update:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :feature:update:processAndroidMainJavaRes UP-TO-DATE
+> Task :feature:update:createFullJarAndroidMain UP-TO-DATE
+> Task :feature:update:prepareLintJarForPublish UP-TO-DATE
+> Task :data:festival:checkAndroidMainAarMetadata UP-TO-DATE
+> Task :data:festival:extractAndroidMainAnnotations
+> Task :data:festival:mergeAndroidMainJavaResource UP-TO-DATE
+> Task :data:festival:syncAndroidMainLibJars UP-TO-DATE
+> Task :data:festival:bundleAndroidMainLocalLintAar UP-TO-DATE
+> Task :data:update:checkAndroidMainAarMetadata UP-TO-DATE
+> Task :data:update:extractAndroidMainAnnotations
+> Task :data:update:mergeAndroidMainJavaResource UP-TO-DATE
+> Task :data:update:syncAndroidMainLibJars UP-TO-DATE
+> Task :data:update:bundleAndroidMainLocalLintAar UP-TO-DATE
+> Task :core:network:checkAndroidMainAarMetadata UP-TO-DATE
+> Task :core:network:extractAndroidMainAnnotations UP-TO-DATE
+> Task :core:network:mergeAndroidMainJavaResource UP-TO-DATE
+> Task :core:network:syncAndroidMainLibJars UP-TO-DATE
+> Task :core:network:bundleAndroidMainLocalLintAar UP-TO-DATE
+> Task :feature:festival:extractAndroidMainAnnotations
+> Task :feature:festival:checkAndroidMainAarMetadata
+> Task :core:platform:checkAndroidMainAarMetadata UP-TO-DATE
+> Task :core:platform:compileTestKotlinDesktop
+> Task :core:platform:extractAndroidMainAnnotations
+> Task :core:platform:compileDesktopTestJava NO-SOURCE
+> Task :core:platform:desktopTestClasses
+> Task :core:platform:desktopTest
+> Task :core:platform:mergeAndroidMainJavaResource UP-TO-DATE
+> Task :core:platform:syncAndroidMainLibJars UP-TO-DATE
+> Task :core:platform:bundleAndroidMainLocalLintAar UP-TO-DATE
+> Task :feature:update:checkAndroidMainAarMetadata UP-TO-DATE
+> Task :feature:update:extractAndroidMainAnnotations
+> Task :feature:update:mergeAndroidMainJavaResource UP-TO-DATE
+> Task :feature:update:syncAndroidMainLibJars UP-TO-DATE
+> Task :feature:update:bundleAndroidMainLocalLintAar UP-TO-DATE
+> Task :core:model:checkAndroidMainAarMetadata UP-TO-DATE
+> Task :core:model:extractAndroidMainAnnotations UP-TO-DATE
+> Task :core:model:mergeAndroidMainJavaResource UP-TO-DATE
+> Task :core:model:syncAndroidMainLibJars
+> Task :core:model:bundleAndroidMainLocalLintAar
+> Task :feature:settings:checkAndroidMainAarMetadata UP-TO-DATE
+> Task :feature:settings:extractAndroidMainAnnotations UP-TO-DATE
+> Task :feature:settings:mergeAndroidMainJavaResource UP-TO-DATE
+> Task :feature:settings:syncAndroidMainLibJars UP-TO-DATE
+> Task :feature:settings:bundleAndroidMainLocalLintAar UP-TO-DATE
+> Task :androidApp:preDebugUnitTestBuild UP-TO-DATE
+
+> Task :feature:festival:compileAndroidMain
+w: file:///C:/Users/loki5/AndroidStudioProjects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:414:52 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+w: file:///C:/Users/loki5/AndroidStudioProjects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:437:5 'fun ClickableText(text: AnnotatedString, modifier: Modifier = ..., style: TextStyle = ..., softWrap: Boolean = ..., overflow: TextOverflow = ..., maxLines: Int = ..., onTextLayout: (TextLayoutResult) -> Unit = ..., onClick: (Int) -> Unit): Unit' is deprecated. Use Text or BasicText and pass an AnnotatedString that contains a LinkAnnotation. Check LinkAnnotation's documentation for more details and samples.
+w: file:///C:/Users/loki5/AndroidStudioProjects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalComponents.kt:579:18 'fun Modifier.menuAnchor(): Modifier' is deprecated. Use overload that takes ExposedDropdownMenuAnchorType and enabled parameters.
+w: file:///C:/Users/loki5/AndroidStudioProjects/cosplay-2/feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalDetailScreen.kt:115:56 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+
+> Task :feature:festival:bundleAndroidMainClassesToCompileJar
+> Task :feature:festival:bundleAndroidMainClassesToRuntimeJar
+> Task :feature:festival:processAndroidMainJavaRes
+> Task :composeApp:extractAndroidMainAnnotations
+> Task :feature:festival:createFullJarAndroidMain
+> Task :composeApp:compileAndroidMain
+> Task :composeApp:processAndroidMainJavaRes UP-TO-DATE
+> Task :composeApp:mergeAndroidMainJavaResource UP-TO-DATE
+> Task :composeApp:syncAndroidMainLibJars UP-TO-DATE
+> Task :composeApp:bundleAndroidMainLocalLintAar UP-TO-DATE
+> Task :composeApp:bundleAndroidMainClassesToCompileJar UP-TO-DATE
+> Task :feature:festival:mergeAndroidMainJavaResource
+> Task :androidApp:compileDebugKotlin UP-TO-DATE
+> Task :androidApp:compileDebugJavaWithJavac NO-SOURCE
+> Task :androidApp:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :composeApp:bundleAndroidMainClassesToRuntimeJar UP-TO-DATE
+> Task :composeApp:createFullJarAndroidMain UP-TO-DATE
+> Task :androidApp:generateDebugAndroidTestLintModel UP-TO-DATE
+> Task :androidApp:generateDebugLintReportModel
+> Task :feature:festival:syncAndroidMainLibJars
+> Task :feature:festival:bundleAndroidMainLocalLintAar
+> Task :androidApp:lintAnalyzeDebugAndroidTest UP-TO-DATE
+> Task :androidApp:generateDebugUnitTestLintModel
+> Task :androidApp:lintAnalyzeDebugUnitTest
+> Task :androidApp:lintAnalyzeDebug
+
+> Task :androidApp:lintReportDebug
+Wrote HTML report to file:///C:/Users/loki5/AndroidStudioProjects/cosplay-2/androidApp/build/reports/lint-results-debug.html
+Wrote SARIF report to file:///C:/Users/loki5/AndroidStudioProjects/cosplay-2/androidApp/build/reports/lint-results-debug.sarif
+
+> Task :androidApp:lintDebug
+
+[Incubating] Problems report is available at: file:///C:/Users/loki5/AndroidStudioProjects/cosplay-2/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.7.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 12s
+264 actionable tasks: 55 executed, 209 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.0/userguide/configuration_cache_enabling.html
+EXIT_CODE: 0

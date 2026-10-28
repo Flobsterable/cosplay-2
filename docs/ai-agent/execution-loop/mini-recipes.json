@@ -1,0 +1,218 @@
+{
+  "version": 1,
+  "pool": "cosplay2-mini-2026-10-28",
+  "dataSourceId": "c9a64c93-0a34-4e32-b486-58ef22f6148b",
+  "tasks": [
+    {
+      "id": "EL-01",
+      "taskDigest": "3f4e944b014ec097a7164ac15f05e0529f10006c84d963606e6d90ad177808d5",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": []
+    },
+    {
+      "id": "EL-02",
+      "taskDigest": "b6d152719bbfe6a443f5fb93d01fb0f717bc6378faad209b9110255d4d298012",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": []
+    },
+    {
+      "id": "EL-03",
+      "taskDigest": "aa36b97a21337ecbc819151b266d370689493a0eaefda8d7850e926eafb26635",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": []
+    },
+    {
+      "id": "EL-04",
+      "taskDigest": "7e919c0c0312907ee8c7de50fd4ef75364e8df6a635f1293eea3de3af7512e94",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": [
+        {
+          "type": "resource-text",
+          "module": "feature/festival",
+          "text": "Настройки"
+        }
+      ]
+    },
+    {
+      "id": "EL-05",
+      "taskDigest": "b8c210c6f376e91971f4ea24be1eeef932a0bc982f8894e2f39dd38e9b17762e",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": [
+        {
+          "type": "resource-text",
+          "module": "feature/festival",
+          "text": "Очистить поиск"
+        }
+      ]
+    },
+    {
+      "id": "EL-06",
+      "taskDigest": "c737fea4c7ce245f595ec9ae159e3f95855a9a4c33cbef71794375294108f5a9",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": [
+        {
+          "type": "resource-text",
+          "module": "feature/festival",
+          "text": "Название, город или описание"
+        }
+      ]
+    },
+    {
+      "id": "EL-07",
+      "taskDigest": "c6796fcb895a10c23e15d8319ee3a6bd3056d0b5d5b9ea168a5a9b9389c26810",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": [
+        {
+          "type": "resource-text",
+          "module": "feature/settings",
+          "text": "Очистить ввод города"
+        }
+      ]
+    },
+    {
+      "id": "EL-08",
+      "taskDigest": "6c3f0fd06963c2224f4be43aa9e1b6fbd7e24302b5d8623735c186dddbfc3f65",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": [
+        {
+          "type": "resource-text",
+          "module": "feature/settings",
+          "text": "Город не найден в подсказках. Можно сохранить введённый вариант"
+        }
+      ]
+    },
+    {
+      "id": "EL-09",
+      "taskDigest": "e8e62642fde277c511f47376fdae0243e588ff1102f985a22bcdefdbe2dc6267",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": [
+        {
+          "type": "resource-text",
+          "module": "feature/settings",
+          "text": "Cosplay 2 · версия"
+        }
+      ]
+    },
+    {
+      "id": "EL-10",
+      "taskDigest": "1c446937457fd0e4116c00d0652aa117c6cd5c9e011cd74b4efcb45362108fc7",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": []
+    },
+    {
+      "id": "EL-11",
+      "taskDigest": "933bcb16e6e1e6bdc6b72239f17a3d3d21a55cad7551332dc1e09551fc592eda",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": []
+    },
+    {
+      "id": "EL-12",
+      "taskDigest": "2280cf8d795f24d35587a6cad03ef21add4692a3f2bd1aa5438dbeea86a1f136",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": [
+        {
+          "type": "resource-text",
+          "module": "feature/festival",
+          "text": "Загружаем фестивали…"
+        }
+      ]
+    },
+    {
+      "id": "EL-13",
+      "taskDigest": "6315866f5453a41427d639e22201595cdbeffab5fa3967d4b1049915c62dff8a",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": []
+    },
+    {
+      "id": "EL-14",
+      "taskDigest": "e589221f55931b6f5086b8d2219b2aa3517c10fe92b4dedd73bd50dcdfa54c79",
+      "profile": "Compose UI",
+      "skills": [
+        "compose-multiplatform",
+        "kotlin-code-style",
+        "kmp-testing"
+      ],
+      "checks": [
+        {
+          "type": "resource-text",
+          "module": "feature/update",
+          "text": "Подробнее об обновлении"
+        }
+      ]
+    },
+    {
+      "id": "EL-15",
+      "taskDigest": "684bc2e2a8b3bafd3b8da12cb4f22f28e2590646a43881ab0aebed4929c606a4",
+      "profile": "Documentation",
+      "skills": [
+        "context-engineering"
+      ],
+      "checks": []
+    }
+  ]
+}

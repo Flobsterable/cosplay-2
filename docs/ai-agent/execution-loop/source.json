@@ -1,0 +1,11 @@
+{
+  "type": "notion",
+  "transport": "mcp-snapshot",
+  "dataSourceId": "c9a64c93-0a34-4e32-b486-58ef22f6148b",
+  "databaseUrl": "https://app.notion.com/p/20b2780b8c5a42799a68e5017a04b9a7",
+  "snapshotFile": "build/execution-loop/notion-export-launch-2026-10-28.json",
+  "project": "cosplay-2",
+  "pool": "cosplay2-mini-2026-10-28",
+  "readyStatus": "Готово к работе",
+  "limit": 15
+}

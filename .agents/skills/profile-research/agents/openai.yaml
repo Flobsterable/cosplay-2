@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research"
+  short_description: "Исследовать файлы и связи проекта без изменений"
+  default_prompt: "Используй $profile-research для ответа на вопрос по кодовой базе."

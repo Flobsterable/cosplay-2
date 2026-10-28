@@ -1,0 +1,22 @@
+[
+  {
+    "case": "complete-fixture",
+    "expectedExit": 0,
+    "actualExit": 0
+  },
+  {
+    "case": "desktop-evidence",
+    "expectedExit": 2,
+    "actualExit": 2
+  },
+  {
+    "case": "wrong-apk",
+    "expectedExit": 2,
+    "actualExit": 2
+  },
+  {
+    "case": "missing-device",
+    "expectedExit": 2,
+    "actualExit": 2
+  }
+]

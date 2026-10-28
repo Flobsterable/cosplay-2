@@ -1,0 +1,49 @@
+name: Code tests and smoke evidence
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verification-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  code:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+      - name: Check SDK package configuration
+        shell: pwsh
+        run: node --test .github/scripts/verification-sdk.test.cjs
+      - name: Install compile SDK
+        shell: pwsh
+        run: '& "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat" "platforms;android-37.0"'
+      - name: Code tests, both targets and Android Lint
+        shell: pwsh
+        run: ./scripts/verify.ps1 -CodeOnly
+      - name: Publish combined report (UI pending MCP run)
+        if: always()
+        shell: pwsh
+        run: |
+          $report = 'build/verification/latest/report.md'
+          if (Test-Path $report) { Get-Content $report | Out-File $env:GITHUB_STEP_SUMMARY -Append }
+          else { 'Verification could not start; inspect job logs. UI smoke not run.' | Out-File $env:GITHUB_STEP_SUMMARY -Append }
+      - name: Preserve results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-${{ github.run_id }}
+          path: build/verification/latest
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,8 @@
+{
+  "mode": "draft-pr",
+  "repository": "Flobsterable/cosplay-2",
+  "remote": "origin",
+  "baseBranch": "codex/two-level-testing",
+  "branchPrefix": "codex/execution-loop",
+  "strategy": "stacked"
+}

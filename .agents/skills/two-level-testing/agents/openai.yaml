@@ -1,0 +1,4 @@
+interface:
+  display_name: "Два уровня тестирования"
+  short_description: "Кодовые тесты и MCP smoke с единым отчётом"
+  default_prompt: "Используй $two-level-testing: проверь код и пройди UI smoke, сохрани снимки шагов и единый отчёт."

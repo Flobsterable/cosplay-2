@@ -1,0 +1,48 @@
+{
+  "startedAt": "2026-10-24T15:24:39.6196240+06:00",
+  "revision": "040f9fcbb85fcee03cd57046406b3509c7c066e0",
+  "sourceHash": "7115f536a78aaba828c93c1de99c6a9a46e7c9a6eeb67582d0c73ec15c5058fb",
+  "targetPlatform": "Android",
+  "commands": [
+    {
+      "name": "tests",
+      "arguments": [
+        ":core:model:desktopTest",
+        ":data:festival:desktopTest",
+        ":data:update:desktopTest",
+        ":core:platform:desktopTest",
+        ":composeApp:desktopTest",
+        "--console=plain",
+        "-I",
+        "docs/build-upgrade/maven-mirror.init.gradle.kts"
+      ],
+      "exitCode": 0,
+      "log": "tests.log"
+    },
+    {
+      "name": "compile",
+      "arguments": [
+        ":composeApp:compileKotlinDesktop",
+        ":composeApp:compileAndroidMain",
+        ":androidApp:assembleDebug",
+        "-PandroidSmoke=true",
+        "--console=plain",
+        "-I",
+        "docs/build-upgrade/maven-mirror.init.gradle.kts"
+      ],
+      "exitCode": 0,
+      "log": "compile.log"
+    },
+    {
+      "name": "lint",
+      "arguments": [
+        ":androidApp:lintDebug",
+        "--console=plain",
+        "-I",
+        "docs/build-upgrade/maven-mirror.init.gradle.kts"
+      ],
+      "exitCode": 0,
+      "log": "lint.log"
+    }
+  ]
+}
