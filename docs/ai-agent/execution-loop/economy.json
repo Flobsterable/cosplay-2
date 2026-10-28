@@ -8,5 +8,6 @@
   "stopOnMissingUsage": true,
   "maxCallMinutes": 20,
   "stageCallMinutes": { "plan": 5, "work": 20, "review": 5, "recover": 5 },
-  "toolOutputTokens": 1500
+  "toolOutputTokens": 1500,
+  "serviceTier": "default"
 }

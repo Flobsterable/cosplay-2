@@ -468,6 +468,7 @@ test('each model call receives a tool-output cap and a bounded execution time', 
     await runLoop({ ...f, economy: { directDocs: false, maxCallsPerRun: 1, maxCallMinutes: 2 }, execute: async (...args) => {
         if (args[0] !== 'git' && args[0] !== 'powershell.exe') {
             assert.ok(args[1].includes('tool_output_token_limit=1500'));
+            assert.ok(args[1].includes('service_tier="default"'));
             assert.ok(args[3] <= 120000);
         }
         await fake.execute(...args);

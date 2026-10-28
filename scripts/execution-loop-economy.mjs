@@ -1,6 +1,6 @@
 export const defaultEconomy = Object.freeze({ directDocs: true, maxCallsPerRun: 60, maxCallsPerTask: 10,
     maxPromptChars: 6000, maxReportedTokens: 120000, tokenReserve: 10000, stopOnMissingUsage: false,
-    maxCallMinutes: 8, toolOutputTokens: 1500 });
+    maxCallMinutes: 8, toolOutputTokens: 1500, serviceTier: 'default' });
 
 export function economyOptions(options = {}) {
     const result = { ...defaultEconomy, ...options };
@@ -10,7 +10,7 @@ export function economyOptions(options = {}) {
         !Number.isInteger(result.maxReportedTokens) || result.maxReportedTokens < 0 ||
         !Number.isInteger(result.tokenReserve) || result.tokenReserve < 0 ||
         typeof result.stopOnMissingUsage !== 'boolean' || !Number.isFinite(result.maxCallMinutes) || result.maxCallMinutes <= 0 ||
-        !Number.isInteger(result.toolOutputTokens) || result.toolOutputTokens < 256) throw new Error('Invalid economy limits');
+        !Number.isInteger(result.toolOutputTokens) || result.toolOutputTokens < 256 || result.serviceTier !== 'default') throw new Error('Invalid economy limits');
     if (result.stageCallMinutes !== undefined && (!result.stageCallMinutes || typeof result.stageCallMinutes !== 'object' ||
         Array.isArray(result.stageCallMinutes) || Object.entries(result.stageCallMinutes).some(([stage, minutes]) =>
             !['plan', 'work', 'review', 'recover'].includes(stage) || !Number.isFinite(minutes) || minutes <= 0))) {

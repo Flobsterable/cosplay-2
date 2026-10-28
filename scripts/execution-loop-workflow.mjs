@@ -178,7 +178,8 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
         }
         if (prompt.length > limits.maxPromptChars) throw new Error('Budget: prompt exceeds configured limit');
         fs.writeFileSync(path.join(stageDir, 'prompt.txt'), prompt);
-        const args = ['-a', 'never', '-c', `tool_output_token_limit=${limits.toolOutputTokens}`, 'exec', '-C', workspace, '--json', '--output-schema', schemaPath, '-o', resultPath];
+        const args = ['-a', 'never', '-c', `tool_output_token_limit=${limits.toolOutputTokens}`,
+            '-c', 'service_tier="default"', 'exec', '-C', workspace, '--json', '--output-schema', schemaPath, '-o', resultPath];
         if (model && model !== 'default') args.push('-m', model);
         args.push('-s', stage === 'plan' || stage === 'review' ? 'read-only' : 'workspace-write');
         if (stage === 'work' || stage === 'recover') args.push('-c', 'sandbox_workspace_write.network_access=true');
