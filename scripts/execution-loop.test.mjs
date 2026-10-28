@@ -6,6 +6,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { metrics, runLoop, validatePool } from './execution-loop.mjs';
 import { validatePlan, validateReview } from './execution-loop-workflow.mjs';
+import { taskDigest } from './execution-loop-checks.mjs';
 
 function fixture(t) {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'cosplay-loop-'));
@@ -75,7 +76,7 @@ function agent(options = {}) {
             const fail = options.fail?.includes(id) && (!options.once || !failures.has(id));
             if (fail) failures.add(id);
             fs.appendFileSync(path.join(cwd, `${id}.md`), 'step output\n');
-            if (options.reviewWhitespace) fs.writeFileSync(path.join(cwd, 'README.md'), 'changed  ');
+            if (options.reviewWhitespace) fs.writeFileSync(path.join(cwd, 'README.md'), 'changed\n');
             result = { status: fail ? 'BLOCKED' : 'DONE', profile: 'fixture-docs', firstPass: !fail,
                 reason: fail ? 'task failure' : '', verificationDirectory: options.evidence || '',
                 handoff: { summary: 'Step completed in fixture', files: [`${id}.md`], decisions: [], risks: [],
@@ -102,6 +103,15 @@ test('reject invalid pools and unbounded plans/dependencies', () => {
     assert.throws(() => validatePlan({ profile: 'docs', dependsOn: [], steps: Array(7).fill(step) }, []));
     assert.throws(() => validatePlan({ profile: 'docs', dependsOn: ['EL-02'], steps: [step] }, ['EL-01']));
     assert.throws(() => validatePlan({ profile: 'docs', dependsOn: [], steps: [{ ...step, skills: ['../escape'] }] }, []));
+});
+
+test('pool dependencies are rejected before model execution when unknown, forward or duplicate', () => {
+    const tasks = Array.from({ length: 15 }, (_, index) => ({ id: `EL-${String(index + 1).padStart(2, '0')}`,
+        kind: 'docs', title: 'Task', acceptance: 'Written' }));
+    for (const dependsOn of [['EL-02'], ['EL-99'], ['EL-01', 'EL-01'], 'EL-01']) {
+        assert.throws(() => validatePool({ tasks: tasks.map((task, index) => index === 0 ? { ...task, dependsOn } : task) }), /dependencies/);
+    }
+    assert.doesNotThrow(() => validatePool({ tasks: tasks.map((task, index) => index === 1 ? { ...task, dependsOn: ['EL-01'] } : task) }));
 });
 
 test('planner and each step are separate sessions; commits integrate from isolated worktrees', async t => {
@@ -404,4 +414,75 @@ test('baseline publication failure stops before any model call', async t => {
     assert.equal(result.state, 'STOPPED');
     assert.equal(fake.calls.length, 0);
     assert.equal(result.rows.length, 0);
+});
+
+test('pinned mini recipes remove planner calls while preserving independent review', async t => {
+    const f = fixture(t);
+    f.pool.source = { pool: 'fixture-mini', dataSourceId: 'fixture-source' };
+    const recipes = { version: 1, ...f.pool.source, tasks: f.pool.tasks.map(task => ({ id: task.id,
+        taskDigest: taskDigest(task), profile: 'Fixture', skills: ['fixture'], checks: [] })) };
+    const fake = agent();
+    const run = await runLoop({ ...f, recipes, execute: fake.execute });
+    assert.equal(run.state, 'COMPLETED');
+    assert.equal(fake.calls.length, 30);
+    assert.ok(run.rows.every(row => row.planning === 'local-recipe'));
+    assert.ok(fake.calls.every(call => call.stage !== 'plan'));
+    assert.equal(fake.calls.filter(call => call.stage === 'review').length, 15);
+});
+
+test('strict usage policy stops before a second paid call when usage is unknown', async t => {
+    const f = fixture(t);
+    const fake = agent();
+    const run = await runLoop({ ...f, economy: { directDocs: false, stopOnMissingUsage: true }, execute: fake.execute });
+    assert.equal(fake.calls.length, 1);
+    assert.match(run.rows[0].reason, /Budget:/);
+    assert.equal(run.incidents.length, 0);
+    assert.equal(f.git('rev-list', '--count', 'HEAD'), '1');
+});
+
+test('local gate rejects bad new-file whitespace and retries without model diagnosis', async t => {
+    const f = fixture(t);
+    const fake = agent();
+    let work = 0;
+    const run = await runLoop({ ...f, economy: { directDocs: true, maxCallsPerRun: 3 }, execute: async (...args) => {
+        await fake.execute(...args);
+        if (args[0] !== 'git' && args[0] !== 'powershell.exe') {
+            const result = args[1][args[1].indexOf('-o') + 1];
+            if (path.basename(path.dirname(result)).endsWith('-work')) {
+                fs.writeFileSync(path.join(args[2], 'EL-01.md'), ++work === 1 ? 'trailing space  \n' : 'fixed\n');
+            }
+        }
+    } });
+    assert.equal(run.rows[0].status, 'DONE');
+    assert.equal(run.rows[0].firstPass, false);
+    assert.equal(run.incidents[0].diagnosis, 'deterministic-local-checks');
+    assert.deepEqual(fake.calls.map(call => call.stage), ['work', 'work', 'review']);
+    assert.equal(run.rows[0].localChecks.patchFailures.length, 0);
+});
+
+test('each model call receives a tool-output cap and a bounded execution time', async t => {
+    const f = fixture(t);
+    const fake = agent();
+    await runLoop({ ...f, economy: { directDocs: false, maxCallsPerRun: 1, maxCallMinutes: 2 }, execute: async (...args) => {
+        if (args[0] !== 'git' && args[0] !== 'powershell.exe') {
+            assert.ok(args[1].includes('tool_output_token_limit=1500'));
+            assert.ok(args[3] <= 120000);
+        }
+        await fake.execute(...args);
+    } });
+    assert.equal(fake.calls.length, 1);
+});
+
+test('git whitespace failures use the same local retry without a diagnosis session', async t => {
+    const f = fixture(t);
+    const fake = agent();
+    let failed = false;
+    const run = await runLoop({ ...f, economy: { directDocs: true, maxCallsPerRun: 3 }, execute: async (...args) => {
+        if (args[0] === 'git' && !failed) { failed = true; throw new Error('git exit 2'); }
+        return fake.execute(...args);
+    } });
+    assert.equal(run.rows[0].status, 'DONE');
+    assert.equal(run.rows[0].firstPass, false);
+    assert.deepEqual(fake.calls.map(call => call.stage), ['work', 'work', 'review']);
+    assert.equal(run.incidents[0].diagnosis, 'deterministic-local-checks');
 });

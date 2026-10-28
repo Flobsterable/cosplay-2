@@ -7,6 +7,7 @@ import { fetchGitHubPool } from './execution-loop-source.mjs';
 import { fetchNotionPool } from './execution-loop-notion.mjs';
 import { runWorkflow } from './execution-loop-workflow.mjs';
 import { createGitHubPublisher } from './execution-loop-publish.mjs';
+import { matchingRecipe } from './execution-loop-checks.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -33,6 +34,8 @@ export function validatePool(pool) {
             !['bug', 'feature', 'refactor', 'test', 'docs'].includes(task.kind)) {
             throw new Error(`Invalid task: ${task.id}`);
         }
+        if (task.dependsOn !== undefined && (!Array.isArray(task.dependsOn) || new Set(task.dependsOn).size !== task.dependsOn.length ||
+            task.dependsOn.some(id => !ids.has(id)))) throw new Error(`Invalid or non-earlier dependencies: ${task.id}`);
         ids.add(task.id);
     }
     return pool;
@@ -117,11 +120,14 @@ async function main() {
     }
     if (mode === 'preflight') {
         if (git(root, 'status', '--porcelain')) throw new Error('Use a clean dedicated checkout; preserve existing work');
+        git(root, 'var', 'GIT_AUTHOR_IDENT');
         const pool = await loadSource();
         const config = read(path.join(root, 'docs/ai-agent/execution-loop/publication.json'));
+        const recipes = read(path.join(root, 'docs/ai-agent/execution-loop/mini-recipes.json'));
+        const preparedPlans = pool.tasks.filter(task => matchingRecipe(task, pool, recipes)).length;
         const publisher = config.mode === 'local' ? null : await createGitHubPublisher({ cwd: root, config,
             runId: 'preflight', baseRevision: git(root, 'rev-parse', 'HEAD') });
-        console.log(`Ready: ${pool.tasks.length} tasks; publication=${config.mode}; base=${publisher?.baseBranch || 'local'}; model=inherited Codex default. No model calls, push or PR creation performed.`);
+        console.log(`Ready: ${pool.tasks.length} tasks; pinned local plans=${preparedPlans}; publication=${config.mode}; base=${publisher?.baseBranch || 'local'}; model=inherited Codex default. No model calls, push or PR creation performed.`);
         return;
     }
     if (mode === 'compare') {
@@ -156,6 +162,7 @@ async function main() {
     const run = await runLoop({ cwd: root, output: path.join(root, 'build/execution-loop', id),
         pool, model, provider, timeoutMinutes: Number(timeout),
         economy: read(path.join(root, 'docs/ai-agent/execution-loop/economy.json')),
+        recipes: read(path.join(root, 'docs/ai-agent/execution-loop/mini-recipes.json')),
         publication: read(path.join(root, 'docs/ai-agent/execution-loop/publication.json')) });
     console.log(`Количество времени без пауз: ${run.metrics.uninterruptedMinutes} мин; ${run.state}`);
     process.exitCode = run.state === 'COMPLETED' ? 0 : 1;

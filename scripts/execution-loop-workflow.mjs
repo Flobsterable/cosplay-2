@@ -3,8 +3,9 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
 import { createHash } from 'node:crypto';
-import { economyOptions, directDocumentationPlan, compactContext, reportedUsage } from './execution-loop-economy.mjs';
+import { economyOptions, assertCallBudget, directDocumentationPlan, compactContext, reportedUsage } from './execution-loop-economy.mjs';
 import { createGitHubPublisher } from './execution-loop-publish.mjs';
+import { matchingRecipe, recipePlan, checkRecipe, checkPatch } from './execution-loop-checks.mjs';
 
 const save = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n');
 const text = { type: 'string' };
@@ -88,10 +89,11 @@ export function validatePlan(plan, earlierIds) {
 }
 
 export async function runWorkflow({ cwd, output, pool, model, provider, timeoutMinutes = 30,
-    codex = 'codex', execute, metrics, validatePool, maxRecoveries = 2, recoveryMinutes = 5, economy = {}, publication = { mode: 'local' }, publisherFactory = createGitHubPublisher }) {
+    codex = 'codex', execute, metrics, validatePool, maxRecoveries = 2, recoveryMinutes = 5, economy = {}, recipes = null, publication = { mode: 'local' }, publisherFactory = createGitHubPublisher }) {
     if (git(cwd, 'status', '--porcelain')) throw new Error('Use a clean dedicated checkout; preserve existing work');
     if (fs.existsSync(output)) throw new Error('Output already exists; use a unique run directory');
     validatePool(pool);
+    git(cwd, 'var', 'GIT_AUTHOR_IDENT');
     const limits = economyOptions(economy);
     const baseRevision = git(cwd, 'rev-parse', 'HEAD');
     const publisher = publication.mode === 'local' ? null : await publisherFactory({ cwd, config: publication,
@@ -101,7 +103,7 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
     }
     fs.mkdirSync(output, { recursive: true });
     const start = performance.now();
-    const run = { version: 5, publication, artifacts: [], economy: limits, modelCalls: [], startedAt: new Date().toISOString(), baseRevision,
+    const run = { version: 6, publication, artifacts: [], economy: limits, recipes, modelCalls: [], startedAt: new Date().toISOString(), baseRevision,
         model, provider, timeoutMinutes, recoveryMinutes, maxRecoveries, node: process.version,
         poolHash: createHash('sha256').update(JSON.stringify(pool)).digest('hex'), state: 'RUNNING', rows: [], incidents: [] };
     const manifestFile = path.join(cwd, 'docs/ai-agent/execution-loop/upstream-skills.json');
@@ -144,11 +146,7 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
     const failureCounts = new Map();
     let serial = 0;
     async function invoke(stage, workspace, directory, payload, budget) {
-        const taskCalls = run.modelCalls.filter(call => call.task === payload.task.id).length;
-        if (run.modelCalls.length >= limits.maxCallsPerRun || taskCalls >= limits.maxCallsPerTask ||
-            (limits.maxReportedTokens && run.metrics.reportedTokens >= limits.maxReportedTokens)) {
-            throw new Error('Budget: model call/token limit reached');
-        }
+        assertCallBudget(limits, run.modelCalls, payload.task.id);
         const stageDir = path.join(directory, `${String(++serial).padStart(3, '0')}-${stage}`);
         fs.mkdirSync(stageDir);
         const schemaPath = path.join(stageDir, 'schema.json');
@@ -180,7 +178,7 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
         }
         if (prompt.length > limits.maxPromptChars) throw new Error('Budget: prompt exceeds configured limit');
         fs.writeFileSync(path.join(stageDir, 'prompt.txt'), prompt);
-        const args = ['-a', 'never', 'exec', '-C', workspace, '--json', '--output-schema', schemaPath, '-o', resultPath];
+        const args = ['-a', 'never', '-c', `tool_output_token_limit=${limits.toolOutputTokens}`, 'exec', '-C', workspace, '--json', '--output-schema', schemaPath, '-o', resultPath];
         if (model && model !== 'default') args.push('-m', model);
         if (stage === 'plan' || stage === 'review') args.push('-s', 'read-only');
         if (provider !== 'cloud') args.push('--oss', '--local-provider', provider);
@@ -193,9 +191,13 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
         run.modelCalls.push(call);
         persist();
         try {
-            await execute(codex, args, workspace, budget, log, prompt);
+            await execute(codex, args, workspace, Math.min(budget, limits.maxCallMinutes * 60000), log, prompt);
             call.result = 'RETURNED';
-        } catch (error) { call.result = 'FAILED'; throw error; }
+        } catch (error) {
+            call.result = 'FAILED';
+            if (error.message === 'Task timeout' && budget > limits.maxCallMinutes * 60000) throw new Error('Budget: model call time limit reached');
+            throw error;
+        }
         finally {
             if (fs.existsSync(log)) call.usage = reportedUsage(fs.readFileSync(log, 'utf8'));
             persist();
@@ -237,12 +239,13 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
                             title: pool.tasks.find(task => task.id === row.id).title,
                             acceptance: pool.tasks.find(task => task.id === row.id).acceptance, reason: row.reason || '' }));
                         const earlierIds = run.rows.slice(0, -1).map(row => row.id);
-                        const local = limits.directDocs ? directDocumentationPlan(task, earlierIds) : null;
+                        const recipe = matchingRecipe(task, pool, recipes);
+                        const local = recipe ? recipePlan(task, recipe) : limits.directDocs ? directDocumentationPlan(task, earlierIds) : null;
                         const proposed = local || await invoke('plan', workspace, directory, { task, history }, remaining());
                         validatePlan(proposed, earlierIds);
                         const candidate = validatePlan({ ...proposed,
                             dependsOn: [...new Set([...(task.dependsOn || []), ...proposed.dependsOn])] }, earlierIds);
-                        row.planning = local ? 'local-docs' : 'model';
+                        row.planning = recipe ? 'local-recipe' : local ? 'local-docs' : 'model';
                         if (git(workspace, 'status', '--porcelain')) throw new Error('Integrity: planner changed source files');
                         assertScope(workspace, base, task.kind);
                         for (const step of candidate.steps) {
@@ -276,7 +279,21 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
                     }
                     const files = assertScope(workspace, base, task.kind);
                     if (!files.length) throw new Error('No changes for completed task');
-                    await execute('git', ['diff', '--check'], workspace, remaining(), path.join(directory, 'validation.log'));
+                    const patchFailures = checkPatch(workspace, git(workspace, 'diff', '--no-ext-diff', '--unified=0', 'HEAD'),
+                        git(workspace, 'ls-files', '--others', '--exclude-standard').split('\n').filter(Boolean));
+                    row.localChecks = { patchFailures, recipe: checkRecipe(workspace, matchingRecipe(task, pool, recipes)) };
+                    save(path.join(directory, 'local-checks.json'), row.localChecks);
+                    if (patchFailures.length || row.localChecks.recipe.some(check => !check.passed)) {
+                        throw new Error(`Local checks failed: ${JSON.stringify(row.localChecks)}`);
+                    }
+                    try {
+                        await execute('git', ['diff', '--check'], workspace, remaining(), path.join(directory, 'validation.log'));
+                    } catch (error) {
+                        if (/Task timeout|Human interruption/.test(error.message)) throw error;
+                        row.localChecks.patchFailures.push({ file: '(git diff)', reason: 'git diff --check failed; see validation.log' });
+                        save(path.join(directory, 'local-checks.json'), row.localChecks);
+                        throw new Error(`Local checks failed: ${JSON.stringify(row.localChecks)}`);
+                    }
                     if (task.kind !== 'docs') {
                         const verification = path.resolve(workspace, lastResult?.verificationDirectory || '.');
                         if (!verification.startsWith(path.join(workspace, 'build', 'verification') + path.sep)) throw new Error('Missing verification evidence under build/verification');
@@ -288,7 +305,7 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
                     try {
                         rawReview = await invoke('review', workspace, directory, { task, plan, baseRevision: base,
                             files, completedSteps: row.steps, verificationDirectory: lastResult?.verificationDirectory || '',
-                            previousReviews: row.reviews }, remaining());
+                            previousReviews: row.reviews, localChecks: row.localChecks }, remaining());
                     } finally {
                         assertScope(workspace, base, task.kind);
                         if (workspaceFingerprint(workspace) !== fingerprint) throw new Error('Integrity: reviewer changed source files or index');
@@ -350,7 +367,11 @@ export async function runWorkflow({ cwd, output, pool, model, provider, timeoutM
                     run.incidents.push(incident);
                     persist();
                     try {
-                        const decision = await invoke('recover', workspace, directory, { task, plan, failedStep: step,
+                        const localFailure = error.message.startsWith('Local checks failed:');
+                        if (localFailure) reviewFeedback = { localChecks: row.localChecks, required: 'Исправь перечисленные локальные проверки и повтори финальную проверку всей задачи.' };
+                        const decision = localFailure ? { action: 'retry', scope: 'task',
+                            fingerprint: 'local-' + createHash('sha256').update(error.message).digest('hex').slice(0, 24),
+                            reason: error.message, diagnosis: 'deterministic-local-checks' } : await invoke('recover', workspace, directory, { task, plan, failedStep: step,
                             error: error.message, evidenceDirectory: directory, previousIncidents: run.incidents.slice(0, -1),
                             reviewFeedback: reviewFeedback || null,
                             remainingTaskMs: Math.max(0, timeoutMinutes * 60000 - (performance.now() - begin)) }, recoveryMinutes * 60000);

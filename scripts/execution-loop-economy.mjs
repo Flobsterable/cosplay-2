@@ -1,13 +1,26 @@
 export const defaultEconomy = Object.freeze({ directDocs: true, maxCallsPerRun: 60, maxCallsPerTask: 10,
-    maxPromptChars: 12000, maxReportedTokens: 250000 });
+    maxPromptChars: 6000, maxReportedTokens: 120000, tokenReserve: 10000, stopOnMissingUsage: false,
+    maxCallMinutes: 8, toolOutputTokens: 1500 });
 
 export function economyOptions(options = {}) {
     const result = { ...defaultEconomy, ...options };
     if (typeof result.directDocs !== 'boolean' || !Number.isInteger(result.maxCallsPerRun) || result.maxCallsPerRun < 1 ||
         !Number.isInteger(result.maxCallsPerTask) || result.maxCallsPerTask < 1 ||
         !Number.isInteger(result.maxPromptChars) || result.maxPromptChars < 2000 ||
-        !Number.isInteger(result.maxReportedTokens) || result.maxReportedTokens < 0) throw new Error('Invalid economy limits');
+        !Number.isInteger(result.maxReportedTokens) || result.maxReportedTokens < 0 ||
+        !Number.isInteger(result.tokenReserve) || result.tokenReserve < 0 ||
+        typeof result.stopOnMissingUsage !== 'boolean' || !Number.isFinite(result.maxCallMinutes) || result.maxCallMinutes <= 0 ||
+        !Number.isInteger(result.toolOutputTokens) || result.toolOutputTokens < 256) throw new Error('Invalid economy limits');
     return result;
+}
+
+export function assertCallBudget(limits, calls, taskId) {
+    const spent = calls.reduce((sum, call) => sum + (call.usage?.totalTokens || 0), 0);
+    if (calls.length >= limits.maxCallsPerRun || calls.filter(call => call.task === taskId).length >= limits.maxCallsPerTask ||
+        (calls.length > 0 && limits.maxReportedTokens && spent >= Math.max(0, limits.maxReportedTokens - limits.tokenReserve)) ||
+        (limits.stopOnMissingUsage && calls.some(call => !call.usage))) {
+        throw new Error('Budget: call/token reserve reached or previous usage is unknown');
+    }
 }
 
 export function directDocumentationPlan(task, earlierIds) {
@@ -43,6 +56,7 @@ export function compactContext(stage, payload, contextFile) {
         result.files = payload.files;
         result.verificationDirectory = payload.verificationDirectory;
         result.previousReview = payload.previousReviews?.at(-1) || null;
+        result.localChecks = payload.localChecks;
     }
     if (stage === 'recover') {
         result.error = payload.error;

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { compactContext, directDocumentationPlan, reportedUsage, economyOptions } from './execution-loop-economy.mjs';
+import { compactContext, directDocumentationPlan, reportedUsage, economyOptions, assertCallBudget } from './execution-loop-economy.mjs';
 
 test('documentation fast path preserves criteria and explicit earlier dependencies', () => {
     const task = { id: 'EL-03', kind: 'docs', title: 'Update docs', acceptance: 'Describe EL-01 behavior', dependsOn: ['EL-02'] };
@@ -9,6 +9,16 @@ test('documentation fast path preserves criteria and explicit earlier dependenci
     assert.equal(plan.steps[0].acceptance, task.acceptance);
     assert.equal(directDocumentationPlan({ ...task, kind: 'feature' }, ['EL-01', 'EL-02']), null);
     assert.equal(directDocumentationPlan(task, ['EL-01']), null);
+});
+
+test('reserve and unknown usage stop before another request while initial call is allowed', () => {
+    const limits = economyOptions({ maxReportedTokens: 1000, tokenReserve: 200, stopOnMissingUsage: true });
+    assert.doesNotThrow(() => assertCallBudget(limits, [], 'EL-01'));
+    assert.throws(() => assertCallBudget(limits, [{ task: 'EL-01', usage: null }], 'EL-02'), /Budget:/);
+    assert.throws(() => assertCallBudget(limits, [{ task: 'EL-01', usage: { totalTokens: 800 } }], 'EL-02'), /Budget:/);
+    assert.doesNotThrow(() => assertCallBudget(limits, [{ task: 'EL-01', usage: { totalTokens: 799 } }], 'EL-02'));
+    assert.throws(() => economyOptions({ maxCallMinutes: 0 }));
+    assert.throws(() => economyOptions({ toolOutputTokens: 0 }));
 });
 
 test('compact planner context omits duplicated history criteria but keeps current acceptance', () => {

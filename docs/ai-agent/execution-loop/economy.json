@@ -1,7 +1,11 @@
 {
   "directDocs": true,
-  "maxCallsPerRun": 60,
-  "maxCallsPerTask": 10,
-  "maxPromptChars": 12000,
-  "maxReportedTokens": 250000
+  "maxCallsPerRun": 36,
+  "maxCallsPerTask": 6,
+  "maxPromptChars": 6000,
+  "maxReportedTokens": 120000,
+  "tokenReserve": 10000,
+  "stopOnMissingUsage": true,
+  "maxCallMinutes": 8,
+  "toolOutputTokens": 1500
 }
