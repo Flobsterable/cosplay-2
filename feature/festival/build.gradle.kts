@@ -32,10 +32,15 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(compose.components.resources)
             implementation(compose.materialIconsExtended)
             implementation(libs.ktor.client.core)
             implementation(project(":core:model"))
             implementation(project(":core:platform"))
         }
     }
+}
+
+compose.resources {
+    packageOfResClass = "ru.flobsterable.cosplay2.feature.festival.resources"
 }

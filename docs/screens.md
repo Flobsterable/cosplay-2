@@ -77,6 +77,15 @@ Update, Settings и Support. `AnimatedContent` выбирает экран. Эк
 Запрос, категория и месяц хранятся через `rememberSaveable`; год приходит снаружи.
 Фильтры работают над загруженным каталогом. Смена года запускает загрузку в Route.
 
+Справа от поиска находится кнопка со значком фильтра. По умолчанию панель города,
+категории, года и месяца скрыта; нажатие плавно раскрывает её вниз, повторное —
+сворачивает. Выбранные параметры продолжают действовать при скрытой панели.
+Состояние раскрытия, поиск, категория и месяц остаются у Screen в `rememberSaveable`;
+смена года сбрасывает месяц. Компоненты `FestivalSearchBar` и `FestivalFilters`
+находятся в `feature/festival/.../ui/catalog/components/`, получают данные и callbacks.
+Подписи поиска, кнопки фильтра, выбора города и «Актуальные» берутся из Compose Resources
+модуля `feature/festival`.
+
 ## Компоненты экрана деталей фестиваля
 
 Образец — `feature/festival/src/commonMain/kotlin/ru/flobsterable/cosplay2/feature/festival/FestivalDetailScreen.kt`.
